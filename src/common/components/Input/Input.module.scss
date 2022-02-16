@@ -1,0 +1,43 @@
+@import 'common/themes/mixins.scss';
+
+.dark {
+  --bg_color: rgba(30, 43, 69, 0.67);
+  --color: var(--color_white);
+  --border: 1px solid rgba(255, 255, 255, 0.13);
+  --placeholder_color: var(--color_blue_gray_400);
+}
+
+.light {
+  --bg_color: rgba(255, 255, 255, 0.2);
+  --bg_color_after: var(--color_blue_gray_200);
+}
+
+.common_input {
+  display: flex;
+  position: relative;
+
+  .input {
+    border-radius: 8px;
+    background-color: var(--bg_color);
+    color: var(--color);
+    border: var(--border);
+    font-size: var(--font_size_normal);
+    padding: 16px;
+    width: 100%;
+  }
+
+  .icon_wrapper {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    @include flex_centered();
+    cursor: pointer;
+  }
+
+  ::placeholder {
+    color: var(--placeholder_color);
+    opacity: 0.8; /* Firefox */
+  }
+}

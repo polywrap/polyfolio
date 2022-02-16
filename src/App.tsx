@@ -1,24 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Fragment} from 'react';
+import {Route, Routes} from 'react-router-dom';
+
+import styles from './App.module.scss';
+
+import LandingPage from 'pages/LandingPage/LandingPage';
+import RoutePath from 'common/modules/routing/routing.enums';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.app}>
+      <Routes>
+        <Fragment>
+          <Route path={RoutePath.BaseRoute} element={<LandingPage />} />
+        </Fragment>
+      </Routes>
     </div>
   );
 }

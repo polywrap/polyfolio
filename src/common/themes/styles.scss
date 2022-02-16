@@ -1,0 +1,10 @@
+@import './reboot.scss';
+@import './texts.scss';
+
+body {
+  color: var(--color_primary);
+  font-family: var(--font_family);
+  background-color: var(--color_bg);
+  font-size: var(--font_size_medium);
+  font-weight: var(--font_weight_normal);
+}

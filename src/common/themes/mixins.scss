@@ -1,0 +1,53 @@
+@mixin flex_grow {
+  display: flex;
+  flex: 1;
+}
+
+@mixin flex_centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex_centered_vert {
+  display: flex;
+  align-items: center;
+}
+
+@mixin flex_centered_horz {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin ellipsis() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+$mobile-size: 540px;
+$tablet-size: 960px;
+
+@mixin narrow() {
+  @media all and (max-width: $tablet-size) {
+    @content;
+  }
+}
+
+@mixin mobile() {
+  @media all and (max-width: $mobile-size) {
+    @content;
+  }
+}
+
+@mixin desktop() {
+  @media all and (min-width: #{$tablet-size + 1px}) {
+    @content;
+  }
+}
+
+@mixin media($width, $type: max-width) {
+  @media all and ($type: $width) {
+    @content;
+  }
+}

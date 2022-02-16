@@ -1,0 +1,17 @@
+.app {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+
+  &:before {
+    content: '';
+    width: 100vw;
+    height: 100vw;
+    top: -356px;
+    right: 130px;
+    position: absolute;
+    background: radial-gradient(50% 50% at 50% 50%, #27c69f 0%, rgba(39, 198, 159, 0) 100%);
+    opacity: 0.2;
+    pointer-events: none;
+  }
+}

@@ -1,0 +1,11 @@
+.dark {
+  --bg_color: var(--color_blue_gray_50);
+}
+
+.light {
+  --bg_color: var(--color_blue_gray_700);
+}
+
+.common_mask_icon {
+  background-color: var(--bg_color);
+}

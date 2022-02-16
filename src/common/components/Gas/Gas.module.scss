@@ -1,0 +1,26 @@
+@import 'common/themes/mixins.scss';
+
+.dark {
+  --color: var(--color_blue_gray_50);
+}
+
+.light {
+  --color: var(--color_blue_gray);
+}
+
+.common_gas {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  .gas {
+    margin-right: 7px;
+    color: var(--color);
+    font-size: var(--font_size_medium);
+    font-weight: var(--font_weight_bolder);
+  }
+
+  .icon {
+    margin-right: 7px;
+  }
+}

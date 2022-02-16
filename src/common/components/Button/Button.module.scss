@@ -1,0 +1,29 @@
+@import 'common/themes/mixins.scss';
+
+.common_button {
+  @include flex_centered();
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    filter: brightness(95%);
+  }
+  &:active {
+    top: 2px;
+  }
+}
+.primary {
+  background: linear-gradient(
+    214.8deg,
+    var(--color_green_400) 5.04%,
+    var(--color_green_500) 76.98%
+  );
+  box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.1);
+  border-radius: 50px;
+  font-size: var(--subtitle_large_font_size);
+  font-weight: var(--font_weight_bold);
+}
+
+.large {
+  padding: 12px 24px;
+}
