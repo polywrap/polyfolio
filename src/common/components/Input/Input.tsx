@@ -2,8 +2,8 @@ import React, {Dispatch, DispatchWithoutAction} from 'react';
 import classNames from 'classnames';
 
 import styles from './Input.module.scss';
-import MaskIcon from '../MaskIcon/MaskIcon';
 import useTheme from 'common/hooks/useTheme/useTheme';
+import MaskIcon from 'common/components/MaskIcon/MaskIcon';
 
 function Input({
   type,

@@ -3,10 +3,10 @@ import classNames from 'classnames';
 
 import styles from './ThemeSwitcher.module.scss';
 
+import iconsObj from 'assets/icons/iconsObj';
+import Icon from 'common/components/Icon/Icon';
 import {ThemeName} from 'common/themes/Themes.types';
 import {useThemeContext} from 'common/themes/Themes.context';
-import Icon from 'common/components/Icon/Icon';
-import iconsObj from 'assets/icons/iconsObj';
 
 function ThemeSwitcher({className = ''}: {className?: string}) {
   const {theme, setTheme} = useThemeContext();

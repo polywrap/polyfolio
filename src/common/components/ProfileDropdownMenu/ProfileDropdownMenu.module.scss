@@ -1,0 +1,29 @@
+@import 'common/themes/mixins';
+
+.dark {
+  --color: #f56565;
+}
+
+.light {
+  --color: #f56565;
+}
+
+.common_profile_dropdown_menu {
+  --font_size: 18px;
+
+  .menu_item {
+    display: flex;
+    align-items: center;
+
+    .title {
+      color: var(--color);
+      font-weight: var(--font_weight_bolder);
+      font-size: var(--font_size);
+    }
+
+    .icon {
+      background-color: var(--color);
+      margin-right: 12px;
+    }
+  }
+}

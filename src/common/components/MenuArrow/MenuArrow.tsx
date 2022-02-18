@@ -10,14 +10,20 @@ export interface CLMenuArrowProps {
   startPosition?: 'up' | 'down' | 'right' | 'left' | 'none';
   className?: string;
   size?: string;
+  filled?: boolean;
 }
 
-function MenuArrow({startPosition = 'none', className = '', size = '10px'}: CLMenuArrowProps) {
+function MenuArrow({
+  startPosition = 'none',
+  className = '',
+  size = '10px',
+  filled,
+}: CLMenuArrowProps) {
   const theme = useTheme();
 
   return (
     <MaskIcon
-      src={iconsObj.menuArrow}
+      src={filled ? iconsObj.menuArrowFilled : iconsObj.menuArrow}
       size={size}
       className={classNames(
         styles.common_menu_arrow,

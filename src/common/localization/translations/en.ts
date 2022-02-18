@@ -16,4 +16,13 @@ export default {
     subtitleAdditional: 'Connect your wallet to get started.',
     button: 'Connect Wallet',
   },
+  FooterLinks: {
+    polywrap: 'Polywrap',
+    docs: 'Docs',
+    roadmap: 'Roadmap',
+    support: 'Support',
+  },
+  ProfileDropdownMenu: {
+    disconnectWallet: 'Disconnect Wallet',
+  },
 };

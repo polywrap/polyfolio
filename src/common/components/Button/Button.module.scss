@@ -1,4 +1,12 @@
-@import 'common/themes/mixins.scss';
+@import 'common/themes/mixins';
+
+.dark {
+  --primary_color: var(--color_white);
+}
+
+.light {
+  --primary_color: var(--color_white);
+}
 
 .common_button {
   @include flex_centered();
@@ -8,10 +16,12 @@
   &:hover {
     filter: brightness(95%);
   }
+
   &:active {
     top: 2px;
   }
 }
+
 .primary {
   background: linear-gradient(
     214.8deg,
@@ -22,6 +32,8 @@
   border-radius: 50px;
   font-size: var(--subtitle_large_font_size);
   font-weight: var(--font_weight_bold);
+
+  color: var(--primary_color);
 }
 
 .large {

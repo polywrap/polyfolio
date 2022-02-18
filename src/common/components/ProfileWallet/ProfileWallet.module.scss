@@ -1,0 +1,14 @@
+@import 'common/themes/mixins';
+
+.dark {
+  --color: var(--color_white);
+}
+
+.light {
+  --color: var(--color_blue_gray_800);
+}
+
+.common_profile_wallet {
+  display: flex;
+  color: var(--color);
+}

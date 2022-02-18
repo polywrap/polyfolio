@@ -2,10 +2,14 @@ enum RoutePath {
   BaseRoute = '/',
 
   RequestFeatures = '/',
-  Docs = '/',
+  Docs = '/docs',
   Settings = '/',
   Discord = '/',
   Twitter = '/',
+
+  RoadMap = '/',
+  Support = '/',
+  Dashboard = '/dashboard',
 }
 
 export default RoutePath;

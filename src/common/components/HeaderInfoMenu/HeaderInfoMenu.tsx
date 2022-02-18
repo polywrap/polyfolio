@@ -1,14 +1,13 @@
 import React, {Dispatch} from 'react';
-
-import styles from './HeaderInfoMenu.module.scss';
-
 import _map from 'lodash/map';
 import classNames from 'classnames';
 
+import styles from './HeaderInfoMenu.module.scss';
+
 import {menuItems} from './HeaderInfoMenu.config';
 import useTheme from 'common/hooks/useTheme/useTheme';
+import {HeaderInfoMenuItem} from './HeaderInfoMenu.types';
 import MaskIcon from 'common/components/MaskIcon/MaskIcon';
-import {HeaderInfoMenuItem} from './HeaderInfoMenu.interface';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 
 function HeaderInfoMenu({onClick}: {onClick: Dispatch<HeaderInfoMenuItem>}) {

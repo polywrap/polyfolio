@@ -1,8 +1,8 @@
 import React, {CSSProperties} from 'react';
+import classNames from 'classnames';
 
 import styles from './MaskIcon.module.scss';
 
-import classNames from 'classnames';
 import useTheme from 'common/hooks/useTheme/useTheme';
 
 export interface CLMaskIconProps {
