@@ -1,14 +1,14 @@
 import React, {useState, useRef, useCallback} from 'react';
+import classNames from 'classnames';
 
 import styles from './HeaderInfo.module.scss';
 
 import iconsObj from 'assets/icons/iconsObj';
 import MaskIcon from 'common/components/MaskIcon/MaskIcon';
 import MenuArrow from 'common/components/MenuArrow/MenuArrow';
-import classNames from 'classnames';
+import TooltipTrigger from 'common/components/TooltipTrigger/TooltipTrigger';
+import HeaderInfoMenu from 'common/components/HeaderInfoMenu/HeaderInfoMenu';
 import useOnClickOutside from 'common/hooks/useOnClickOutside/useOnClickOutside';
-import TooltipTrigger from '../TooltipTrigger/TooltipTrigger';
-import HeaderInfoMenu from '../HeaderInfoMenu/HeaderInfoMenu';
 
 function HeaderInfo({className = ''}: {className?: string}) {
   const ref = useRef(null);
@@ -26,7 +26,7 @@ function HeaderInfo({className = ''}: {className?: string}) {
         isOpen={isOpen}
         placement={'bottom-end'}
         popper={
-          <div onClick={() => console.log('asd')}>
+          <div onClick={() => {}}>
             <HeaderInfoMenu onClick={handleMenuItemClicked} />
           </div>
         }

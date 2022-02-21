@@ -1,4 +1,4 @@
-@import 'common/themes/mixins.scss';
+@import 'common/themes/mixins';
 
 .dark {
   --bg_color: rgba(30, 43, 69, 0.67);
@@ -9,6 +9,7 @@
 
 .light {
   --bg_color: rgba(255, 255, 255, 0.2);
+  --border: 1px solid var(--color_blue_gray_200);
   --bg_color_after: var(--color_blue_gray_200);
 }
 

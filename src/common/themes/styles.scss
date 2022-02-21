@@ -7,4 +7,6 @@ body {
   background-color: var(--color_bg);
   font-size: var(--font_size_medium);
   font-weight: var(--font_weight_normal);
+
+  transition: all 250ms ease-out;
 }

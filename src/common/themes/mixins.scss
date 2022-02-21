@@ -27,6 +27,7 @@
 
 $mobile-size: 540px;
 $tablet-size: 960px;
+$laptop-size: 1251px;
 
 @mixin narrow() {
   @media all and (max-width: $tablet-size) {
@@ -40,8 +41,14 @@ $tablet-size: 960px;
   }
 }
 
-@mixin desktop() {
-  @media all and (min-width: #{$tablet-size + 1px}) {
+@mixin tablet() {
+  @media all and (max-width: $tablet-size) {
+    @content;
+  }
+}
+
+@mixin laptop() {
+  @media all and (max-width: $laptop-size) {
     @content;
   }
 }

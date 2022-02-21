@@ -1,0 +1,30 @@
+@import 'common/themes/mixins';
+
+.dark {
+  --bg_color: rgba(30, 43, 69, 0.2);
+  --color: var(--color_blue_gray_300);
+  --hover_color: var(--color_blue_gray_400);
+}
+
+.light {
+  --bg_color: rgba(255, 255, 255, 0.2);
+  --color: var(--color_blue_gray);
+  --hover_color: var(--color_blue_gray_400);
+}
+
+.common_footer_links {
+  @include flex_centered_vert();
+
+  .link {
+    color: var(--color);
+    font-size: var(--font_size_normal);
+
+    &:hover {
+      color: var(--hover_color);
+    }
+
+    &:not(:last-child) {
+      margin-right: 24px;
+    }
+  }
+}

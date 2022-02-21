@@ -1,3 +1,5 @@
+@import 'common/themes/mixins';
+
 .dark {
   --color: var(--color_blue_gray_50);
 }
@@ -20,20 +22,42 @@
   }
 
   .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    @include flex_centered();
     min-height: calc(100vh - 84px);
+    padding: 32px;
+
+    @include tablet() {
+      margin: 24px 0;
+    }
+
+    @include mobile() {
+      margin: 20px 0;
+    }
 
     .title {
-      color: var(--title_color);
+      @include laptop() {
+        text-align: center;
+      }
+
+      &_colored {
+        color: var(--title_color);
+      }
     }
 
     .subtitle {
       margin: 24px 0;
       text-align: center;
       font-size: var(--subtitle_large_font_size);
+
+      @include tablet() {
+        margin: 48px 0;
+      }
     }
+  }
+
+  .footer {
+    max-width: 1251px;
+    margin: 0 auto;
   }
 }

@@ -12,6 +12,10 @@ import settings from 'assets/icons/images/settings.svg';
 import discord from 'assets/icons/images/discord.svg';
 import twitter from 'assets/icons/images/twitter.svg';
 import search from 'assets/icons/images/search.svg';
+import profile from 'assets/icons/images/profile.png';
+import mobileMenu from 'assets/icons/images/mobile-menu.svg';
+import menuArrowFilled from 'assets/icons/images/menu-arrow-filled.svg';
+import disconnect from 'assets/icons/images/disconnect.svg';
 
 const iconsObj: IconsMapper = {
   sun,
@@ -27,6 +31,10 @@ const iconsObj: IconsMapper = {
   discord,
   twitter,
   search,
+  profile,
+  mobileMenu,
+  menuArrowFilled,
+  disconnect,
 };
 
 export default iconsObj;

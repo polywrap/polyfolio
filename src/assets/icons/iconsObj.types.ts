@@ -12,6 +12,10 @@ interface IconsMapper extends Record<string, unknown> {
   discord: string;
   twitter: string;
   search: string;
+  profile: string;
+  mobileMenu: string;
+  menuArrowFilled: string;
+  disconnect: string;
 }
 
 export {IconsMapper};

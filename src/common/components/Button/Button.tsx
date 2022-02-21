@@ -3,6 +3,8 @@ import classNames from 'classnames';
 
 import styles from './Button.module.scss';
 
+import useTheme from 'common/hooks/useTheme/useTheme';
+
 function Button({
   title,
   size = 'medium',
@@ -16,10 +18,18 @@ function Button({
   buttonType?: 'primary' | 'primary_outline';
   onClick?: DispatchWithoutAction;
 }) {
+  const theme = useTheme();
+
   return (
     <button
       onClick={onClick}
-      className={classNames(styles.common_button, styles[size], styles[buttonType], className)}
+      className={classNames(
+        styles.common_button,
+        styles[size],
+        styles[buttonType],
+        styles[theme],
+        className,
+      )}
     >
       {title}
     </button>

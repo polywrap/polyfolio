@@ -1,4 +1,4 @@
-@import 'common/themes/mixins.scss';
+@import 'common/themes/mixins';
 
 .dark {
   --bg_color: rgba(30, 43, 69, 0.2);
@@ -16,6 +16,10 @@
 
 .wrapper {
   height: 84px;
+
+  @include tablet() {
+    flex: 81px;
+  }
 }
 
 .common_header {
@@ -25,6 +29,12 @@
   padding: 16px 30px;
   background: var(--bg_color);
   backdrop-filter: blur(40px);
+  z-index: 1;
+
+  @include tablet() {
+    flex: 81px;
+    padding: 16px 18px;
+  }
 
   &:after {
     content: '';
@@ -43,16 +53,68 @@
     max-width: 1600px;
     justify-content: space-between;
 
-    .container {
+    .hamburger_menu {
+      display: none;
+
+      @include tablet() {
+        @include flex_centered();
+      }
+
+      .profile_icon {
+        width: 48px;
+        height: 48px;
+        margin-right: 11px;
+      }
+    }
+
+    .menu {
       @include flex_centered_vert();
+
+      @include tablet() {
+        display: none;
+      }
 
       .header_item {
         margin-left: 26px;
       }
     }
+
+    .container {
+      @include flex_centered_vert();
+
+      @include tablet() {
+        flex: 1;
+        @include flex_centered();
+      }
+    }
+
     .input {
       width: 406px;
       margin-left: 140px;
+
+      @include tablet() {
+        display: none;
+      }
+    }
+
+    .mobile_search {
+      display: none;
+      @include tablet() {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      .mask_icon {
+        margin: 10px;
+      }
+    }
+
+    .mask_icon {
+      display: none;
+
+      @include tablet() {
+        display: flex;
+      }
     }
   }
 }

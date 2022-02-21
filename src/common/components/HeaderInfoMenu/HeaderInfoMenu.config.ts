@@ -1,6 +1,6 @@
 import iconsObj from 'assets/icons/iconsObj';
+import {HeaderInfoMenuItem} from './HeaderInfoMenu.types';
 import RoutePath from 'common/modules/routing/routing.enums';
-import {HeaderInfoMenuItem} from './HeaderInfoMenu.interface';
 
 const menuItems: HeaderInfoMenuItem[] = [
   {
