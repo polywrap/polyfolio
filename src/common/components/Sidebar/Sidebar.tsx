@@ -4,8 +4,8 @@ import styles from './Sidebar.module.scss';
 
 import Profile from '../Profile/Profile';
 import SidebarMenu from '../SidebarMenu/SidebarMenu';
-import SidebarLinks from '../SidebarLinks/SidebarLinks';
 import SocialLinks from '../SocialLinks/SocialLinks';
+import SidebarLinks from '../SidebarLinks/SidebarLinks';
 
 function Sidebar() {
   return (

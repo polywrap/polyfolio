@@ -54,4 +54,18 @@
       margin-left: 12px;
     }
   }
+
+  .public_profile {
+    display: flex;
+    flex-direction: column;
+    max-width: 248px;
+
+    .title {
+      font-weight: var(--font_weight_bolder);
+      font-size: var(font_size_medium);
+      line-height: 150%;
+      @include flex_centered_vert();
+      margin-bottom: 18px;
+    }
+  }
 }
