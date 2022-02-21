@@ -1,0 +1,30 @@
+@import 'common/themes/mixins';
+
+.dark {
+  --color: var(--color_white);
+  --bg_color: #1f3047;
+}
+
+.light {
+  --color: var(--color_blue_gray_800);
+  --bg_color: #1f3047;
+}
+
+.common_mobile_menu {
+  display: flex;
+  height: 100vh;
+  overflow: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  padding: 40px 32px;
+  background-color: var(--bg_color);
+  z-index: 100;
+
+  &_active {
+    transform: translateX(0);
+  }
+}

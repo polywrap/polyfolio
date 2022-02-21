@@ -1,0 +1,70 @@
+@import 'common/themes/mixins';
+
+.dark {
+  --color: var(--color_white);
+  --color_bg: #1e293b;
+}
+
+.light {
+  --color: var(--color_blue_gray_800);
+  --color_bg: (--color_white);
+}
+
+.common_mobile_search {
+  display: flex;
+  height: calc(100vh - 81px);
+  overflow: auto;
+  position: absolute;
+  top: 81px;
+  right: 0;
+  bottom: 0;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  padding: 15px;
+  background-color: var(--bg_color);
+  z-index: 100;
+  width: 100%;
+  max-width: 650px;
+  background-color: var(--color_bg);
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &:before {
+    content: '';
+    width: 100vw;
+    height: 100vw;
+    top: -356px;
+    right: 130px;
+    position: fixed;
+    background: radial-gradient(50% 50% at 50% 50%, #27c69f 0%, rgba(39, 198, 159, 0) 100%);
+    opacity: 0.2;
+    pointer-events: none;
+
+    @include tablet() {
+      width: 1624px;
+      height: 1624px;
+      top: -356px;
+      left: -154px;
+    }
+  }
+
+  &_active {
+    transform: translateX(0);
+  }
+
+  .container {
+    width: 100%;
+
+    .title {
+      font-weight: var(--font_weight_bolder);
+      font-size: 48px;
+      line-height: 65px;
+      display: flex;
+      align-items: center;
+      margin-bottom: 32px;
+
+      color: var(--color);
+    }
+  }
+}
