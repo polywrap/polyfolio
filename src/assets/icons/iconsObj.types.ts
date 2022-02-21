@@ -18,6 +18,12 @@ interface IconsMapper extends Record<string, unknown> {
   disconnect: string;
   ethereum: string;
   usd: string;
+  gbr: string;
+  euro: string;
+  inr: string;
+  cad: string;
+  cny: string;
+  bitcoin: string;
 }
 
 export {IconsMapper};

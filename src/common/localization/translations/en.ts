@@ -30,4 +30,22 @@ export default {
   ProfileDropdownMenu: {
     disconnectWallet: 'Disconnect Wallet',
   },
+  Currency: {
+    usd: 'USD',
+    usdSecondary: 'US Dollar',
+    btc: 'BTC',
+    btcSecondary: 'Bitcoin',
+    eth: 'ETH',
+    ethSecondary: 'Ethereum',
+    cad: 'CAD',
+    cadSecondary: 'Canadian Dollar',
+    cny: 'CNY',
+    cnySecondary: 'Chinese Yuan',
+    euro: 'EUR',
+    euroSecondary: 'Euro',
+    gbr: 'GBP',
+    gbrSecondary: 'British Pound',
+    inr: 'INR',
+    inrSecondary: 'Indian Rupee',
+  },
 };
