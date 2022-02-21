@@ -18,6 +18,9 @@ import menuArrowFilled from 'assets/icons/images/menu-arrow-filled.svg';
 import disconnect from 'assets/icons/images/disconnect.svg';
 import ethereum from 'assets/icons/images/ethereum.png';
 import usd from 'assets/icons/images/usd.svg';
+import github from 'assets/icons/images/github.svg';
+import polywrap from 'assets/icons/images/polywrap.svg';
+import home from 'assets/icons/images/home.svg';
 
 const iconsObj: IconsMapper = {
   menuArrowFilled,
@@ -39,6 +42,9 @@ const iconsObj: IconsMapper = {
   gas,
   sun,
   usd,
+  github,
+  polywrap,
+  home,
 };
 
 export default iconsObj;

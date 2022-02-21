@@ -1,0 +1,41 @@
+@import 'common/themes/mixins';
+
+.dark {
+  --color: var(--color_white);
+  --active_bg: rgba(30, 43, 69, 0.67);
+}
+
+.light {
+  --color: var(--color_blue_gray_800);
+  --active_bg: var(--color_emerald_50);
+}
+
+.common_sidebar_menu {
+  display: flex;
+  flex-direction: column;
+  margin: 16px 0;
+
+  .link {
+    opacity: 0.75;
+    padding: 12px 20px;
+    max-width: 216px;
+
+    &:not(:last-child) {
+      margin-bottom: 1px;
+    }
+    display: flex;
+    &:hover {
+      opacity: 1;
+    }
+
+    .icon {
+      margin-right: 13px;
+      background-color: var(--bg_color);
+    }
+  }
+
+  .link_active {
+    opacity: 1;
+    background-color: var(--active_bg);
+  }
+}
