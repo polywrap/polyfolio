@@ -1,0 +1,17 @@
+@import 'common/themes/mixins';
+
+.dark {
+  --color: var(--color_white);
+}
+
+.light {
+  --color: var(--color_blue_gray_800);
+}
+
+.common_sidebar {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
+}

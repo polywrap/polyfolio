@@ -1,23 +1,36 @@
 import React from 'react';
+import _map from 'lodash/map';
+import classNames from 'classnames';
+
 import styles from './Dropdown.module.scss';
+
+import Icon from 'common/components/Icon/Icon';
 import {DropdownItemConfig} from './Dropdown.types';
 import MenuArrow from 'common/components/MenuArrow/MenuArrow';
+<<<<<<< currency-info
 import MaskIcon from 'common/components/MaskIcon/MaskIcon';
 import classNames from 'classnames';
 import _map from 'lodash/map';
+=======
+import useTheme from 'common/hooks/useTheme/useTheme';
+>>>>>>> master
 
 const DropdownItem = (dropdownItem: DropdownItemConfig) => {
   return (
     <>
       <div>
-        <MaskIcon size={'20px'} src={dropdownItem.icon} className={styles.icon} />
+        <Icon src={dropdownItem.icon} className={styles.icon} />
       </div>
       <div>{[dropdownItem.title]}</div>
     </>
   );
 };
 
-function Dropdown({array, current, isOpen, setIsOpen, onСhangeСurrency}) {
+function Dropdown({array, current, isOpen, setIsOpen, onChangeCurrency}) {
+  const theme = useTheme();
+
+  console.log({theme});
+
   return (
     <>
       <div className={`${styles.menu_item_dropdown} ${styles.dropdown}`}>

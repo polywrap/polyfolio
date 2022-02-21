@@ -1,4 +1,4 @@
-import React, {Dispatch, useState} from 'react';
+import React, {useState} from 'react';
 import _map from 'lodash/map';
 import classNames from 'classnames';
 
@@ -11,7 +11,7 @@ import {HeaderGasInfoItem} from './HeaderGasInfoMenu.types';
 import Dropdown from '../Dropdown/Dropdown';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 
-function HeaderGasInfoMenu({onClick}: {onClick: Dispatch<HeaderGasInfoItem>}) {
+function HeaderGasInfoMenu() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [currency, setCurrency] = useState({...dropdownItems[0]});
   const theme = useTheme();
@@ -21,7 +21,7 @@ function HeaderGasInfoMenu({onClick}: {onClick: Dispatch<HeaderGasInfoItem>}) {
     return (
       <>
         {!menuItem.isDivider ? (
-          <div className={styles.menu_item} onClick={() => onClick(menuItem)}>
+          <div className={styles.menu_item}>
             <div className={styles.menu_item}>
               <div style={{backgroundColor: menuItem.colorIcon}} className={styles.icon} />
               <div>
@@ -41,7 +41,7 @@ function HeaderGasInfoMenu({onClick}: {onClick: Dispatch<HeaderGasInfoItem>}) {
     );
   };
 
-  const onСhangeСurrency = (id) => {
+  const onChangeCurrency = (id) => {
     const result = dropdownItems.find((c) => c?.id === id);
     setCurrency(result);
     setIsOpen(false);
@@ -50,7 +50,7 @@ function HeaderGasInfoMenu({onClick}: {onClick: Dispatch<HeaderGasInfoItem>}) {
   return (
     <div className={classNames(styles.common_header_gas_info_menu, styles[theme])}>
       <Dropdown
-        onСhangeСurrency={onСhangeСurrency}
+        onChangeCurrency={onChangeCurrency}
         array={dropdownItems}
         setIsOpen={setIsOpen}
         current={currency}

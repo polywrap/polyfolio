@@ -30,6 +30,15 @@ export default {
   ProfileDropdownMenu: {
     disconnectWallet: 'Disconnect Wallet',
   },
+    SidebarLinks: {
+    polywrap: 'Polywrap',
+    docs: 'Docs',
+    support: 'Support',
+  },
+  SidebarMenu: {
+    dashboard: 'Dashboard',
+    settings: 'Settings',
+  },
   Currency: {
     usd: 'USD',
     usdSecondary: 'US Dollar',
@@ -47,5 +56,4 @@ export default {
     gbrSecondary: 'British Pound',
     inr: 'INR',
     inrSecondary: 'Indian Rupee',
-  },
 };

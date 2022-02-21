@@ -24,6 +24,9 @@ import cny from 'assets/icons/images/cny.svg';
 import gbr from 'assets/icons/images/gbr.svg';
 import inr from 'assets/icons/images/inr.svg';
 import cad from 'assets/icons/images/cad.svg';
+import github from 'assets/icons/images/github.svg';
+import polywrap from 'assets/icons/images/polywrap.svg';
+import home from 'assets/icons/images/home.svg';
 
 const iconsObj: IconsMapper = {
   menuArrowFilled,
@@ -51,6 +54,9 @@ const iconsObj: IconsMapper = {
   cny,
   sun,
   usd,
+  github,
+  polywrap,
+  home,
 };
 
 export default iconsObj;

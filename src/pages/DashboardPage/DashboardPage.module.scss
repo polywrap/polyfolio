@@ -24,6 +24,9 @@
 
     .aside {
       width: 248px;
+      @include tablet() {
+        display: none;
+      }
 
       height: calc(100vh - 148px);
       margin-right: 46px;

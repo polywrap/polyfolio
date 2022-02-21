@@ -1,4 +1,4 @@
-import React, {useState, useRef, useCallback} from 'react';
+import React, {useState, useRef} from 'react';
 import classNames from 'classnames';
 
 import styles from './Gas.module.scss';
@@ -18,10 +18,6 @@ function Gas({className = ''}: {className?: string}) {
 
   useOnClickOutside(ref.current, () => setIsOpen(false));
 
-  const handleMenuItemClicked = useCallback(() => {
-    setIsOpen(false);
-  }, []);
-
   return (
     <div ref={ref} className={classNames(styles.common_header_gas_info, className)}>
       <TooltipTrigger
@@ -29,7 +25,7 @@ function Gas({className = ''}: {className?: string}) {
         placement={'bottom-end'}
         popper={
           <div onClick={() => {}}>
-            <HeaderGasInfoMenu onClick={handleMenuItemClicked} />
+            <HeaderGasInfoMenu />
           </div>
         }
       >
