@@ -24,3 +24,16 @@
     margin-right: 7px;
   }
 }
+.common_header_gas_info {
+  display: flex;
+
+  .content {
+    @include flex_centered_vert();
+    cursor: pointer;
+    position: relative;
+  }
+
+  .icon {
+    margin-right: 7px;
+  }
+}

@@ -30,7 +30,6 @@ function Profile() {
       <div className={styles.profile_info}>
         <div className={styles.wallet}>
           <ProfileWallet address={user} size={4} />
-
           <div ref={ref}>
             <TooltipTrigger
               isOpen={isOpen}
