@@ -1,0 +1,31 @@
+@import 'common/themes/mixins';
+
+.dark {
+  --color: var(--color_white);
+}
+
+.light {
+  --color: var(--color_blue_gray_800);
+}
+
+.common_sidebar_links {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 35px;
+
+  .link {
+    opacity: 0.75;
+    &:not(:last-child) {
+      margin-bottom: 29px;
+    }
+    display: flex;
+    &:hover {
+      opacity: 1;
+    }
+
+    .icon {
+      margin-right: 13px;
+      background-color: var(--bg_color);
+    }
+  }
+}

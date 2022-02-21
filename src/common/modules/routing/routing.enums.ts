@@ -3,9 +3,11 @@ enum RoutePath {
 
   RequestFeatures = '/',
   Docs = '/docs',
+  Polywrap = '/',
   Settings = '/',
   Discord = '/',
   Twitter = '/',
+  Github = '/',
 
   RoadMap = '/',
   Support = '/',

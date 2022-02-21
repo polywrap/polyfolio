@@ -1,0 +1,27 @@
+@import 'common/themes/mixins';
+
+.dark {
+  --bg_color: var(--color_white);
+}
+
+.light {
+  --bg_color: var(--color_blue_gray_800);
+}
+
+.common_social_links {
+  display: flex;
+
+  .link {
+    opacity: 0.75;
+    &:hover {
+      opacity: 1;
+    }
+    &:not(:last-child) {
+      margin-right: 24px;
+    }
+
+    .icon {
+      background-color: var(--bg_color);
+    }
+  }
+}

@@ -8,6 +8,7 @@ interface IconsMapper extends Record<string, unknown> {
   gas: string;
   bulb: string;
   docs: string;
+  polywrap: string;
   settings: string;
   discord: string;
   twitter: string;
@@ -18,6 +19,8 @@ interface IconsMapper extends Record<string, unknown> {
   disconnect: string;
   ethereum: string;
   usd: string;
+  github: string;
+  home: string;
 }
 
 export {IconsMapper};
