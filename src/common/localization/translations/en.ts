@@ -2,6 +2,11 @@ export default {
   Common: {
     searchPlaceholder: 'Search by ENS name or address....',
   },
+  HeaderGasInfoMenu: {
+    slow: 'Slow',
+    medium: 'Medium',
+    fast: 'Fast',
+  },
   HeaderInfoMenu: {
     requestFeatures: 'Request Features',
     docs: 'Docs',

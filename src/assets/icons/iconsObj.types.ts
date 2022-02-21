@@ -16,6 +16,8 @@ interface IconsMapper extends Record<string, unknown> {
   mobileMenu: string;
   menuArrowFilled: string;
   disconnect: string;
+  ethereum: string;
+  usd: string;
 }
 
 export {IconsMapper};

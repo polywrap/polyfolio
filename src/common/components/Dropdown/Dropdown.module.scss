@@ -1,0 +1,57 @@
+.dropdown {
+  width: 100%;
+  position: relative;
+  display: inline-block;
+  .icon {
+    margin-right: 10px;
+  }
+  .dropbtn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--bg_dropdown);
+    color: var(--color);
+    padding: 16px;
+    font-size: 16px;
+    width: 99.6%;
+    cursor: pointer;
+    border: 1px solid var(--divider);
+    border-radius: 8px;
+  }
+  .dropdown_content {
+    display: none;
+    position: absolute;
+    background-color: var(--bg_dropdown);
+    border: 1px solid var(--divider);
+    border-radius: 0 0 8px 8px;
+    border-top: none;
+    width: 99.6%;
+    padding: 16px;
+    z-index: 1;
+  }
+  .show {
+    display: block;
+  }
+  .showBtn {
+    border-radius: 8px 8px 0 0;
+  }
+  .ethereumIcon {
+    margin-right: 8px;
+  }
+  .menu_item_dropdown {
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    width: 99.6%;
+    margin-bottom: 20px;
+  }
+  .menu_item_dropdown_current {
+    margin-bottom: 0;
+  }
+  .menu_item_dropdown:last-child {
+    margin-bottom: 0;
+  }
+  .menu_item_dropdown > div {
+    cursor: pointer;
+  }
+}

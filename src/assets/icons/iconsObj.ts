@@ -16,25 +16,29 @@ import profile from 'assets/icons/images/profile.png';
 import mobileMenu from 'assets/icons/images/mobile-menu.svg';
 import menuArrowFilled from 'assets/icons/images/menu-arrow-filled.svg';
 import disconnect from 'assets/icons/images/disconnect.svg';
+import ethereum from 'assets/icons/images/ethereum.png';
+import usd from 'assets/icons/images/usd.svg';
 
 const iconsObj: IconsMapper = {
-  sun,
-  moon,
-  logoDark,
-  logoLight,
-  help,
-  menuArrow,
-  gas,
-  bulb,
-  docs,
-  settings,
-  discord,
-  twitter,
-  search,
-  profile,
-  mobileMenu,
   menuArrowFilled,
+  logoLight,
+  menuArrow,
   disconnect,
+  mobileMenu,
+  ethereum,
+  settings,
+  logoDark,
+  twitter,
+  discord,
+  profile,
+  search,
+  bulb,
+  moon,
+  help,
+  docs,
+  gas,
+  sun,
+  usd,
 };
 
 export default iconsObj;
