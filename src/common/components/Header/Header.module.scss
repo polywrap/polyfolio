@@ -18,7 +18,7 @@
   height: 84px;
 
   @include tablet() {
-    flex: 81px;
+    height: 81px;
   }
 }
 
@@ -32,7 +32,7 @@
   z-index: 1;
 
   @include tablet() {
-    flex: 81px;
+    height: 81px;
     padding: 16px 18px;
   }
 
@@ -91,6 +91,7 @@
     .input {
       width: 406px;
       margin-left: 140px;
+      margin-right: 26px;
 
       @include tablet() {
         display: none;
@@ -102,6 +103,7 @@
       @include tablet() {
         display: flex;
         justify-content: flex-end;
+        min-width: 38px;
       }
 
       .mask_icon {

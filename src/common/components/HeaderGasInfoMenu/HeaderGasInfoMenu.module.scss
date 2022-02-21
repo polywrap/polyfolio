@@ -3,11 +3,13 @@
 .dark {
   --color: var(--color_blue_gray_50);
   --bg_dropdown: var(--color_blue_gray_bg);
+  --border_color: 1px solid rgba(255, 255, 255, 0.13);
 }
 
 .light {
   --color: var(--color_blue_gray);
   --bg_dropdown: var(--color_white);
+  --border_color: 1px solid rgba(255, 255, 255, 0.13);
 }
 
 .common_header_gas_info_menu {
@@ -18,7 +20,9 @@
     rgba(217, 217, 218, 0.25) 0%,
     rgba(70, 85, 104, 0.5) 100%
   );
-  min-width: 380px;
+
+  min-width: 354px;
+
   .menu_item {
     display: flex;
     align-items: center;

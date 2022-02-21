@@ -1,40 +1,49 @@
 import React from 'react';
+import _map from 'lodash/map';
+import classNames from 'classnames';
+
 import styles from './Dropdown.module.scss';
+
+import Icon from 'common/components/Icon/Icon';
 import {DropdownItemConfig} from './Dropdown.types';
 import MenuArrow from 'common/components/MenuArrow/MenuArrow';
-import MaskIcon from 'common/components/MaskIcon/MaskIcon';
-import _map from 'lodash/map';
+import useTheme from 'common/hooks/useTheme/useTheme';
 
 const DropdownItem = (dropdownItem: DropdownItemConfig) => {
   return (
     <>
       <div>
-        <MaskIcon size={'20px'} src={dropdownItem.icon} className={styles.icon} />
+        <Icon src={dropdownItem.icon} className={styles.icon} />
       </div>
       <div>{[dropdownItem.title]}</div>
     </>
   );
 };
 
-function Dropdown({array, current, isOpen, setIsOpen, onСhangeСurrency}) {
+function Dropdown({array, current, isOpen, setIsOpen, onChangeCurrency}) {
+  const theme = useTheme();
+
+  console.log({theme});
+
   return (
-    <div className={`${styles.menu_item_dropdown} ${styles.dropdown}`}>
+    <div className={classNames(styles.menu_item_dropdown, styles.dropdown, styles[theme])}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`${styles.dropbtn} ${isOpen ? styles.showBtn : ''}`}
+        className={classNames(styles.dropbtn, {[styles.showBtn]: isOpen})}
         type="button"
       >
-        <div className={`${styles.menu_item_dropdown} ${styles.menu_item_dropdown_current}`}>
-          <MaskIcon size={'20px'} src={current.icon} className={styles.icon} />
+        <div className={classNames(styles.menu_item_dropdown, styles.menu_item_dropdown_current)}>
+          <Icon src={current.icon} className={styles.icon} />
           {current.title}
         </div>
         <MenuArrow filled startPosition={!isOpen ? 'right' : 'left'} />
       </button>
-      <div className={`${styles.dropdown_content} ${isOpen ? styles.show : ''}`}>
+      <div className={classNames(styles.dropdown_content, {[styles.show]: isOpen})}>
         {_map(array, (dropdownItem) => (
           <button
+            key={dropdownItem.id}
             className={styles.menu_item_dropdown}
-            onClick={() => onСhangeСurrency(dropdownItem.id)}
+            onClick={() => onChangeCurrency(dropdownItem.id)}
             type="button"
           >
             <DropdownItem {...dropdownItem} key={dropdownItem.id} />
