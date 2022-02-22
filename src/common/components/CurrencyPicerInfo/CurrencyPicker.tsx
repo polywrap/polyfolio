@@ -7,9 +7,10 @@ import styles from './CurrencyPickerInfo.module.scss';
 import {menuItems} from './CurrencyPicker.config';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import {CurrencyPickerItem} from './CurrencyPicker.types';
-import MaskIcon from 'common/components/MaskIcon/MaskIcon';
+import Icon from 'common/components/Icon/Icon';
 import {useCurrency} from 'common/currency/Currency.context';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
+import iconsObj from 'assets/icons/iconsObj';
 
 function CurrencyPickerInfo({onClick}: {onClick: Dispatch<CurrencyPickerItem>}) {
   const theme = useTheme();
@@ -20,14 +21,14 @@ function CurrencyPickerInfo({onClick}: {onClick: Dispatch<CurrencyPickerItem>}) 
     return (
       <div className={styles.menu_item} onClick={() => onClick(menuItem)}>
         <div className={styles.menu_item}>
-          <MaskIcon size={'18px'} src={menuItem.icon} className={styles.icon} />
+          <Icon src={menuItem.icon} className={styles.icon} />
           <div className={styles.title}>{translation.Currency[menuItem.title]}</div>
           <div className={styles.secondaryTitle}>
             {translation.Currency[menuItem.secondaryTitle]}
           </div>
-          {currency === menuItem.title && (
+          {currency === translation.Currency[menuItem.title] && (
             <div className={styles.iconCurrency}>
-              <MaskIcon size={'18px'} src={menuItem.icon} className={styles.icon} />
+              <Icon src={iconsObj.selected} className={styles.iconSelected} />
             </div>
           )}
         </div>

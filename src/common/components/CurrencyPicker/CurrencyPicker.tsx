@@ -8,6 +8,7 @@ import {useCurrency} from 'common/currency/Currency.context';
 import MenuArrow from 'common/components/MenuArrow/MenuArrow';
 import CurrencyPickerInfo from 'common/components/CurrencyPicerInfo/CurrencyPicker';
 import TooltipTrigger from 'common/components/TooltipTrigger/TooltipTrigger';
+import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useOnClickOutside from 'common/hooks/useOnClickOutside/useOnClickOutside';
 
 function CurrencyPicker({className = ''}: {className?: string}) {
@@ -15,12 +16,13 @@ function CurrencyPicker({className = ''}: {className?: string}) {
   const theme = useTheme();
   const {currency, setCurrency} = useCurrency();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const translation = useTranslation();
 
   useOnClickOutside(ref.current, () => setIsOpen(false));
 
   const handleMenuItemClicked = useCallback((item) => {
     setIsOpen(false);
-    setCurrency(item.title);
+    setCurrency(translation.Currency[item.title]);
   }, []);
 
   return (

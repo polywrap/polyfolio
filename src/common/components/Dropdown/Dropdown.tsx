@@ -1,19 +1,12 @@
 import React from 'react';
 import _map from 'lodash/map';
-import classNames from 'classnames';
 
 import styles from './Dropdown.module.scss';
 
 import Icon from 'common/components/Icon/Icon';
 import {DropdownItemConfig} from './Dropdown.types';
 import MenuArrow from 'common/components/MenuArrow/MenuArrow';
-<<<<<<< currency-info
-import MaskIcon from 'common/components/MaskIcon/MaskIcon';
 import classNames from 'classnames';
-import _map from 'lodash/map';
-=======
-import useTheme from 'common/hooks/useTheme/useTheme';
->>>>>>> master
 
 const DropdownItem = (dropdownItem: DropdownItemConfig) => {
   return (
@@ -26,9 +19,7 @@ const DropdownItem = (dropdownItem: DropdownItemConfig) => {
   );
 };
 
-function Dropdown({array, current, isOpen, setIsOpen, onChangeCurrency}) {
-  const theme = useTheme();
-
+function Dropdown({array, current, isOpen, setIsOpen, onСhangeСurrency}) {
   return (
     <>
       <div className={`${styles.menu_item_dropdown} ${styles.dropdown}`}>
@@ -38,7 +29,7 @@ function Dropdown({array, current, isOpen, setIsOpen, onChangeCurrency}) {
           type="button"
         >
           <div className={classNames(styles.menu_item_dropdown, styles.menu_item_dropdown_current)}>
-            <MaskIcon size={'20px'} src={current.icon} className={styles.icon} />
+            <Icon src={current.icon} className={styles.icon} />
             {current.title}
           </div>
           <MenuArrow filled startPosition={!isOpen ? 'right' : 'left'} />
@@ -47,7 +38,7 @@ function Dropdown({array, current, isOpen, setIsOpen, onChangeCurrency}) {
           {_map(array, (dropdownItem) => (
             <button
               className={styles.menu_item_dropdown}
-              onClick={() => onСhangeСurrency(dropdownItem.id)}
+              onClick={() => onСhangeСurrency(dropdownItem)}
               type="button"
             >
               <DropdownItem {...dropdownItem} key={dropdownItem.id} />
