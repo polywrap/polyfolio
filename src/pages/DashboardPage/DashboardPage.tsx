@@ -8,6 +8,8 @@ import Header from 'common/components/Header/Header';
 import Footer from 'common/components/Footer/Footer';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import Sidebar from 'common/components/Sidebar/Sidebar';
+import Profile from 'common/components/Profile/Profile';
+import Networks from 'common/components/Networks/Networks';
 
 function DashboardPage() {
   const theme = useTheme();
@@ -20,6 +22,7 @@ function DashboardPage() {
           <Sidebar />
         </aside>
         <main className={styles.main}>
+          <Networks />
           <Footer wrapperClassName={styles.footer} />
         </main>
       </div>

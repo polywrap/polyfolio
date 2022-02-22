@@ -43,4 +43,9 @@ export default {
     dashboard: 'Dashboard',
     settings: 'Settings',
   },
+  Networks: {
+    eth: 'Ethereum',
+    polygon: 'Polygon',
+    avalanch: 'Avalanche',
+  },
 };

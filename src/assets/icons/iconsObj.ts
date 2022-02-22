@@ -21,6 +21,14 @@ import usd from 'assets/icons/images/usd.svg';
 import github from 'assets/icons/images/github.svg';
 import polywrap from 'assets/icons/images/polywrap.svg';
 import home from 'assets/icons/images/home.svg';
+import euro from 'assets/icons/images/euro.svg';
+import cny from 'assets/icons/images/cny.svg';
+import gbr from 'assets/icons/images/gbr.svg';
+import inr from 'assets/icons/images/inr.svg';
+import cad from 'assets/icons/images/cad.svg';
+import avalanch from 'assets/icons/images/avalanch.svg';
+import polygon from 'assets/icons/images/polygon.svg';
+import bitcoin from 'assets/icons/images/bitcoin.svg';
 
 const iconsObj: IconsMapper = {
   menuArrowFilled,
@@ -29,16 +37,24 @@ const iconsObj: IconsMapper = {
   disconnect,
   mobileMenu,
   ethereum,
+  cny,
+  gbr,
   settings,
   logoDark,
+  avalanch,
   twitter,
   discord,
+  euro,
+  polygon,
   profile,
   search,
   bulb,
+  inr,
+  bitcoin,
   moon,
   help,
   docs,
+  cad,
   gas,
   sun,
   usd,

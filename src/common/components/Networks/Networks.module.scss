@@ -1,0 +1,57 @@
+@import 'common/themes/mixins';
+
+.dark {
+  --color: var(--color_white);
+}
+
+.light {
+  --color: var(--color_blue_gray);
+}
+
+.networks_container {
+  --font_size: 24px;
+  --secondary_size: 16px;
+  display: grid;
+  grid-column-gap: 30px;
+  grid-template-columns: 1fr 1fr 1fr;
+  .menu_item {
+    max-width: 397px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--color_blue_gray_bg);
+    height: 104px;
+    padding: 30px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    border-radius: 8px;
+    cursor: pointer;
+    .title_container {
+      display: flex;
+      align-items: center;
+    }
+  }
+  @include tablet() {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include mobile() {
+    grid-template-columns: 1fr;
+  }
+  .title {
+    color: var(--color);
+    font-weight: var(--font_weight_bolder);
+    font-size: var(--font_size);
+  }
+  .secondaryTitle {
+    font-weight: var(--font_weight_normal);
+    font-size: var(--secondary_size);
+  }
+  .icon {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color);
+    margin-right: 16px;
+  }
+}
