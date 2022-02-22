@@ -17,7 +17,13 @@ import mobileMenu from 'assets/icons/images/mobile-menu.svg';
 import menuArrowFilled from 'assets/icons/images/menu-arrow-filled.svg';
 import disconnect from 'assets/icons/images/disconnect.svg';
 import ethereum from 'assets/icons/images/ethereum.png';
+import bitcoin from 'assets/icons/images/bitcoin.svg';
 import usd from 'assets/icons/images/usd.svg';
+import euro from 'assets/icons/images/euro.svg';
+import cny from 'assets/icons/images/cny.svg';
+import gbr from 'assets/icons/images/gbr.svg';
+import inr from 'assets/icons/images/inr.svg';
+import cad from 'assets/icons/images/cad.svg';
 import github from 'assets/icons/images/github.svg';
 import polywrap from 'assets/icons/images/polywrap.svg';
 import home from 'assets/icons/images/home.svg';
@@ -31,15 +37,21 @@ const iconsObj: IconsMapper = {
   ethereum,
   settings,
   logoDark,
+  bitcoin,
   twitter,
   discord,
   profile,
   search,
+  euro,
   bulb,
   moon,
   help,
   docs,
+  gbr,
+  inr,
+  cad,
   gas,
+  cny,
   sun,
   usd,
   github,
