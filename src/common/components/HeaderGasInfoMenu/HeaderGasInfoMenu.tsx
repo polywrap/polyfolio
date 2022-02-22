@@ -13,7 +13,7 @@ import useTranslation from 'common/hooks/useTranslation/useTranslation';
 
 function HeaderGasInfoMenu() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [currency, setCurrency] = useState({...dropdownItems[0]});
+  const [currency, setCurrency] = useState(dropdownItems[0]);
   const theme = useTheme();
   const translation = useTranslation();
 
@@ -41,16 +41,15 @@ function HeaderGasInfoMenu() {
     );
   };
 
-  const onChangeCurrency = (id) => {
-    const result = dropdownItems.find((c) => c?.id === id);
-    setCurrency(result);
+  const onChangeCurrency = (item) => {
+    setCurrency(item);
     setIsOpen(false);
   };
 
   return (
     <div className={classNames(styles.common_header_gas_info_menu, styles[theme])}>
       <Dropdown
-        onChangeCurrency={onChangeCurrency}
+        onСhangeСurrency={onChangeCurrency}
         array={dropdownItems}
         setIsOpen={setIsOpen}
         current={currency}

@@ -27,6 +27,7 @@
     align-items: center;
     width: 100%;
     padding: 8px 0 8px 5px;
+    cursor: pointer;
     .title {
       font-family: var(--font_family);
       color: var(--color);
@@ -37,10 +38,20 @@
     .icon {
       background-color: var(--color);
       margin-right: 12px;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
     }
     .iconCurrency {
       margin-left: auto;
       margin-right: 30px;
+    }
+    .iconSelected {
+      background-color: var(--divider);
+      margin-right: 12px;
+      border-radius: 50%;
+      width: 24px;
+      height: 24px;
     }
     .secondaryTitle {
       font-family: var(--font_family);

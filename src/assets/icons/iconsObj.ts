@@ -26,6 +26,7 @@ import inr from 'assets/icons/images/inr.svg';
 import cad from 'assets/icons/images/cad.svg';
 import github from 'assets/icons/images/github.svg';
 import polywrap from 'assets/icons/images/polywrap.svg';
+import selected from 'assets/icons/images/selected.svg';
 import home from 'assets/icons/images/home.svg';
 
 const iconsObj: IconsMapper = {
@@ -38,6 +39,7 @@ const iconsObj: IconsMapper = {
   settings,
   logoDark,
   bitcoin,
+  selected,
   twitter,
   discord,
   profile,

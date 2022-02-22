@@ -30,11 +30,11 @@ export default {
   ProfileDropdownMenu: {
     disconnectWallet: 'Disconnect Wallet',
   },
-    Profile: {
+  Profile: {
     title: 'To get started with polyfolio, connect your wallet.',
     button: 'Connect Wallet',
   },
-    SidebarLinks: {
+  SidebarLinks: {
     polywrap: 'Polywrap',
     docs: 'Docs',
     support: 'Support',
@@ -60,4 +60,5 @@ export default {
     gbrSecondary: 'British Pound',
     inr: 'INR',
     inrSecondary: 'Indian Rupee',
+  },
 };
