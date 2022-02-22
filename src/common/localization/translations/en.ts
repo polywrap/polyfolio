@@ -61,4 +61,9 @@ export default {
     inr: 'INR',
     inrSecondary: 'Indian Rupee',
   },
+  Networks: {
+    eth: 'Ethereum',
+    polygon: 'Polygon',
+    avalanch: 'Avalanche',
+  },
 };
