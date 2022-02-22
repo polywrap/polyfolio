@@ -11,6 +11,11 @@ import ThemeContext from 'common/themes/Themes.context';
 import CurrencyContext from 'common/currency/Currency.context';
 import LocalizationContext from 'common/localization/Localization.context';
 
+if (process.env.NODE_ENV !== 'development') {
+  console.warn = () => {};
+  console.error = () => {};
+}
+
 ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>

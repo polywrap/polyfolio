@@ -1,3 +1,5 @@
+@import 'common/themes/mixins';
+
 .app {
   position: relative;
   overflow: hidden;
@@ -9,9 +11,16 @@
     height: 100vw;
     top: -356px;
     right: 130px;
-    position: absolute;
+    position: fixed;
     background: radial-gradient(50% 50% at 50% 50%, #27c69f 0%, rgba(39, 198, 159, 0) 100%);
     opacity: 0.2;
     pointer-events: none;
+
+    @include tablet() {
+      width: 1624px;
+      height: 1624px;
+      top: -356px;
+      left: -154px;
+    }
   }
 }

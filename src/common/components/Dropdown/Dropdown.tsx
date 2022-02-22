@@ -29,8 +29,6 @@ const DropdownItem = (dropdownItem: DropdownItemConfig) => {
 function Dropdown({array, current, isOpen, setIsOpen, onChangeCurrency}) {
   const theme = useTheme();
 
-  console.log({theme});
-
   return (
     <>
       <div className={`${styles.menu_item_dropdown} ${styles.dropdown}`}>

@@ -30,6 +30,10 @@ export default {
   ProfileDropdownMenu: {
     disconnectWallet: 'Disconnect Wallet',
   },
+    Profile: {
+    title: 'To get started with polyfolio, connect your wallet.',
+    button: 'Connect Wallet',
+  },
     SidebarLinks: {
     polywrap: 'Polywrap',
     docs: 'Docs',
