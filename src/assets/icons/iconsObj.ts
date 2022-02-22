@@ -28,6 +28,8 @@ import github from 'assets/icons/images/github.svg';
 import polywrap from 'assets/icons/images/polywrap.svg';
 import selected from 'assets/icons/images/selected.svg';
 import home from 'assets/icons/images/home.svg';
+import avalanch from 'assets/icons/images/avalanch.svg';
+import polygon from 'assets/icons/images/polygon.svg';
 
 const iconsObj: IconsMapper = {
   menuArrowFilled,
@@ -40,6 +42,8 @@ const iconsObj: IconsMapper = {
   logoDark,
   bitcoin,
   selected,
+  avalanch,
+  polygon,
   twitter,
   discord,
   profile,

@@ -20,6 +20,8 @@ interface IconsMapper extends Record<string, unknown> {
   ethereum: string;
   usd: string;
   selected: string;
+  polygon: string;
+  avalanch: string;
   gbr: string;
   euro: string;
   inr: string;
