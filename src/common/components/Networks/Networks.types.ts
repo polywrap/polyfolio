@@ -1,6 +1,6 @@
 interface NetworksItem {
   title?: string;
-  secondaryTitle?: string;
+  secondaryTitle?: number;
   icon?: string;
 }
 

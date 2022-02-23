@@ -9,6 +9,7 @@ import {dropdownItems} from './HederDropdown/HeaderDropdown.config';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import {HeaderGasInfoItem} from './HeaderGasInfoMenu.types';
 import Dropdown from '../Dropdown/Dropdown';
+import numberFormatter from 'utils/numberFormatter';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 
 function HeaderGasInfoMenu() {
@@ -30,8 +31,12 @@ function HeaderGasInfoMenu() {
               </div>
             </div>
             <div className={styles.price_container}>
-              <div className={styles.title}>{[menuItem.price]}</div>
-              <div className={styles.time}>{[menuItem.titlePrice]}</div>
+              <div className={styles.title}>
+                ${numberFormatter({value: menuItem.price, size: 2})}
+              </div>
+              <div className={styles.time}>
+                {numberFormatter({value: menuItem.titlePrice, size: 0})}
+              </div>
             </div>
           </div>
         ) : (

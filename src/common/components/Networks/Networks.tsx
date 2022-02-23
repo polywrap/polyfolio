@@ -3,6 +3,7 @@ import _map from 'lodash/map';
 
 import styles from './Networks.module.scss';
 
+import numberFormatter from 'utils/numberFormatter';
 import MenuArrow from 'common/components/MenuArrow/MenuArrow';
 import {NetworksItem} from './Networks.types';
 import {menuItems} from './Networks.config';
@@ -26,7 +27,10 @@ function Networks() {
           <Icon src={menuItem.icon} className={styles.icon} />
           <div>
             <div className={styles.title}>{translation.Networks[menuItem.title]}</div>
-            <div className={styles.secondaryTitle}>{[menuItem.secondaryTitle]}</div>
+
+            <div className={styles.secondaryTitle}>
+              ${numberFormatter({value: menuItem.secondaryTitle, size: 2})}
+            </div>
           </div>
         </div>
         <div style={{marginRight: '20px'}}>
