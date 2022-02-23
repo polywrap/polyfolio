@@ -20,10 +20,13 @@ function CurrencyPicker({className = ''}: {className?: string}) {
 
   useOnClickOutside(ref.current, () => setIsOpen(false));
 
-  const handleMenuItemClicked = useCallback((item) => {
-    setIsOpen(false);
-    setCurrency(translation.Currency[item.title]);
-  }, []);
+  const handleMenuItemClicked = useCallback(
+    (item) => {
+      setIsOpen(false);
+      setCurrency(translation.Currency[item.title]);
+    },
+    [setCurrency, translation.Currency],
+  );
 
   return (
     <div ref={ref} className={classNames(styles.common_header_gas_info, className)}>

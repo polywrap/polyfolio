@@ -42,6 +42,11 @@
       height: calc(100vh - 116px);
       margin-right: 20px;
       overflow: scroll;
+
+      @include tablet() {
+        margin: 0;
+        padding: 15px 16px;
+      }
     }
   }
 }
