@@ -9,6 +9,7 @@ import Footer from '../Footer/Footer';
 import iconsObj from 'assets/icons/iconsObj';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
+import useOnClickOutside from 'common/hooks/useOnClickOutside/useOnClickOutside';
 
 function MobileSearch({isOpen, onClose}: {isOpen: boolean; onClose: DispatchWithoutAction}) {
   const theme = useTheme();
@@ -16,6 +17,7 @@ function MobileSearch({isOpen, onClose}: {isOpen: boolean; onClose: DispatchWith
   const translation = useTranslation();
   const [value, setValue] = useState<string>();
 
+  useOnClickOutside(ref.current, () => onClose());
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
 

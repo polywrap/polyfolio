@@ -12,13 +12,12 @@ import useAuth from 'common/hooks/useAuth/useAuth';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import MaskIcon from 'common/components/MaskIcon/MaskIcon';
 import HeaderInfo from 'common/components/HeaderInfo/HeaderInfo';
+import MobileMenu from 'common/components/MobileMenu/MobileMenu';
+import MobileSearch from 'common/components/MobileSearch/MobileSearch';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import ThemeSwitcher from 'common/components/ThemeSwitcher/ThemeSwitcher';
 import CurrencyPicker from 'common/components/CurrencyPicker/CurrencyPicker';
 import useResizeObserver from 'common/hooks/useResizeObserver/useResizeObserver';
-import MobileMenu from '../MobileMenu/MobileMenu';
-import useOnClickOutside from 'common/hooks/useOnClickOutside/useOnClickOutside';
-import MobileSearch from '../MobileSearch/MobileSearch';
 
 function Header({
   className = '',
@@ -37,9 +36,6 @@ function Header({
   const searchRef = useRef<HTMLDivElement>(null);
   const {width} = useResizeObserver(menuRef);
 
-  useOnClickOutside(menuRef.current, () => setIsOpenMobileMenu(false));
-  useOnClickOutside(searchRef.current, () => setIsOpenMobileSearch(false));
-
   return (
     <div className={styles.wrapper}>
       <header className={classNames(styles.common_header, styles[theme])}>
@@ -51,7 +47,6 @@ function Header({
           >
             {user && <Icon src={iconsObj.profile} className={styles.profile_icon} />}
             <MaskIcon size={'18px'} src={iconsObj.mobileMenu} className={styles.mask_icon} />
-            <MobileMenu isOpen={isOpenMobileMenu} onClose={() => setIsOpenMobileMenu(false)} />
           </div>
 
           <div className={styles.container}>
@@ -80,14 +75,12 @@ function Header({
                 src={iconsObj.search}
                 className={styles.mask_icon}
               />
-              <MobileSearch
-                isOpen={isOpenMobileSearch}
-                onClose={() => setIsOpenMobileSearch(false)}
-              />
             </div>
           </div>
         </div>
       </header>
+      <MobileMenu isOpen={isOpenMobileMenu} onClose={() => setIsOpenMobileMenu(false)} />
+      <MobileSearch isOpen={isOpenMobileSearch} onClose={() => setIsOpenMobileSearch(false)} />
     </div>
   );
 }

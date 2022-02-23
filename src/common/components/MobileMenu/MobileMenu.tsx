@@ -6,11 +6,13 @@ import styles from './MobileMenu.module.scss';
 
 import Sidebar from '../Sidebar/Sidebar';
 import useTheme from 'common/hooks/useTheme/useTheme';
+import useOnClickOutside from 'common/hooks/useOnClickOutside/useOnClickOutside';
 
 function MobileMenu({isOpen, onClose}: {isOpen: boolean; onClose: DispatchWithoutAction}) {
   const theme = useTheme();
   const ref = useRef(null);
 
+  useOnClickOutside(ref.current, () => onClose());
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
 
@@ -44,9 +46,10 @@ function MobileMenu({isOpen, onClose}: {isOpen: boolean; onClose: DispatchWithou
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onTouchMove={handleTouchMove}
-      ref={ref}
     >
-      <Sidebar />
+      <div ref={ref}>
+        <Sidebar className={styles.sidebar} />
+      </div>
     </div>
   );
 }

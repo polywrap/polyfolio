@@ -7,12 +7,13 @@
 
 .light {
   --color: var(--color_blue_gray_800);
-  --bg_color: #1f3047;
+  --bg_color: var(--color_white);
 }
 
 .common_mobile_menu {
   display: flex;
-  height: 100vh;
+  height: 100%;
+  max-height: 100vh;
   overflow: auto;
   position: absolute;
   top: 0;
@@ -26,5 +27,14 @@
 
   &_active {
     transform: translateX(0);
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar {
+    overflow: unset;
   }
 }
