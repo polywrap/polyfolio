@@ -21,14 +21,22 @@
     rgba(70, 85, 104, 0.5) 100%
   );
 
-  min-width: 354px;
+  min-width: 384px;
+  padding: 0 8px;
 
   .menu_item {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 8px 5px;
-
+    padding: 0 16px;
+    max-width: 336px;
+    height: 68px;
+    margin: 0 auto;
+    .menu_item_title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
     .title {
       color: var(--color);
       font-weight: var(--font_weight_bolder);

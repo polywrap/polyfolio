@@ -19,7 +19,7 @@ const DropdownItem = (dropdownItem: DropdownItemConfig) => {
   );
 };
 
-function Dropdown({array, current, isOpen, setIsOpen, onСhangeСurrency}) {
+function Dropdown({array, current, isOpen, setIsOpen, onСhangeСurrency, className}) {
   return (
     <>
       <div className={`${styles.menu_item_dropdown} ${styles.dropdown}`}>
@@ -32,7 +32,7 @@ function Dropdown({array, current, isOpen, setIsOpen, onСhangeСurrency}) {
             <Icon src={current.icon} className={styles.icon} />
             {current.title}
           </div>
-          <MenuArrow filled startPosition={!isOpen ? 'right' : 'left'} />
+          <MenuArrow className={className} filled startPosition={!isOpen ? 'right' : 'left'} />
         </button>
         <div className={classNames(styles.dropdown_content, {[styles.show]: isOpen})}>
           {_map(array, (dropdownItem) => (

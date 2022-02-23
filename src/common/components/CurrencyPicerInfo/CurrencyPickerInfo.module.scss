@@ -19,14 +19,17 @@
     rgba(217, 217, 218, 0.25) 0%,
     rgba(70, 85, 104, 0.5) 100%
   );
-  min-width: 380px;
-  max-height: 490px;
+  width: 336px;
+  max-height: 496px;
+  padding: 0 24px;
   overflow: scroll;
+  margin: 0 8px;
   .menu_item {
     display: flex;
     align-items: center;
     width: 100%;
-    padding: 8px 0 8px 5px;
+    margin: 0 auto;
+    height: 56px;
     cursor: pointer;
     .title {
       font-family: var(--font_family);
@@ -44,7 +47,8 @@
     }
     .iconCurrency {
       margin-left: auto;
-      margin-right: 30px;
+      position: relative;
+      right: -20px;
     }
     .iconSelected {
       background-color: var(--divider);

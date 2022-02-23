@@ -22,7 +22,7 @@ function HeaderGasInfoMenu() {
       <>
         {!menuItem.isDivider ? (
           <div className={styles.menu_item}>
-            <div className={styles.menu_item}>
+            <div className={styles.menu_item_title}>
               <div style={{backgroundColor: menuItem.colorIcon}} className={styles.icon} />
               <div>
                 <div className={styles.title}>{translation.HeaderGasInfoMenu[menuItem.title]}</div>
@@ -50,6 +50,7 @@ function HeaderGasInfoMenu() {
     <div className={classNames(styles.common_header_gas_info_menu, styles[theme])}>
       <Dropdown
         onСhangeСurrency={onChangeCurrency}
+        className={styles.dropdownIcon}
         array={dropdownItems}
         setIsOpen={setIsOpen}
         current={currency}

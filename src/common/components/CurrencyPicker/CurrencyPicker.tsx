@@ -30,11 +30,7 @@ function CurrencyPicker({className = ''}: {className?: string}) {
       <TooltipTrigger
         isOpen={isOpen}
         placement={'bottom-end'}
-        popper={
-          <div onClick={() => {}}>
-            <CurrencyPickerInfo onClick={handleMenuItemClicked} />
-          </div>
-        }
+        popper={<CurrencyPickerInfo onClick={handleMenuItemClicked} />}
       >
         <div
           ref={ref}
