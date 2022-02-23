@@ -1,16 +1,16 @@
 enum RoutePath {
   BaseRoute = '/',
 
-  RequestFeatures = '/',
+  RequestFeatures = '/request-features',
   Docs = '/docs',
-  Polywrap = '/',
-  Settings = '/',
-  Discord = '/',
-  Twitter = '/',
-  Github = '/',
+  Polywrap = '/polywrap',
+  Settings = '/settings',
+  Discord = '/discord',
+  Twitter = '/twitter',
+  Github = '/git',
 
-  RoadMap = '/',
-  Support = '/',
+  RoadMap = '/roadmap',
+  Support = '/support',
   Dashboard = '/dashboard',
 }
 
