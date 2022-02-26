@@ -40,8 +40,12 @@
       @include flex_grow();
       flex-direction: column;
       height: calc(100vh - 116px);
-      margin-right: 20px;
       overflow: scroll;
+    }
+  }
+  @include mobile() {
+    .main {
+      padding: 0 16px;
     }
   }
 }

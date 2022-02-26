@@ -66,4 +66,11 @@ export default {
     polygon: 'Polygon',
     avalanch: 'Avalanche',
   },
+  Protocols: {
+    badger: 'Badger',
+    eth: 'ETH',
+    ufo: 'UFO',
+    btc: 'BTC',
+    gel: 'GEL',
+  },
 };
