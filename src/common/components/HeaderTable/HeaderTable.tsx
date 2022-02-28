@@ -22,7 +22,7 @@ function HeaderTable({title, sum}) {
         </button>
         <button>
           <Icon
-            src={iconsObj.filter_icon_secondary}
+            src={iconsObj.filterIconSecondary}
             className={classNames(styles.icon, styles.iconFilter)}
           />
         </button>

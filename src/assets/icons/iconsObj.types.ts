@@ -1,5 +1,5 @@
 interface IconsMapper extends Record<string, unknown> {
-  filter_icon_secondary: string;
+  filterIconSecondary: string;
   menuArrowFilled: string;
   protocolBardger: string;
   assetsBitcoin: string;

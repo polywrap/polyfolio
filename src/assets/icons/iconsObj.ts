@@ -1,5 +1,5 @@
 import {IconsMapper} from './iconsObj.types';
-import filter_icon_secondary from 'assets/icons/images/filter_icon_secondary.svg';
+import filterIconSecondary from 'assets/icons/images/filterIconSecondary.svg';
 import menuArrowFilled from 'assets/icons/images/menu-arrow-filled.svg';
 import mobileMenu from 'assets/icons/images/mobile-menu.svg';
 import disconnect from 'assets/icons/images/disconnect.svg';
@@ -34,23 +34,27 @@ import gbr from 'assets/icons/images/gbr.svg';
 import inr from 'assets/icons/images/inr.svg';
 import cad from 'assets/icons/images/cad.svg';
 
-import protocolBardger from 'assets/icons/images/protocolsTable/bardger.svg';
-import protocolBtc from 'assets/icons/images/protocolsTable/protocolBtc.svg';
-import protocolGel from 'assets/icons/images/protocolsTable/protocolGel.svg';
-import protocolEth from 'assets/icons/images/protocolsTable/protocolEth.svg';
-import protocolUfo from 'assets/icons/images/protocolsTable/protocolUfo.svg';
+import {
+  protocolBardger,
+  protocolBtc,
+  protocolGel,
+  protocolEth,
+  protocolUfo,
+} from 'assets/icons/images/protocolsTable';
 
-import assetsBitcoin from 'assets/icons/images/assetsTable/assetsBitcoin.svg';
-import assetsMatic from 'assets/icons/images/assetsTable/assetsMatic.svg';
-import assetsUsdt from 'assets/icons/images/assetsTable/assetsUsdt.svg';
-import assetsUfo from 'assets/icons/images/assetsTable/assetsUfo.svg';
-import assetsGel from 'assets/icons/images/assetsTable/assetsGel.svg';
-import assetsFtm from 'assets/icons/images/assetsTable/assetsFtm.svg';
-import assetsEth from 'assets/icons/images/assetsTable/assetsEth.svg';
-import assetsCqt from 'assets/icons/images/assetsTable/assetsCqt.svg';
+import {
+  assetsBitcoin,
+  assetsMatic,
+  assetsUsdt,
+  assetsUfo,
+  assetsGel,
+  assetsFtm,
+  assetsEth,
+  assetsCqt,
+} from 'assets/icons/images/assetsTable';
 
 const iconsObj: IconsMapper = {
-  filter_icon_secondary,
+  filterIconSecondary,
   menuArrowFilled,
   protocolBardger,
   assetsBitcoin,
