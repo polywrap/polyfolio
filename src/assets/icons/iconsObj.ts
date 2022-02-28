@@ -40,31 +40,51 @@ import protocolGel from 'assets/icons/images/protocolsTable/protocolGel.svg';
 import protocolEth from 'assets/icons/images/protocolsTable/protocolEth.svg';
 import protocolUfo from 'assets/icons/images/protocolsTable/protocolUfo.svg';
 
+import assetsBitcoin from 'assets/icons/images/assetsTable/assetsBitcoin.svg';
+import assetsMatic from 'assets/icons/images/assetsTable/assetsMatic.svg';
+import assetsUsdt from 'assets/icons/images/assetsTable/assetsUsdt.svg';
+import assetsUfo from 'assets/icons/images/assetsTable/assetsUfo.svg';
+import assetsGel from 'assets/icons/images/assetsTable/assetsGel.svg';
+import assetsFtm from 'assets/icons/images/assetsTable/assetsFtm.svg';
+import assetsEth from 'assets/icons/images/assetsTable/assetsEth.svg';
+import assetsCqt from 'assets/icons/images/assetsTable/assetsCqt.svg';
+
 const iconsObj: IconsMapper = {
   filter_icon_secondary,
   menuArrowFilled,
   protocolBardger,
+  assetsBitcoin,
   protocolGel,
   protocolUfo,
   protocolBtc,
   protocolEth,
+  assetsMatic,
+  assetsUsdt,
   mobileMenu,
   sort_frame,
   filterIcon,
   disconnect,
+  assetsUfo,
+  assetsFtm,
+  assetsEth,
+  assetsCqt,
+  logoLight,
+  assetsGel,
   menuArrow,
   ethereum,
-  logoLight,
   settings,
   logoDark,
-  bitcoin,
   selected,
   avalanch,
+  polywrap,
   polygon,
   twitter,
+  bitcoin,
   discord,
   profile,
   search,
+  github,
+  home,
   euro,
   bulb,
   moon,
@@ -77,9 +97,6 @@ const iconsObj: IconsMapper = {
   cny,
   sun,
   usd,
-  github,
-  polywrap,
-  home,
 };
 
 export default iconsObj;

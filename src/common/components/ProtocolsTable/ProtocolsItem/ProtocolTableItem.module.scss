@@ -1,5 +1,12 @@
 @import 'common/themes/mixins';
 
+.dark {
+  --color: var(--color_blue_gray_50);
+}
+
+.light {
+  --color: var(--color_blue_gray);
+}
 .menu_item {
   --font_size: 18px;
   --font_size_secondary: 14px;
@@ -23,24 +30,22 @@
     font-weight: var(--font_weight_bolder);
     margin-left: 16px;
   }
-  .flex {
-    display: flex;
-  }
   .title_container {
-    max-width: 384px;
-    align-items: center;
-    min-width: 150px;
+    width: calc(100% / 3);
+
+    @include flex_centered_vert();
+  }
+  .price_container,
+  .claimable_container {
+    text-align: end;
+    width: calc(100% / 3);
+    justify-content: flex-end;
   }
   .price_container {
-    position: absolute;
-    right: 43%;
-  }
-  .secondaryTitle {
-    text-align: end;
+    padding-right: 52px;
   }
   .claimable_container {
-    position: absolute;
-    right: 30px;
+    @include flex_grow();
   }
   .secondaryPriceTitle {
     font-size: var(--font_size_secondary);
@@ -48,6 +53,7 @@
   }
   .secondaryPricePercentTitle {
     font-size: var(--font_size_secondary);
+    border-radius: 5px;
     color: var(--color_green_500);
     background-color: rgba(16, 199, 162, 0.2);
     margin-left: 10px;

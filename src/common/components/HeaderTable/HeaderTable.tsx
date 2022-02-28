@@ -4,8 +4,9 @@ import iconsObj from 'assets/icons/iconsObj';
 import Icon from 'common/components/Icon/Icon';
 import styles from './HeaderTable.module.scss';
 import MenuArrow from 'common/components/MenuArrow/MenuArrow';
+import numberFormatter from 'utils/numberFormatter';
 
-function HeaderTable({title}) {
+function HeaderTable({title, sum}) {
   return (
     <div className={styles.flex}>
       <div className={styles.title_container}>
@@ -15,7 +16,7 @@ function HeaderTable({title}) {
         </button>
       </div>
       <div className={styles.filter_container}>
-        <h4>$3,837,337.00</h4>
+        <h4>${numberFormatter({value: sum, size: 2})}</h4>
         <button>
           <Icon src={iconsObj.filterIcon} className={styles.icon} />
         </button>

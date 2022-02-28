@@ -11,6 +11,7 @@ export const colors = {
   color_green_700: '#05906E',
   color_green_800: '#077259',
   color_green_900: '#065D4A',
+  color_green_bg: '#74DD9F',
 
   // Emerald
   // color_emerald: '#10C7A2',

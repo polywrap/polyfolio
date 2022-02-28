@@ -29,7 +29,7 @@ function Networks() {
             <div className={styles.secondaryTitle}>{[menuItem.secondaryTitle]}</div>
           </div>
         </div>
-        <div style={{marginRight: '20px'}}>
+        <div>
           <MenuArrow filled startPosition={'up'} />
         </div>
       </div>

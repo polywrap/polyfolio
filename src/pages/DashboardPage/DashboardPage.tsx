@@ -10,6 +10,7 @@ import useTheme from 'common/hooks/useTheme/useTheme';
 import Sidebar from 'common/components/Sidebar/Sidebar';
 import Networks from 'common/components/Networks/Networks';
 import ProtocolsTable from 'common/components/ProtocolsTable/ProtocolsTable';
+import AssetsTable from 'common/components/AssetsTable/AssetsTable';
 
 function DashboardPage() {
   const theme = useTheme();
@@ -22,6 +23,7 @@ function DashboardPage() {
           <Sidebar />
         </aside>
         <main className={styles.main}>
+          <AssetsTable />
           <ProtocolsTable />
           <Networks />
           <Footer wrapperClassName={styles.footer} />
