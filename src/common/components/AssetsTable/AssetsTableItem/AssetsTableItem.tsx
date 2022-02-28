@@ -37,7 +37,7 @@ function AssetsItem(menuItem) {
           </div>
           <div className={styles.container_allocation}>
             <div className={styles.background}></div>
-            <div className={styles.aggregate} style={{width: percent}}></div>
+            <div className={styles.aggregate} style={{width: `${percent}%`}}></div>
             <span className={styles.badgeText}>{numberFormatter({value: percent, size: 0})}%</span>
             <span className={styles.badge}></span>
           </div>
