@@ -27,6 +27,7 @@ function DashboardPage() {
           <AssetsTable />
           <ProtocolsTable />
           <PerformanceTable />
+
           <Networks />
           <Footer wrapperClassName={styles.footer} />
         </main>
