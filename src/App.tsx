@@ -8,6 +8,7 @@ import LandingPage from 'pages/LandingPage/LandingPage';
 import DashboardPage from 'pages/DashboardPage/DashboardPage';
 import RoutePath from 'common/modules/routing/routing.enums';
 import useRouteChange from 'common/hooks/useRouteChange/useRouteChange';
+import AssetPage from 'pages/AssetPage/AssetPage';
 
 function App() {
   useRouteChange();
@@ -47,6 +48,14 @@ function App() {
             element={
               <ProtectedRoute user={user}>
                 <DashboardPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={RoutePath.Asset}
+            element={
+              <ProtectedRoute user={user}>
+                <AssetPage />
               </ProtectedRoute>
             }
           />

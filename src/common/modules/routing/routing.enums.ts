@@ -12,6 +12,7 @@ enum RoutePath {
   RoadMap = '/roadmap',
   Support = '/support',
   Dashboard = '/dashboard',
+  Asset = '/asset',
 }
 
 export default RoutePath;
