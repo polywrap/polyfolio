@@ -6,6 +6,7 @@ import classNames from 'classnames';
 
 import Header from 'common/components/Header/Header';
 import Footer from 'common/components/Footer/Footer';
+import AssetChart from 'common/components/AssetChart/AssetChart';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import Sidebar from 'common/components/Sidebar/Sidebar';
 
@@ -20,7 +21,7 @@ function AssetPage() {
           <Sidebar />
         </aside>
         <main className={styles.main}>
-          content
+          <AssetChart />
           <Footer wrapperClassName={styles.footer} />
         </main>
       </div>

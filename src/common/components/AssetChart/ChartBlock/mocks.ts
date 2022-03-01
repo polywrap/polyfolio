@@ -1,0 +1,33 @@
+export const dates = [
+  '1 Aug',
+  '2 Aug',
+  '3 Aug',
+  '4 Aug',
+  '5 Aug',
+  '6 Aug',
+  '7 Aug',
+  '8 Aug',
+  '9 Aug',
+  '10 Aug',
+  '11 Aug',
+  '12 Aug',
+  '13 Aug',
+  '14 Aug',
+  '15 Aug',
+]
+
+export const prices = [
+  121,
+  120,
+  119,
+  118,
+  117,
+  116,
+  115,
+  114,
+  113,
+  112,
+  111,
+  110,
+  109,
+]

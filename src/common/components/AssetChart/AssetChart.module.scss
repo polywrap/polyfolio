@@ -1,0 +1,17 @@
+.wrapper {
+  max-width: 1256px;
+  width: 100%;
+
+  margin: 0 auto;
+
+  .link {
+    display: inline-block;
+    color: rgb(39, 198, 159);
+    font-size: 16px;
+
+    .arrow {
+      max-width: 16px;
+      
+    }
+  }
+}

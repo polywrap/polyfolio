@@ -1,0 +1,31 @@
+.titleBlock {
+  font-family: 'Nunito';
+
+  .price {
+    color: white;
+    font-weight: 900;
+    font-size: 40px;
+    line-height: 54.56px;
+  }
+
+  .subtitleBlock {
+    display: flex;
+
+    .dynamics {
+      color: rgb(16, 199, 162);
+      font-size: 14px;
+
+      display: flex;
+
+      .val {
+        padding: 2px;
+      }
+
+      .profit {
+        background: rgba(16, 199, 162, 0.2);
+        padding: 2px;
+        border-radius: 4px;
+      }
+    }
+  }
+}
