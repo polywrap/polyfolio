@@ -35,7 +35,7 @@ function PerformanceTable() {
           </div>
         </div>
       </div>
-      <Charts />
+      <Charts opacity={0.6} opacityGradient={0.2} type="linear" height="200px" />
     </div>
   );
 }
