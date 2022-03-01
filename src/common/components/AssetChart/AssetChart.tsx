@@ -13,7 +13,7 @@ function AssetChart() {
   const theme = useTheme()
 
   return (
-    <div className={classNames(styles[theme])}>
+    <div className={classNames(styles[theme], styles.chart)}>
       <div className={styles.wrapper}>
         <div>
           <NavLink className={styles.link} to='/dashboard'>
@@ -21,8 +21,8 @@ function AssetChart() {
             Back To Dashboard
           </NavLink>
         </div>
-        <div>
-          Graph Token <span>GRT</span>
+        <div className={styles.title}>
+          Graph Token <span className={styles.ticker}>GRT</span>
         </div>
         <ChartBlock />
       </div>

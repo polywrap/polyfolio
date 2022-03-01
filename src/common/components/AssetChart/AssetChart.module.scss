@@ -1,17 +1,33 @@
-.wrapper {
-  max-width: 1256px;
-  width: 100%;
+.chart {
+  .wrapper {
+    max-width: 1256px;
+    width: 100%;
+  
+    margin: 0 auto;
+  
+    .link {
+      display: inline-block;
+      color: rgb(39, 198, 159);
+      font-size: 16px;
+  
+      .arrow {
+        max-width: 16px;
+        
+      }
+    }
 
-  margin: 0 auto;
+    .title {
+      color: white;
+      font-family: 'Nunito';
+      font-size: 48px;
+      line-height: 65.47px;
+      font-weight: 800;
 
-  .link {
-    display: inline-block;
-    color: rgb(39, 198, 159);
-    font-size: 16px;
-
-    .arrow {
-      max-width: 16px;
-      
+      .ticker {
+        font-size: 24px;
+        line-height: 32.74px;
+        font-weight: 400;
+      }
     }
   }
 }

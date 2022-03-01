@@ -70,7 +70,7 @@ function ChartBlock() {
   }
 
   return (
-    <div className={classNames(styles[theme])}>
+    <div className={classNames(styles[theme], styles.block)}>
       <div className={styles.titleBlock}>
         <div className={styles.price}>$0.0937</div>
         <div className={styles.subtitleBlock}>
