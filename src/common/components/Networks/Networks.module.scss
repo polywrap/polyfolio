@@ -18,6 +18,7 @@
   display: grid;
   grid-column-gap: 30px;
   grid-template-columns: 1fr 1fr 1fr;
+  max-width: 1256px;
   .menu_item {
     max-width: 397px;
     display: flex;

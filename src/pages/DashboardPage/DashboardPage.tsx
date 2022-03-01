@@ -24,10 +24,9 @@ function DashboardPage() {
           <Sidebar />
         </aside>
         <main className={styles.main}>
+          <PerformanceTable />
           <AssetsTable />
           <ProtocolsTable />
-          <PerformanceTable />
-
           <Networks />
           <Footer wrapperClassName={styles.footer} />
         </main>

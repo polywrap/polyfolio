@@ -30,6 +30,10 @@
     @include flex_centered_vert();
     justify-content: flex-start;
     margin-bottom: 70px;
+    .iconSvg {
+      width: 24px;
+      height: 24px;
+    }
     .button {
       @include flex_centered();
       font-size: var(--font_size_button);
