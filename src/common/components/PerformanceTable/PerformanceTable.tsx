@@ -1,0 +1,38 @@
+import React from 'react';
+import styles from './performanceTable.module.scss';
+import Charts from '../Charts/Сharts';
+import classNames from 'classnames';
+import useTheme from 'common/hooks/useTheme/useTheme';
+import {item} from './PerformanceItem.config';
+import numberFormatter from 'utils/numberFormatter';
+import MenuArrow from '../MenuArrow/MenuArrow';
+
+function PerformanceTable() {
+  const theme = useTheme();
+
+  return (
+    <div className={classNames(styles.performanceContainer, styles[theme])}>
+      <div className={styles.headerTable}>
+        <button>||</button>
+        <h4 className={styles.title}>Performance</h4>
+        <button className={styles.button}>
+          1D
+          <MenuArrow className={styles.arrow} filled startPosition="up" />
+        </button>
+      </div>
+      <div className={styles.dataContainer}>
+        <div className={styles.title}>${numberFormatter({value: item.title, size: 2})}</div>
+        <div className={styles.secondaryContainer}>
+          <div className={styles.secondaryTittlePercent}>
+            +{numberFormatter({value: item.secondaryTitlePercent, size: 2})}%
+          </div>
+          <div className={styles.secondaryTittleDollar}>
+            +${numberFormatter({value: item.secondaryTitleDollar, size: 2})}
+          </div>
+        </div>
+      </div>
+      <Charts />
+    </div>
+  );
+}
+export default PerformanceTable;

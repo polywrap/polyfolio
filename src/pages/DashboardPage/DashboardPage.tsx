@@ -11,6 +11,7 @@ import Sidebar from 'common/components/Sidebar/Sidebar';
 import Networks from 'common/components/Networks/Networks';
 import ProtocolsTable from 'common/components/ProtocolsTable/ProtocolsTable';
 import AssetsTable from 'common/components/AssetsTable/AssetsTable';
+import PerformanceTable from 'common/components/PerformanceTable/PerformanceTable';
 
 function DashboardPage() {
   const theme = useTheme();
@@ -25,6 +26,7 @@ function DashboardPage() {
         <main className={styles.main}>
           <AssetsTable />
           <ProtocolsTable />
+          <PerformanceTable />
           <Networks />
           <Footer wrapperClassName={styles.footer} />
         </main>
