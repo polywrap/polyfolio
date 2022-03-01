@@ -33,7 +33,7 @@ function Networks() {
             </div>
           </div>
         </div>
-        <div style={{marginRight: '20px'}}>
+        <div>
           <MenuArrow filled startPosition={'up'} />
         </div>
       </div>
@@ -42,7 +42,7 @@ function Networks() {
 
   return (
     <div ref={ref} className={styles[theme]}>
-      <h1>Networks</h1>
+      <h3>Networks</h3>
       <div className={styles.networks_container}>
         {_map(menuItems, (menuItem) => (
           <MenuItem {...menuItem} key={menuItem.title} />
