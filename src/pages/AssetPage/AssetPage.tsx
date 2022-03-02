@@ -9,6 +9,7 @@ import Footer from 'common/components/Footer/Footer';
 import AssetChart from 'common/components/AssetChart/AssetChart';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import Sidebar from 'common/components/Sidebar/Sidebar';
+import AssetOverview from 'common/components/AssetOverview/AssetOverview';
 
 function AssetPage() {
   const theme = useTheme();
@@ -21,7 +22,10 @@ function AssetPage() {
           <Sidebar />
         </aside>
         <main className={styles.main}>
-          <AssetChart />
+          <div className={styles.wrapper}>
+            <AssetChart />
+            <AssetOverview />
+          </div>
           <Footer wrapperClassName={styles.footer} />
         </main>
       </div>

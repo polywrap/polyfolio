@@ -14,18 +14,16 @@ function AssetChart() {
 
   return (
     <div className={classNames(styles[theme], styles.chart)}>
-      <div className={styles.wrapper}>
-        <div>
-          <NavLink className={styles.link} to='/dashboard'>
-            <Icon src={arrow} className={styles.arrow} />
-            Back To Dashboard
-          </NavLink>
-        </div>
-        <div className={styles.title}>
-          Graph Token <span className={styles.ticker}>GRT</span>
-        </div>
-        <ChartBlock />
+      <div>
+        <NavLink className={styles.link} to='/dashboard'>
+          <Icon src={arrow} className={styles.arrow} />
+          Back To Dashboard
+        </NavLink>
       </div>
+      <div className={styles.title}>
+        Graph Token <span className={styles.ticker}>GRT</span>
+      </div>
+      <ChartBlock />
     </div>
   )
 }

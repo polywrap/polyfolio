@@ -46,6 +46,12 @@
         margin: 0;
         padding: 15px 16px;
       }
+      .wrapper {
+        max-width: 1256px;
+        width: 100%;
+      
+        margin: 0 auto; 
+      }
     }
   }
   @include mobile() {

@@ -1,16 +1,20 @@
-.title {
-  font-family: 'Nunito';
-  font-weight: 900;
-  font-size: 32px;
-
-  color: #F1F4F9;
-}
-
-.block {
-  padding: 50px 48px;
-  margin-top: 20px;
+.overview {
+  margin-top: 48px;
   
-  border: 1px solid rgba(70, 85, 104, 0.5);
-  border-radius: 16px;
-  background: rgba(41, 54, 83, 0.5);
+  .title {
+    font-family: 'Nunito';
+    font-weight: 900;
+    font-size: 32px;
+  
+    color: #F1F4F9;
+  }
+  
+  .block {
+    padding: 50px 48px;
+    margin-top: 20px;
+    
+    border: 1px solid rgba(70, 85, 104, 0.5);
+    border-radius: 16px;
+    background: rgba(41, 54, 83, 0.5);
+  }  
 }
