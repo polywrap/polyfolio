@@ -12,6 +12,7 @@ interface IconsMapper extends Record<string, unknown> {
   disconnect: string;
   mobileMenu: string;
   filterIcon: string;
+  rightArrow: string;
   sort_frame: string;
   assetsUfo: string;
   assetsGel: string;
@@ -19,6 +20,7 @@ interface IconsMapper extends Record<string, unknown> {
   assetsEth: string;
   assetsCqt: string;
   menuArrow: string;
+  leftArrow: string;
   logoLight: string;
   selected: string;
   logoDark: string;

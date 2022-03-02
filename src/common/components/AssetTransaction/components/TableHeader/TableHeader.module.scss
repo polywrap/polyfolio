@@ -1,0 +1,31 @@
+@import 'common/themes/mixins';
+
+.controlls {
+	display: flex;
+	justify-content: space-between;
+
+	.input {
+		width: 406px;
+
+		@include tablet() {
+			display: none;
+		}
+	}
+
+	.right {
+		display: flex;
+
+		font-size: 14px;
+		line-height: 19.1px;
+		font-weight: 800;
+
+		.networks, .pagination {
+			padding: 18px;
+		}
+
+		.networks {
+			border: 1px solid rgba(255, 255, 255, 0.13);
+			border-radius: 8px;
+		}
+	}
+}

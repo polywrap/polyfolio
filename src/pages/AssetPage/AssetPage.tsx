@@ -10,6 +10,7 @@ import AssetsCharts from 'common/components/AssetsChart/AssetsChart';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import Sidebar from 'common/components/Sidebar/Sidebar';
 import AssetOverview from 'common/components/AssetOverview/AssetOverview';
+import AssetTransaction from 'common/components/AssetTransaction/AssetTransaction';
 
 function AssetPage() {
   const theme = useTheme();
@@ -25,6 +26,7 @@ function AssetPage() {
           <div className={styles.wrapper}>
             <AssetsCharts />
             <AssetOverview />
+            <AssetTransaction />
           </div>
           <Footer wrapperClassName={styles.footer} />
         </main>

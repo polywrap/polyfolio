@@ -6,6 +6,8 @@ import disconnect from 'assets/icons/images/disconnect.svg';
 import filterIcon from 'assets/icons/images/filterIcon.svg';
 import sort_frame from 'assets/icons/images/sort_frame.svg';
 import logoLight from 'assets/icons/images/logo-light.svg';
+import leftArrow from 'assets/icons/images/leftArrow.svg';
+import rightArrow from 'assets/icons/images/rightArrow.svg';
 import menuArrow from 'assets/icons/images/menu-arrow.svg';
 import logoDark from 'assets/icons/images/logo-dark.svg';
 import settings from 'assets/icons/images/settings.svg';
@@ -75,6 +77,8 @@ const iconsObj: IconsMapper = {
   logoLight,
   assetsGel,
   menuArrow,
+  leftArrow,
+  rightArrow,
   ethereum,
   settings,
   logoDark,
