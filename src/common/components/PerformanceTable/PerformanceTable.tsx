@@ -31,7 +31,7 @@ function PerformanceTable() {
             +{numberFormatter({value: item.secondaryTitlePercent, size: 2})}%
           </div>
           <div className={styles.secondaryTittleDollar}>
-            +${numberFormatter({value: item.secondaryTitleDollar, size: 2})}
+            +${numberFormatter({value: item.secondaryTitleValue, size: 2})}
           </div>
         </div>
       </div>

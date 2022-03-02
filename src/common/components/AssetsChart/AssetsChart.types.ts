@@ -1,6 +1,6 @@
 interface AssetsType {
   title?: number;
-  secondaryTitleDollar?: number;
+  secondaryTitleValue?: number;
   secondaryTitlePercent?: number;
 }
 

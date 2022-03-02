@@ -19,6 +19,7 @@
   --font_weight_secondary: 700;
   --color_green: #0ac186;
   --font_size_button: 12px;
+
   height: 512px;
   max-width: 830px;
   padding: 20px 28px 70px;
@@ -26,14 +27,17 @@
   border-radius: 16px;
   box-shadow: var(--box_shadow);
   margin-bottom: 40px;
+
   .headerTable {
     @include flex_centered_vert();
     justify-content: flex-start;
     margin-bottom: 70px;
+
     .iconSvg {
       width: 24px;
       height: 24px;
     }
+
     .button {
       @include flex_centered();
       font-size: var(--font_size_button);
@@ -45,29 +49,36 @@
       padding: 0 5px;
       margin-left: 16px;
     }
+
     .arrow {
       margin-left: 4px;
     }
+
     .title {
       margin-left: 16px;
     }
   }
+
   .dataContainer {
     max-width: 300px;
     margin: 0 auto;
+
     .title {
       font-size: var(--font_size);
       font-weight: var(--font_weight);
     }
+
     .secondaryTittleDollar,
     .secondaryTittlePercent {
       font-size: var(--font_size_secondary);
       font-weight: var(--font_weight_secondary);
       color: var(--color_green);
     }
+
     .secondaryTittleDollar {
       margin-left: 16px;
     }
+
     .secondaryContainer {
       @include flex_centered();
     }

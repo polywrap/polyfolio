@@ -1,6 +1,6 @@
 interface PerformanceItem {
   title?: number;
-  secondaryTitleDollar?: number;
+  secondaryTitleValue?: number;
   secondaryTitlePercent?: number;
 }
 
