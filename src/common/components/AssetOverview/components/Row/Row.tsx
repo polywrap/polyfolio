@@ -9,7 +9,7 @@ function Row ({ items }) {
   const theme = useTheme()
 
   return (
-    <div className={classNames(style[theme])}>
+    <div className={classNames(style[theme], style.row)}>
       { items.map(item => (
         <RowItem
          key={item.id}

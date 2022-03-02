@@ -15,10 +15,10 @@ function RowItem({
   const theme = useTheme()
 
   return (
-    <div className={classNames(style[theme])}>
+    <div className={classNames(style[theme], style.parent, type === 'main' ? style.main : '')}>
       {
         type === 'main' ? (
-          <Icon src={iconsObj.profile} />
+          <Icon src={iconsObj.profile} className={style.img} />
         ) : ''
       }
       <div className={style.text}>
