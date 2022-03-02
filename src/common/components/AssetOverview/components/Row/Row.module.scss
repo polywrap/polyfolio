@@ -1,0 +1,11 @@
+.row {
+  display: flex;
+  max-width: 1152px;
+  width: 100%;
+
+  padding: 48px;
+}
+
+.row:not(:last-child) {
+  border-bottom: 1px solid rgba(70, 85, 104, 0.5);
+}
