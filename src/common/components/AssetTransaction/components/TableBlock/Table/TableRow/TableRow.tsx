@@ -24,8 +24,10 @@ function TableRow() {
         </div>
       </div>
       <div>
-        <div></div>
-        <div></div>
+        <div>To</div>
+        <div>
+          <div></div>
+        </div>
       </div>
     </div>
   )
