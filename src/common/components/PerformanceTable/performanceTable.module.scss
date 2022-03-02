@@ -1,0 +1,86 @@
+@import 'common/themes/mixins';
+
+.dark {
+  --color: var(--color_blue_gray_50);
+  --border: 1px solid rgba(255, 255, 255, 0.13);
+  --box_shadow: 0px 16px 24px rgba(0, 0, 0, 0.15);
+}
+
+.light {
+  --color: var(--color_blue_gray);
+  --border: 1px solid var(--color_blue_gray_200);
+  --box_shadow: 0px 16px 24px rgba(0, 0, 0, 0.15);
+}
+
+.performanceContainer {
+  --font_size: 56px;
+  --font_size_secondary: 16px;
+  --font_weight: 800;
+  --font_weight_secondary: 700;
+  --color_green: #0ac186;
+  --font_size_button: 12px;
+
+  height: 512px;
+  max-width: 830px;
+  padding: 20px 28px 70px;
+  border: var(--border);
+  border-radius: 16px;
+  box-shadow: var(--box_shadow);
+  margin-bottom: 40px;
+
+  .headerTable {
+    @include flex_centered_vert();
+    justify-content: flex-start;
+    margin-bottom: 70px;
+
+    .iconSvg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .button {
+      @include flex_centered();
+      font-size: var(--font_size_button);
+      font-weight: var(--font_weight_secondary);
+      width: 40px;
+      height: 24px;
+      border: var(--border);
+      border-radius: 8px;
+      padding: 0 5px;
+      margin-left: 16px;
+    }
+
+    .arrow {
+      margin-left: 4px;
+    }
+
+    .title {
+      margin-left: 16px;
+    }
+  }
+
+  .dataContainer {
+    max-width: 300px;
+    margin: 0 auto;
+
+    .title {
+      font-size: var(--font_size);
+      font-weight: var(--font_weight);
+    }
+
+    .secondaryTittleDollar,
+    .secondaryTittlePercent {
+      font-size: var(--font_size_secondary);
+      font-weight: var(--font_weight_secondary);
+      color: var(--color_green);
+    }
+
+    .secondaryTittleDollar {
+      margin-left: 16px;
+    }
+
+    .secondaryContainer {
+      @include flex_centered();
+    }
+  }
+}
