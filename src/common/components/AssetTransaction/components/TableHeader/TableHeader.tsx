@@ -27,12 +27,12 @@ function TableHeader() {
         <div className={style.pagination}>
           <Icon
             src={iconsObj.leftArrow}
-            className={classNames()}
+            className={classNames(style.arrow, style.left)}
           />
           Page 1 of 2
           <Icon
             src={iconsObj.rightArrow}
-            className={classNames()}
+            className={classNames(style.arrow, style.right)}
           />
         </div>
       </div>
