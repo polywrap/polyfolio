@@ -6,7 +6,7 @@ import classNames from 'classnames';
 
 import Header from 'common/components/Header/Header';
 import Footer from 'common/components/Footer/Footer';
-import AssetChart from 'common/components/AssetChart/AssetChart';
+import AssetsCharts from 'common/components/AssetsChart/AssetsChart';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import Sidebar from 'common/components/Sidebar/Sidebar';
 import AssetOverview from 'common/components/AssetOverview/AssetOverview';
@@ -23,7 +23,7 @@ function AssetPage() {
         </aside>
         <main className={styles.main}>
           <div className={styles.wrapper}>
-            <AssetChart />
+            <AssetsCharts />
             <AssetOverview />
           </div>
           <Footer wrapperClassName={styles.footer} />
