@@ -13,24 +13,35 @@ function TableRow({
   address,
 }) {
   const theme = useTheme()
+  
+  const way = (type: string) => {
+    const types = {
+      'approval': 'Via',
+      'send': 'To',
+      'receive': 'From',
+      'exchange': 'Via',
+    };
+
+    return types[type];
+  }
 
   return (
-    <div className={classNames(style[theme])}>
-      <div>
+    <div className={classNames(style[theme], style.row)}>
+      <div className={classNames(style.rowUnit, style.flexUnit)}>
         <div className={style.imgContainer}>
-          <Icon src={icon} />
+          <Icon src={icon} className={classNames(style.icon)} />
         </div>
         <div className={style.text}>
           <div className={style.strong}>{type}</div>
           <div className={style.common}>{time}</div>
         </div>
       </div>
-      <div>
+      <div className={classNames(style.rowUnit)}>
         {
           tokens.map(token => (
-            <div key={token.id}>
+            <div key={token.id} className={style.flexUnit}>
               <div className={style.imgContainer}>
-                <Icon src={token.icon} />
+                <Icon src={token.icon} className={classNames(style.icon)} />
               </div>
               <div className={style.text}>
                 <div className={style.strong}>{token.token_amount} {token.token_ticker}</div>
@@ -40,8 +51,8 @@ function TableRow({
           ))
         }
       </div>
-      <div>
-        <div>To</div>
+      <div className={classNames(style.rowUnit)}>
+        <div>{way(type)}</div>
         <div>
           <div>{address}</div>
         </div>
