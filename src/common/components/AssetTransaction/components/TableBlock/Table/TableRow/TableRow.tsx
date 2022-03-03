@@ -5,6 +5,7 @@ import useTheme from 'common/hooks/useTheme/useTheme';
 import style from './TableRow.module.scss';
 import Icon from 'common/components/Icon/Icon';
 import HiglightedAddress from 'common/components/HiglihtedAddress/HiglightedAddress';
+import numberFormatter from 'utils/numberFormatter';
 import { capitalize } from 'lodash';
 
 function TableRow({
@@ -46,8 +47,14 @@ function TableRow({
                 <Icon src={token.icon} className={classNames(style.icon)} />
               </div>
               <div className={style.text}>
-                <div className={style.strong}>{token.token_amount} {token.token_ticker}</div>
-                <div className={style.common}>{token.dollar_amount}</div>
+                <div className={style.strong}>
+                  {numberFormatter({ value: token.token_amount, size: 2 })} {token.token_ticker}
+                </div>
+                <div className={style.common}>
+                  {
+                    token.dollar_amount ? '$' + numberFormatter({ value: token.dollar_amount, size: 1 }) : ''
+                  }
+                </div>
               </div>
             </div>
           ))
