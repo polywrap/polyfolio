@@ -3,7 +3,7 @@
   justify-content: space-between;
   padding: 19px;
 
-  .flexUnit {
+  .flex_unit {
     display: flex;
 
     .text {
@@ -32,4 +32,21 @@
       height: 100%;
     }
   }
+
+  .token_info {
+    display: flex;
+    flex-basis: 30%;
+
+    .flex_unit {
+      .text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+.row:not(:last-child) {
+  border-bottom: 1px solid rgba(70, 85, 104, 0.5);
 }

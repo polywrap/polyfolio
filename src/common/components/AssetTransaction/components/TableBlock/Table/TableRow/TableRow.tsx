@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import style from './TableRow.module.scss';
 import Icon from 'common/components/Icon/Icon';
+import HiglightedAddress from 'common/components/HiglihtedAddress/HiglightedAddress';
 
 function TableRow({
   type,
@@ -27,8 +28,8 @@ function TableRow({
 
   return (
     <div className={classNames(style[theme], style.row)}>
-      <div className={classNames(style.rowUnit, style.flexUnit)}>
-        <div className={style.imgContainer}>
+      <div className={classNames(style.row_unit, style.flex_unit)}>
+        <div className={style.img_container}>
           <Icon src={icon} className={classNames(style.icon)} />
         </div>
         <div className={style.text}>
@@ -36,11 +37,11 @@ function TableRow({
           <div className={style.common}>{time}</div>
         </div>
       </div>
-      <div className={classNames(style.rowUnit)}>
+      <div className={classNames(style.row_unit, style.token_info)}>
         {
           tokens.map(token => (
-            <div key={token.id} className={style.flexUnit}>
-              <div className={style.imgContainer}>
+            <div key={token.id} className={style.flex_unit}>
+              <div className={style.img_container}>
                 <Icon src={token.icon} className={classNames(style.icon)} />
               </div>
               <div className={style.text}>
@@ -51,10 +52,12 @@ function TableRow({
           ))
         }
       </div>
-      <div className={classNames(style.rowUnit)}>
+      <div className={classNames(style.row_unit)}>
         <div>{way(type)}</div>
         <div>
-          <div>{address}</div>
+          <div>
+            <HiglightedAddress />
+          </div>
         </div>
       </div>
     </div>

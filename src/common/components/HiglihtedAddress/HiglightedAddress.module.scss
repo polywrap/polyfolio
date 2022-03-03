@@ -1,0 +1,16 @@
+.body {
+  display: flex;
+  padding: 4px;
+  background: rgba(148, 163, 184, 0.2);
+  border-radius: 6px;
+
+  .profile {
+    margin-right: 8px;
+  }
+
+  .address {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 16.44px;
+  }
+}
