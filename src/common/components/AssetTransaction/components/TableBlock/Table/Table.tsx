@@ -18,7 +18,7 @@ function Table({ data }) {
             icon={row.icon}
             time={row.time}
             tokens={row.token}
-            address={row.address}
+            subjectOfAction={row.subjectOfAction}
           />
         ))
       }

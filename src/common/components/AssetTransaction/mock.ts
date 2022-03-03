@@ -15,7 +15,10 @@ export const data = [
         dollar_amount: '163.63',
       }
     ],
-    address: '0x378...3832',
+    subjectOfAction: {
+      icon: iconsObj.profile,
+      address: '0x378...3832',
+    },
   },
   {
     id: 2,
@@ -31,7 +34,10 @@ export const data = [
         dollar_amount: '',
       }
     ],
-    address: '0x378...3832',
+    subjectOfAction: {
+      icon: iconsObj.profile,
+      address: '0x378...3832',
+    },
   },
   {
     id: 3,
@@ -47,7 +53,10 @@ export const data = [
         dollar_amount: '163.63',
       }
     ],
-    address: '0x378...3832',
+    subjectOfAction: {
+      icon: iconsObj.profile,
+      address: '0x378...3832',
+    },
   },
   {
     id: 4,
@@ -63,7 +72,10 @@ export const data = [
         dollar_amount: '',
       }
     ],
-    address: '0x378...3832',
+    subjectOfAction: {
+      icon: iconsObj.profile,
+      address: '0x378...3832',
+    },
   },
   {
     id: 5,
@@ -86,7 +98,10 @@ export const data = [
         dollar_amount: '6,393.63',
       },
     ],
-    address: '0x378...3832',
+    subjectOfAction: {
+      icon: iconsObj.profile,
+      address: '0x378...3832',
+    },
   },
   {
     id: 6,
@@ -102,6 +117,9 @@ export const data = [
         dollar_amount: '163.63',
       }
     ],
-    address: '0x378...3832',
+    subjectOfAction: {
+      icon: iconsObj.profile,
+      address: '0x378...3832',
+    },
   },
 ]

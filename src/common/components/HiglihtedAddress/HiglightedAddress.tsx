@@ -4,15 +4,14 @@ import classNames from 'classnames';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import style from './HiglightedAddress.module.scss';
 import Icon from '../Icon/Icon';
-import iconsObj from 'assets/icons/iconsObj';
 
-function HiglightedAddress() {
+function HiglightedAddress({ icon, address }) {
   const theme = useTheme()
 
   return (
     <div className={classNames(style[theme], style.body)}>
-      <Icon src={iconsObj.profile} className={style.profile} />
-      <span className={style.address}>0x378...3832</span>
+      <Icon src={icon} className={style.profile} />
+      <span className={style.address}>{address}</span>
     </div>
   )
 }

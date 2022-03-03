@@ -11,7 +11,7 @@ function TableRow({
   icon,
   time,
   tokens,
-  address,
+  subjectOfAction,
 }) {
   const theme = useTheme()
   
@@ -37,7 +37,7 @@ function TableRow({
           <div className={style.common}>{time}</div>
         </div>
       </div>
-      <div className={classNames(style.row_unit, style.token_info)}>
+      <div className={classNames(style.token_info)}>
         {
           tokens.map(token => (
             <div key={token.id} className={style.flex_unit}>
@@ -52,12 +52,10 @@ function TableRow({
           ))
         }
       </div>
-      <div className={classNames(style.row_unit)}>
-        <div>{way(type)}</div>
+      <div>
+        <div className={style.label}>{way(type)}</div>
         <div>
-          <div>
-            <HiglightedAddress />
-          </div>
+          <HiglightedAddress icon={subjectOfAction.icon} address={subjectOfAction.address} />
         </div>
       </div>
     </div>
