@@ -26,6 +26,7 @@ interface IconsMapper extends Record<string, unknown> {
   assetsCqt: string;
   menuArrow: string;
   leftArrow: string;
+  backArrow: string;
   logoLight: string;
   selected: string;
   logoDark: string;

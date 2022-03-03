@@ -52,6 +52,43 @@
       
         margin: 0 auto;
         padding-bottom: 47px;
+
+        .arrow_container {
+          display: inline;
+          vertical-align: middle;
+          .arrow {
+            margin-right: 12.21px;
+          }
+        }
+
+        .link {
+          color: rgba(39, 198, 159, 1);
+          font-size: 16px;
+        }
+
+        .title {
+          display: flex;
+          align-items: center;
+          margin-bottom: 32px;
+          
+          .img {
+            width: 40px;
+            height: 40px;
+
+            margin-right: 8px;
+          }
+          .text {
+            font-size: 48px;
+            font-weight: 800;
+  
+            span {
+              font-size: 24px;
+              font-weight: 400;
+  
+              margin-left: 16px;
+            }
+          }
+        }
       }
     }
   }
