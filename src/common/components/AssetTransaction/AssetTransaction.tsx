@@ -5,6 +5,7 @@ import style from './AssetTransaction.module.scss';
 import useTheme from "common/hooks/useTheme/useTheme";
 import { TableHeader } from "./components";
 import TableBlock from "./components/TableBlock/TableBlock";
+import { data } from "./mock";
 
 function AssetTransaction() {
   const theme = useTheme()
@@ -13,7 +14,7 @@ function AssetTransaction() {
     <div className={classNames(style[theme], style.transaction)}>
       <div className={style.title}>Transaction</div>
       <TableHeader />
-      <TableBlock />
+      <TableBlock data={data} />
     </div>
   )
 }

@@ -46,6 +46,7 @@ import {
 
 import {
   assetsBitcoin,
+  assetsToken,
   assetsMatic,
   assetsUsdt,
   assetsUfo,
@@ -55,14 +56,26 @@ import {
   assetsCqt,
 } from 'assets/icons/images/assetsTable';
 
+import {
+  approvalTransaction,
+  sendTransaction,
+  receiveTransaction,
+  exchangeTransaction,
+} from 'assets/icons/images/transactionTypes';
+
 const iconsObj: IconsMapper = {
   filterIconSecondary,
+  approvalTransaction,
+  sendTransaction,
+  receiveTransaction,
+  exchangeTransaction,
   menuArrowFilled,
   protocolBardger,
   assetsBitcoin,
   protocolGel,
   protocolUfo,
   protocolBtc,
+  assetsToken,
   protocolEth,
   assetsMatic,
   assetsUsdt,
