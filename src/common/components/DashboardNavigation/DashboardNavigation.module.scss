@@ -1,0 +1,67 @@
+@import 'common/themes/mixins';
+
+.dark {
+  --color: var(--color_white);
+  --bg_color: radial-gradient(
+    101.46% 151.04% at 0% -1.46%,
+    rgba(217, 217, 218, 0.25) 0%,
+    rgba(70, 85, 104, 0.5) 100%
+  );
+}
+
+.light {
+  --color: var(--color_blue_gray);
+  --bg_color: var(--color_blue_gray_200);
+}
+
+.none {
+  display: none;
+}
+
+.navigationContainer {
+  --font_size: var(----h4_font_size);
+  --font_weight: 700;
+  --font_weight_not_active: var(--font_weight_normal);
+  --color_green: var(--color_green_400);
+
+  @include flex_centered_vert();
+  position: relative;
+  justify-content: flex-start;
+  width: 100%;
+  margin-bottom: 50px;
+
+  .divider {
+    display: block;
+    position: absolute;
+    bottom: -13px;
+    left: 0;
+    width: 100%;
+    background: var(--bg_color);
+    height: 1px;
+  }
+  .portfolio {
+    margin-right: 40px;
+  }
+
+  .portfolio,
+  .transaction {
+    position: relative;
+    font-size: var(--font_size);
+    color: var(--color);
+    font-weight: var(--font_weight);
+    cursor: pointer;
+
+    .notActive {
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 5px;
+      background-color: var(--color_green_400);
+      bottom: -12px;
+    }
+  }
+  .notActive {
+    font-weight: var(--font_weight_not_active);
+    opacity: 0.8;
+  }
+}

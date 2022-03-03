@@ -1,21 +1,17 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 
 import styles from './DashboardPage.module.scss';
 
 import classNames from 'classnames';
 
 import Header from 'common/components/Header/Header';
+import HeaderDashboard from 'common/components/HeaderDashboard/HeaderDashboard';
 import Footer from 'common/components/Footer/Footer';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import Sidebar from 'common/components/Sidebar/Sidebar';
-import Networks from 'common/components/Networks/Networks';
-import ProtocolsTable from 'common/components/ProtocolsTable/ProtocolsTable';
-import AssetsTable from 'common/components/AssetsTable/AssetsTable';
-import PerformanceTable from 'common/components/PerformanceTable/PerformanceTable';
-import AssetsCharts from 'common/components/AssetsChart/AssetsChart';
-import HeaderDashboard from 'common/components/HeaderDashboard/HeaderDashboard';
+import DashboardNavigation from 'common/components/DashboardNavigation/DashboardNavigation';
 
-function DashboardPage() {
+function DashboardPage({children}: {children: ReactNode}) {
   const theme = useTheme();
 
   return (
@@ -27,11 +23,8 @@ function DashboardPage() {
         </aside>
         <main className={styles.main}>
           <HeaderDashboard />
-          <AssetsCharts />
-          <PerformanceTable />
-          <AssetsTable />
-          <ProtocolsTable />
-          <Networks />
+          <DashboardNavigation />
+          {children}
           <Footer wrapperClassName={styles.footer} />
         </main>
       </div>
