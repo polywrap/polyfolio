@@ -11,6 +11,7 @@ import {HeaderGasInfoItem} from './HeaderGasInfoMenu.types';
 import Dropdown from '../Dropdown/Dropdown';
 import numberFormatter from 'utils/numberFormatter';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
+import {filteredDropdown} from 'utils/filteredDropdown';
 
 function HeaderGasInfoMenu() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -54,9 +55,9 @@ function HeaderGasInfoMenu() {
   return (
     <div className={classNames(styles.common_header_gas_info_menu, styles[theme])}>
       <Dropdown
+        array={filteredDropdown(dropdownItems, currency?.id)}
         onСhangeСurrency={onChangeCurrency}
         className={styles.dropdownIcon}
-        array={dropdownItems}
         setIsOpen={setIsOpen}
         current={currency}
         isOpen={isOpen}
