@@ -5,6 +5,7 @@ import useTheme from 'common/hooks/useTheme/useTheme';
 import style from './TableRow.module.scss';
 import Icon from 'common/components/Icon/Icon';
 import HiglightedAddress from 'common/components/HiglihtedAddress/HiglightedAddress';
+import { capitalize } from 'lodash';
 
 function TableRow({
   type,
@@ -33,14 +34,14 @@ function TableRow({
           <Icon src={icon} className={classNames(style.icon)} />
         </div>
         <div className={style.text}>
-          <div className={style.strong}>{type}</div>
+          <div className={style.strong}>{capitalize(type)}</div>
           <div className={style.common}>{time}</div>
         </div>
       </div>
       <div className={classNames(style.token_info)}>
         {
           tokens.map(token => (
-            <div key={token.id} className={style.flex_unit}>
+            <div key={token.id} className={classNames(style.flex_unit, style.token)}>
               <div className={style.img_container}>
                 <Icon src={token.icon} className={classNames(style.icon)} />
               </div>

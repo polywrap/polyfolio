@@ -49,6 +49,10 @@
         justify-content: center;
       }
     }
+
+    .token:not(:last-child) {
+      margin-right: 32px;
+    }
   }
 
   .label {
