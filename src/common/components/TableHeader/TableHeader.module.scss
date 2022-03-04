@@ -1,5 +1,15 @@
 @import 'common/themes/mixins';
 
+.dark {
+  --color: var(--color_blue_gray_50);
+  --border: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.light {
+  --color: var(--color_blue_gray);
+  --border: 1px solid var(--color_blue_gray_200);
+}
+
 .controlls {
 	display: flex;
 	justify-content: space-between;
@@ -26,7 +36,7 @@
 		}
 
 		.networks {
-			border: 1px solid rgba(255, 255, 255, 0.13);
+			border: var(--border);
 			border-radius: 8px;
 		}
 
@@ -34,6 +44,7 @@
       .arrow {
         display: inline;
         vertical-align: text-top;
+        color: var(--color);
       }
       .left {
         margin-right: 4px;

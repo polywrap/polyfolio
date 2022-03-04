@@ -1,8 +1,19 @@
+@import 'common/themes/mixins';
+
+.dark {
+  --border: 1px solid rgba(255, 255, 255, 0.13);
+  --box_shadow: 0px 16px 24px rgba(0, 0, 0, 0.15);
+}
+
+.light {
+  --border: 1px solid var(--color_blue_gray_200);
+  --box_shadow: 0px 16px 24px rgba(0, 0, 0, 0.15);
+}
+
 .table {
   padding: 21px;
-  background: rgba(41, 54, 83, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.1);
+  border: var(--border);
+  box-shadow: var(--box_shadow);
   border-radius: 16px;
   margin-top: 24px;
 }

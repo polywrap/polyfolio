@@ -1,3 +1,15 @@
+@import 'common/themes/mixins';
+
+.dark {
+  --color: var(--color_blue_gray_50);
+  --border: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.light {
+  --color: var(--color_blue_gray);
+  --border: 1px solid var(--color_blue_gray_200);
+}
+
 .row {
   display: flex;
   justify-content: space-between;
@@ -11,7 +23,7 @@
     display: flex;
 
     .text {
-      color: #F9FAFC;
+      color: var(--color);
       margin-left: 8px;
 
       .strong {
@@ -62,5 +74,5 @@
 }
 
 .row:not(:last-child) {
-  border-bottom: 1px solid rgba(70, 85, 104, 0.5);
+  border-bottom: var(--border);
 }

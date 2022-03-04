@@ -1,13 +1,26 @@
+@import 'common/themes/mixins';
+
+.dark {
+  --color: var(--color_blue_gray_50);
+  --border: 1px solid rgba(255, 255, 255, 0.13);
+  --box_shadow: 0px 16px 24px rgba(0, 0, 0, 0.15);
+}
+
+.light {
+  --color: var(--color_blue_gray);
+  --border: 1px solid var(--color_blue_gray_200);
+  --box_shadow: 0px 16px 24px rgba(0, 0, 0, 0.15);
+}
+
 .block {
   padding: 24px;
-  background: rgba(41, 54, 83, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.13);
-  box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.1);
+  border: var(--border);
+  box-shadow: var(--box_shadow);
   border-radius: 16px;
 
   .title {
     font-size: 16px;
     font-weight: 800;
-    color: white;
+    color: var(--color);
   }
 }
