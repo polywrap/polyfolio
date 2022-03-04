@@ -11,9 +11,11 @@ import classNames from 'classnames';
 const DropdownItem = (dropdownItem: DropdownItemConfig) => {
   return (
     <>
-      <div>
-        <Icon src={dropdownItem.icon} className={styles.icon} />
-      </div>
+      {dropdownItem?.icon && (
+        <div>
+          <Icon src={dropdownItem.icon} className={styles.icon} />
+        </div>
+      )}
       <div>{[dropdownItem.title]}</div>
     </>
   );
@@ -29,7 +31,7 @@ function Dropdown({array, current, isOpen, setIsOpen, onСhangeСurrency, classN
           type="button"
         >
           <div className={classNames(styles.menu_item_dropdown, styles.menu_item_dropdown_current)}>
-            <Icon src={current.icon} className={styles.icon} />
+            {current?.icon && <Icon src={current.icon} className={styles.icon} />}
             {current.title}
           </div>
           <MenuArrow className={className} filled startPosition={!isOpen ? 'right' : 'left'} />
