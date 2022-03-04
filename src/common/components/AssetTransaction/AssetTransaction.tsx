@@ -3,8 +3,8 @@ import React from "react";
 import classNames from "classnames";
 import style from './AssetTransaction.module.scss';
 import useTheme from "common/hooks/useTheme/useTheme";
-import { TableHeader } from "./components";
-import TableBlock from "./components/TableBlock/TableBlock";
+import TableHeader from "../TableHeader/TableHeader";
+import TableBlock from "../TableBlock/TableBlock";
 import { data } from "./mock";
 
 function AssetTransaction() {
