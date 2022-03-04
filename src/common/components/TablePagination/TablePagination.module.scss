@@ -1,0 +1,17 @@
+.pagination {
+  display: flex;
+
+  .arrow {
+    width: 16px;
+    height: 16px;
+  }
+  .arrow:hover {
+    cursor: pointer;
+  }
+  .left {
+    margin-right: 20.21px;
+  }
+  .right {
+    margin-left: 20.21px;
+  }
+}
