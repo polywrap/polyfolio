@@ -9,11 +9,13 @@ import {content} from './HeaderDashboard.config';
 import Dropdown from '../Dropdown/Dropdown';
 import {filteredDropdown} from 'utils/filteredDropdown';
 import numberFormatter from 'utils/numberFormatter';
+import useTranslation from 'common/hooks/useTranslation/useTranslation';
 
 function HeaderDashboard() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [currency, setCurrency] = useState(dropdownItems[0]);
   const theme = useTheme();
+  const translation = useTranslation();
 
   const onChangeCurrency = (item) => {
     setCurrency(item);
@@ -22,10 +24,10 @@ function HeaderDashboard() {
 
   return (
     <div className={classNames(styles.headerDashboardContainer, styles[theme])}>
-      <h1 className={styles.title}>Dashboard</h1>
+      <h1 className={styles.title}>{translation.Dashboard.title}</h1>
       <div className={styles.contentContainer}>
         <div>
-          <span className={styles.secondaryTitle}>Net Worth</span>
+          <span className={styles.secondaryTitle}>{translation.Dashboard.secondaryTitle}</span>
           <h2>${numberFormatter({value: content.title, size: 2})}</h2>
           <div className={styles.secondaryValue}>
             <div className={styles.value}>

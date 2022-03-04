@@ -95,5 +95,7 @@ export default {
   Dashboard: {
     portfolio: 'Portfolio',
     transactions: 'Transaction',
+    title: 'Dashboard',
+    secondaryTitle: 'Net Worth',
   },
 };
