@@ -1,0 +1,47 @@
+.dark {
+  --color: var(--color_blue_gray_50);
+}
+
+.light {
+  --color: var(--color_blue_gray);
+}
+
+.parent {
+  --font_size_label: 16px;
+  --font_size_value: 24px;
+  --font_weight: 900;
+  --font_weight_secondary: 400;
+  --color_green: #0ac186;
+  display: flex;
+  justify-content: center;
+  max-width: 384px;
+  width: 100%;
+  text-align: center;
+}
+
+.main {
+  display: flex;
+  .img {
+    max-width: 48px;
+    width: 100%;
+    max-height: 48px;
+    height: 100%;
+    margin-right: 8px;
+  }
+}
+
+.text {
+  .label {
+    font-size: var(--font_size_label);
+    line-height: 16px;
+  }
+
+  .content {
+    font-size: var(--font_size_value);
+    font-weight: var(--font_weight);
+  }
+
+  .profit {
+    color: var(--color_green);
+  }
+}

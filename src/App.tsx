@@ -7,6 +7,7 @@ import useAuth from 'common/hooks/useAuth/useAuth';
 import LandingPage from 'pages/LandingPage/LandingPage';
 import RoutePath from 'common/modules/routing/routing.enums';
 import useRouteChange from 'common/hooks/useRouteChange/useRouteChange';
+import AssetPage from 'pages/AssetPage/AssetPage';
 import Portfolio from 'pages/DashboardPage/Portfolio/Portfolio';
 import Transactions from 'pages/DashboardPage/Transactions/Transactions';
 
@@ -56,6 +57,14 @@ function App() {
             element={
               <ProtectedRoute user={user}>
                 <Transactions />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={RoutePath.Asset}
+            element={
+              <ProtectedRoute user={user}>
+                <AssetPage />
               </ProtectedRoute>
             }
           />

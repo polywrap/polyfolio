@@ -1,0 +1,33 @@
+@import 'common/themes/mixins';
+
+.dark {
+  --color: var(--color_blue_gray_50);
+  --border: 1px solid rgba(255, 255, 255, 0.13);
+  --box_shadow: 0px 16px 24px rgba(0, 0, 0, 0.15);
+}
+
+.light {
+  --color: var(--color_blue_gray);
+  --border: 1px solid var(--color_blue_gray_200);
+  --box_shadow: 0px 16px 24px rgba(0, 0, 0, 0.15);
+}
+
+.overview {
+  --font_size: 32px;
+  --font_weight: 900;
+  margin-top: 48px;
+  
+  .title {
+    font-size: var(--font_size);
+    font-weight: var(--font_weight);
+  }
+  
+  .block {
+    padding: 50px 48px;
+    margin-top: 20px;
+    
+    border: var(--border);
+    border-radius: 16px;
+    box-shadow: var(--box_shadow);
+  }  
+}
