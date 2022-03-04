@@ -11,6 +11,8 @@
 }
 
 .controlls {
+  --font_size_btn: var(--font_size_normal);
+  --font_weight_btn: 800;
 	display: flex;
 	justify-content: space-between;
 
@@ -31,14 +33,21 @@
 		line-height: 19.1px;
 		font-weight: 800;
 
-		.networks, .pagination {
-			padding: 18px;
-		}
+    .pagination {
+      padding: 16px;
+    }
 
 		.networks {
-			border: var(--border);
-			border-radius: 8px;
-		}
+      width: 164px;
+      max-height: 51px;
+    }
+    .networks > div > button {
+      font-size: var(--font_size_btn);
+      font-weight: var(--font_weight_btn);
+    }
+    .dropdownIcon {
+      margin-right: 15px;
+    }
 
     .pagination {
       .arrow {
