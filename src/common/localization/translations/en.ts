@@ -1,6 +1,8 @@
 export default {
   Common: {
     searchPlaceholder: 'Search by ENS name or address....',
+    searchTransactionPlaceholder: 'Search by date or event type (ex: send)',
+    linkBackToDashboard: 'Back to Dashboard',
   },
   HeaderGasInfoMenu: {
     slow: 'Slow',
@@ -83,6 +85,8 @@ export default {
     ftmSecondary: 'Fantom',
     matic: 'MATIC',
     maticSecondary: 'Polygon',
+    grt: 'GRT',
+    grtSecondary: 'Graph Token',
   },
 
   Protocols: {

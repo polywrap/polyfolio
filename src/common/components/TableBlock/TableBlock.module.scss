@@ -1,0 +1,26 @@
+@import 'common/themes/mixins';
+
+.dark {
+  --color: var(--color_blue_gray_50);
+  --border: 1px solid rgba(255, 255, 255, 0.13);
+  --box_shadow: 0px 16px 24px rgba(0, 0, 0, 0.15);
+}
+
+.light {
+  --color: var(--color_blue_gray);
+  --border: 1px solid var(--color_blue_gray_200);
+  --box_shadow: 0px 16px 24px rgba(0, 0, 0, 0.15);
+}
+
+.block {
+  padding: 24px;
+  border: var(--border);
+  box-shadow: var(--box_shadow);
+  border-radius: 16px;
+
+  .title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--color);
+  }
+}

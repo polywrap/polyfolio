@@ -2,7 +2,12 @@ interface IconsMapper extends Record<string, unknown> {
   filterIconSecondary: string;
   menuArrowFilled: string;
   protocolBardger: string;
+  approvalTransaction: string,
+  sendTransaction: string,
+  receiveTransaction: string,
+  exchangeTransaction: string,
   assetsBitcoin: string;
+  assetsToken: string;
   assetsMatic: string;
   protocolBtc: string;
   protocolGel: string;
@@ -12,6 +17,7 @@ interface IconsMapper extends Record<string, unknown> {
   disconnect: string;
   mobileMenu: string;
   filterIcon: string;
+  rightArrow: string;
   sort_frame: string;
   assetsUfo: string;
   assetsGel: string;
@@ -19,6 +25,8 @@ interface IconsMapper extends Record<string, unknown> {
   assetsEth: string;
   assetsCqt: string;
   menuArrow: string;
+  leftArrow: string;
+  backArrow: string;
   logoLight: string;
   selected: string;
   logoDark: string;

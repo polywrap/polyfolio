@@ -1,0 +1,66 @@
+@import 'common/themes/mixins';
+
+.dark {
+  --color: var(--color_blue_gray_50);
+  --border: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.light {
+  --color: var(--color_blue_gray);
+  --border: 1px solid var(--color_blue_gray_200);
+}
+
+.controlls {
+  --font_size_btn: var(--font_size_normal);
+  --font_weight_btn: 800;
+	display: flex;
+	justify-content: space-between;
+
+  margin-bottom: 32px;
+
+	.input {
+		width: 406px;
+
+		@include tablet() {
+			display: none;
+		}
+	}
+
+	.right {
+		display: flex;
+
+		font-size: 14px;
+		line-height: 19.1px;
+		font-weight: 800;
+
+    .pagination {
+      padding: 16px;
+    }
+
+		.networks {
+      width: 164px;
+      max-height: 51px;
+    }
+    .networks > div > button {
+      font-size: var(--font_size_btn);
+      font-weight: var(--font_weight_btn);
+    }
+    .dropdownIcon {
+      margin-right: 15px;
+    }
+
+    .pagination {
+      .arrow {
+        display: inline;
+        vertical-align: text-top;
+        color: var(--color);
+      }
+      .left {
+        margin-right: 4px;
+      }
+      .right {
+        margin-left: 4px;
+      }
+    }
+	}
+}
