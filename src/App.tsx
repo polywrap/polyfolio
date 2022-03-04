@@ -5,10 +5,11 @@ import styles from './App.module.scss';
 
 import useAuth from 'common/hooks/useAuth/useAuth';
 import LandingPage from 'pages/LandingPage/LandingPage';
-import DashboardPage from 'pages/DashboardPage/DashboardPage';
 import RoutePath from 'common/modules/routing/routing.enums';
 import useRouteChange from 'common/hooks/useRouteChange/useRouteChange';
 import AssetPage from 'pages/AssetPage/AssetPage';
+import Portfolio from 'pages/DashboardPage/Portfolio/Portfolio';
+import Transactions from 'pages/DashboardPage/Transactions/Transactions';
 
 function App() {
   useRouteChange();
@@ -47,7 +48,15 @@ function App() {
             path={RoutePath.Dashboard}
             element={
               <ProtectedRoute user={user}>
-                <DashboardPage />
+                <Portfolio />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={RoutePath.DashboardTransactions}
+            element={
+              <ProtectedRoute user={user}>
+                <Transactions />
               </ProtectedRoute>
             }
           />

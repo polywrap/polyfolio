@@ -35,7 +35,8 @@
     cursor: pointer;
     border: var(--border);
     border-radius: 8px;
-    padding: 16px 25px 16px 16px;
+    padding: 16px 0 16px 16px;
+    margin: 0;
   }
 
   .dropdown_content {

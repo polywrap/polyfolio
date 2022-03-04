@@ -31,7 +31,7 @@ function AssetPage() {
           <div className={styles.wrapper}>
             <div>
               <div>
-                <NavLink className={styles.link} to='/dashboard'>
+                <NavLink className={styles.link} to='/dashboard/portfolio'>
                   <div className={styles.arrow_container}>
                     <Icon src={iconsObj.backArrow} className={styles.arrow} />
                   </div>

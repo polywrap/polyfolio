@@ -96,4 +96,10 @@ export default {
     btc: 'BTC',
     gel: 'GEL',
   },
+  Dashboard: {
+    portfolio: 'Portfolio',
+    transactions: 'Transaction',
+    title: 'Dashboard',
+    secondaryTitle: 'Net Worth',
+  },
 };
