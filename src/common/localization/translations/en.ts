@@ -92,4 +92,8 @@ export default {
     btc: 'BTC',
     gel: 'GEL',
   },
+  Dashboard: {
+    portfolio: 'Portfolio',
+    transactions: 'Transaction',
+  },
 };
