@@ -19,28 +19,26 @@ function SettingsBody() {
 
   return (
     <div className={classNames(style[theme])}>
-      <div className={style.wrapper}>
-        <div className={style.head_title}>Settings</div>
+      <div className={style.head_title}>Settings</div>
+      <div>
+        <div className={style.profile}>Profile</div>
         <div>
-          <div className={style.profile}>Profile</div>
-          <div>
-            <Icon src={iconsObj.profile} />
-            <ProfileWallet address={user} size={3} />
-          </div>
+          <Icon src={iconsObj.profile} className={style.profile} />
+          <ProfileWallet address={user} size={3} />
         </div>
-        <div className={style.settings_prop}>
-          <div className={style.row}>
-            <div className={style.left}>Theme</div>
-            <div className={style.right}><ThemeSwitcher /></div>
-          </div>
-          <div className={style.row}>
-            <div className={style.left}>Base Currency</div>
-            <div className={style.right}><CurrencyPicker /></div>
-          </div>
-          <div className={style.row}>
-            <div className={style.left}>Language</div>
-            <div className={style.right}></div>
-          </div>
+      </div>
+      <div className={style.settings_prop}>
+        <div className={style.row}>
+          <div className={style.left}>Theme</div>
+          <div className={style.right}><ThemeSwitcher /></div>
+        </div>
+        <div className={style.row}>
+          <div className={style.left}>Base Currency</div>
+          <div className={style.right}><CurrencyPicker /></div>
+        </div>
+        <div className={style.row}>
+          <div className={style.left}>Language</div>
+          <div className={style.right}></div>
         </div>
       </div>
     </div>
