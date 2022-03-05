@@ -1,12 +1,17 @@
+@import 'common/themes/mixins';
+
 .dark {
   --color: var(--color_blue_gray_50);
+  --border: 1px solid rgba(255, 255, 255, 0.13);
 }
 
 .light {
   --color: var(--color_blue_gray);
+  --border: 1px solid var(--color_blue_gray_200);
 }
 
 .head_title {
+  margin-bottom: 32px;
   font-size: 48px;
   line-height: 65.47px;
   font-weight: 800;
@@ -14,3 +19,50 @@
   color: var(--color);
 }
 
+.profile_sign {
+  margin-bottom: 8px;
+
+  font-size: 16px;
+  line-height: 21.82px;
+  font-weight: 400;
+
+  color: var(--color);
+}
+
+.profile {
+  display: flex;
+
+  .profile_icon {
+    height: 48px;
+    width: 48px;
+  }
+
+  .address_container {
+    margin-left: 8px;
+
+    .main_addr {
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 900;
+      line-height: 24px;
+    }
+  }
+}
+
+.settings_prop {
+  margin-top: 60px;
+  margin-bottom: 235px;
+  .row {
+    display: flex;
+    justify-content: space-between;
+    padding: 24px;
+    border-bottom: var(--border);
+    align-content: center;
+
+    .left {
+      font-size: 18px;
+      font-weight: 800;
+      line-height: 18px;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+@import 'common/themes/mixins';
+
+.dark {
+  --color: var(--color_blue_gray_50);
+}
+
+.light {
+  --color: var(--color_blue_gray);
+}
+
+.common_currency_picker {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  .currency {
+    color: var(--color);
+    font-size: var(--font_size_medium);
+    font-weight: var(--font_weight_bolder);
+  }
+}
