@@ -1,0 +1,49 @@
+@import 'common/themes/mixins';
+
+.dark {
+  --color: var(--color_blue_gray_50);
+}
+
+.light {
+  --color: var(--color_blue_gray);
+}
+
+.headerContainer {
+  --font_size: var(--h1_font_size);
+  --font_weight: 800;
+  --color_green: #27c69f;
+
+  .backBtn {
+    @include flex_centered_vert();
+    cursor: pointer;
+
+    .backArrow {
+      width: 15px;
+      height: 15px;
+    }
+    .btnText {
+      margin-left: 12px;
+      color: var(--color_green);
+    }
+  }
+
+  .titleContainer {
+    @include flex_grow();
+    align-items: center;
+    margin-bottom: 32px;
+    .title {
+      margin-left: 8px;
+      font-weight: var(--font_weight);
+    }
+    .secondaryTitle {
+      font-weight: var(--font_weight_normal);
+      padding-top: 13px;
+      margin-left: 16px;
+      opacity: 0.8;
+    }
+    .icon {
+      width: 40px;
+      height: 40px;
+    }
+  }
+}

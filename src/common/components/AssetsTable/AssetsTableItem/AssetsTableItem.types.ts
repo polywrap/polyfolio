@@ -11,6 +11,8 @@ interface AssetsItem {
   claimableValue?: number;
   priceTitle?: number;
   valueIsMinus?: boolean;
+  link?: string;
+  id?: number;
 }
 
 export {AssetsItem};

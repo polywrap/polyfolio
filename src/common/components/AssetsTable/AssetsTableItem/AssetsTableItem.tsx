@@ -3,6 +3,7 @@ import styles from './AssetsTableItem.module.scss';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 
 import MenuArrow from 'common/components/MenuArrow/MenuArrow';
+import {useNavigate} from 'react-router-dom';
 
 import Icon from 'common/components/Icon/Icon';
 import numberFormatter from 'utils/numberFormatter';
@@ -10,6 +11,7 @@ import PricesValue from 'common/components/PricesValue/PricesValue';
 
 function AssetsItem(menuItem) {
   const translation = useTranslation();
+  const navigate = useNavigate();
   const {
     secondaryPricePercentTitle,
     valueSecondaryTitle,
@@ -21,6 +23,7 @@ function AssetsItem(menuItem) {
     isDivider,
     percent,
     title,
+    link,
     icon,
   } = menuItem;
 
@@ -55,10 +58,10 @@ function AssetsItem(menuItem) {
               </div>
               <div className={styles.valueSecondaryContainer}>
                 ${numberFormatter({value: valueSecondaryTitle, size: 2})}
-                <div style={{marginLeft: '5px'}}> {translation.Assets[title]}</div>
+                <div style={{marginLeft: '5px'}}>{translation.Assets[title]}</div>
               </div>
             </div>
-            <button>
+            <button onClick={() => navigate(link)}>
               <MenuArrow className={styles.arrowIcon} startPosition="right" size="10px" />
             </button>
           </div>

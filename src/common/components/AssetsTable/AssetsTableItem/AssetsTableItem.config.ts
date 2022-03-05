@@ -1,5 +1,6 @@
 import {AssetsItem} from './AssetsTableItem.types';
 import iconsObj from 'assets/icons/iconsObj';
+import RoutePath from 'common/modules/routing/routing.enums';
 
 const menuItems: AssetsItem[] = [
   {
@@ -17,6 +18,8 @@ const menuItems: AssetsItem[] = [
     pricePercentDollar: 163.63,
     valueSecondaryTitle: 8310072.32,
     icon: iconsObj.assetsUsdt,
+    link: `${RoutePath.Dashboard}/1`,
+    id: 1,
   },
   {
     title: 'divider',
@@ -33,6 +36,8 @@ const menuItems: AssetsItem[] = [
     secondaryTitle: 'btcSecondary',
     percent: 24,
     icon: iconsObj.assetsBitcoin,
+    link: `${RoutePath.Dashboard}/2`,
+    id: 2,
   },
   {
     title: 'divider',
@@ -49,6 +54,8 @@ const menuItems: AssetsItem[] = [
     secondaryPricePercentTitle: 15.32,
     percent: 23,
     icon: iconsObj.assetsEth,
+    link: `${RoutePath.Dashboard}/3`,
+    id: 3,
   },
   {
     title: 'divider',
@@ -63,8 +70,10 @@ const menuItems: AssetsItem[] = [
     valueTitle: 1072.32,
     valueSecondaryTitle: 8310072.32,
     pricePercentDollar: 163.63,
-    percent: 2,
+    percent: 1,
     icon: iconsObj.assetsUfo,
+    link: `${RoutePath.Dashboard}/4`,
+    id: 4,
   },
   {
     title: 'divider',
@@ -81,6 +90,8 @@ const menuItems: AssetsItem[] = [
     pricePercentDollar: 163.63,
     percent: 1,
     icon: iconsObj.assetsGel,
+    link: `${RoutePath.Dashboard}/5`,
+    id: 5,
   },
   {
     title: 'divider',
@@ -97,6 +108,8 @@ const menuItems: AssetsItem[] = [
     valueIsMinus: true,
     pricePercentDollar: 163.63,
     icon: iconsObj.assetsCqt,
+    link: `${RoutePath.Dashboard}/6`,
+    id: 6,
   },
   {
     title: 'divider',
@@ -113,6 +126,8 @@ const menuItems: AssetsItem[] = [
     valueIsMinus: false,
     pricePercentDollar: 163.63,
     icon: iconsObj.assetsFtm,
+    link: `${RoutePath.Dashboard}/7`,
+    id: 7,
   },
   {
     title: 'divider',
@@ -128,6 +143,8 @@ const menuItems: AssetsItem[] = [
     pricePercentDollar: 163.63,
     secondaryPricePercentTitle: 15.32,
     percent: 1,
+    id: 8,
+    link: `${RoutePath.Dashboard}/8`,
     icon: iconsObj.assetsMatic,
   },
 ];
