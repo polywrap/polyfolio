@@ -63,10 +63,6 @@ export default {
     inr: 'INR',
     inrSecondary: 'Indian Rupee',
   },
-  Language: {
-    en: 'EN',
-    enSecondary: 'English'
-  },
   Networks: {
     eth: 'Ethereum',
     polygon: 'Polygon',

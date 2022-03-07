@@ -9,24 +9,21 @@ import useTheme from 'common/hooks/useTheme/useTheme';
 import {LocalizationPickerItem} from './LocalizationPicker.types';
 import Icon from 'common/components/Icon/Icon';
 import {useLanguageContext} from 'common/localization/Localization.context';
-import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import iconsObj from 'assets/icons/iconsObj';
 
 function LocalizationPickerInfo({onClick}: {onClick: Dispatch<LocalizationPickerItem>}) {
   const theme = useTheme();
   const {language} = useLanguageContext();
-  const translation = useTranslation();
 
   const MenuItem = (menuItem: LocalizationPickerItem) => {
     return (
       <div className={styles.menu_item} onClick={() => onClick(menuItem)}>
         <div className={styles.menu_item}>
-          <Icon src={menuItem.icon} className={styles.icon} />
-          <div className={styles.title}>{translation.Language[menuItem.title]}</div>
+          <div className={styles.title}>{menuItem.title.toUpperCase()}</div>
           <div className={styles.secondaryTitle}>
-            {translation.Language[menuItem.secondaryTitle]}
+            {menuItem.secondaryTitle}
           </div>
-          {language === translation.Language[menuItem.title] && (
+          {language === menuItem.title && (
             <div className={styles.iconCurrency}>
               <Icon src={iconsObj.selected} className={styles.iconSelected} />
             </div>
