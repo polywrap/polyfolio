@@ -18,13 +18,18 @@
   margin-bottom: 32px;
 
   .input_container {
-    width: 100%;
+    flex: 1;
     .input {
-      width: 90%;
+      width: 40%;
+    }
+    @media screen and (max-width: 1024px) {
+      .input {
+        width: 80%;
+      }
     }
     @include tablet() {
-      width: 100%;
       .input {
+        width: 100%;
         margin: 0 auto;
       }
     }
