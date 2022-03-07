@@ -69,6 +69,12 @@
     .token:not(:last-child) {
       margin-right: 32px;
     }
+
+    @include tablet () {
+      .token:not(:last-child) {
+        margin-right: 0;
+      }
+    }
   }
 
   .label {
