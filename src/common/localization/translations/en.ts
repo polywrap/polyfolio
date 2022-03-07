@@ -106,4 +106,10 @@ export default {
     title: 'Dashboard',
     secondaryTitle: 'Net Worth',
   },
+  Settings: {
+    profile: 'Profile',
+    theme: 'Theme',
+    baseCurrency: 'Base Currency',
+    language: 'Language',
+  },
 };

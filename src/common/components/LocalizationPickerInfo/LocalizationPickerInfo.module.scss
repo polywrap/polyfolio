@@ -12,8 +12,6 @@
 
 .common_header_gas_info_menu {
   --font_size: 18px;
-  --font_weight_bold: 800;
-  --font_size_secondary: 14px;
   --divider: radial-gradient(
     101.46% 151.04% at 0% -1.46%,
     rgba(217, 217, 218, 0.25) 0%,
@@ -60,7 +58,7 @@
     .secondaryTitle {
       font-family: var(--font_family);
       font-weight: var(--font_weight_normal);
-      font-size: var(--font_size_secondary);
+      font-size: var(--font_size_normal);
       color: var(--color_blue_gray_50);
     }
   }

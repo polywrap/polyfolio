@@ -20,9 +20,9 @@ function SettingsBody() {
 
   return (
     <div className={classNames(style[theme])}>
-      <div className={style.head_title}>Settings</div>
+      <div className={style.head_title}>{translation.SidebarMenu.settings}</div>
       <div>
-        <div className={style.profile_sign}>Profile</div>
+        <div className={style.profile_sign}>{translation.Settings.profile}</div>
         <div className={style.profile}>
           <Icon src={iconsObj.profile} className={style.profile_icon} />
           <div className={style.address_container}>
@@ -35,15 +35,15 @@ function SettingsBody() {
       </div>
       <div className={style.settings_prop}>
         <div className={style.row}>
-          <div className={style.left}>Theme</div>
+          <div className={style.left}>{translation.Settings.theme}</div>
           <div className={style.right}><ThemeSwitcher /></div>
         </div>
         <div className={style.row}>
-          <div className={style.left}>Base Currency</div>
+          <div className={style.left}>{translation.Settings.baseCurrency}</div>
           <div className={style.right}><CurrencyPicker /></div>
         </div>
         <div className={style.row}>
-          <div className={style.left}>Language</div>
+          <div className={style.left}>{translation.Settings.language}</div>
           <div className={style.right}><LocalizationPicker /></div>
         </div>
       </div>
