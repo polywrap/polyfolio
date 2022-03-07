@@ -1,16 +1,17 @@
 interface AssetsItem {
-  title?: string;
-  secondaryTitle?: string;
-  percent?: number;
-  icon?: string;
-  isDivider?: boolean;
-  valueTitle?: number;
-  pricePercentDollar?: number;
   secondaryPricePercentTitle?: number;
   valueSecondaryTitle?: number;
+  pricePercentDollar?: number;
   claimableValue?: number;
-  priceTitle?: number;
+  secondaryTitle?: string;
   valueIsMinus?: boolean;
+  iconInfoPage?: string;
+  isDivider?: boolean;
+  valueTitle?: number;
+  priceTitle?: number;
+  percent?: number;
+  title?: string;
+  icon?: string;
   link?: string;
   id?: number;
 }
