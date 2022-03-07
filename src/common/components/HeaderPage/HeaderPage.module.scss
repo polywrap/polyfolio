@@ -22,8 +22,7 @@
 }
 
 .title {
-  display: flex;
-  align-items: center;
+  @include flex_centered_vert;
   margin-bottom: 32px;
   
   .img {
@@ -34,8 +33,8 @@
   }
   .text {
     font-size: 48px;
-    font-weight: 800;
-
+    font-weight: var(--font_weight_bolder);
+  
     span {
       font-size: 24px;
       font-weight: 400;
