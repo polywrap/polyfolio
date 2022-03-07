@@ -8,14 +8,15 @@ import Icon from 'common/components/Icon/Icon';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import iconsObj from 'assets/icons/iconsObj';
 import RoutePath from 'common/modules/routing/routing.enums';
-import {findById} from 'utils/helpers';
+import _find from 'lodash/find';
 
 function HeaderCurrencyPage() {
   const theme = useTheme();
   const {id} = useParams();
   const translation = useTranslation();
   const navigate = useNavigate();
-  const currency = findById(menuItems, id);
+  const currency = _find(menuItems, id);
+  console.log(currency);
 
   return (
     <div className={classNames(styles.headerContainer, styles[theme])}>
