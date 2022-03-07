@@ -21,7 +21,7 @@ function HeaderCurrencyPage() {
     <div className={classNames(styles.headerContainer, styles[theme])}>
       <button onClick={() => navigate(RoutePath.Dashboard)} className={styles.backBtn}>
         <Icon src={iconsObj.backArrow} className={styles.backArrow} />
-        <div className={styles.btnText}>{translation.Button.backDashboard}</div>
+        <div className={styles.btnText}>{translation.Buttons.backDashboard}</div>
       </button>
       <div className={styles.titleContainer}>
         <Icon src={currency?.icon} className={styles.icon} />
