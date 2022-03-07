@@ -1,4 +1,4 @@
-import React, {useState, useRef, useCallback, useMemo} from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import classNames from 'classnames';
 
 import styles from './LocalizationPicker.module.scss';
@@ -28,12 +28,9 @@ function LocalizationPicker({className = ''}: {className?: string}) {
     [setLanguage, translation.Language],
   );
 
-  const getLanguage = useMemo(() => {
-    switch (language) {
-      case 'en': return 'English'
-      default: return 'English'
-    }
-  }, [language])
+  const lang = {
+    en: 'English',
+  }
 
   return (
     <div ref={ref} className={classNames(styles.common_header_gas_info, className)}>
@@ -47,7 +44,7 @@ function LocalizationPicker({className = ''}: {className?: string}) {
           onClick={() => setIsOpen(!isOpen)}
           className={classNames(styles.common_currency_picker, styles[theme], className)}
         >
-          <span className={styles.currency}>{getLanguage}</span>
+          <span className={styles.currency}>{lang[language]}</span>
           <MenuArrow startPosition={!isOpen ? 'down' : 'up'} />
         </div>
       </TooltipTrigger>
