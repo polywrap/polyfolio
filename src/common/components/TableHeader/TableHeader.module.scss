@@ -13,16 +13,27 @@
 .controlls {
 	display: flex;
 	justify-content: space-between;
+  width: 100%;
 
   margin-bottom: 32px;
 
-	.input {
-		width: 406px;
-
-		@include tablet() {
-			display: none;
-		}
-	}
+  .input_container {
+    flex: 1;
+    .input {
+      width: 40%;
+    }
+    @media screen and (max-width: 1024px) {
+      .input {
+        width: 80%;
+      }
+    }
+    @include tablet() {
+      .input {
+        width: 100%;
+        margin: 0 auto;
+      }
+    }
+  }
 
 	.right {
 		display: flex;
@@ -53,5 +64,14 @@
         margin-left: 4px;
       }
     }
+
+    @include tablet () {
+      justify-content: space-around;
+    }
 	}
+
+  @include tablet () {
+    flex-direction: column;
+    gap: 20px;
+  }
 }

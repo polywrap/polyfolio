@@ -1,9 +1,18 @@
+@import 'common/themes/mixins';
+
 .row {
   display: flex;
   max-width: 1152px;
   width: 100%;
 
   padding: 48px;
+
+  @include tablet() {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+  }
 }
 
 .row:not(:last-child) {
