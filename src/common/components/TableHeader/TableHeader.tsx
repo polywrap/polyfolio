@@ -4,11 +4,10 @@ import classNames from 'classnames';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import style from './TableHeader.module.scss';
 import iconsObj from 'assets/icons/iconsObj';
-import Icon from 'common/components/Icon/Icon';
 import Input from 'common/components/Input/Input';
 import Dropdown from '../Dropdown/Dropdown';
 import TablePagination from '../TablePagination/TablePagination';
-import { filteredDropdown } from 'utils/filteredDropdown';
+import { filteredDropdown } from 'utils/helpers';
 import { dropdownItems } from './TableHeader.config';
 
 function TableHeader() {
