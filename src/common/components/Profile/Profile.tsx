@@ -53,7 +53,7 @@ function Profile() {
       ) : (
         <div className={styles.public_profile}>
           <div className={styles.title}>{translation.Profile.title}</div>
-          <Button onClick={logIn} title={translation.Profile.button} size={'small'} />
+          <Button title={translation.Profile.button} size={'small'} />
         </div>
       )}
     </div>
