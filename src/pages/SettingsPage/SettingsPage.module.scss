@@ -1,0 +1,53 @@
+@import 'common/themes/mixins';
+
+.container {
+  @include flex_grow();
+  min-height: calc(100vh - 84px);
+  padding: 32px 32px 0;
+
+  @include tablet() {
+    padding: 24px 24px 0;
+  }
+
+  @include mobile() {
+    padding: 20px 0;
+  }
+
+  .aside {
+    width: 248px;
+    @include tablet() {
+      display: none;
+    }
+
+    height: calc(100vh - 148px);
+    margin-right: 46px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .main {
+    @include flex_grow();
+    flex-direction: column;
+    height: calc(100vh - 116px);
+    overflow: scroll;
+
+    @include tablet() {
+      margin: 0;
+      padding: 15px 16px;
+    }
+    .wrapper {
+      max-width: 1256px;
+      width: 100%;
+    
+      margin: 0 auto;
+      padding-bottom: 47px;
+    }
+  }
+}
+@include mobile() {
+  .main {
+    padding: 0 16px;
+  }
+}
