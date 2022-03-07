@@ -15,13 +15,17 @@
   justify-content: space-between;
   padding: 19px;
 
+  @include mobile () {
+    flex-direction: column;
+    gap: 10px;
+  }
+
   .row_unit {
     flex: 1.5;
   }
 
   .flex_unit {
     display: flex;
-
     .text {
       color: var(--color);
       margin-left: 8px;
