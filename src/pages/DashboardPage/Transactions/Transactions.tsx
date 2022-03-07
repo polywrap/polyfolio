@@ -1,10 +1,15 @@
+import AssetTransaction from 'common/components/AssetTransaction/AssetTransaction';
 import React from 'react';
 import DashboardPage from '../DashboardPage';
+import DashboardNavigation from 'common/components/DashboardNavigation/DashboardNavigation';
+import HeaderDashboard from 'common/components/HeaderDashboard/HeaderDashboard';
 
 function Transactions() {
   return (
     <DashboardPage>
-      <span>Transaction</span>
+      <HeaderDashboard />
+      <DashboardNavigation />
+      <AssetTransaction />
     </DashboardPage>
   );
 }

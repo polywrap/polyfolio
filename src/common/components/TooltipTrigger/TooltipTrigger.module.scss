@@ -1,3 +1,5 @@
+@import 'common/themes/mixins';
+
 .dark {
   --tooltip_bg: var(--color_blue_gray_800);
   --tooltip_border: var(--color_blue_gray_700);
@@ -11,8 +13,7 @@
 }
 
 .common_tooltip_trigger {
-  display: flex;
-  align-items: center;
+  @include flex_centered_vert();
 
   .tooltip_container {
     background-color: var(--tooltip_bg);

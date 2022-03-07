@@ -7,7 +7,7 @@ import {dropdownItems} from './HederDashboardDropdown/HederDashboardDropdown.con
 import useTheme from 'common/hooks/useTheme/useTheme';
 import {content} from './HeaderDashboard.config';
 import Dropdown from '../Dropdown/Dropdown';
-import {filteredDropdown} from 'utils/filteredDropdown';
+import {filteredDropdown} from 'utils/helpers';
 import numberFormatter from 'utils/numberFormatter';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 

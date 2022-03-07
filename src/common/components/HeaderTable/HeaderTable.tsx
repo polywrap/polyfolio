@@ -8,7 +8,7 @@ import numberFormatter from 'utils/numberFormatter';
 
 function HeaderTable({title, sum}) {
   return (
-    <div className={styles.flex}>
+    <div className={styles.headerTableContainer}>
       <div className={styles.title_container}>
         <h3>{title}</h3>
         <button className={styles.btn}>

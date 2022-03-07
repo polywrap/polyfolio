@@ -30,7 +30,7 @@ function TableHeader() {
 
   return (
     <div className={classNames(style[theme], style.controlls)}>
-      <div>
+      <div className={style.input_container}>
         <Input
           value={value}
           onChange={setValue}

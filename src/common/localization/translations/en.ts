@@ -102,4 +102,7 @@ export default {
     title: 'Dashboard',
     secondaryTitle: 'Net Worth',
   },
+  Buttons: {
+    backDashboard: 'Back to Dashboard',
+  },
 };

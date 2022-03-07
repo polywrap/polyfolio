@@ -11,7 +11,7 @@ import {HeaderGasInfoItem} from './HeaderGasInfoMenu.types';
 import Dropdown from '../Dropdown/Dropdown';
 import numberFormatter from 'utils/numberFormatter';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
-import {filteredDropdown} from 'utils/filteredDropdown';
+import {filteredDropdown} from 'utils/helpers';
 
 function HeaderGasInfoMenu() {
   const [isOpen, setIsOpen] = useState<boolean>(false);

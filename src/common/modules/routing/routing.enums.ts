@@ -14,6 +14,7 @@ enum RoutePath {
   Asset = '/asset',
   Dashboard = '/dashboard/portfolio',
   DashboardTransactions = '/dashboard/transactions',
+  InfoPage = '/dashboard/portfolio/:id',
 }
 
 export default RoutePath;
