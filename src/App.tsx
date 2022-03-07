@@ -11,6 +11,7 @@ import AssetPage from 'pages/AssetPage/AssetPage';
 import Portfolio from 'pages/DashboardPage/Portfolio/Portfolio';
 import Transactions from 'pages/DashboardPage/Transactions/Transactions';
 import SettingsPage from 'pages/SettingsPage/SettingsPage';
+import DashboardInfoСurrency from 'pages/DashboardPage/DashboardInfoСurrency/DashboardInfoСurrency';
 
 function App() {
   useRouteChange();
@@ -45,6 +46,14 @@ function App() {
             }
           />
           <Route path={RoutePath.Docs} element={<LandingPage />} />
+          <Route
+            path={RoutePath.InfoPage}
+            element={
+              <ProtectedRoute user={user}>
+                <DashboardInfoСurrency />
+              </ProtectedRoute>
+            }
+          />
           <Route
             path={RoutePath.Dashboard}
             element={

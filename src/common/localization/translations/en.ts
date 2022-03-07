@@ -112,4 +112,7 @@ export default {
     baseCurrency: 'Base Currency',
     language: 'Language',
   },
-};
+  Buttons: {
+    backDashboard: 'Back to Dashboard',
+  },
+}

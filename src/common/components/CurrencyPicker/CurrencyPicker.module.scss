@@ -9,8 +9,7 @@
 }
 
 .common_currency_picker {
-  display: flex;
-  align-items: center;
+  @include flex_centered_vert();
   cursor: pointer;
 
   .currency {

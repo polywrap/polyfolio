@@ -5,11 +5,9 @@ import styles from './DashboardPage.module.scss';
 import classNames from 'classnames';
 
 import Header from 'common/components/Header/Header';
-import HeaderDashboard from 'common/components/HeaderDashboard/HeaderDashboard';
 import Footer from 'common/components/Footer/Footer';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import Sidebar from 'common/components/Sidebar/Sidebar';
-import DashboardNavigation from 'common/components/DashboardNavigation/DashboardNavigation';
 
 function DashboardPage({children}: {children: ReactNode}) {
   const theme = useTheme();
@@ -22,8 +20,6 @@ function DashboardPage({children}: {children: ReactNode}) {
           <Sidebar />
         </aside>
         <main className={styles.main}>
-          <HeaderDashboard />
-          <DashboardNavigation />
           {children}
           <Footer wrapperClassName={styles.footer} />
         </main>

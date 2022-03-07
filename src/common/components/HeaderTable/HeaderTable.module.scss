@@ -1,44 +1,44 @@
 @import 'common/themes/mixins';
-.flex {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.title_container {
-  display: flex;
-  align-items: center;
-  .btn {
+
+.headerTableContainer {
+  @include flex_centered();
+
+  .title_container {
     display: flex;
-    font-size: var(--font_size_btn);
     align-items: center;
-    justify-content: center;
-    font-weight: var(--font_weight_bolder);
-    margin-left: 16px;
-    width: 40px;
-    height: 24px;
-    border-radius: 8px;
-    border: 1px solid #d9d9da40;
+    .btn {
+      display: flex;
+      font-size: var(--font_size_btn);
+      align-items: center;
+      justify-content: center;
+      font-weight: var(--font_weight_bolder);
+      margin-left: 16px;
+      width: 40px;
+      height: 24px;
+      border-radius: 8px;
+      border: 1px solid #d9d9da40;
+    }
+    .arrow {
+      margin-left: 4px;
+    }
   }
-  .arrow {
-    margin-left: 4px;
+  .filter_container {
+    display: flex;
+    margin-left: auto;
+    .icon {
+      width: 24px;
+      height: 24px;
+      margin-left: 27px;
+      cursor: pointer;
+    }
+    .iconFilter {
+      margin-left: 0;
+      cursor: pointer;
+    }
   }
-}
-.filter_container {
-  display: flex;
-  margin-left: auto;
-  .icon {
-    width: 24px;
-    height: 24px;
-    margin-left: 27px;
-    cursor: pointer;
-  }
-  .iconFilter {
-    margin-left: 0;
-    cursor: pointer;
-  }
-}
-@include mobile() {
-  .filter_container > h4 {
-    display: none;
+  @include mobile() {
+    .filter_container > h4 {
+      display: none;
+    }
   }
 }

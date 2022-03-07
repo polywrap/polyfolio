@@ -2,15 +2,15 @@ import React from 'react';
 import Networks from 'common/components/Networks/Networks';
 import ProtocolsTable from 'common/components/ProtocolsTable/ProtocolsTable';
 import AssetsTable from 'common/components/AssetsTable/AssetsTable';
-import PerformanceTable from 'common/components/PerformanceTable/PerformanceTable';
-import AssetsCharts from 'common/components/AssetsChart/AssetsChart';
+import DashboardNavigation from 'common/components/DashboardNavigation/DashboardNavigation';
+import HeaderDashboard from 'common/components/HeaderDashboard/HeaderDashboard';
 import DashboardPage from '../DashboardPage';
 
 function Portfolio() {
   return (
     <DashboardPage>
-      <AssetsCharts />
-      <PerformanceTable />
+      <HeaderDashboard />
+      <DashboardNavigation />
       <AssetsTable />
       <ProtocolsTable />
       <Networks />
