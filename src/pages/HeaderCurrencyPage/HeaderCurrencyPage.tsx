@@ -15,8 +15,7 @@ function HeaderCurrencyPage() {
   const {id} = useParams();
   const translation = useTranslation();
   const navigate = useNavigate();
-  const currency = _find(menuItems, id);
-  console.log(currency);
+  const currency = _find(menuItems, {id: +id});
 
   return (
     <div className={classNames(styles.headerContainer, styles[theme])}>
@@ -25,7 +24,7 @@ function HeaderCurrencyPage() {
         <div className={styles.btnText}>{translation.Buttons.backDashboard}</div>
       </button>
       <div className={styles.titleContainer}>
-        <Icon src={currency?.icon} className={styles.icon} />
+        <Icon src={currency?.iconInfoPage} className={styles.icon} />
         <h1 className={styles.title}>{translation.Assets[currency?.secondaryTitle]}</h1>
         <h4 className={styles.secondaryTitle}>{translation.Assets[currency?.title]}</h4>
       </div>

@@ -3,9 +3,4 @@ import approvalTransaction from './approvalTransaction.svg';
 import receiveTransaction from './receiveTransaction.svg';
 import exchangeTransaction from './exchangeTransaction.svg';
 
-export {
-  sendTransaction,
-  approvalTransaction,
-  receiveTransaction,
-  exchangeTransaction,
-}
+export {sendTransaction, approvalTransaction, receiveTransaction, exchangeTransaction};
