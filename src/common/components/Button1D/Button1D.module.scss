@@ -1,0 +1,12 @@
+.btn {
+  display: flex;
+  font-size: var(--font_size_btn);
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font_weight_bolder);
+  margin-left: 16px;
+  width: 40px;
+  height: 24px;
+  border-radius: 8px;
+  border: 1px solid #d9d9da40;
+}

@@ -1,0 +1,116 @@
+@import 'common/themes/mixins';
+
+.dark {
+  --color: var(--color_blue_gray_50);
+  --border: 1px solid rgba(255, 255, 255, 0.13);
+  --box_shadow: 0px 16px 24px rgba(0, 0, 0, 0.15);
+}
+
+.light {
+  --color: var(--color_blue_gray);
+  --border: 1px solid var(--color_blue_gray_200);
+  --box_shadow: 0px 16px 24px rgba(0, 0, 0, 0.15);
+}
+
+.chartContainer {
+  --font_family_currency: Karla;
+  --font_size_btn: 18px;
+  --color_green: #6de7b6;
+  --divider: radial-gradient(
+    101.46% 151.04% at 0% -1.46%,
+    rgba(217, 217, 218, 0.25) 0%,
+    rgba(70, 85, 104, 0.5) 100%
+  );
+  --font_size_smaller: 10px;
+  max-width: 390px;
+  min-height: 512px;
+  border: var(--border);
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: var(--box_shadow);
+  margin-bottom: 40px;
+  position: relative;
+
+  .viewAll {
+    display: block;
+    font-size: var(--font_size_btn);
+    color: var(--color_green);
+    font-weight: var(--font_weight_bold);
+    margin: 10px auto 0 auto;
+    cursor: pointer;
+  }
+  .title_container {
+    @include flex_centered_vert();
+    margin-bottom: 34px;
+    .iconFilter {
+      width: unset;
+      height: unset;
+      margin-right: 16px;
+      cursor: pointer;
+    }
+    .btn {
+      width: 40px;
+      height: 24px;
+      cursor: pointer;
+    }
+    .title {
+      display: block;
+      font-family: var(--font_family_secondary);
+      font-weight: var(--font_weight_extra_bold);
+      margin-right: 16px;
+    }
+  }
+
+  .values {
+    position: absolute;
+    top: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font_family_currency);
+    text-align: center;
+
+    .value {
+      font-size: var(--font_size_smaller);
+      font-weight: var(--font_weight_bolder);
+    }
+  }
+
+  .divider {
+    height: 1px;
+    margin: 5px 0;
+    background: var(--divider);
+    margin-top: 34px;
+    margin-bottom: 40px;
+  }
+  path {
+    stroke: unset !important;
+  }
+
+  .valuesContainer {
+    @include flex_centered_vert();
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .item {
+      @include flex_centered_vert();
+      width: 43%;
+      cursor: pointer;
+      height: 43px;
+      .icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 12px;
+      }
+      .value {
+        margin-left: auto;
+        font-size: var(--h6_font_size);
+        font-weight: var(--font_weight_normal);
+        opacity: 0.9;
+      }
+      .title {
+        font-size: var(--h6_font_size);
+        font-weight: var(--font_weight_bolder);
+      }
+    }
+  }
+}

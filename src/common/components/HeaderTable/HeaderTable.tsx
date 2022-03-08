@@ -6,7 +6,7 @@ import styles from './HeaderTable.module.scss';
 import MenuArrow from 'common/components/MenuArrow/MenuArrow';
 import numberFormatter from 'utils/numberFormatter';
 
-function HeaderTable({title, sum}) {
+function HeaderTable({title, sum}: {title: string; sum: number}) {
   return (
     <div className={styles.headerTableContainer}>
       <div className={styles.title_container}>

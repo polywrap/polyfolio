@@ -87,6 +87,7 @@ export default {
     maticSecondary: 'Polygon',
     grt: 'GRT',
     grtSecondary: 'Graph Token',
+    usd: 'USD',
   },
 
   Protocols: {
@@ -104,5 +105,9 @@ export default {
   },
   Buttons: {
     backDashboard: 'Back to Dashboard',
+    viewAll: 'View all',
+  },
+  Charts: {
+    AssetAllocationTitle: 'Asset Allocation',
   },
 };
