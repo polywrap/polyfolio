@@ -1,0 +1,19 @@
+.icon {
+  width: 12px;
+  height: 12px;
+  margin-right: 10px;
+}
+.btn {
+  --color: #10c7a2;
+  --border: 1px solid #10c7a2;
+  --font_size: 16px;
+  border: var(--border);
+  margin-top: 32px;
+  margin-bottom: 42px;
+  border-radius: 16px;
+  padding: 5px 0;
+  max-width: 163px;
+  height: 32px;
+  text-align: center;
+  font-size: var(--font_size);
+}
