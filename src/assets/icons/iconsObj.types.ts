@@ -19,6 +19,7 @@ interface IconsMapper extends Record<string, unknown> {
   filterIcon: string;
   rightArrow: string;
   sort_frame: string;
+  exportIcon: string;
   assetsUfo: string;
   assetsFtm: string;
   assetsGel: string;

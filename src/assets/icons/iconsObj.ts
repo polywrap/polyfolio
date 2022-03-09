@@ -5,11 +5,12 @@ import mobileMenu from 'assets/icons/images/mobile-menu.svg';
 import disconnect from 'assets/icons/images/disconnect.svg';
 import filterIcon from 'assets/icons/images/filterIcon.svg';
 import sort_frame from 'assets/icons/images/sort_frame.svg';
-import logoLight from 'assets/icons/images/logo-light.svg';
-import leftArrow from 'assets/icons/images/leftArrow.svg';
 import rightArrow from 'assets/icons/images/rightArrow.svg';
-import backArrow from 'assets/icons/images/backArrow.svg';
+import logoLight from 'assets/icons/images/logo-light.svg';
 import menuArrow from 'assets/icons/images/menu-arrow.svg';
+import exportIcon from 'assets/icons/images/summarize.svg';
+import leftArrow from 'assets/icons/images/leftArrow.svg';
+import backArrow from 'assets/icons/images/backArrow.svg';
 import logoDark from 'assets/icons/images/logo-dark.svg';
 import settings from 'assets/icons/images/settings.svg';
 import ethereum from 'assets/icons/images/ethereum.png';
@@ -79,6 +80,7 @@ const iconsObj: IconsMapper = {
   assetsToken,
   protocolEth,
   assetsMatic,
+  exportIcon,
   assetsUsdt,
   mobileMenu,
   sort_frame,

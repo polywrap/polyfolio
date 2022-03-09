@@ -110,5 +110,6 @@ export default {
   },
   Buttons: {
     backDashboard: 'Back to Dashboard',
+    exportAsCSV: 'Export as CSV',
   },
-}
+};
