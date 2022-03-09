@@ -24,7 +24,8 @@ function LandingPage() {
     await provider.send('eth_requestAccounts', []);
     const signer = provider.getSigner();
     const address = await signer.getAddress();
-    connectWallet({ provider, signer })
+    const wallet: Record<string, unknown> = { provider, signer };
+    connectWallet(wallet)
     logIn(address)
   }
 

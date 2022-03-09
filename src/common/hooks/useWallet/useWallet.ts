@@ -10,17 +10,18 @@ const WALLET_STATE_KEY = 'polyfolio_wallet_state';
 
 export default function useWallet() {
   const navigate = useNavigate();
-  const [persistedWallet, setPersistedWallet] = useLocalStorage<Record<string, unknown>>(WALLET_LS_KEY, null);
-  const walletPersistedState = atom({
+  const [persistedWallet, setPersistedWallet] = useLocalStorage<Record<string, unknown>>(WALLET_LS_KEY, {});
+  const walletPersistedState = atom<Record<string, unknown>>({
     key: WALLET_STATE_KEY,
     default: persistedWallet,
+    dangerouslyAllowMutability: true,
   });
 
   const [wallet, setWallet] = useRecoilState(walletPersistedState);
 
-  const connectWallet = useCallback((purse: Record<string, unknown>) => {
-    setWallet(purse);
-    setPersistedWallet(purse);
+  const connectWallet = useCallback((pursue: Record<string, unknown>) => {
+    setWallet(pursue);
+    setPersistedWallet(pursue);
   }, [setWallet, setPersistedWallet]);
 
   const disconnectWallet = useCallback(() => {
