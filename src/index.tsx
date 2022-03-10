@@ -8,6 +8,7 @@ import App from './App';
 import 'common/themes/styles.scss';
 import reportWebVitals from './reportWebVitals';
 import ThemeContext from 'common/themes/Themes.context';
+import WalletContext from 'common/services/Wallet.context';
 import CurrencyContext from 'common/currency/Currency.context';
 import LocalizationContext from 'common/localization/Localization.context';
 
@@ -21,11 +22,13 @@ ReactDOM.render(
     <RecoilRoot>
       <ThemeContext>
         <LocalizationContext>
-          <CurrencyContext>
-            <BrowserRouter>
-              <App />
-            </BrowserRouter>
-          </CurrencyContext>
+          <WalletContext>
+            <CurrencyContext>
+              <BrowserRouter>
+                <App />
+              </BrowserRouter>
+            </CurrencyContext>
+          </WalletContext>
         </LocalizationContext>
       </ThemeContext>
     </RecoilRoot>
