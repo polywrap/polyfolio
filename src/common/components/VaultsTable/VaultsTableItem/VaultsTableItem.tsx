@@ -56,10 +56,6 @@ function VaultsItem(menuItem) {
               <div className={styles.valueTitle}>
                 ${numberFormatter({value: valueTitle, size: 2})}
               </div>
-              <div className={styles.valueSecondaryContainer}>
-                ${numberFormatter({value: valueSecondaryTitle, size: 2})}
-                <div style={{marginLeft: '5px'}}>{translation.Assets[title]}</div>
-              </div>
             </div>
             <button onClick={() => navigate(link)}>
               <MenuArrow className={styles.arrowIcon} startPosition="right" size="10px" />
