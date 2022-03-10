@@ -34,9 +34,15 @@ function NetworkNProtocolsPage() {
         <main className={styles.main}>
           <div className={styles.wrapper}>
             <HeaderPage
-              icon={iconsObj.assetsToken}
-              title={translation.Assets.grtSecondary}
-              secondaryTitle={translation.Assets.grt}  
+              icon={path === 'network'
+                ? iconsObj.ethereum
+                : iconsObj.assetsToken
+              }
+              title={path === 'network'
+                ? `${translation.Networks.eth} Network` 
+                : 'Aave Protocol'
+              }
+              secondaryTitle=''  
             />
             <HeaderPageInfo />
             {
