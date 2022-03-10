@@ -1,0 +1,42 @@
+@import 'common/themes/mixins';
+
+.dark {
+  --color: var(--color_white);
+  --bg_dropdown: rgba(30, 43, 69);
+  --border: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.light {
+  --color: var(--color_blue_gray);
+  --bg_dropdown: var(--color_white);
+  --border: 1px solid var(--color_blue_gray_200);
+}
+
+.headerPageInfoContainer {
+  --font_size_btn: var(--font_size_normal);
+  --font_weight_btn: 800;
+  --bg_green: rgba(16, 199, 162, 0.2);
+
+  padding: 28px 0 70px;
+
+  .secondaryValue,
+  .contentContainer {
+    @include flex_grow();
+  }
+  .secondaryTitle {
+    font-size: var(--h6_font_size);
+    font-weight: var(----font_weight_normal);
+    opacity: 0.7;
+  }
+  .value {
+    font-size: var(--font_size_btn);
+    font-weight: var(----font_weight_normal);
+    color: var(--color_green_500);
+  }
+  .value.percent {
+    margin-left: 12px;
+    background-color: var(--bg_green);
+    padding: 0 2px;
+    border-radius: 4px;
+  }
+}
