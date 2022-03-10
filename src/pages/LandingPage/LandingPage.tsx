@@ -16,7 +16,7 @@ import useTranslation from 'common/hooks/useTranslation/useTranslation';
 function LandingPage() {
   const theme = useTheme();
   const {logIn} = useAuth();
-  const {connectWallet} = useWallet();
+  const {setWallet} = useWallet();
   const translation = useTranslation();
 
   const handleConnectingProcess = async () => {
@@ -25,7 +25,7 @@ function LandingPage() {
     const signer = provider.getSigner();
     const address = await signer.getAddress();
     const wallet: Record<string, unknown> = { provider, signer };
-    connectWallet(wallet)
+    setWallet(wallet)
     logIn(address)
   }
 
