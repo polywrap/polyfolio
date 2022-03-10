@@ -14,7 +14,7 @@ import VaultsTable from 'common/components/VaultsTable/VaultsTable';
 import AssetsTable from 'common/components/AssetsTable/AssetsTable';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import ProtocolsTable from 'common/components/ProtocolsTable/ProtocolsTable';
-import HeaderCurrencyPage from 'pages/HeaderCurrencyPage/HeaderCurrencyPage';
+import HeaderPageInfo from 'common/components/HeaderPageInfo/HeaderPageInfo';
 import AssetTransaction from 'common/components/AssetTransaction/AssetTransaction';
 
 function NetworkNProtocolsPage() {
@@ -38,7 +38,7 @@ function NetworkNProtocolsPage() {
               title={translation.Assets.grtSecondary}
               secondaryTitle={translation.Assets.grt}  
             />
-            <HeaderCurrencyPage />
+            <HeaderPageInfo />
             {
               path === 'network' ? (
                 <>
