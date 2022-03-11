@@ -23,14 +23,15 @@ const menuItems: DataRangeSelectorItem[] = [
   },
   {
     title: 'w',
+    id: 3,
   },
   {
     title: 'divider',
     isDivider: true,
-    id: 3,
   },
   {
     title: 'm',
+    id: 4,
   },
 ];
 
