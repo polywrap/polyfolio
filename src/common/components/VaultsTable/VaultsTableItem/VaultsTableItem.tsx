@@ -14,7 +14,6 @@ function VaultsItem(menuItem) {
   const navigate = useNavigate();
   const {
     secondaryPricePercentTitle,
-    valueSecondaryTitle,
     pricePercentDollar,
     secondaryTitle,
     valueIsMinus,

@@ -24,6 +24,10 @@ function NetworkNProtocolsPage() {
 
   const path = pathname.split('/')[1];
 
+  const enum Path {
+    network = 'network'
+  }
+
   return (
     <div className={classNames(styles.landing_page, styles[theme])}>
       <Header inputClassName={styles.input} />
@@ -34,19 +38,18 @@ function NetworkNProtocolsPage() {
         <main className={styles.main}>
           <div className={styles.wrapper}>
             <HeaderPage
-              icon={path === 'network'
+              icon={path === Path.network
                 ? iconsObj.ethereum
                 : iconsObj.assetsToken
               }
-              title={path === 'network'
+              title={path === Path.network
                 ? `${translation.Networks.eth} Network` 
                 : 'Aave Protocol'
               }
-              secondaryTitle=''  
             />
             <HeaderPageInfo />
             {
-              path === 'network' ? (
+              path === Path.network ? (
                 <>
                   <AssetsTable />
                   <ProtocolsTable />

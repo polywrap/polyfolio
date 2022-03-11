@@ -112,4 +112,11 @@ export default {
     backDashboard: 'Back to Dashboard',
     exportAsCSV: 'Export as CSV',
   },
+  Tables: {
+    vault: 'Vaults',
+    protocol: 'Protocol',
+    allocation: 'Allocation',
+    value: 'Value',
+    claimable: 'Claimable',
+  }
 };

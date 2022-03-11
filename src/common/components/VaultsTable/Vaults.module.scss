@@ -53,7 +53,6 @@
   }
   .title.protocol {
     @include flex_grow();
-    justify-content: flex-end;
   }
 }
 @include laptop() {
@@ -61,7 +60,7 @@
     display: none;
   }
   .title {
-    width: calc(100% / 3) !important;
+    width: calc(100% / 3);
   }
   .title.value {
     padding: 0;

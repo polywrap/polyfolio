@@ -9,11 +9,17 @@ import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import { NavLink } from 'react-router-dom';
 import Icon from '../Icon/Icon';
 
+interface IHeaderPage {
+  icon: string;
+  title: string;
+  secondaryTitle?: string;
+}
+
 function HeaderPage({
   icon,
   title,
-  secondaryTitle
-}) {
+  secondaryTitle,
+}: IHeaderPage) {
   const theme = useTheme()
   const translation = useTranslation()
 
