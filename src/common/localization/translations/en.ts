@@ -110,4 +110,11 @@ export default {
   Charts: {
     AssetAllocationTitle: 'Asset Allocation',
   },
+  DataRangeSelector: {
+    title: 'Timeframe',
+    h: '1H',
+    d: '1D',
+    w: '1W',
+    m: '1M',
+  },
 };
