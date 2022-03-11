@@ -1,16 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styles from './AssetsChart.module.scss';
 import Charts from '../Charts/Сharts';
 import classNames from 'classnames';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import {item} from './AssetsChart.config';
 import numberFormatter from 'utils/numberFormatter';
-import MenuArrow from '../MenuArrow/MenuArrow';
 import {value} from './mocValue';
 import _map from 'lodash/map';
+import DataRangeSelector from '../DateRangeSelector/DateRangeSelector';
 
 function AssetsCharts() {
+  const [isOpen, setIsOpen] = useState(true);
+  const [dataRange, setDataRange] = useState({});
   const theme = useTheme();
+
+  const changeDataRange = (e) => {
+    setDataRange(e);
+    setIsOpen(!isOpen);
+  };
 
   return (
     <div className={classNames(styles.assetsChartsContainer, styles[theme])}>
@@ -23,10 +30,14 @@ function AssetsCharts() {
           <div className={styles.secondaryTittleDollar}>
             +${numberFormatter({value: item.secondaryTitleValue, size: 2})}
           </div>
-          <button className={styles.button}>
-            1D
-            <MenuArrow className={styles.arrow} filled startPosition="up" />
-          </button>
+          <DataRangeSelector
+            setDataRange={changeDataRange}
+            className={styles.button}
+            dataRange={dataRange}
+            setIsOpen={setIsOpen}
+            fontSize="14px"
+            isOpen={isOpen}
+          />
         </div>
         <Charts opacity={0.1} opacityGradient={0.6} type="monotone" height="414px" />
       </div>
