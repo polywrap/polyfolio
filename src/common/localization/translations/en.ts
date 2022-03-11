@@ -103,9 +103,16 @@ export default {
     title: 'Dashboard',
     secondaryTitle: 'Net Worth',
   },
+  Settings: {
+    profile: 'Profile',
+    theme: 'Theme',
+    baseCurrency: 'Base Currency',
+    language: 'Language',
+  },
   Buttons: {
     backDashboard: 'Back to Dashboard',
     viewAll: 'View all',
+    exportAsCSV: 'Export as CSV',
   },
   Charts: {
     AssetAllocationTitle: 'Asset Allocation',

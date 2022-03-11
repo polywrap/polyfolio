@@ -10,6 +10,7 @@ import useRouteChange from 'common/hooks/useRouteChange/useRouteChange';
 import AssetPage from 'pages/AssetPage/AssetPage';
 import Portfolio from 'pages/DashboardPage/Portfolio/Portfolio';
 import Transactions from 'pages/DashboardPage/Transactions/Transactions';
+import SettingsPage from 'pages/SettingsPage/SettingsPage';
 import DashboardInfoСurrency from 'pages/DashboardPage/DashboardInfoСurrency/DashboardInfoСurrency';
 
 function App() {
@@ -74,6 +75,14 @@ function App() {
             element={
               <ProtectedRoute user={user}>
                 <AssetPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={RoutePath.Settings}
+            element={
+              <ProtectedRoute user={user}>
+                <SettingsPage />
               </ProtectedRoute>
             }
           />
