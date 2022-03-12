@@ -67,8 +67,11 @@
   }
   .arrowIcon {
     margin-left: 40px;
-    cursor: pointer;
   }
+}
+.button {
+  cursor: pointer;
+  width: 100%;
 }
 .divider {
   --divider: radial-gradient(

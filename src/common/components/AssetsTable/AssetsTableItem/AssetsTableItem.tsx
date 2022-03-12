@@ -30,42 +30,44 @@ function AssetsItem(menuItem) {
   return (
     <>
       {!isDivider ? (
-        <div className={styles.menu_item}>
-          <div className={styles.title_container}>
-            <Icon src={icon} className={styles.icon} />
-            <div>
-              <div className={styles.title}>{translation.Assets[title]}</div>
-              <div className={styles.titleSecondary}>{translation.Assets[secondaryTitle]}</div>
-            </div>
-          </div>
-          <div className={styles.container_allocation}>
-            <div className={styles.background}></div>
-            <div className={styles.aggregate} style={{width: `${percent}%`}}></div>
-            <span className={styles.badgeText}>{numberFormatter({value: percent, size: 0})}%</span>
-            <span className={styles.badge}></span>
-          </div>
-          <PricesValue
-            secondaryPricePercentTitle={secondaryPricePercentTitle}
-            pricePercentDollar={pricePercentDollar}
-            className={styles.price_container}
-            valueIsMinus={valueIsMinus}
-            priceTitle={priceTitle}
-          />
-          <div className={styles.value_container}>
-            <div>
-              <div className={styles.valueTitle}>
-                ${numberFormatter({value: valueTitle, size: 2})}
-              </div>
-              <div className={styles.valueSecondaryContainer}>
-                ${numberFormatter({value: valueSecondaryTitle, size: 2})}
-                <div style={{marginLeft: '5px'}}>{translation.Assets[title]}</div>
+        <button className={styles.buttonNavigate} onClick={() => navigate(link)}>
+          <div className={styles.menu_item}>
+            <div className={styles.title_container}>
+              <Icon src={icon} className={styles.icon} />
+              <div>
+                <div className={styles.title}>{translation.Assets[title]}</div>
+                <div className={styles.titleSecondary}>{translation.Assets[secondaryTitle]}</div>
               </div>
             </div>
-            <button onClick={() => navigate(link)}>
+            <div className={styles.container_allocation}>
+              <div className={styles.background}></div>
+              <div className={styles.aggregate} style={{width: `${percent}%`}}></div>
+              <span className={styles.badgeText}>
+                {numberFormatter({value: percent, size: 0})}%
+              </span>
+              <span className={styles.badge}></span>
+            </div>
+            <PricesValue
+              secondaryPricePercentTitle={secondaryPricePercentTitle}
+              pricePercentDollar={pricePercentDollar}
+              className={styles.price_container}
+              valueIsMinus={valueIsMinus}
+              priceTitle={priceTitle}
+            />
+            <div className={styles.value_container}>
+              <div>
+                <div className={styles.valueTitle}>
+                  ${numberFormatter({value: valueTitle, size: 2})}
+                </div>
+                <div className={styles.valueSecondaryContainer}>
+                  ${numberFormatter({value: valueSecondaryTitle, size: 2})}
+                  <div style={{marginLeft: '5px'}}>{translation.Assets[title]}</div>
+                </div>
+              </div>
               <MenuArrow className={styles.arrowIcon} startPosition="right" size="10px" />
-            </button>
+            </div>
           </div>
-        </div>
+        </button>
       ) : (
         <div className={styles.divider} />
       )}

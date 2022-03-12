@@ -10,6 +10,7 @@ const menuItems: ProtocolsItem[] = [
     secondaryTitlePercent: 15.32,
     claimableValue: 183.92,
     icon: iconsObj.protocolBardger,
+    id: 1,
   },
   {
     title: 'divider',
@@ -23,6 +24,7 @@ const menuItems: ProtocolsItem[] = [
     secondaryTitlePercent: 15.32,
     claimableValue: 183.92,
     icon: iconsObj.protocolEth,
+    id: 2,
   },
   {
     title: 'divider',
@@ -36,6 +38,7 @@ const menuItems: ProtocolsItem[] = [
     secondaryTitlePercent: 15.32,
     claimableValue: 183.92,
     icon: iconsObj.protocolUfo,
+    id: 3,
   },
   {
     title: 'divider',
@@ -49,6 +52,7 @@ const menuItems: ProtocolsItem[] = [
     secondaryTitlePercent: 15.32,
     claimableValue: 183.92,
     icon: iconsObj.protocolBtc,
+    id: 4,
   },
   {
     title: 'divider',
@@ -60,6 +64,7 @@ const menuItems: ProtocolsItem[] = [
     valueIsMinus: false,
     secondaryTitleDollar: 163.63,
     secondaryTitlePercent: 15.32,
+    id: 5,
     claimableValue: 183.92,
     icon: iconsObj.protocolGel,
   },

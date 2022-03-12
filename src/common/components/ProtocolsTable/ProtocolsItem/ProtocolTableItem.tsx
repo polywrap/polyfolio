@@ -18,32 +18,33 @@ function ProtocolsItem(menuItem) {
     isDivider,
     title,
     icon,
+    id,
   } = menuItem;
 
   return (
     <>
       {!isDivider ? (
-        <div className={styles.menu_item}>
-          <div className={styles.title_container}>
-            <Icon src={icon} className={styles.icon} />
-            <div className={styles.title}>{translation.Protocols[title]}</div>
-          </div>
-          <PricesValue
-            secondaryPricePercentTitle={secondaryTitlePercent}
-            pricePercentDollar={secondaryTitleDollar}
-            className={styles.price_container}
-            valueIsMinus={valueIsMinus}
-            priceTitle={valueTitle}
-          />
-          <div className={styles.claimable_container}>
-            <div className={styles.secondaryTitle}>
-              ${numberFormatter({value: claimableValue, size: 2})}
+        <button className={styles.button} onClick={() => console.log('navigation', id)}>
+          <div className={styles.menu_item}>
+            <div className={styles.title_container}>
+              <Icon src={icon} className={styles.icon} />
+              <div className={styles.title}>{translation.Protocols[title]}</div>
             </div>
-            <button>
+            <PricesValue
+              secondaryPricePercentTitle={secondaryTitlePercent}
+              pricePercentDollar={secondaryTitleDollar}
+              className={styles.price_container}
+              valueIsMinus={valueIsMinus}
+              priceTitle={valueTitle}
+            />
+            <div className={styles.claimable_container}>
+              <div className={styles.secondaryTitle}>
+                ${numberFormatter({value: claimableValue, size: 2})}
+              </div>
               <MenuArrow className={styles.arrowIcon} startPosition="right" size="10px" />
-            </button>
+            </div>
           </div>
-        </div>
+        </button>
       ) : (
         <div className={styles.divider} />
       )}
