@@ -1,7 +1,7 @@
 interface HeaderInfoTypes {
-  title?: number;
-  id?: number;
-  value?: number;
+  title: number;
+  id: number;
+  value: number;
   percent?: number;
 }
 
