@@ -87,6 +87,7 @@ export default {
     maticSecondary: 'Polygon',
     grt: 'GRT',
     grtSecondary: 'Graph Token',
+    usd: 'USD',
   },
 
   Protocols: {
@@ -110,6 +111,7 @@ export default {
   },
   Buttons: {
     backDashboard: 'Back to Dashboard',
+    viewAll: 'View all',
     exportAsCSV: 'Export as CSV',
   },
   Tables: {
@@ -118,5 +120,15 @@ export default {
     allocation: 'Allocation',
     value: 'Value',
     claimable: 'Claimable',
-  }
+  },
+  Charts: {
+    AssetAllocationTitle: 'Asset Allocation',
+  },
+  DataRangeSelector: {
+    title: 'Timeframe',
+    h: '1H',
+    d: '1D',
+    w: '1W',
+    m: '1M',
+  },
 };
