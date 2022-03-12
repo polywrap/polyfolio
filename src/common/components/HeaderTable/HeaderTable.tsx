@@ -6,7 +6,15 @@ import styles from './HeaderTable.module.scss';
 import numberFormatter from 'utils/numberFormatter';
 import DataRangeSelector from '../DateRangeSelector/DateRangeSelector';
 
-function HeaderTable({title, sum}: {title: string; sum: number}) {
+function HeaderTable({
+  setTableIsOpen,
+  title,
+  sum,
+}: {
+  title: string;
+  sum: number;
+  setTableIsOpen: any;
+}) {
   const [isOpen, setIsOpen] = useState(true);
   const [dataRange, setDataRange] = useState({});
 
@@ -33,7 +41,7 @@ function HeaderTable({title, sum}: {title: string; sum: number}) {
         <button>
           <Icon src={iconsObj.filterIcon} className={styles.icon} />
         </button>
-        <button>
+        <button onClick={() => setTableIsOpen()}>
           <Icon
             src={iconsObj.filterIconSecondary}
             className={classNames(styles.icon, styles.iconFilter)}

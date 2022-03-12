@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import classNames from 'classnames';
 import iconsObj from 'assets/icons/iconsObj';
 import Icon from 'common/components/Icon/Icon';
@@ -11,13 +11,18 @@ import useTheme from 'common/hooks/useTheme/useTheme';
 import HeaderTable from '../HeaderTable/HeaderTable';
 
 function ProtocolsTable() {
+  const [tableIsOpen, setTableIsOpen] = useState(false);
   const ref = useRef(null);
   const theme = useTheme();
 
   return (
     <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>
-      <HeaderTable title="Protocols" sum={3837337.0} />
-      <div className={classNames(styles.table_container)}>
+      <HeaderTable
+        setTableIsOpen={() => setTableIsOpen(!tableIsOpen)}
+        title="Protocols"
+        sum={3837337.0}
+      />
+      <div className={classNames(styles.table_container, {[styles.none]: tableIsOpen})}>
         <div className={styles.title_container}>
           <div className={classNames(styles.title, styles.protocol)}>Protocol</div>
           <div className={classNames(styles.title, styles.value)}>

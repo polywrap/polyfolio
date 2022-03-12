@@ -21,6 +21,10 @@
   border-radius: 16px;
   margin: 0 0 48px 0;
   max-width: 1256px;
+  .none {
+    transition: all 0.2s ease;
+    display: none;
+  }
   .title_container {
     @include flex_grow();
     padding: 28px 16px;
