@@ -43,8 +43,8 @@ function NetworkNProtocolsPage() {
                 : iconsObj.assetsToken
               }
               title={path === Path.network
-                ? `${translation.Networks.eth} Network` 
-                : 'Aave Protocol'
+                ? `${translation.Networks.eth} ${translation.Networks.network}` 
+                : `Aave ${translation.Protocols.protocol}`
               }
             />
             <HeaderPageInfo />

@@ -67,6 +67,7 @@ export default {
     eth: 'Ethereum',
     polygon: 'Polygon',
     avalanch: 'Avalanche',
+    network: 'Network',
   },
   Assets: {
     usdt: 'USDT',
@@ -96,6 +97,7 @@ export default {
     ufo: 'UFO',
     btc: 'BTC',
     gel: 'GEL',
+    protocol: 'Protocol',
   },
   Dashboard: {
     portfolio: 'Portfolio',
