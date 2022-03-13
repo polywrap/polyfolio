@@ -67,6 +67,7 @@ export default {
     eth: 'Ethereum',
     polygon: 'Polygon',
     avalanch: 'Avalanche',
+    network: 'Network',
   },
   Assets: {
     usdt: 'USDT',
@@ -96,6 +97,7 @@ export default {
     ufo: 'UFO',
     btc: 'BTC',
     gel: 'GEL',
+    protocol: 'Protocol',
   },
   Dashboard: {
     portfolio: 'Portfolio',
@@ -113,6 +115,13 @@ export default {
     backDashboard: 'Back to Dashboard',
     viewAll: 'View all',
     exportAsCSV: 'Export as CSV',
+  },
+  Tables: {
+    vault: 'Vaults',
+    protocol: 'Protocol',
+    allocation: 'Allocation',
+    value: 'Value',
+    claimable: 'Claimable',
   },
   Charts: {
     AssetAllocationTitle: 'Asset Allocation',

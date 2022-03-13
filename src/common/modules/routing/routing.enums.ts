@@ -12,6 +12,8 @@ enum RoutePath {
   RoadMap = '/roadmap',
   Support = '/support',
   Asset = '/asset',
+  Network = '/network',
+  Protocol = '/protocol',
   Dashboard = '/dashboard/portfolio',
   DashboardTransactions = '/dashboard/transactions',
   InfoPage = '/dashboard/portfolio/:id',

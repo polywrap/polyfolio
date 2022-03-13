@@ -12,6 +12,7 @@ import Portfolio from 'pages/DashboardPage/Portfolio/Portfolio';
 import Transactions from 'pages/DashboardPage/Transactions/Transactions';
 import SettingsPage from 'pages/SettingsPage/SettingsPage';
 import DashboardInfoСurrency from 'pages/DashboardPage/DashboardInfoСurrency/DashboardInfoСurrency';
+import NetworkNProtocolsPage from 'pages/NetworkNProtocolsPage/NetworkNProtocolsPage';
 
 function App() {
   useRouteChange();
@@ -78,6 +79,22 @@ function App() {
               </ProtectedRoute>
             }
           />
+            <Route
+              path={RoutePath.Network}
+              element={
+                <ProtectedRoute user={user}>
+                  <NetworkNProtocolsPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path={RoutePath.Protocol}
+              element={
+                <ProtectedRoute user={user}>
+                  <NetworkNProtocolsPage />
+                </ProtectedRoute>
+              }
+            />
           <Route
             path={RoutePath.Settings}
             element={
