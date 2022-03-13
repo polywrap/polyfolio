@@ -31,7 +31,7 @@
   margin-bottom: 40px;
   position: relative;
 
-  .none {
+  .hidden {
     transition: all 0.2s ease;
     display: none;
   }
@@ -47,7 +47,7 @@
     @include flex_centered_vert();
     margin-bottom: 34px;
     z-index: 1;
-    &.none {
+    &.hidden {
       margin-bottom: 0;
     }
     .iconFilter {

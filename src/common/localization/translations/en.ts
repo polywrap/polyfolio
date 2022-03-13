@@ -133,4 +133,12 @@ export default {
     price: 'Price',
     value: 'Value',
   },
+  Table: {
+    assets: 'Assets',
+    protocols: 'Protocols',
+    allocation: 'Allocation',
+    price: 'Price',
+    value: 'Value',
+    claimable: 'Claimable',
+  },
 };

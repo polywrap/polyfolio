@@ -39,7 +39,7 @@ function AssetAllocationChart() {
 
   return (
     <div className={classNames(styles[theme], styles.chartContainer)}>
-      <div className={classNames(styles.title_container, {[styles.none]: tableIsOpen})}>
+      <div className={classNames(styles.title_container, {[styles.hidden]: tableIsOpen})}>
         <button onClick={() => setTableIsOpen(!tableIsOpen)}>
           <Icon src={iconsObj.filterIconSecondary} className={styles.iconFilter} />
         </button>
@@ -53,7 +53,7 @@ function AssetAllocationChart() {
           fontSize="14px"
         />
       </div>
-      <div className={classNames(styles.contentAnimation, {[styles.none]: tableIsOpen})}>
+      <div className={classNames(styles.contentAnimation, {[styles.hidden]: tableIsOpen})}>
         <PieChartContainer innerRadius={32} outerRadius={72} item={Item} />
         <div className={styles.values}>
           <div className={styles.title}>{translate.Assets[current?.title]}</div>
