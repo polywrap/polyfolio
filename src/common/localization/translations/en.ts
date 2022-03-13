@@ -113,6 +113,8 @@ export default {
     backDashboard: 'Back to Dashboard',
     viewAll: 'View all',
     exportAsCSV: 'Export as CSV',
+    cancel: 'Cancel',
+    saveChanges: 'Save Changes',
   },
   Charts: {
     AssetAllocationTitle: 'Asset Allocation',
@@ -123,5 +125,12 @@ export default {
     d: '1D',
     w: '1W',
     m: '1M',
+  },
+  FilterFields: {
+    title: 'Fields',
+    asset: 'Asset',
+    allocation: 'Allocation',
+    price: 'Price',
+    value: 'Value',
   },
 };

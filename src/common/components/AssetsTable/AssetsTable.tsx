@@ -12,6 +12,7 @@ import HeaderTable from '../HeaderTable/HeaderTable';
 
 function ProtocolsTable() {
   const [tableIsOpen, setTableIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null);
   const theme = useTheme();
 
@@ -19,6 +20,8 @@ function ProtocolsTable() {
     <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>
       <HeaderTable
         setTableIsOpen={() => setTableIsOpen(!tableIsOpen)}
+        setIsOpen={() => setIsOpen(!isOpen)}
+        isOpen={isOpen}
         title="Assets"
         sum={9337337.0}
       />

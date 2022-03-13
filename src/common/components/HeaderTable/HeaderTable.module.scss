@@ -1,8 +1,94 @@
 @import 'common/themes/mixins';
+.dark {
+  --color: var(--color_blue_gray_50);
+  --border_color: unset;
+}
 
+.light {
+  --color: var(--color_blue_gray);
+  --border_color: var(--color_green_400);
+}
 .headerTableContainer {
+  --font_weight: 800;
+  --divider: radial-gradient(
+    101.46% 151.04% at 0% -1.46%,
+    rgba(217, 217, 218, 0.25) 0%,
+    rgba(70, 85, 104, 0.5) 100%
+  );
   @include flex_centered();
-
+  .titleContainer {
+    font-weight: var(--font_weight_normal);
+    font-size: var(--font_size_medium);
+    opacity: 0.7;
+  }
+  .fieldsContainer {
+    color: var(--color);
+    width: 380px;
+    padding: 8px;
+    .field {
+      position: relative;
+      @include flex_centered_vert();
+      justify-content: space-between;
+      flex-direction: row-reverse;
+      font-weight: var(--font_weight);
+      font-size: var(--font_size_big);
+      line-height: 18px;
+    }
+    .checkbox {
+      width: 24px;
+      height: 24px;
+      border-radius: 8px;
+      border: 1px solid var(--border_color);
+      background-color: var(--color_blue_gray_200);
+      cursor: pointer;
+    }
+    .checkbox:disabled {
+      border: unset;
+      background-color: grey !important;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: url(../../../assets/icons/images/check.svg);
+      opacity: 0.5;
+    }
+    .cancel {
+      font-weight: var(--font_weight);
+      font-size: var(--font_size_big);
+      color: var(--color_green_400);
+      cursor: pointer;
+    }
+    .save {
+      @include flex_centered_vert();
+      font-size: var(--font_size_medium);
+      padding: 0 16px;
+      height: 32px;
+      background-color: var(--color_green_400);
+      color: var(--color_white);
+      border-radius: 16px;
+      cursor: pointer;
+    }
+    .saveIcon {
+      margin-right: 10px;
+    }
+    .checkbox:checked {
+      background-color: var(--color_green_400);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: url(../../../assets/icons/images/check.svg);
+    }
+    .title {
+      @include flex_centered_vert();
+      font-weight: var(--font_weight_semi_bold);
+      color: var(--color_blue_gray_500);
+    }
+    .checkbox:checked ~ .title {
+      color: var(--color_blue_gray_50);
+    }
+    .btnContainer {
+      @include flex_centered_vert();
+      justify-content: space-between;
+      margin-top: 32px;
+    }
+  }
   .title_container {
     display: flex;
     align-items: center;
@@ -41,5 +127,11 @@
     .filter_container > h4 {
       display: none;
     }
+  }
+  .divider {
+    height: 1px;
+    background: var(--divider);
+    margin-top: 16px;
+    margin-bottom: 16px;
   }
 }

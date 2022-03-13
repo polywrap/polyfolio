@@ -23,13 +23,16 @@ import bitcoin from 'assets/icons/images/bitcoin.svg';
 import profile from 'assets/icons/images/profile.png';
 import polygon from 'assets/icons/images/polygon.svg';
 import search from 'assets/icons/images/search.svg';
+import points from 'assets/icons/images/points.svg';
 import github from 'assets/icons/images/github.svg';
+import check from 'assets/icons/images/check.svg';
 import moon from 'assets/icons/images/moon.svg';
 import help from 'assets/icons/images/help.svg';
 import bulb from 'assets/icons/images/bulb.svg';
 import euro from 'assets/icons/images/euro.svg';
 import home from 'assets/icons/images/home.svg';
 import docs from 'assets/icons/images/docs.svg';
+import save from 'assets/icons/images/save.svg';
 import sun from 'assets/icons/images/sun.svg';
 import gas from 'assets/icons/images/gas.svg';
 import usd from 'assets/icons/images/usd.svg';
@@ -108,8 +111,11 @@ const iconsObj: IconsMapper = {
   discord,
   profile,
   search,
+  points,
   github,
+  check,
   home,
+  save,
   euro,
   bulb,
   moon,
