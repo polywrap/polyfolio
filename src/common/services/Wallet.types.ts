@@ -1,8 +1,7 @@
-import {Dispatch, SetStateAction} from 'react';
-
 interface WalletContextProps {
   wallet: Record<string, unknown>;
-  setWallet: Dispatch<SetStateAction<Record<string, unknown>>>;
+  check: (address: string[]) => void;
+  connect: () => void;
 }
 
 export { WalletContextProps };

@@ -1,9 +1,11 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useEffect} from 'react';
 import {Route, Routes, Navigate} from 'react-router-dom';
+import MetaMaskOnboarding from '@metamask/onboarding';
 
 import styles from './App.module.scss';
 
 import useAuth from 'common/hooks/useAuth/useAuth';
+import useWallet from 'common/hooks/useWallet/useWallet';
 import LandingPage from 'pages/LandingPage/LandingPage';
 import RoutePath from 'common/modules/routing/routing.enums';
 import useRouteChange from 'common/hooks/useRouteChange/useRouteChange';
@@ -17,6 +19,17 @@ import NetworkNProtocolsPage from 'pages/NetworkNProtocolsPage/NetworkNProtocols
 function App() {
   useRouteChange();
   const {user} = useAuth();
+  const {check} = useWallet();
+
+  useEffect(() => {
+    if (MetaMaskOnboarding.isMetaMaskInstalled()) {
+      window["ethereum"].on('accountsChanged', check);
+
+      return () => {
+        window["ethereum"].off('accountsChanged', check);
+      };
+    }
+  }, []);
 
   const ProtectedRoute = ({user, redirectPath = RoutePath.BaseRoute, children}) => {
     if (!user) {
