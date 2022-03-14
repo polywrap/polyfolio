@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BrowserRouter} from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
-import {RecoilRoot} from 'recoil';
+import { RecoilRoot } from 'recoil';
 
 import App from './App';
 import 'common/themes/styles.scss';
@@ -13,8 +13,8 @@ import CurrencyContext from 'common/currency/Currency.context';
 import LocalizationContext from 'common/localization/Localization.context';
 
 if (process.env.NODE_ENV !== 'development') {
-  console.warn = () => {};
-  console.error = () => {};
+  console.warn = () => { };
+  console.error = () => { };
 }
 
 ReactDOM.render(
@@ -22,13 +22,13 @@ ReactDOM.render(
     <RecoilRoot>
       <ThemeContext>
         <LocalizationContext>
-          <WalletContext>
-            <CurrencyContext>
-              <BrowserRouter>
+          <CurrencyContext>
+            <BrowserRouter>
+              <WalletContext>
                 <App />
-              </BrowserRouter>
-            </CurrencyContext>
-          </WalletContext>
+              </WalletContext>
+            </BrowserRouter>
+          </CurrencyContext>
         </LocalizationContext>
       </ThemeContext>
     </RecoilRoot>

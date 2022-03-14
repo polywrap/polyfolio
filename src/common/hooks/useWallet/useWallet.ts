@@ -1,7 +1,7 @@
 import {useWalletContext} from 'common/services/Wallet.context';
 
 export default function useWallet() {
-  const {wallet, setWallet} = useWalletContext();
+  const {wallet, check, connect} = useWalletContext();
 
-  return {wallet, setWallet};
+  return {wallet, check, connect};
 }
