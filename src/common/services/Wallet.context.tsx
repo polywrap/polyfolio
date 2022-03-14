@@ -11,40 +11,7 @@ export const useWalletContext = () => useContext(WalletContext);
 
 function WalletContextProvider({ children }: { children: React.ReactNode }) {
   const { logIn, setUser } = useAuth();
-  //const onboarding = useRef<MetaMaskOnboarding>(null);
-  //const [accounts, setAccounts] = useState<string[]>([]);
   const [wallet, setWallet] = useState<Record<string, unknown>>();
-
-  /*   useEffect(() => {
-      if (!onboarding.current) {
-        onboarding.current = new MetaMaskOnboarding(); 
-      }
-    }, []);
-  
-    useEffect(() => {
-      if (MetaMaskOnboarding.isMetaMaskInstalled()) {
-        if (accounts.length > 0) {
-          onboarding.current.stopOnboarding();
-        }
-      }
-    }, [accounts]);
-  
-    useEffect(() => {
-      function handleNewAccounts(newAccounts) {
-        setAccounts(newAccounts);
-      }
-  
-      if (MetaMaskOnboarding.isMetaMaskInstalled()) {
-        window["ethereum"]
-          .request({ method: 'eth_requestAccounts' })
-          .then(handleNewAccounts);
-        window["ethereum"].on('accountsChanged', handleNewAccounts);
-  
-        return () => {
-          window["ethereum"].off('accountsChanged', handleNewAccounts);
-        };
-      }
-    }, []); */
 
   const connect = async () => {
     const provider = new ethers.providers.Web3Provider(window["ethereum"]);
