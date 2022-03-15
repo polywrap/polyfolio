@@ -25,12 +25,14 @@ function AssetsItem(menuItem) {
     title,
     link,
     icon,
+    id,
   } = menuItem;
+  const path = id && link.replace(':id', `${id}`);
 
   return (
     <>
       {!isDivider ? (
-        <button className={styles.buttonNavigate} onClick={() => navigate(link)}>
+        <button className={styles.buttonNavigate} onClick={() => navigate(path)}>
           <div className={styles.menu_item}>
             <div className={styles.title_container}>
               <Icon src={icon} className={styles.icon} />

@@ -9,7 +9,6 @@ interface VaultItem {
   percent: number;
   title: string;
   icon: string;
-  link: string;
   id: number;
 }
 

@@ -1,11 +1,11 @@
 interface IconsMapper extends Record<string, unknown> {
   filterIconSecondary: string;
+  exchangeTransaction: string;
+  approvalTransaction: string;
+  receiveTransaction: string;
   menuArrowFilled: string;
   protocolBardger: string;
-  approvalTransaction: string;
   sendTransaction: string;
-  receiveTransaction: string;
-  exchangeTransaction: string;
   assetsBitcoin: string;
   assetsToken: string;
   assetsMatic: string;
@@ -40,6 +40,7 @@ interface IconsMapper extends Record<string, unknown> {
   profile: string;
   discord: string;
   bitcoin: string;
+  poligon: string;
   points: string;
   github: string;
   search: string;
@@ -51,13 +52,18 @@ interface IconsMapper extends Record<string, unknown> {
   euro: string;
   home: string;
   docs: string;
+  usdt: string;
   sun: string;
   gas: string;
   usd: string;
   gbr: string;
   inr: string;
   cad: string;
+  cqt: string;
   cny: string;
+  ufo: string;
+  gel: string;
+  ftm: string;
 }
 
 export {IconsMapper};

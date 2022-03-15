@@ -9,12 +9,13 @@ import useWallet from 'common/hooks/useWallet/useWallet';
 import LandingPage from 'pages/LandingPage/LandingPage';
 import RoutePath from 'common/modules/routing/routing.enums';
 import useRouteChange from 'common/hooks/useRouteChange/useRouteChange';
-import AssetPage from 'pages/AssetPage/AssetPage';
 import Portfolio from 'pages/DashboardPage/Portfolio/Portfolio';
 import Transactions from 'pages/DashboardPage/Transactions/Transactions';
 import SettingsPage from 'pages/SettingsPage/SettingsPage';
-import DashboardInfoСurrency from 'pages/DashboardPage/DashboardInfoСurrency/DashboardInfoСurrency';
-import NetworkNProtocolsPage from 'pages/NetworkNProtocolsPage/NetworkNProtocolsPage';
+import AssetPage from 'pages/DashboardPage/AssetPage/AssetPage';
+import WrapperInfoPage from 'pages/WrapperInfoPage/WrapperInfoPage';
+import NetworksInfo from 'pages/WrapperInfoPage/NetworksInfo/NetworksInfo';
+import ProtocolsInfo from 'pages/WrapperInfoPage/ProtocolsInfo/ProtocolsInfo';
 
 function App() {
   useRouteChange();
@@ -23,10 +24,10 @@ function App() {
 
   useEffect(() => {
     if (MetaMaskOnboarding.isMetaMaskInstalled()) {
-      window["ethereum"].on('accountsChanged', check);
+      window['ethereum'].on('accountsChanged', check);
 
       return () => {
-        window["ethereum"].off('accountsChanged', check);
+        window['ethereum'].off('accountsChanged', check);
       };
     }
   }, []);
@@ -61,10 +62,10 @@ function App() {
           />
           <Route path={RoutePath.Docs} element={<LandingPage />} />
           <Route
-            path={RoutePath.InfoPage}
+            path={RoutePath.Asset}
             element={
               <ProtectedRoute user={user}>
-                <DashboardInfoСurrency />
+                <AssetPage />
               </ProtectedRoute>
             }
           />
@@ -85,29 +86,25 @@ function App() {
             }
           />
           <Route
-            path={RoutePath.Asset}
+            path={RoutePath.Network}
             element={
               <ProtectedRoute user={user}>
-                <AssetPage />
+                <WrapperInfoPage>
+                  <NetworksInfo />
+                </WrapperInfoPage>
               </ProtectedRoute>
             }
           />
-            <Route
-              path={RoutePath.Network}
-              element={
-                <ProtectedRoute user={user}>
-                  <NetworkNProtocolsPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path={RoutePath.Protocol}
-              element={
-                <ProtectedRoute user={user}>
-                  <NetworkNProtocolsPage />
-                </ProtectedRoute>
-              }
-            />
+          <Route
+            path={RoutePath.Protocol}
+            element={
+              <ProtectedRoute user={user}>
+                <WrapperInfoPage>
+                  <ProtocolsInfo />
+                </WrapperInfoPage>
+              </ProtectedRoute>
+            }
+          />
           <Route
             path={RoutePath.Settings}
             element={

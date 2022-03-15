@@ -5,7 +5,7 @@ import AssetsCharts from 'common/components/AssetsChart/AssetsChart';
 import AssetTransaction from 'common/components/AssetTransaction/AssetTransaction';
 import AssetOverview from 'common/components/AssetOverview/AssetOverview';
 
-function DashboardInfoСurrency() {
+function AssetPage() {
   return (
     <DashboardPage>
       <HeaderCurrencyPage />
@@ -16,4 +16,4 @@ function DashboardInfoСurrency() {
   );
 }
 
-export default DashboardInfoСurrency;
+export default AssetPage;

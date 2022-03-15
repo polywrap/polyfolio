@@ -41,6 +41,7 @@ import gbr from 'assets/icons/images/gbr.svg';
 import inr from 'assets/icons/images/inr.svg';
 import cad from 'assets/icons/images/cad.svg';
 
+import {usdt, ufo, gel, cqt, ftm, poligon} from 'assets/icons/images/crypto/index';
 import {
   protocolBardger,
   protocolBtc,
@@ -107,6 +108,7 @@ const iconsObj: IconsMapper = {
   polywrap,
   polygon,
   twitter,
+  poligon,
   bitcoin,
   discord,
   profile,
@@ -116,18 +118,23 @@ const iconsObj: IconsMapper = {
   check,
   home,
   save,
+  usdt,
   euro,
   bulb,
   moon,
   help,
   docs,
   gbr,
+  ufo,
   inr,
   cad,
   gas,
+  cqt,
   cny,
+  ftm,
   sun,
   usd,
+  gel,
 };
 
 export default iconsObj;

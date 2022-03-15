@@ -1,15 +1,17 @@
 import {ProtocolsItem} from './ProtocolTableItem.types';
 import iconsObj from 'assets/icons/iconsObj';
+import RoutePath from 'common/modules/routing/routing.enums';
 
 const menuItems: ProtocolsItem[] = [
   {
-    title: 'badger',
-    valueTitle: 5323.39,
-    valueIsMinus: false,
+    icon: iconsObj.protocolBardger,
+    link: `${RoutePath.Protocol}`,
     secondaryTitleDollar: 163.63,
     secondaryTitlePercent: 15.32,
     claimableValue: 183.92,
-    icon: iconsObj.protocolBardger,
+    valueTitle: 5323.39,
+    valueIsMinus: false,
+    title: 'badger',
     id: 1,
   },
   {
@@ -17,13 +19,14 @@ const menuItems: ProtocolsItem[] = [
     isDivider: true,
   },
   {
-    title: 'eth',
+    secondaryTitleDollar: 163.63,
+    link: `${RoutePath.Protocol}`,
+    secondaryTitlePercent: 15.32,
+    icon: iconsObj.protocolEth,
+    claimableValue: 183.92,
     valueTitle: 5323.39,
     valueIsMinus: true,
-    secondaryTitleDollar: 163.63,
-    secondaryTitlePercent: 15.32,
-    claimableValue: 183.92,
-    icon: iconsObj.protocolEth,
+    title: 'eth',
     id: 2,
   },
   {
@@ -31,13 +34,14 @@ const menuItems: ProtocolsItem[] = [
     isDivider: true,
   },
   {
-    title: 'ufo',
-    valueTitle: 5323.39,
-    valueIsMinus: false,
+    link: `${RoutePath.Protocol}`,
     secondaryTitleDollar: 163.63,
     secondaryTitlePercent: 15.32,
-    claimableValue: 183.92,
     icon: iconsObj.protocolUfo,
+    claimableValue: 183.92,
+    valueTitle: 5323.39,
+    valueIsMinus: false,
+    title: 'ufo',
     id: 3,
   },
   {
@@ -45,13 +49,14 @@ const menuItems: ProtocolsItem[] = [
     isDivider: true,
   },
   {
-    title: 'btc',
-    valueTitle: 5323.39,
-    valueIsMinus: false,
+    link: `${RoutePath.Protocol}`,
     secondaryTitleDollar: 163.63,
     secondaryTitlePercent: 15.32,
-    claimableValue: 183.92,
     icon: iconsObj.protocolBtc,
+    claimableValue: 183.92,
+    valueTitle: 5323.39,
+    valueIsMinus: false,
+    title: 'btc',
     id: 4,
   },
   {
@@ -59,14 +64,15 @@ const menuItems: ProtocolsItem[] = [
     isDivider: true,
   },
   {
-    title: 'gel',
-    valueTitle: 5323.39,
-    valueIsMinus: false,
+    link: `${RoutePath.Protocol}`,
     secondaryTitleDollar: 163.63,
     secondaryTitlePercent: 15.32,
-    id: 5,
-    claimableValue: 183.92,
     icon: iconsObj.protocolGel,
+    claimableValue: 183.92,
+    valueIsMinus: false,
+    valueTitle: 5323.39,
+    title: 'gel',
+    id: 5,
   },
 ];
 
