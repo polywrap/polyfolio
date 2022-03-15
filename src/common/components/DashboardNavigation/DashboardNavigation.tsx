@@ -33,7 +33,7 @@ function DashboardNavigation() {
       >
         {translation.Dashboard.portfolio}
         <div
-          className={classNames(styles.none, {
+          className={classNames(styles.hidden, {
             [styles.notActive]: activeTab === Tab.portfolio,
           })}
         />
@@ -46,7 +46,9 @@ function DashboardNavigation() {
       >
         {translation.Dashboard.transactions}
         <div
-          className={classNames(styles.none, {[styles.notActive]: activeTab === Tab.transactions})}
+          className={classNames(styles.hidden, {
+            [styles.notActive]: activeTab === Tab.transactions,
+          })}
         />
       </button>
       <div className={styles.divider} />

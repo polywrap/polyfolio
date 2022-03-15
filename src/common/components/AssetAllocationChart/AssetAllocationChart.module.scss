@@ -23,7 +23,7 @@
   );
   --font_size_smaller: 10px;
   max-width: 390px;
-  min-height: 512px;
+  height: 512px;
   border: var(--border);
   padding: 24px;
   border-radius: 16px;
@@ -31,6 +31,10 @@
   margin-bottom: 40px;
   position: relative;
 
+  .hidden {
+    transition: all 0.2s ease;
+    display: none;
+  }
   .viewAll {
     display: block;
     font-size: var(--font_size_btn);
@@ -42,6 +46,10 @@
   .title_container {
     @include flex_centered_vert();
     margin-bottom: 34px;
+    z-index: 1;
+    &.hidden {
+      margin-bottom: 0;
+    }
     .iconFilter {
       width: unset;
       height: unset;

@@ -115,6 +115,8 @@ export default {
     backDashboard: 'Back to Dashboard',
     viewAll: 'View all',
     exportAsCSV: 'Export as CSV',
+    cancel: 'Cancel',
+    saveChanges: 'Save Changes',
   },
   Tables: {
     vault: 'Vaults',
@@ -132,5 +134,20 @@ export default {
     d: '1D',
     w: '1W',
     m: '1M',
+  },
+  FilterFields: {
+    title: 'Fields',
+    asset: 'Asset',
+    allocation: 'Allocation',
+    price: 'Price',
+    value: 'Value',
+  },
+  Table: {
+    assets: 'Assets',
+    protocols: 'Protocols',
+    allocation: 'Allocation',
+    price: 'Price',
+    value: 'Value',
+    claimable: 'Claimable',
   },
 };

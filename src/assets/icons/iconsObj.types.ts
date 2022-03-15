@@ -40,9 +40,12 @@ interface IconsMapper extends Record<string, unknown> {
   profile: string;
   discord: string;
   bitcoin: string;
+  points: string;
   github: string;
   search: string;
+  check: string;
   help: string;
+  save: string;
   moon: string;
   bulb: string;
   euro: string;

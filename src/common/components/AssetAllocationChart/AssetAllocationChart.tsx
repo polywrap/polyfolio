@@ -16,6 +16,7 @@ function AssetAllocationChart() {
   const [current, setCurrent] = useState({...Item[0]});
   const [isOpen, setIsOpen] = useState(true);
   const [dataRange, setDataRange] = useState({});
+  const [tableIsOpen, setTableIsOpen] = useState(false);
   const translate = useTranslation();
   const theme = useTheme();
   const translation = useTranslation();
@@ -38,8 +39,8 @@ function AssetAllocationChart() {
 
   return (
     <div className={classNames(styles[theme], styles.chartContainer)}>
-      <div className={styles.title_container}>
-        <button>
+      <div className={classNames(styles.title_container, {[styles.hidden]: tableIsOpen})}>
+        <button onClick={() => setTableIsOpen(!tableIsOpen)}>
           <Icon src={iconsObj.filterIconSecondary} className={styles.iconFilter} />
         </button>
         <h4 className={styles.title}>{translation.Charts.AssetAllocationTitle}</h4>
@@ -52,18 +53,20 @@ function AssetAllocationChart() {
           fontSize="14px"
         />
       </div>
-      <PieChartContainer innerRadius={32} outerRadius={72} item={Item} />
-      <div className={styles.values}>
-        <div className={styles.title}>{translate.Assets[current?.title]}</div>
-        <div className={styles.value}>{numberFormatter({value: current?.value, size: 2})}%</div>
+      <div className={classNames(styles.contentAnimation, {[styles.hidden]: tableIsOpen})}>
+        <PieChartContainer innerRadius={32} outerRadius={72} item={Item} />
+        <div className={styles.values}>
+          <div className={styles.title}>{translate.Assets[current?.title]}</div>
+          <div className={styles.value}>{numberFormatter({value: current?.value, size: 2})}%</div>
+        </div>
+        <div className={styles.divider} />
+        <div className={styles.valuesContainer}>
+          {_map(Item, (menuItem) => (
+            <AssetItem {...menuItem} key={menuItem.title} />
+          ))}
+        </div>
+        <button className={styles.viewAll}>{translate.Buttons.viewAll}</button>
       </div>
-      <div className={styles.divider} />
-      <div className={styles.valuesContainer}>
-        {_map(Item, (menuItem) => (
-          <AssetItem {...menuItem} key={menuItem.title} />
-        ))}
-      </div>
-      <button className={styles.viewAll}>{translate.Buttons.viewAll}</button>
     </div>
   );
 }

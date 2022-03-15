@@ -112,6 +112,10 @@
     @include flex_centered();
   }
 }
+.buttonNavigate {
+  cursor: pointer;
+  width: 100%;
+}
 .divider {
   --divider: radial-gradient(
     101.46% 151.04% at 0% -1.46%,

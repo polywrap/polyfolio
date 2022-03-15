@@ -7,6 +7,7 @@ interface ProtocolsItem {
   icon?: string;
   isDivider?: boolean;
   claimableValue?: number;
+  id?: number;
 }
 
 export {ProtocolsItem};
