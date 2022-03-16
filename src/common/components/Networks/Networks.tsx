@@ -5,6 +5,7 @@ import styles from './Networks.module.scss';
 
 import numberFormatter from 'utils/numberFormatter';
 import MenuArrow from 'common/components/MenuArrow/MenuArrow';
+import {useNavigate} from 'react-router-dom';
 import {NetworksItem} from './Networks.types';
 import {menuItems} from './Networks.config';
 import useTheme from 'common/hooks/useTheme/useTheme';
@@ -15,14 +16,13 @@ function Networks() {
   const ref = useRef(null);
   const theme = useTheme();
   const translation = useTranslation();
-
-  const onClick = (item) => {
-    console.log(item);
-  };
+  const navigate = useNavigate();
 
   const MenuItem = (menuItem: NetworksItem) => {
+    const path = menuItem.link.replace(':id', `${menuItem.id}`);
+
     return (
-      <div className={styles.menu_item} onClick={() => onClick(menuItem)}>
+      <div className={styles.menu_item} onClick={() => navigate(path)}>
         <div className={styles.title_container}>
           <Icon src={menuItem.icon} className={styles.icon} />
           <div>
@@ -42,7 +42,7 @@ function Networks() {
 
   return (
     <div ref={ref} className={styles[theme]}>
-      <h3>Networks</h3>
+      <h3>{translation.Table.networks}</h3>
       <div className={styles.networks_container}>
         {_map(menuItems, (menuItem) => (
           <MenuItem {...menuItem} key={menuItem.title} />

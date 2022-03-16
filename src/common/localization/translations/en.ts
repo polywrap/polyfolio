@@ -146,6 +146,7 @@ export default {
     assets: 'Assets',
     protocols: 'Protocols',
     allocation: 'Allocation',
+    networks: 'Networks',
     price: 'Price',
     value: 'Value',
     claimable: 'Claimable',

@@ -1,12 +1,13 @@
 interface ProtocolsItem {
-  title?: string;
-  valueTitle?: number;
-  secondaryTitleDollar?: number;
   secondaryTitlePercent?: number;
-  valueIsMinus?: boolean;
-  icon?: string;
-  isDivider?: boolean;
+  secondaryTitleDollar?: number;
   claimableValue?: number;
+  valueIsMinus?: boolean;
+  isDivider?: boolean;
+  valueTitle?: number;
+  title?: string;
+  icon?: string;
+  link?: string;
   id?: number;
 }
 

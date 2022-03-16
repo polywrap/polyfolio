@@ -2,16 +2,12 @@ import React from 'react';
 import styles from './VaultsTableItem.module.scss';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 
-import MenuArrow from 'common/components/MenuArrow/MenuArrow';
-import {useNavigate} from 'react-router-dom';
-
 import Icon from 'common/components/Icon/Icon';
 import numberFormatter from 'utils/numberFormatter';
 import PricesValue from 'common/components/PricesValue/PricesValue';
 
 function VaultsItem(menuItem) {
   const translation = useTranslation();
-  const navigate = useNavigate();
   const {
     secondaryPricePercentTitle,
     pricePercentDollar,
@@ -22,7 +18,6 @@ function VaultsItem(menuItem) {
     isDivider,
     percent,
     title,
-    link,
     icon,
   } = menuItem;
 
@@ -56,9 +51,6 @@ function VaultsItem(menuItem) {
                 ${numberFormatter({value: valueTitle, size: 2})}
               </div>
             </div>
-            <button onClick={() => navigate(link)}>
-              <MenuArrow className={styles.arrowIcon} startPosition="right" size="10px" />
-            </button>
           </div>
         </div>
       ) : (

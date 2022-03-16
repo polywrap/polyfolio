@@ -1,13 +1,11 @@
 import {VaultItem} from './VaultsTableItem.types';
 import iconsObj from 'assets/icons/iconsObj';
-import RoutePath from 'common/modules/routing/routing.enums';
 
 const menuItems: VaultItem[] = [
   {
     title: 'divider',
     isDivider: true,
     secondaryPricePercentTitle: null,
-    link: null,
     secondaryTitle: null,
     pricePercentDollar: null,
     icon: null,
@@ -20,7 +18,6 @@ const menuItems: VaultItem[] = [
   {
     isDivider: null,
     secondaryPricePercentTitle: 15.32,
-    link: `${RoutePath.Dashboard}/1`,
     secondaryTitle: 'usdtSecondary',
     pricePercentDollar: 163.63,
     icon: iconsObj.assetsUsdt,
@@ -35,7 +32,6 @@ const menuItems: VaultItem[] = [
     title: 'divider',
     isDivider: true,
     secondaryPricePercentTitle: null,
-    link: null,
     secondaryTitle: null,
     pricePercentDollar: null,
     icon: null,
@@ -48,7 +44,6 @@ const menuItems: VaultItem[] = [
   {
     secondaryPricePercentTitle: 15.32,
     isDivider: null,
-    link: `${RoutePath.Dashboard}/2`,
     secondaryTitle: 'btcSecondary',
     icon: iconsObj.assetsBitcoin,
     pricePercentDollar: 163.63,
@@ -63,7 +58,6 @@ const menuItems: VaultItem[] = [
     title: 'divider',
     isDivider: true,
     secondaryPricePercentTitle: null,
-    link: null,
     secondaryTitle: null,
     pricePercentDollar: null,
     icon: null,
@@ -76,7 +70,6 @@ const menuItems: VaultItem[] = [
   {
     isDivider: null,
     secondaryPricePercentTitle: 15.32,
-    link: `${RoutePath.Dashboard}/3`,
     secondaryTitle: 'ethSecondary',
     pricePercentDollar: 163.63,
     icon: iconsObj.assetsEth,
@@ -91,7 +84,6 @@ const menuItems: VaultItem[] = [
     title: 'divider',
     isDivider: true,
     secondaryPricePercentTitle: null,
-    link: null,
     secondaryTitle: null,
     pricePercentDollar: null,
     icon: null,
@@ -104,7 +96,6 @@ const menuItems: VaultItem[] = [
   {
     isDivider: null,
     secondaryPricePercentTitle: 15.32,
-    link: `${RoutePath.Dashboard}/4`,
     secondaryTitle: 'ufoSecondary',
     pricePercentDollar: 163.63,
     icon: iconsObj.assetsUfo,
@@ -119,7 +110,6 @@ const menuItems: VaultItem[] = [
     title: 'divider',
     isDivider: true,
     secondaryPricePercentTitle: null,
-    link: null,
     secondaryTitle: null,
     pricePercentDollar: null,
     icon: null,
@@ -132,7 +122,6 @@ const menuItems: VaultItem[] = [
   {
     isDivider: null,
     secondaryPricePercentTitle: 15.32,
-    link: `${RoutePath.Dashboard}/5`,
     secondaryTitle: 'gelSecondary',
     pricePercentDollar: 163.63,
     icon: iconsObj.assetsGel,
@@ -147,7 +136,6 @@ const menuItems: VaultItem[] = [
     title: 'divider',
     isDivider: true,
     secondaryPricePercentTitle: null,
-    link: null,
     secondaryTitle: null,
     pricePercentDollar: null,
     icon: null,
@@ -160,7 +148,6 @@ const menuItems: VaultItem[] = [
   {
     isDivider: null,
     secondaryPricePercentTitle: 15.32,
-    link: `${RoutePath.Dashboard}/6`,
     secondaryTitle: 'cqtSecondary',
     pricePercentDollar: 163.63,
     icon: iconsObj.assetsCqt,
@@ -175,7 +162,6 @@ const menuItems: VaultItem[] = [
     title: 'divider',
     isDivider: true,
     secondaryPricePercentTitle: null,
-    link: null,
     secondaryTitle: null,
     pricePercentDollar: null,
     icon: null,
@@ -188,7 +174,6 @@ const menuItems: VaultItem[] = [
   {
     isDivider: null,
     secondaryPricePercentTitle: 15.32,
-    link: `${RoutePath.Dashboard}/7`,
     secondaryTitle: 'ftmSecondary',
     pricePercentDollar: 163.63,
     icon: iconsObj.assetsFtm,
@@ -203,7 +188,6 @@ const menuItems: VaultItem[] = [
     title: 'divider',
     isDivider: true,
     secondaryPricePercentTitle: null,
-    link: null,
     secondaryTitle: null,
     pricePercentDollar: null,
     icon: null,
@@ -217,7 +201,6 @@ const menuItems: VaultItem[] = [
     isDivider: null,
     secondaryPricePercentTitle: 15.32,
     secondaryTitle: 'maticSecondary',
-    link: `${RoutePath.Dashboard}/8`,
     pricePercentDollar: 163.63,
     icon: iconsObj.assetsMatic,
     valueIsMinus: false,

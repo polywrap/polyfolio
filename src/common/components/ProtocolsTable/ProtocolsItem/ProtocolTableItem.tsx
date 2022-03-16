@@ -3,11 +3,13 @@ import styles from './ProtocolTableItem.module.scss';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import Icon from 'common/components/Icon/Icon';
 import numberFormatter from 'utils/numberFormatter';
+import {useNavigate} from 'react-router-dom';
 
 import MenuArrow from 'common/components/MenuArrow/MenuArrow';
 import PricesValue from '../../PricesValue/PricesValue';
 
 function ProtocolsItem(menuItem) {
+  const navigate = useNavigate();
   const translation = useTranslation();
   const {
     secondaryTitleDollar,
@@ -17,14 +19,16 @@ function ProtocolsItem(menuItem) {
     valueTitle,
     isDivider,
     title,
+    link,
     icon,
     id,
   } = menuItem;
+  const path = id && link.replace(':id', `${id}`);
 
   return (
     <>
       {!isDivider ? (
-        <button className={styles.button} onClick={() => console.log('navigation', id)}>
+        <button className={styles.button} onClick={() => navigate(path)}>
           <div className={styles.menu_item}>
             <div className={styles.title_container}>
               <Icon src={icon} className={styles.icon} />

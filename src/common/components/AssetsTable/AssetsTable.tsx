@@ -23,8 +23,8 @@ function ProtocolsTable() {
       <HeaderTable
         setTableIsOpen={() => setTableIsOpen(!tableIsOpen)}
         setIsOpen={() => setIsOpen(!isOpen)}
-        isOpen={isOpen}
         title={translation.Table.assets}
+        isOpen={isOpen}
         sum={9337337.0}
       />
       <div className={classNames(styles.table_container, {[styles.hidden]: tableIsOpen})}>
