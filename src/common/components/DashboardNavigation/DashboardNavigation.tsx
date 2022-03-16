@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
 import {useNavigate, useLocation} from 'react-router-dom';
 import styles from './DashboardNavigation.module.scss';

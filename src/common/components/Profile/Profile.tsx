@@ -22,7 +22,7 @@ function Profile() {
   const theme = useTheme();
   const ref = useRef(null);
   const translation = useTranslation();
-  const {user, logOut, logIn} = useAuth();
+  const {user, logOut} = useAuth();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   useOnClickOutside(ref.current, () => isOpen && setIsOpen(false));

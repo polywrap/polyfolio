@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect} from 'react';
 import styles from './DataRangeSelector.module.scss';
 import {menuItems} from './DataRangeSelector.config';
