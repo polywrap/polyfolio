@@ -1,4 +1,4 @@
-interface VaultItem {
+export interface VaultItem {
   secondaryPricePercentTitle: number;
   pricePercentDollar: number;
   secondaryTitle: string;
@@ -11,5 +11,3 @@ interface VaultItem {
   icon: string;
   id: number;
 }
-
-export {VaultItem};

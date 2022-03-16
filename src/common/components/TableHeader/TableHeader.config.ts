@@ -1,4 +1,4 @@
-import { DropdownItemConfig } from "../Dropdown/Dropdown.types";
+import {DropdownItemConfig} from '../Dropdown/Dropdown.types';
 
 const dropdownItems: DropdownItemConfig[] = [
   {
@@ -11,4 +11,4 @@ const dropdownItems: DropdownItemConfig[] = [
   },
 ];
 
-export { dropdownItems };
+export {dropdownItems};

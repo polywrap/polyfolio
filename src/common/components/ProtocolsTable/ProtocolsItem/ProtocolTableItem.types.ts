@@ -1,4 +1,4 @@
-interface ProtocolsItem {
+export interface ProtocolsItem {
   secondaryTitlePercent?: number;
   secondaryTitleDollar?: number;
   claimableValue?: number;
@@ -10,5 +10,3 @@ interface ProtocolsItem {
   link?: string;
   id?: number;
 }
-
-export {ProtocolsItem};

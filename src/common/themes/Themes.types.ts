@@ -1,13 +1,11 @@
 import {Dispatch, SetStateAction} from 'react';
 
-enum ThemeName {
+export enum ThemeName {
   Light = 'light',
   Dark = 'dark',
 }
 
-interface ThemeContextProps {
+export interface ThemeContextProps {
   theme: ThemeName;
   setTheme: Dispatch<SetStateAction<ThemeName>>;
 }
-
-export {ThemeName, ThemeContextProps};
