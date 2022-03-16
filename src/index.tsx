@@ -6,6 +6,7 @@ import { RecoilRoot } from 'recoil';
 
 import App from './App';
 import 'common/themes/styles.scss';
+import { Web3ApiProvider } from '@web3api/react';
 import reportWebVitals from './reportWebVitals';
 import ThemeContext from 'common/themes/Themes.context';
 import WalletContext from 'common/services/Wallet.context';
@@ -25,7 +26,9 @@ ReactDOM.render(
           <CurrencyContext>
             <BrowserRouter>
               <WalletContext>
-                <App />
+                <Web3ApiProvider>
+                  <App />
+                </Web3ApiProvider>
               </WalletContext>
             </BrowserRouter>
           </CurrencyContext>
