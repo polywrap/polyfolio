@@ -137,10 +137,12 @@ export default {
   },
   FilterFields: {
     title: 'Fields',
-    asset: 'Asset',
+    assets: 'Asset',
     allocation: 'Allocation',
     price: 'Price',
+    protocols: 'Protocols',
     value: 'Value',
+    claimable: 'Claimable',
   },
   Table: {
     assets: 'Assets',

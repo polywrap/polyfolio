@@ -8,8 +8,13 @@ import {useNavigate} from 'react-router-dom';
 import Icon from 'common/components/Icon/Icon';
 import numberFormatter from 'utils/numberFormatter';
 import PricesValue from 'common/components/PricesValue/PricesValue';
+import _map from 'lodash/map';
+import classNames from 'classnames';
+import {fillArray} from 'utils/helpers';
+import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 
 function AssetsItem(menuItem) {
+  const {filters} = useFiltersTables();
   const translation = useTranslation();
   const navigate = useNavigate();
   const {
@@ -41,20 +46,40 @@ function AssetsItem(menuItem) {
                 <div className={styles.titleSecondary}>{translation.Assets[secondaryTitle]}</div>
               </div>
             </div>
-            <div className={styles.container_allocation}>
-              <div className={styles.aggregate} style={{width: `${percent}%`}}></div>
-              <span className={styles.badgeText}>
-                {numberFormatter({value: percent, size: 0})}%
-              </span>
+            <div
+              className={classNames(styles.container_allocation, {
+                [styles.hidden]: filters.assets.allocation,
+              })}
+            >
+              {_map(fillArray(100), (i) => {
+                return (
+                  <div
+                    className={classNames(styles.aggregate, {
+                      [styles.opacityAggregate]: i > percent,
+                    })}
+                  />
+                );
+              })}
+              <div className={styles.bg}>
+                <span className={styles.badgeText}>
+                  {numberFormatter({value: percent, size: 0})}%
+                </span>
+              </div>
             </div>
             <PricesValue
               secondaryPricePercentTitle={secondaryPricePercentTitle}
               pricePercentDollar={pricePercentDollar}
-              className={styles.price_container}
+              className={classNames(styles.price_container, {
+                [styles.hidden]: filters.assets.price,
+              })}
               valueIsMinus={valueIsMinus}
               priceTitle={priceTitle}
             />
-            <div className={styles.value_container}>
+            <div
+              className={classNames(styles.value_container, {
+                [styles.hidden]: filters.assets.value,
+              })}
+            >
               <div>
                 <div className={styles.valueTitle}>
                   ${numberFormatter({value: valueTitle, size: 2})}
