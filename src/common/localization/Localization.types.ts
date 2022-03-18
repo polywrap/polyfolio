@@ -1,12 +1,10 @@
 import {Dispatch, SetStateAction} from 'react';
 
-enum Language {
+export enum Language {
   EN = 'en',
 }
 
-interface LocalizationContextProps {
+export interface LocalizationContextProps {
   language: Language;
   setLanguage: Dispatch<SetStateAction<Language>>;
 }
-
-export {Language, LocalizationContextProps};

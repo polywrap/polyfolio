@@ -1,4 +1,4 @@
-interface HeaderGasInfoItem {
+export interface HeaderGasInfoItem {
   title?: string;
   time?: string;
   price?: number;
@@ -7,5 +7,3 @@ interface HeaderGasInfoItem {
   isDivider?: boolean;
   isExternal?: boolean;
 }
-
-export {HeaderGasInfoItem};

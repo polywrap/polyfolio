@@ -1,12 +1,10 @@
 import {Dispatch, SetStateAction} from 'react';
 
-enum Currency {
+export enum Currency {
   USD = 'USD',
 }
 
-interface CurrencyContextProps {
+export interface CurrencyContextProps {
   currency: Currency;
   setCurrency: Dispatch<SetStateAction<Currency>>;
 }
-
-export {Currency, CurrencyContextProps};

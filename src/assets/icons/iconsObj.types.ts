@@ -1,4 +1,4 @@
-interface IconsMapper extends Record<string, unknown> {
+export interface IconsMapper extends Record<string, unknown> {
   filterIconSecondary: string;
   exchangeTransaction: string;
   approvalTransaction: string;
@@ -65,5 +65,3 @@ interface IconsMapper extends Record<string, unknown> {
   gel: string;
   ftm: string;
 }
-
-export {IconsMapper};

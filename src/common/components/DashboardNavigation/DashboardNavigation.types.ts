@@ -1,6 +1,4 @@
-interface tabs {
+export interface tabs {
   portfolio?: string;
   transactions?: string;
 }
-
-export {tabs};

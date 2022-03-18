@@ -1,4 +1,4 @@
-interface AssetsItem {
+export interface AssetsItem {
   secondaryPricePercentTitle?: number;
   valueSecondaryTitle?: number;
   pricePercentDollar?: number;
@@ -15,5 +15,3 @@ interface AssetsItem {
   link?: string;
   id?: number;
 }
-
-export {AssetsItem};
