@@ -25,7 +25,7 @@ function AssetsTable() {
   const translation = useTranslation();
 
   const onChange = (name, value) => {
-    setFilter({...filters, assets: {...filter.assets, [name]: value?.checked}});
+    setFilter({...filters, assets: {...filter.assets, [name]: !value?.checked}});
   };
 
   return (

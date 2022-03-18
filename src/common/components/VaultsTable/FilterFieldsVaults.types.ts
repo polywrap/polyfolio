@@ -5,4 +5,4 @@ interface FilterFields {
   id?: number;
 }
 
-export {FilterFields};
+export type {FilterFields};

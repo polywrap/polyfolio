@@ -25,4 +25,4 @@ interface FiltersContextProps {
   setFilters: Dispatch<SetStateAction<Filters>>;
 }
 
-export {Filters, FiltersContextProps};
+export type {Filters, FiltersContextProps};

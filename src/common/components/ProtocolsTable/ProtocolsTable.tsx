@@ -24,7 +24,7 @@ function ProtocolsTable() {
   const translation = useTranslation();
 
   const onChange = (name, value) => {
-    setFilter({...filters, protocols: {...filter.protocols, [name]: value?.checked}});
+    setFilter({...filters, protocols: {...filter.protocols, [name]: !value?.checked}});
   };
 
   return (

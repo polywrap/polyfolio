@@ -57,7 +57,7 @@ function HeaderTable({
                   <input
                     onClick={(e) => onChange(menuItem.title, e?.target)}
                     disabled={menuItem.isRequired}
-                    checked={menuItem.isRequired || filter[menuItem.title]}
+                    checked={menuItem.isRequired || !filter[menuItem.title]}
                     className={styles.checkbox}
                     name={menuItem.title}
                     type="checkbox"

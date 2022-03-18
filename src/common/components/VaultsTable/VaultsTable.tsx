@@ -24,7 +24,7 @@ function ProtocolsTable() {
   const [filter, setFilter] = useState<Filters>(filters);
 
   const onChange = (name, value) => {
-    setFilter({...filter, vaults: {...filter.vaults, [name]: value?.checked}});
+    setFilter({...filter, vaults: {...filter.vaults, [name]: !value?.checked}});
   };
 
   return (

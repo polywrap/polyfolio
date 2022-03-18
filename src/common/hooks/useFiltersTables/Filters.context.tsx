@@ -14,19 +14,19 @@ export const useFilters = () => useContext(FiltersContext);
 export default function FiltersContextProvider({children}) {
   const [persistedFilters, setPersistedFilters] = useLocalStorage<Filters>(FILTERS_LS_KEY, {
     assets: {
-      assets: true,
+      assets: false,
       allocation: false,
       price: false,
       value: false,
     },
     vaults: {
-      protocols: true,
+      protocols: false,
       allocation: false,
       value: false,
       claimable: false,
     },
     protocols: {
-      protocols: true,
+      protocols: false,
       value: false,
       claimable: false,
     },
