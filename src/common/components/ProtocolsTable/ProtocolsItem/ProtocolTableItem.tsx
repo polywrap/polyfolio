@@ -6,7 +6,9 @@ import numberFormatter from 'utils/numberFormatter';
 import {useNavigate} from 'react-router-dom';
 
 import MenuArrow from 'common/components/MenuArrow/MenuArrow';
+import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import PricesValue from '../../PricesValue/PricesValue';
+import classNames from 'classnames';
 
 function ProtocolsItem(menuItem) {
   const navigate = useNavigate();
@@ -25,6 +27,8 @@ function ProtocolsItem(menuItem) {
   } = menuItem;
   const path = id && link.replace(':id', `${id}`);
 
+  const {filters} = useFiltersTables();
+
   return (
     <>
       {!isDivider ? (
@@ -37,11 +41,17 @@ function ProtocolsItem(menuItem) {
             <PricesValue
               secondaryPricePercentTitle={secondaryTitlePercent}
               pricePercentDollar={secondaryTitleDollar}
-              className={styles.price_container}
+              className={classNames(styles.price_container, {
+                [styles.hidden]: filters.protocols.value,
+              })}
               valueIsMinus={valueIsMinus}
               priceTitle={valueTitle}
             />
-            <div className={styles.claimable_container}>
+            <div
+              className={classNames(styles.claimable_container, {
+                [styles.hidden]: filters.protocols.claimable,
+              })}
+            >
               <div className={styles.secondaryTitle}>
                 ${numberFormatter({value: claimableValue, size: 2})}
               </div>

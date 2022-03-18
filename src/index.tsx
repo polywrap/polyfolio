@@ -12,6 +12,7 @@ import ThemeContext from 'common/themes/Themes.context';
 import WalletContext from 'common/services/Wallet.context';
 import CurrencyContext from 'common/currency/Currency.context';
 import LocalizationContext from 'common/localization/Localization.context';
+import FiltersContextProvider from 'common/hooks/useFiltersTables/Filters.context';
 
 if (process.env.NODE_ENV !== 'development') {
   console.warn = () => {};
@@ -23,15 +24,17 @@ ReactDOM.render(
     <RecoilRoot>
       <ThemeContext>
         <LocalizationContext>
-          <CurrencyContext>
-            <BrowserRouter>
-              <WalletContext>
-                <Web3ApiProvider>
-                  <App />
-                </Web3ApiProvider>
-              </WalletContext>
-            </BrowserRouter>
-          </CurrencyContext>
+          <FiltersContextProvider>
+            <CurrencyContext>
+              <BrowserRouter>
+                <WalletContext>
+                  <Web3ApiProvider>
+                    <App />
+                  </Web3ApiProvider>
+                </WalletContext>
+              </BrowserRouter>
+            </CurrencyContext>
+          </FiltersContextProvider>
         </LocalizationContext>
       </ThemeContext>
     </RecoilRoot>
