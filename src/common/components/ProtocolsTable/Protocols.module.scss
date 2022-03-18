@@ -23,10 +23,11 @@
   max-width: 1256px;
   .hidden {
     transition: all 0.2s ease;
-    display: none;
+    display: none !important;
   }
   .title_container {
     @include flex_grow();
+    justify-content: space-between;
     padding: 28px 16px;
   }
   .table_container {

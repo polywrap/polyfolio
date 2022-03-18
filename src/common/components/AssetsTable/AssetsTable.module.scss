@@ -24,7 +24,7 @@
 
   .hidden {
     transition: all 0.2s ease;
-    display: none;
+    display: none !important;
   }
   .title_container {
     display: flex;

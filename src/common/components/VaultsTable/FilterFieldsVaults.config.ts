@@ -1,11 +1,11 @@
-import {FilterFields} from './FilterFieldsItem.types';
+import {FilterFields} from './FilterFieldsVaults.types';
 
-const menuItems: FilterFields[] = [
+const menuFields: FilterFields[] = [
   {
     isDivider: true,
   },
   {
-    title: 'asset',
+    title: 'protocols',
     isRequired: true,
     id: 1,
   },
@@ -20,14 +20,14 @@ const menuItems: FilterFields[] = [
     isDivider: true,
   },
   {
-    title: 'price',
+    title: 'value',
     id: 3,
   },
   {
     isDivider: true,
   },
   {
-    title: 'value',
+    title: 'claimable',
     id: 4,
   },
   {
@@ -35,4 +35,4 @@ const menuItems: FilterFields[] = [
   },
 ];
 
-export {menuItems};
+export {menuFields};
