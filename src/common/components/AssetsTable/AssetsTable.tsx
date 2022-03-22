@@ -11,7 +11,7 @@ import useTheme from 'common/hooks/useTheme/useTheme';
 import HeaderTable from '../HeaderTable/HeaderTable';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 
-function ProtocolsTable() {
+function AssetsTable() {
   const [tableIsOpen, setTableIsOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null);
@@ -47,4 +47,4 @@ function ProtocolsTable() {
   );
 }
 
-export default ProtocolsTable;
+export default AssetsTable;

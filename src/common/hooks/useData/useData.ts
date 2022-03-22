@@ -8,12 +8,12 @@ const BALANCE_STATE_KEY = 'polyfolio_balance';
 
 export default function useData() {
   const {user} = useAuth();
-  const balancePersistState = atom({
+  const balanceState = atom({
     key: BALANCE_STATE_KEY,
     default: null,
   });
   
-  const [balance, setBalance] = useRecoilState(balancePersistState);
+  const [balance, setBalance] = useRecoilState(balanceState);
 
   const { execute } = useWeb3ApiQuery({
     uri: `ipfs/QmRYP5qwQd7AotVbtcx7KhN8HuHX9DCg8sS9LVE4kstpVw`,
