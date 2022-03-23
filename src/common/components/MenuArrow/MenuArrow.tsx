@@ -16,7 +16,7 @@ export interface CLMenuArrowProps {
 function MenuArrow({
   startPosition = 'none',
   className = '',
-  size = '10px',
+  size = '11px',
   filled,
 }: CLMenuArrowProps) {
   const theme = useTheme();

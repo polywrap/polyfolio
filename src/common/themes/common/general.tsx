@@ -10,6 +10,7 @@ export default {
     font_weight_bolder: '800',
     font_weight_extra_bold: '900',
 
+    font_size_large: '64px',
     font_size_big: '18px',
     font_size_medium: '16px',
     font_size_normal: '14px',

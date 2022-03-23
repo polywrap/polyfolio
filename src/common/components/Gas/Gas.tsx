@@ -34,7 +34,7 @@ function Gas({className = ''}: {className?: string}) {
           onClick={() => setIsOpen(!isOpen)}
           className={classNames(styles.common_gas, styles[theme], className)}
         >
-          <MaskIcon size={'15px'} src={iconsObj.gas} className={styles.icon} />
+          <MaskIcon size={'19px'} src={iconsObj.gas} className={styles.icon} />
           <span className={styles.gas}>{'78'}</span>
           <MenuArrow startPosition={!isOpen ? 'down' : 'up'} />
         </div>

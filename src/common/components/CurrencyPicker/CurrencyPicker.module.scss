@@ -11,10 +11,12 @@
 .common_currency_picker {
   @include flex_centered_vert();
   cursor: pointer;
+  margin-left: 30px;
 
   .currency {
     color: var(--color);
     font-size: var(--font_size_medium);
     font-weight: var(--font_weight_bolder);
+    margin-right: 8px;
   }
 }
