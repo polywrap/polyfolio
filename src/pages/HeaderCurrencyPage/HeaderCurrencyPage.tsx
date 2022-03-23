@@ -3,7 +3,7 @@ import styles from './HeaderCurrencyPage.module.scss';
 import classNames from 'classnames';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import {useParams, useNavigate} from 'react-router-dom';
-import {menuItems} from 'common/components/AssetsTable/AssetsTableItem/AssetsTableItem.config';
+import GetItems from 'common/components/AssetsTable/AssetsTableItem/AssetsTableItem.config';
 import Icon from 'common/components/Icon/Icon';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import iconsObj from 'assets/icons/iconsObj';
@@ -15,6 +15,7 @@ function HeaderCurrencyPage() {
   const {id} = useParams();
   const translation = useTranslation();
   const navigate = useNavigate();
+  const menuItems = GetItems();
   const currency = _find(menuItems, {id: +id});
 
   return (

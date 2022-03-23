@@ -5,7 +5,7 @@ import Icon from 'common/components/Icon/Icon';
 import _map from 'lodash/map';
 import styles from './Protocols.module.scss';
 
-import {menuItems} from './ProtocolsItem/ProtocolTableItem.config';
+import GetProtocols from './ProtocolsItem/ProtocolTableItem.config';
 import ProtocolTableItem from './ProtocolsItem/ProtocolTableItem';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import HeaderTable from '../HeaderTable/HeaderTable';
@@ -17,6 +17,7 @@ function ProtocolsTable() {
   const ref = useRef(null);
   const theme = useTheme();
   const translation = useTranslation();
+  const menuItems = GetProtocols();
 
   return (
     <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>

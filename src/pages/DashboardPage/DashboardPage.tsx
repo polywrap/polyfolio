@@ -8,15 +8,9 @@ import Header from 'common/components/Header/Header';
 import Footer from 'common/components/Footer/Footer';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import Sidebar from 'common/components/Sidebar/Sidebar';
-import useData from 'common/hooks/useData/useData';
 
 function DashboardPage({ children }: { children: ReactNode }) {
   const theme = useTheme();
-  const { balance, allAssets, allAssetsSum } = useData();
-
-  console.log(balance)
-  console.log(allAssets)
-  console.log(allAssetsSum)
 
   return (
     <div className={classNames(styles.landing_page, styles[theme])}>

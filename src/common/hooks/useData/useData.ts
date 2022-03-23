@@ -9,23 +9,24 @@ const BALANCE_STATE_KEY = 'polyfolio_balance';
 const ALL_ASSETS_STATE_KEY = 'polyfolio_allAssets';
 const ALL_ASSETS_SUM_STATE_KEY = 'polyfolio_allAssetsSum';
 
+export const balanceState = atom({
+  key: BALANCE_STATE_KEY,
+  default: null,
+});
+export const allAssetsState = atom({
+  key: ALL_ASSETS_STATE_KEY,
+  default: null,
+});
+export const allAssetsSumState = atom({
+  key: ALL_ASSETS_SUM_STATE_KEY,
+  default: null,
+});
+
 export default function useData() {
   const {user} = useAuth();
-  const balanceState = atom({
-    key: BALANCE_STATE_KEY,
-    default: null,
-  });
-  const allAssetsState = atom({
-    key: ALL_ASSETS_STATE_KEY,
-    default: null,
-  });
-  const allAssetsSumState = atom({
-    key: ALL_ASSETS_SUM_STATE_KEY,
-    default: null,
-  });
   
   const [balance, setBalance] = useRecoilState(balanceState);
-  const [allAssets, setAllAssets] = useRecoilState(allAssetsState);
+  const [allAssets, setAllAssets] = useRecoilState<any[]>(allAssetsState);
   const [allAssetsSum, setAllAssetsSum] = useRecoilState(allAssetsSumState);
 
   const { execute } = useWeb3ApiQuery({

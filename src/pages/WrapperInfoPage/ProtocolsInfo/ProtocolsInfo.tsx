@@ -4,13 +4,14 @@ import HeaderPageInfo from 'common/components/HeaderPageInfo/HeaderPageInfo';
 import {useParams} from 'react-router-dom';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import _find from 'lodash/find';
-import {menuItems} from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.config';
+import GetProtocols from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.config';
 import VaultsTable from 'common/components/VaultsTable/VaultsTable';
 import AssetTransaction from 'common/components/AssetTransaction/AssetTransaction';
 
 function ProtocolsInfo() {
   const translation = useTranslation();
   const {id: idNetworks} = useParams();
+  const menuItems = GetProtocols();
   const current = _find(menuItems, {id: +idNetworks});
 
   return (

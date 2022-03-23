@@ -6,7 +6,6 @@ import DashboardNavigation from 'common/components/DashboardNavigation/Dashboard
 import HeaderDashboard from 'common/components/HeaderDashboard/HeaderDashboard';
 import DashboardPage from '../DashboardPage';
 
-
 function Portfolio() {
   return (
     <DashboardPage>

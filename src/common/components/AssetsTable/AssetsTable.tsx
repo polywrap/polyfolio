@@ -5,7 +5,7 @@ import Icon from 'common/components/Icon/Icon';
 import _map from 'lodash/map';
 import styles from './AssetsTable.module.scss';
 
-import {menuItems} from './AssetsTableItem/AssetsTableItem.config';
+import GetItems from './AssetsTableItem/AssetsTableItem.config';
 import AssetsTableItem from './AssetsTableItem/AssetsTableItem';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import HeaderTable from '../HeaderTable/HeaderTable';
@@ -17,6 +17,7 @@ function AssetsTable() {
   const ref = useRef(null);
   const theme = useTheme();
   const translation = useTranslation();
+  const assets = GetItems();
 
   return (
     <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>
@@ -39,8 +40,8 @@ function AssetsTable() {
             Value
           </div>
         </div>
-        {_map(menuItems, (menuItem) => (
-          <AssetsTableItem {...menuItem} key={menuItem.title} />
+        {_map(assets, (asset) => (
+          <AssetsTableItem {...asset} key={asset.id} />
         ))}
       </div>
     </div>
