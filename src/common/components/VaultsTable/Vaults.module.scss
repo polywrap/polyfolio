@@ -26,6 +26,9 @@
     justify-content: space-between;
     padding: 28px 16px;
   }
+  .hidden {
+    display: none !important;
+  }
   .table_container {
     margin-top: 20px;
     border: var(--border);
@@ -45,11 +48,14 @@
   .title.assets {
     text-align: start;
   }
-  .title.value,
-  .title.protocol,
-  .title.claimable {
+  .title.price,
+  .title.value {
     text-align: end;
     padding-right: 52px;
+  }
+  .title.value {
+    @include flex_grow();
+    justify-content: flex-end;
   }
   .title.protocol {
     @include flex_grow();

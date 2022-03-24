@@ -20,6 +20,9 @@
   padding: 0 16px;
   height: 72px;
   width: 100%;
+  .hidden {
+    display: none !important;
+  }
   .icon {
     width: 40px;
     height: 40px;

@@ -1,10 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, {useState} from 'react';
 import classNames from 'classnames';
 import Icon from 'common/components/Icon/Icon';
 import iconsObj from 'assets/icons/iconsObj';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import styles from './HeaderTable.module.scss';
-import {menuItems} from './FilterFieldsItem.config';
 import numberFormatter from 'utils/numberFormatter';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import DataRangeSelector from '../DateRangeSelector/DateRangeSelector';
@@ -14,21 +14,30 @@ import _map from 'lodash/map';
 import TooltipTrigger from '../TooltipTrigger/TooltipTrigger';
 
 function HeaderTable({
-  setTableIsOpen,
   setIsOpen: setFilterIsOpen,
   isOpen: filterIsOpen,
+  setTableIsOpen,
+  onSaveFilter,
+  menuFields,
+  onChange,
+  filter,
   title,
   sum,
 }: {
+  filter;
   setTableIsOpen;
   isOpen: boolean;
-  setIsOpen;
+  onSaveFilter;
+  onChange;
+  menuFields;
   title: string;
+  setIsOpen;
   sum: number;
 }) {
   const [isOpen, setIsOpen] = useState(true);
   const [dataRange, setDataRange] = useState({});
   const translation = useTranslation();
+
   const theme = useTheme();
 
   const changeDataRange = (e) => {
@@ -40,14 +49,15 @@ function HeaderTable({
     return (
       <div className={styles.fieldsContainer}>
         <div className={styles.titleContainer}>{translation.FilterFields.title}</div>
-        {_map(menuItems, (menuItem) => {
+        {_map(menuFields, (menuItem) => {
           return (
             <>
               {!menuItem.isDivider ? (
                 <div className={styles.field}>
                   <input
+                    onClick={(e) => onChange(menuItem.title, e?.target)}
                     disabled={menuItem.isRequired}
-                    checked={menuItem.isRequired}
+                    checked={menuItem.isRequired || !filter[menuItem.title]}
                     className={styles.checkbox}
                     name={menuItem.title}
                     type="checkbox"
@@ -69,7 +79,7 @@ function HeaderTable({
           <button className={styles.cancel} onClick={() => setFilterIsOpen(!filterIsOpen)}>
             {translation.Buttons.cancel}
           </button>
-          <button className={styles.save}>
+          <button onClick={() => onSaveFilter()} className={styles.save}>
             <Icon src={iconsObj.save} className={styles.saveIcon} />
             <div>{translation.Buttons.saveChanges}</div>
           </button>
