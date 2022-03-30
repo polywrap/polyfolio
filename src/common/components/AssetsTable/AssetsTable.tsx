@@ -71,7 +71,7 @@ function AssetsTable() {
           </div>
         </div>
         {_map(menuItems, (menuItem) => {
-          return <AssetsTableItem {...menuItem} key={menuItem.title} />;
+          return <AssetsTableItem {...menuItem} key={menuItem.id} />;
         })}
       </div>
     </div>

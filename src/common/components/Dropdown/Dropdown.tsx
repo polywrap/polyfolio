@@ -42,6 +42,7 @@ function Dropdown({array, current, isOpen, setIsOpen, onСhangeСurrency, classN
               className={styles.menu_item_dropdown}
               onClick={() => onСhangeСurrency(dropdownItem)}
               type="button"
+              key={dropdownItem.id}
             >
               <DropdownItem {...dropdownItem} key={dropdownItem.id} />
             </button>

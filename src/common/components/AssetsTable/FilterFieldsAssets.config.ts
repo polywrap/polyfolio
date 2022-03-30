@@ -3,6 +3,7 @@ import {FilterFields} from './FilterFieldsAssets.types';
 const menuFields: FilterFields[] = [
   {
     isDivider: true,
+    id: 0,
   },
   {
     title: 'assets',
@@ -18,6 +19,7 @@ const menuFields: FilterFields[] = [
   },
   {
     isDivider: true,
+    id: 5,
   },
   {
     title: 'price',
@@ -32,6 +34,7 @@ const menuFields: FilterFields[] = [
   },
   {
     isDivider: true,
+    id: 6,
   },
 ];
 
