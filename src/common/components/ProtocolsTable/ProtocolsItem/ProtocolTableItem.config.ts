@@ -10,21 +10,18 @@ export const GetProtocols = () => {
     title: 'divider',
     isDivider: true,
   }
-  const protocols = balance?.protocols;
-  console.log(protocols)
   
-  if (protocols) {
-    for (let i = 0; i < protocols.length; i++) {
-      console.log(protocols[i].protocol.name)
+  if (balance) {
+    for (let i = 0; i < balance?.protocols.length; i++) {
       menuItems.push({
         icon: iconsObj.protocolBardger,
         link: `${RoutePath.Protocol}`,
         secondaryTitleDollar: 777,
         secondaryTitlePercent: 777,
         claimableValue: 777,
-        valueTitle: protocols[i].assets[0].values[0].value,
+        valueTitle: balance?.protocols[i].assets[0].values[0].value,
         valueIsMinus: false,
-        title: protocols[i].protocol.name,
+        title: balance?.protocols[i].protocol.name,
         id: i + 1,
       })
       menuItems.push(divider)
