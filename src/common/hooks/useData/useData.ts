@@ -42,7 +42,7 @@ export default function useData() {
   });
 
   const formatData = useCallback((data) => {
-    const formatedData = data.protocols.map((item) => {
+    const formatedData = (data?.protocols || []).map((item) => {
       const asset = formatAsset(item.assets);
 
       return {...item, assets: asset};
@@ -65,7 +65,9 @@ export default function useData() {
           setBalance(formatData(response?.getAccountBalance));
         } else {
           // ADD ERROR HANDLER
-          console.warn('ERRORS');
+          console.log('ERRORS-------');
+          console.log({errors});
+          console.log('-----ERRORS');
         }
       };
 
