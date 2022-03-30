@@ -32,7 +32,7 @@ function AssetsItem(menuItem) {
     icon,
     id,
   } = menuItem;
-  const path = id && link.replace(':id', `${id}`);
+  const path = !isDivider && id && link.replace(':id', `${id}`);
 
   return (
     <>
@@ -54,6 +54,7 @@ function AssetsItem(menuItem) {
               {_map(fillArray(100), (i) => {
                 return (
                   <div
+                    key={i}
                     className={classNames(styles.aggregate, {
                       [styles.opacityAggregate]: i > percent,
                     })}

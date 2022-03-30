@@ -4,6 +4,7 @@ const menuItems: DataRangeSelectorItem[] = [
   {
     title: 'divider',
     isDivider: true,
+    id: 0,
   },
   {
     title: 'h',
@@ -12,6 +13,7 @@ const menuItems: DataRangeSelectorItem[] = [
   {
     title: 'divider',
     isDivider: true,
+    id: 11,
   },
   {
     title: 'd',
@@ -20,6 +22,7 @@ const menuItems: DataRangeSelectorItem[] = [
   {
     title: 'divider',
     isDivider: true,
+    id: 12,
   },
   {
     title: 'w',
@@ -28,6 +31,7 @@ const menuItems: DataRangeSelectorItem[] = [
   {
     title: 'divider',
     isDivider: true,
+    id: 13,
   },
   {
     title: 'm',
