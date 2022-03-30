@@ -6,6 +6,7 @@ const menuItems: AssetsItem[] = [
   {
     title: 'divider',
     isDivider: true,
+    id: 0,
   },
   {
     secondaryPricePercentTitle: 15.32,
@@ -25,6 +26,7 @@ const menuItems: AssetsItem[] = [
   {
     title: 'divider',
     isDivider: true,
+    id: 9,
   },
   {
     secondaryPricePercentTitle: 15.32,
@@ -44,6 +46,7 @@ const menuItems: AssetsItem[] = [
   {
     title: 'divider',
     isDivider: true,
+    id: 10,
   },
   {
     valueSecondaryTitle: 8310072.32,
@@ -63,6 +66,7 @@ const menuItems: AssetsItem[] = [
   {
     title: 'divider',
     isDivider: true,
+    id: 11,
   },
   {
     secondaryPricePercentTitle: 15.32,
@@ -82,6 +86,7 @@ const menuItems: AssetsItem[] = [
   {
     title: 'divider',
     isDivider: true,
+    id: 12,
   },
   {
     secondaryPricePercentTitle: 15.32,
@@ -101,6 +106,7 @@ const menuItems: AssetsItem[] = [
   {
     title: 'divider',
     isDivider: true,
+    id: 13,
   },
   {
     secondaryPricePercentTitle: 15.32,
@@ -120,6 +126,7 @@ const menuItems: AssetsItem[] = [
   {
     title: 'divider',
     isDivider: true,
+    id: 14,
   },
   {
     secondaryPricePercentTitle: 15.32,
@@ -139,6 +146,7 @@ const menuItems: AssetsItem[] = [
   {
     title: 'divider',
     isDivider: true,
+    id: 15,
   },
   {
     secondaryPricePercentTitle: 15.32,

@@ -40,7 +40,7 @@ function DataRangeSelector({fontSize, className, isOpen, dataRange, setDataRange
       <div className={styles.DataRangeSelectorContainer}>
         <span className={styles.titlePicker}>{translation.DataRangeSelector.title}</span>
         {_map(menuItems, (menuItem) => (
-          <MenuItem {...menuItem} key={menuItem.title} />
+          <MenuItem {...menuItem} key={menuItem.id} />
         ))}
       </div>
     );

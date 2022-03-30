@@ -50,6 +50,7 @@ function VaultsItem(menuItem) {
                     className={classNames(styles.aggregate, {
                       [styles.opacityAggregate]: i > percent,
                     })}
+                    key={i}
                   />
                 );
               })}
