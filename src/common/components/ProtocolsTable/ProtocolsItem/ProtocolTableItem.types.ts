@@ -3,7 +3,6 @@ export interface ProtocolsItem {
   secondaryTitleDollar?: number;
   claimableValue?: number;
   valueIsMinus?: boolean;
-  isDivider?: boolean;
   valueTitle?: number;
   title?: string;
   icon?: string;
