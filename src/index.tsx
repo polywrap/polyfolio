@@ -14,8 +14,9 @@ import CurrencyContext from 'common/currency/Currency.context';
 import LocalizationContext from 'common/localization/Localization.context';
 import FiltersContextProvider from 'common/hooks/useFiltersTables/Filters.context';
 
+console.warn = () => {};
+
 if (process.env.NODE_ENV !== 'development') {
-  console.warn = () => {};
   console.error = () => {};
 }
 

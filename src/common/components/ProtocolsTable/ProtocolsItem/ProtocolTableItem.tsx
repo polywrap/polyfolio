@@ -25,7 +25,7 @@ function ProtocolsItem(menuItem) {
     icon,
     id,
   } = menuItem;
-  const path = id && link.replace(':id', `${id}`);
+  const path = !isDivider && id && link.replace(':id', `${id}`);
 
   const {filters} = useFiltersTables();
 

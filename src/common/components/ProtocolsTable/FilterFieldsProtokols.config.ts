@@ -3,6 +3,7 @@ import {FilterFields} from './FilterFieldsProtocols.types';
 const menuFields: FilterFields[] = [
   {
     isDivider: true,
+    id: 11,
   },
   {
     title: 'protocols',
@@ -11,6 +12,7 @@ const menuFields: FilterFields[] = [
   },
   {
     isDivider: true,
+    id: 12,
   },
   {
     title: 'value',
@@ -18,6 +20,7 @@ const menuFields: FilterFields[] = [
   },
   {
     isDivider: true,
+    id: 13,
   },
   {
     title: 'claimable',
@@ -25,6 +28,7 @@ const menuFields: FilterFields[] = [
   },
   {
     isDivider: true,
+    id: 14,
   },
 ];
 

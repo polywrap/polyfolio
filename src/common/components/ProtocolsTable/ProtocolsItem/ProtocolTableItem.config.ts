@@ -17,6 +17,7 @@ const menuItems: ProtocolsItem[] = [
   {
     title: 'divider',
     isDivider: true,
+    id: 11,
   },
   {
     secondaryTitleDollar: 163.63,
@@ -32,6 +33,7 @@ const menuItems: ProtocolsItem[] = [
   {
     title: 'divider',
     isDivider: true,
+    id: 12,
   },
   {
     link: `${RoutePath.Protocol}`,
@@ -47,6 +49,7 @@ const menuItems: ProtocolsItem[] = [
   {
     title: 'divider',
     isDivider: true,
+    id: 13,
   },
   {
     link: `${RoutePath.Protocol}`,
@@ -62,6 +65,7 @@ const menuItems: ProtocolsItem[] = [
   {
     title: 'divider',
     isDivider: true,
+    id: 14,
   },
   {
     link: `${RoutePath.Protocol}`,

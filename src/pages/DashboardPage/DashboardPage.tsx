@@ -38,7 +38,7 @@ function DashboardPage({children}: {children: ReactNode}) {
       console.log(data);
     };
 
-    getData();
+    // getData();
   }, [execute, user]);
 
   return (

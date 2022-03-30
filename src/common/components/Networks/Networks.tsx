@@ -45,7 +45,7 @@ function Networks() {
       <h3>{translation.Table.networks}</h3>
       <div className={styles.networks_container}>
         {_map(menuItems, (menuItem) => (
-          <MenuItem {...menuItem} key={menuItem.title} />
+          <MenuItem {...menuItem} key={menuItem.id} />
         ))}
       </div>
     </div>

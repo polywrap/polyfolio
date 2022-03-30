@@ -73,7 +73,7 @@ function ProtocolsTable() {
           </div>
         </div>
         {_map(menuItems, (menuItem) => {
-          return <VaultsItem {...menuItem} key={menuItem.title} />;
+          return <VaultsItem {...menuItem} key={menuItem.id} />;
         })}
       </div>
     </div>
