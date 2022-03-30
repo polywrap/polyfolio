@@ -8,9 +8,8 @@ module.exports = function override(config, env) {
       ...config.resolve,
       fallback: {
         fs: false,
-        path: false,
-        os: false,
-        url: false,
+        path: require.resolve('path-browserify'),
+        url: require.resolve('url'),
       },
     },
   };

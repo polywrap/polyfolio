@@ -61,19 +61,19 @@ export default function useData() {
           underlyingPrice: false,
         });
 
-        if (response && !errors.length) {
+        if (response && !errors?.length) {
           setBalance(formatData(response?.getAccountBalance));
         } else {
           // ADD ERROR HANDLER
           console.log('ERRORS-------');
-          console.log({errors});
+          console.log(errors);
           console.log('-----ERRORS');
         }
       };
 
       getData();
     }
-  }, [user, loading, data, errors, execute, setBalance, formatData]);
+  }, [user, loading, data, execute, setBalance, formatData]);
 
   const ejectAssetData = useCallback(() => {
     const assetArray = [];
