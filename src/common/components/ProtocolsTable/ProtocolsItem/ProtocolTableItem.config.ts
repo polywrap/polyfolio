@@ -6,10 +6,6 @@ import useData from 'common/hooks/useData/useData';
 export const GetProtocols = () => {
   const {balance} = useData();
   const menuItems: ProtocolsItem[] = [];
-  const divider = {
-    title: 'divider',
-    isDivider: true,
-  }
   
   if (balance) {
     for (let i = 0; i < balance?.protocols.length; i++) {
@@ -24,7 +20,10 @@ export const GetProtocols = () => {
         title: balance?.protocols[i].protocol.name,
         id: i + 1,
       })
-      menuItems.push(divider)
+      menuItems.push({
+        title: 'divider',
+        isDivider: true,
+      })
     }
   }
 

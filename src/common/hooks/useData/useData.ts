@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import {useEffect, useCallback} from 'react';
 import {atom, useRecoilState} from 'recoil';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -26,7 +26,7 @@ export default function useData() {
   const {user} = useAuth();
   
   const [balance, setBalance] = useRecoilState(balanceState);
-  const [allAssets, setAllAssets] = useRecoilState<any[]>(allAssetsState);
+  const [allAssets, setAllAssets] = useRecoilState(allAssetsState);
   const [allAssetsSum, setAllAssetsSum] = useRecoilState(allAssetsSumState);
 
   const { execute } = useWeb3ApiQuery({
@@ -41,7 +41,7 @@ export default function useData() {
     }`,
   });
 
-  const formatData = data => {
+  const formatData = useCallback(data => {
     const formatedData = data.protocols.map(item => {
       const asset = formatAsset(item.assets);
 
@@ -49,23 +49,25 @@ export default function useData() {
     })
 
     return {...data, protocols: formatedData};
-  }
+  }, [])
+
+  const getData = useCallback(async () => {
+    const data = await execute({ 
+      accountAddress: user,
+      vsCurrencies: [],
+      noTruncate: false,
+      underlyingPrice: false,
+    })
+    setBalance(formatData(data?.data?.getAccountBalance))
+  }, [execute, formatData, setBalance, user])
 
   useEffect(() => {
-    const getData = async () => {
-      const data = await execute({ 
-        accountAddress: user,
-        vsCurrencies: [],
-        noTruncate: false,
-        underlyingPrice: false,
-      })
-      setBalance(formatData(data?.data?.getAccountBalance))
+    if (!balance) {
+      getData()
     }
+  }, [balance, getData, user])
 
-    getData()
-  }, [user])
-
-  const ejectAssetData = () => {
+  const ejectAssetData = useCallback(() => {
     const assetArray = [];
 
     if (balance) {
@@ -77,7 +79,7 @@ export default function useData() {
     }
 
     return assetArray;
-  }
+  }, [balance])
 
   const formatAsset = assets => 
     assets.map(item => { return {...item.balance.token, id: uuidv4()} })
@@ -86,9 +88,9 @@ export default function useData() {
     if (balance) {
       setAllAssets(ejectAssetData());
     }
-  }, [balance])
+  }, [balance, ejectAssetData, setAllAssets])
 
-  const getAllAssetSum = () => {
+  const getAllAssetSum = useCallback(() => {
     let sum = 0;
 
     if (allAssets) {
@@ -96,11 +98,11 @@ export default function useData() {
   
       setAllAssetsSum(sum);
     }
-  }
+  }, [allAssets, setAllAssetsSum])
 
   useEffect(() => {
     getAllAssetSum();
-  }, [allAssets])
+  }, [allAssets, getAllAssetSum])
 
 
   return {balance, allAssets, allAssetsSum};
