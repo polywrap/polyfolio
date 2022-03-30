@@ -6,7 +6,6 @@ export interface AssetsItem {
   secondaryTitle?: string;
   valueIsMinus?: boolean;
   iconInfoPage?: string;
-  isDivider?: boolean;
   valueTitle?: number;
   priceTitle?: number;
   percent?: number;

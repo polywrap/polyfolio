@@ -4,11 +4,6 @@ import RoutePath from 'common/modules/routing/routing.enums';
 
 const menuItems: AssetsItem[] = [
   {
-    title: 'divider',
-    isDivider: true,
-    id: 0,
-  },
-  {
     secondaryPricePercentTitle: 15.32,
     link: `${RoutePath.Asset}`,
     secondaryTitle: 'usdtSecondary',
@@ -22,11 +17,6 @@ const menuItems: AssetsItem[] = [
     title: 'usdt',
     percent: 49,
     id: 1,
-  },
-  {
-    title: 'divider',
-    isDivider: true,
-    id: 9,
   },
   {
     secondaryPricePercentTitle: 15.32,
@@ -44,11 +34,6 @@ const menuItems: AssetsItem[] = [
     id: 2,
   },
   {
-    title: 'divider',
-    isDivider: true,
-    id: 10,
-  },
-  {
     valueSecondaryTitle: 8310072.32,
     secondaryPricePercentTitle: 15.32,
     link: `${RoutePath.Asset}`,
@@ -62,11 +47,6 @@ const menuItems: AssetsItem[] = [
     title: 'eth',
     percent: 23,
     id: 3,
-  },
-  {
-    title: 'divider',
-    isDivider: true,
-    id: 11,
   },
   {
     secondaryPricePercentTitle: 15.32,
@@ -84,11 +64,6 @@ const menuItems: AssetsItem[] = [
     id: 4,
   },
   {
-    title: 'divider',
-    isDivider: true,
-    id: 12,
-  },
-  {
     secondaryPricePercentTitle: 15.32,
     valueSecondaryTitle: 8310072.32,
     link: `${RoutePath.Asset}`,
@@ -102,11 +77,6 @@ const menuItems: AssetsItem[] = [
     title: 'gel',
     percent: 1,
     id: 5,
-  },
-  {
-    title: 'divider',
-    isDivider: true,
-    id: 13,
   },
   {
     secondaryPricePercentTitle: 15.32,
@@ -124,11 +94,6 @@ const menuItems: AssetsItem[] = [
     id: 6,
   },
   {
-    title: 'divider',
-    isDivider: true,
-    id: 14,
-  },
-  {
     secondaryPricePercentTitle: 15.32,
     valueSecondaryTitle: 8310072.32,
     secondaryTitle: 'ftmSecondary',
@@ -142,11 +107,6 @@ const menuItems: AssetsItem[] = [
     title: 'ftm',
     percent: 1,
     id: 7,
-  },
-  {
-    title: 'divider',
-    isDivider: true,
-    id: 15,
   },
   {
     secondaryPricePercentTitle: 15.32,

@@ -25,78 +25,73 @@ function AssetsItem(menuItem) {
     valueIsMinus,
     priceTitle,
     valueTitle,
-    isDivider,
     percent,
     title,
     link,
     icon,
     id,
   } = menuItem;
-  const path = !isDivider && id && link.replace(':id', `${id}`);
+  const path = id && link.replace(':id', `${id}`);
 
   return (
     <>
-      {!isDivider ? (
-        <button className={styles.buttonNavigate} onClick={() => navigate(path)}>
-          <div className={styles.menu_item}>
-            <div className={styles.title_container}>
-              <Icon src={icon} className={styles.icon} />
-              <div>
-                <div className={styles.title}>{translation.Assets[title]}</div>
-                <div className={styles.titleSecondary}>{translation.Assets[secondaryTitle]}</div>
-              </div>
-            </div>
-            <div
-              className={classNames(styles.container_allocation, {
-                [styles.hidden]: filters.assets.allocation,
-              })}
-            >
-              {_map(fillArray(100), (i) => {
-                return (
-                  <div
-                    key={i}
-                    className={classNames(styles.aggregate, {
-                      [styles.opacityAggregate]: i > percent,
-                    })}
-                  />
-                );
-              })}
-              <div className={styles.bg}>
-                <span className={styles.badgeText}>
-                  {numberFormatter({value: percent, size: 0})}%
-                </span>
-              </div>
-            </div>
-            <PricesValue
-              secondaryPricePercentTitle={secondaryPricePercentTitle}
-              pricePercentDollar={pricePercentDollar}
-              className={classNames(styles.price_container, {
-                [styles.hidden]: filters.assets.price,
-              })}
-              valueIsMinus={valueIsMinus}
-              priceTitle={priceTitle}
-            />
-            <div
-              className={classNames(styles.value_container, {
-                [styles.hidden]: filters.assets.value,
-              })}
-            >
-              <div>
-                <div className={styles.valueTitle}>
-                  ${numberFormatter({value: valueTitle, size: 2})}
-                </div>
-                <div className={styles.valueSecondaryContainer}>
-                  ${numberFormatter({value: valueSecondaryTitle, size: 2})}
-                  <div style={{marginLeft: '5px'}}>{translation.Assets[title]}</div>
-                </div>
-              </div>
-              <MenuArrow className={styles.arrowIcon} startPosition="right" size="10px" />
+      <button className={styles.buttonNavigate} onClick={() => navigate(path)}>
+        <div className={styles.menu_item}>
+          <div className={styles.title_container}>
+            <Icon src={icon} className={styles.icon} />
+            <div>
+              <div className={styles.title}>{translation.Assets[title]}</div>
+              <div className={styles.titleSecondary}>{translation.Assets[secondaryTitle]}</div>
             </div>
           </div>
-        </button>
-      ) : (
-        <div className={styles.divider} />
-      )}
+          <div
+            className={classNames(styles.container_allocation, {
+              [styles.hidden]: filters.assets.allocation,
+            })}
+          >
+            {_map(fillArray(100), (i) => {
+              return (
+                <div
+                  key={i}
+                  className={classNames(styles.aggregate, {
+                    [styles.opacityAggregate]: i > percent,
+                  })}
+                />
+              );
+            })}
+            <div className={styles.bg}>
+              <span className={styles.badgeText}>
+                {numberFormatter({value: percent, size: 0})}%
+              </span>
+            </div>
+          </div>
+          <PricesValue
+            secondaryPricePercentTitle={secondaryPricePercentTitle}
+            pricePercentDollar={pricePercentDollar}
+            className={classNames(styles.price_container, {
+              [styles.hidden]: filters.assets.price,
+            })}
+            valueIsMinus={valueIsMinus}
+            priceTitle={priceTitle}
+          />
+          <div
+            className={classNames(styles.value_container, {
+              [styles.hidden]: filters.assets.value,
+            })}
+          >
+            <div>
+              <div className={styles.valueTitle}>
+                ${numberFormatter({value: valueTitle, size: 2})}
+              </div>
+              <div className={styles.valueSecondaryContainer}>
+                ${numberFormatter({value: valueSecondaryTitle, size: 2})}
+                <div style={{marginLeft: '5px'}}>{translation.Assets[title]}</div>
+              </div>
+            </div>
+            <MenuArrow className={styles.arrowIcon} startPosition="right" size="10px" />
+          </div>
+        </div>
+      </button>
     </>
   );
 }
