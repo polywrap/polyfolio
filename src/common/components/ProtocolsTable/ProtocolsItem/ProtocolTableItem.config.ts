@@ -1,10 +1,11 @@
-import { ProtocolsItem } from './ProtocolTableItem.types';
+import {ProtocolsItem} from './ProtocolTableItem.types';
 import iconsObj from 'assets/icons/iconsObj';
 import RoutePath from 'common/modules/routing/routing.enums';
-import useData from 'common/hooks/useData/useData';
+import {balanceState} from 'common/hooks/useData/useData';
+import { useRecoilValue } from 'recoil';
 
 export const GetProtocols = () => {
-  const {balance} = useData();
+  const balance = useRecoilValue(balanceState);
   const menuItems: ProtocolsItem[] = [];
   
   if (balance) {
