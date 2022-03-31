@@ -19,49 +19,44 @@ function ProtocolsItem(menuItem) {
     claimableValue,
     valueIsMinus,
     valueTitle,
-    isDivider,
     title,
     link,
     icon,
     id,
   } = menuItem;
-  const path = !isDivider && id && link.replace(':id', `${id}`);
+  const path = id && link.replace(':id', `${id}`);
 
   const {filters} = useFiltersTables();
 
   return (
     <>
-      {!isDivider ? (
-        <button className={styles.button} onClick={() => navigate(path)}>
-          <div className={styles.menu_item}>
-            <div className={styles.title_container}>
-              <Icon src={icon} className={styles.icon} />
-              <div className={styles.title}>{translation.Protocols[title]}</div>
-            </div>
-            <PricesValue
-              secondaryPricePercentTitle={secondaryTitlePercent}
-              pricePercentDollar={secondaryTitleDollar}
-              className={classNames(styles.price_container, {
-                [styles.hidden]: filters.protocols.value,
-              })}
-              valueIsMinus={valueIsMinus}
-              priceTitle={valueTitle}
-            />
-            <div
-              className={classNames(styles.claimable_container, {
-                [styles.hidden]: filters.protocols.claimable,
-              })}
-            >
-              <div className={styles.secondaryTitle}>
-                ${numberFormatter({value: claimableValue, size: 2})}
-              </div>
-              <MenuArrow className={styles.arrowIcon} startPosition="right" size="10px" />
-            </div>
+      <button className={styles.button} onClick={() => navigate(path)}>
+        <div className={styles.menu_item}>
+          <div className={styles.title_container}>
+            <Icon src={icon} className={styles.icon} />
+            <div className={styles.title}>{translation.Protocols[title]}</div>
           </div>
-        </button>
-      ) : (
-        <div className={styles.divider} />
-      )}
+          <PricesValue
+            secondaryPricePercentTitle={secondaryTitlePercent}
+            pricePercentDollar={secondaryTitleDollar}
+            className={classNames(styles.price_container, {
+              [styles.hidden]: filters.protocols.value,
+            })}
+            valueIsMinus={valueIsMinus}
+            priceTitle={valueTitle}
+          />
+          <div
+            className={classNames(styles.claimable_container, {
+              [styles.hidden]: filters.protocols.claimable,
+            })}
+          >
+            <div className={styles.secondaryTitle}>
+              ${numberFormatter({value: claimableValue, size: 2})}
+            </div>
+            <MenuArrow className={styles.arrowIcon} startPosition="right" size="10px" />
+          </div>
+        </div>
+      </button>
     </>
   );
 }

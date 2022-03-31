@@ -15,11 +15,6 @@ const menuItems: ProtocolsItem[] = [
     id: 1,
   },
   {
-    title: 'divider',
-    isDivider: true,
-    id: 11,
-  },
-  {
     secondaryTitleDollar: 163.63,
     link: `${RoutePath.Protocol}`,
     secondaryTitlePercent: 15.32,
@@ -29,11 +24,6 @@ const menuItems: ProtocolsItem[] = [
     valueIsMinus: true,
     title: 'eth',
     id: 2,
-  },
-  {
-    title: 'divider',
-    isDivider: true,
-    id: 12,
   },
   {
     link: `${RoutePath.Protocol}`,
@@ -47,11 +37,6 @@ const menuItems: ProtocolsItem[] = [
     id: 3,
   },
   {
-    title: 'divider',
-    isDivider: true,
-    id: 13,
-  },
-  {
     link: `${RoutePath.Protocol}`,
     secondaryTitleDollar: 163.63,
     secondaryTitlePercent: 15.32,
@@ -61,11 +46,6 @@ const menuItems: ProtocolsItem[] = [
     valueIsMinus: false,
     title: 'btc',
     id: 4,
-  },
-  {
-    title: 'divider',
-    isDivider: true,
-    id: 14,
   },
   {
     link: `${RoutePath.Protocol}`,

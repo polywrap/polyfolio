@@ -3,7 +3,6 @@ export interface VaultItem {
   pricePercentDollar: number;
   secondaryTitle: string;
   valueIsMinus: boolean;
-  isDivider: boolean;
   valueTitle: number;
   priceTitle: number;
   percent: number;
