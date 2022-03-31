@@ -12,7 +12,7 @@
   --font_size_secondary: 14px;
   --red_color: #e53e3e;
   --bg_red_color: rgba(229, 62, 62, 0.2);
-
+  --border: 1px solid rgba(70, 85, 104, 0.5);
   @include flex_grow();
   justify-content: space-between;
   position: relative;
@@ -122,6 +122,10 @@
 }
 .buttonNavigate {
   width: 100%;
+  border-bottom: var(--border);
+}
+.buttonNavigate:last-child {
+  border-bottom: unset;
 }
 .divider {
   --divider: radial-gradient(

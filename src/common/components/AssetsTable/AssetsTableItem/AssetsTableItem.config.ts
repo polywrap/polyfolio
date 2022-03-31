@@ -15,10 +15,6 @@ const GetItems = () => {
 
     for (let i = 0; i < allAssets.length; i++) {
       menuItems.push({
-        title: 'divider',
-        isDivider: true,
-      });
-      menuItems.push({
         secondaryPricePercentTitle: 777,
         link: `${RoutePath.Asset}`,
         secondaryTitle: 'usdtSecondary',

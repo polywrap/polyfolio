@@ -19,7 +19,6 @@ function VaultsItem(menuItem) {
     valueIsMinus,
     priceTitle,
     valueTitle,
-    isDivider,
     percent,
     title,
     icon,
@@ -29,62 +28,58 @@ function VaultsItem(menuItem) {
 
   return (
     <>
-      {!isDivider ? (
-        <button className={styles.buttonNavigate}>
-          <div className={styles.menu_item}>
-            <div className={styles.title_container}>
-              <Icon src={icon} className={styles.icon} />
-              <div>
-                <div className={styles.title}>{translation.Assets[title]}</div>
-                <div className={styles.titleSecondary}>{translation.Assets[secondaryTitle]}</div>
-              </div>
+      <button className={styles.buttonNavigate}>
+        <div className={styles.menu_item}>
+          <div className={styles.title_container}>
+            <Icon src={icon} className={styles.icon} />
+            <div>
+              <div className={styles.title}>{translation.Assets[title]}</div>
+              <div className={styles.titleSecondary}>{translation.Assets[secondaryTitle]}</div>
             </div>
-            <div
-              className={classNames(styles.container_allocation, {
-                [styles.hidden]: filters.vaults.allocation,
-              })}
-            >
-              {_map(fillArray(100), (i) => {
-                return (
-                  <div
-                    className={classNames(styles.aggregate, {
-                      [styles.opacityAggregate]: i > percent,
-                    })}
-                    key={i}
-                  />
-                );
-              })}
-              <div className={styles.bg}>
-                <span className={styles.badgeText}>
-                  {numberFormatter({value: percent, size: 0})}%
-                </span>
-              </div>
+          </div>
+          <div
+            className={classNames(styles.container_allocation, {
+              [styles.hidden]: filters.vaults.allocation,
+            })}
+          >
+            {_map(fillArray(100), (i) => {
+              return (
+                <div
+                  className={classNames(styles.aggregate, {
+                    [styles.opacityAggregate]: i > percent,
+                  })}
+                  key={i}
+                />
+              );
+            })}
+            <div className={styles.bg}>
+              <span className={styles.badgeText}>
+                {numberFormatter({value: percent, size: 0})}%
+              </span>
             </div>
-            <PricesValue
-              secondaryPricePercentTitle={secondaryPricePercentTitle}
-              pricePercentDollar={pricePercentDollar}
-              className={classNames(styles.price_container, {
-                [styles.hidden]: filters.vaults.value,
-              })}
-              valueIsMinus={valueIsMinus}
-              priceTitle={priceTitle}
-            />
-            <div
-              className={classNames(styles.value_container, {
-                [styles.hidden]: filters.vaults.claimable,
-              })}
-            >
-              <div>
-                <div className={styles.valueTitle}>
-                  ${numberFormatter({value: valueTitle, size: 2})}
-                </div>
+          </div>
+          <PricesValue
+            secondaryPricePercentTitle={secondaryPricePercentTitle}
+            pricePercentDollar={pricePercentDollar}
+            className={classNames(styles.price_container, {
+              [styles.hidden]: filters.vaults.value,
+            })}
+            valueIsMinus={valueIsMinus}
+            priceTitle={priceTitle}
+          />
+          <div
+            className={classNames(styles.value_container, {
+              [styles.hidden]: filters.vaults.claimable,
+            })}
+          >
+            <div>
+              <div className={styles.valueTitle}>
+                ${numberFormatter({value: valueTitle, size: 2})}
               </div>
             </div>
           </div>
-        </button>
-      ) : (
-        <div className={styles.divider} />
-      )}
+        </div>
+      </button>
     </>
   );
 }

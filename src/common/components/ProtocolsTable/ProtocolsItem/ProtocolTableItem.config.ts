@@ -20,10 +20,6 @@ export const GetProtocols = () => {
         title: balance?.protocols[i].protocol.name,
         id: i + 1,
       })
-      menuItems.push({
-        title: 'divider',
-        isDivider: true,
-      })
     }
   }
 
