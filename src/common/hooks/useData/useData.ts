@@ -25,9 +25,9 @@ export const allAssetsSumState = atom({
 export default function useData() {
   const {user} = useAuth();
 
-  const [balance, setBalance] = useRecoilState(balanceState);
-  const [allAssets, setAllAssets] = useRecoilState(allAssetsState);
-  const [allAssetsSum, setAllAssetsSum] = useRecoilState(allAssetsSumState);
+  const [, setBalance] = useRecoilState(balanceState);
+  const [, setAllAssets] = useRecoilState(allAssetsState);
+  const [, setAllAssetsSum] = useRecoilState(allAssetsSumState);
 
   const {execute, loading, data} = useWeb3ApiQuery({
     uri: `ipfs/QmRYP5qwQd7AotVbtcx7KhN8HuHX9DCg8sS9LVE4kstpVw`,
@@ -54,6 +54,7 @@ export default function useData() {
         const balance = response?.getAccountBalance;
         const ejectedAssets = _.flatten(_.map(balance['protocols'], item => item.assets));
         const sum = getAssetsValueSum(ejectedAssets);
+        console.log(balance);
 
         setBalance(balance);
         setAllAssets(ejectedAssets);

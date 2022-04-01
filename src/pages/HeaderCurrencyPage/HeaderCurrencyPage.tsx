@@ -16,7 +16,7 @@ function HeaderCurrencyPage() {
   const translation = useTranslation();
   const navigate = useNavigate();
   const menuItems = GetItems();
-  const currency = _find(menuItems, {id: +id});
+  const currency = _find(menuItems, {id});
 
   return (
     <div className={classNames(styles.headerContainer, styles[theme])}>

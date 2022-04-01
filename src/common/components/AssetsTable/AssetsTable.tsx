@@ -8,13 +8,16 @@ import styles from './AssetsTable.module.scss';
 import GetItems from './AssetsTableItem/AssetsTableItem.config';
 import {menuFields} from './FilterFieldsAssets.config';
 import AssetsTableItem from './AssetsTableItem/AssetsTableItem';
+import {useRecoilValue} from 'recoil';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import HeaderTable from '../HeaderTable/HeaderTable';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
+import {allAssetsSumState} from 'common/hooks/useData/useData';
 
 function AssetsTable() {
+  const allAssetsSum = useRecoilValue(allAssetsSumState);
   const [tableIsOpen, setTableIsOpen] = useState(false);
   const {filters, setFilters} = useFiltersTables();
   const [filter, setFilter] = useState<Filters>(filters);
@@ -42,7 +45,7 @@ function AssetsTable() {
         filter={filter.assets}
         onChange={onChange}
         isOpen={isOpen}
-        sum={9337337.0}
+        sum={allAssetsSum}
       />
       <div className={classNames(styles.table_container, {[styles.hidden]: tableIsOpen})}>
         <div className={styles.title_container}>

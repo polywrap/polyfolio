@@ -1,9 +1,9 @@
-import { AssetsItem } from './AssetsTableItem.types';
+import {AssetsItem} from './AssetsTableItem.types';
 import iconsObj from 'assets/icons/iconsObj';
 import RoutePath from 'common/modules/routing/routing.enums';
-import { useRecoilValue } from 'recoil';
-import { allAssetsState, allAssetsSumState } from 'common/hooks/useData/useData';
-import { formatInputNumbers } from 'utils/helpers';
+import {useRecoilValue} from 'recoil';
+import {allAssetsState, allAssetsSumState} from 'common/hooks/useData/useData';
+import {formatInputNumbers} from 'utils/helpers';
 
 
 const GetItems = () => {
@@ -16,7 +16,7 @@ const GetItems = () => {
       menuItems.push({
         secondaryPricePercentTitle: 777,
         link: `${RoutePath.Asset}`,
-        secondaryTitle: 'usdtSecondary',
+        secondaryTitle: allAssets[i].balance.token.token.name,
         valueSecondaryTitle: allAssets[i].balance.token.values[0].value,
         pricePercentDollar: 777,
         iconInfoPage: iconsObj.usdt,
@@ -24,9 +24,9 @@ const GetItems = () => {
         valueTitle: allAssets[i].balance.token.values[0].value,
         valueIsMinus: false,
         priceTitle: allAssets[i].balance.token.values[0].price,
-        title: 'usdt',
+        title: allAssets[i].balance.token.token.symbol,
         percent: Number(formatInputNumbers(allAssets[i].balance.token.values[0].value)) * 100 / allAssetsSum,
-        id: i + 1,
+        id: allAssets[i].balance.token.token.symbol.toLowerCase(),
       });
     }
   }
