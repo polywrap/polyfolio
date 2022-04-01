@@ -10,9 +10,10 @@ import AssetTransaction from 'common/components/AssetTransaction/AssetTransactio
 
 function ProtocolsInfo() {
   const translation = useTranslation();
-  const {id: idNetworks} = useParams();
+  const {id} = useParams();
   const menuItems = GetProtocols();
-  const current = _find(menuItems, {id: +idNetworks});
+  const current = _find(menuItems, {id});
+  console.log(current)
 
   return (
     <>

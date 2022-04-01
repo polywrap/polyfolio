@@ -30,7 +30,7 @@ function AssetsTable() {
   const onChange = (name, value) => {
     setFilter({...filters, assets: {...filter.assets, [name]: !value?.checked}});
   };
-
+  
   return (
     <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>
       <HeaderTable

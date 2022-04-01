@@ -26,10 +26,6 @@ function App() {
   useEffect(() => {
     if (MetaMaskOnboarding.isMetaMaskInstalled()) {
       window['ethereum'].on('accountsChanged', check);
-
-      return () => {
-        window['ethereum'].off('accountsChanged', check);
-      };
     }
   }, []);
 

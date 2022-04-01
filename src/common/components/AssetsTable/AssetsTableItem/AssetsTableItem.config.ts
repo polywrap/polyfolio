@@ -3,7 +3,7 @@ import iconsObj from 'assets/icons/iconsObj';
 import RoutePath from 'common/modules/routing/routing.enums';
 import {useRecoilValue} from 'recoil';
 import {allAssetsState, allAssetsSumState} from 'common/hooks/useData/useData';
-import {formatInputNumbers} from 'utils/helpers';
+import {rmCommasFromNum} from 'utils/helpers';
 
 
 const GetItems = () => {
@@ -25,7 +25,7 @@ const GetItems = () => {
         valueIsMinus: false,
         priceTitle: allAssets[i].balance.token.values[0].price,
         title: allAssets[i].balance.token.token.symbol,
-        percent: Number(formatInputNumbers(allAssets[i].balance.token.values[0].value)) * 100 / allAssetsSum,
+        percent: Number(rmCommasFromNum(allAssets[i].balance.token.values[0].value)) * 100 / allAssetsSum,
         id: allAssets[i].balance.token.token.symbol.toLowerCase(),
       });
     }

@@ -1,6 +1,6 @@
 export interface AssetsItem {
   secondaryPricePercentTitle?: number;
-  valueSecondaryTitle?: number;
+  valueSecondaryTitle: number;
   pricePercentDollar?: number;
   claimableValue?: number;
   secondaryTitle: string;

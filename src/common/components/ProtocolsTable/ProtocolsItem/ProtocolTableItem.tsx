@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './ProtocolTableItem.module.scss';
-import useTranslation from 'common/hooks/useTranslation/useTranslation';
+//import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import Icon from 'common/components/Icon/Icon';
-import numberFormatter from 'utils/numberFormatter';
+import {toFixed} from 'utils/helpers';
 import {useNavigate} from 'react-router-dom';
 
 import MenuArrow from 'common/components/MenuArrow/MenuArrow';
@@ -12,7 +12,7 @@ import classNames from 'classnames';
 
 function ProtocolsItem(menuItem) {
   const navigate = useNavigate();
-  const translation = useTranslation();
+  //const translation = useTranslation();
   const {
     secondaryTitleDollar,
     secondaryTitlePercent,
@@ -43,7 +43,7 @@ function ProtocolsItem(menuItem) {
               [styles.hidden]: filters.protocols.value,
             })}
             valueIsMinus={valueIsMinus}
-            priceTitle={valueTitle}
+            priceTitle={toFixed({value: valueTitle, size: 2})}
           />
           <div
             className={classNames(styles.claimable_container, {
@@ -51,7 +51,7 @@ function ProtocolsItem(menuItem) {
             })}
           >
             <div className={styles.secondaryTitle}>
-              ${numberFormatter({value: claimableValue, size: 2})}
+              ${toFixed({value: claimableValue, size: 2})}
             </div>
             <MenuArrow className={styles.arrowIcon} startPosition="right" size="10px" />
           </div>

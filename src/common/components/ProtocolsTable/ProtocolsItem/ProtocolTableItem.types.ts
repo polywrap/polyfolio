@@ -4,8 +4,8 @@ export interface ProtocolsItem {
   claimableValue?: number;
   valueIsMinus?: boolean;
   valueTitle?: number;
-  title?: string;
+  title: string;
   icon?: string;
   link?: string;
-  id?: number;
+  id: string;
 }
