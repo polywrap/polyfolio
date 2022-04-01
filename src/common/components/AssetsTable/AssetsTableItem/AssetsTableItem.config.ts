@@ -12,21 +12,20 @@ const GetItems = () => {
   const menuItems: AssetsItem[] = [];
 
   if (allAssets) {
-
     for (let i = 0; i < allAssets.length; i++) {
       menuItems.push({
         secondaryPricePercentTitle: 777,
         link: `${RoutePath.Asset}`,
         secondaryTitle: 'usdtSecondary',
-        valueSecondaryTitle: allAssets[i].values[0].value,
+        valueSecondaryTitle: allAssets[i].balance.token.values[0].value,
         pricePercentDollar: 777,
         iconInfoPage: iconsObj.usdt,
         icon: iconsObj.assetsUsdt,
-        valueTitle: allAssets[i].values[0].value,
+        valueTitle: allAssets[i].balance.token.values[0].value,
         valueIsMinus: false,
-        priceTitle: allAssets[i].values[0].price,
+        priceTitle: allAssets[i].balance.token.values[0].price,
         title: 'usdt',
-        percent: Number(formatInputNumbers(allAssets[i].values[0].value)) * 100 / allAssetsSum,
+        percent: Number(formatInputNumbers(allAssets[i].balance.token.values[0].value)) * 100 / allAssetsSum,
         id: i + 1,
       });
     }

@@ -1,9 +1,9 @@
-import {useCallback} from 'react';
 import {atom, useRecoilState} from 'recoil';
-import {v4 as uuidv4} from 'uuid';
+import _ from 'lodash';
 
 import {useWeb3ApiQuery} from '@web3api/react';
 import useAuth from '../useAuth/useAuth';
+import {getAssetsValueSum} from 'utils/helpers';
 
 const BALANCE_STATE_KEY = 'polyfolio_balance';
 const ALL_ASSETS_STATE_KEY = 'polyfolio_allAssets';
@@ -41,16 +41,6 @@ export default function useData() {
     }`,
   });
 
-  const formatData = useCallback((data) => {
-    const formatedData = (data?.protocols || []).map((item) => {
-      const asset = formatAsset(item.assets);
-
-      return {...item, assets: asset};
-    });
-
-    return {...data, protocols: formatedData};
-  }, []);
-
   const getData = async () => {
     if (user && !loading && !data) {
       const {data: response, errors} = await execute({
@@ -61,9 +51,9 @@ export default function useData() {
       });
   
       if (response && !errors?.length) {
-        const balance = formatData(response?.getAccountBalance)
-        const ejectedAssets = ejectAssetData(balance);
-        const sum = getAllAssetSum(ejectedAssets);
+        const balance = response?.getAccountBalance;
+        const ejectedAssets = _.flatten(_.map(balance['protocols'], item => item.assets));
+        const sum = getAssetsValueSum(ejectedAssets);
 
         setBalance(balance);
         setAllAssets(ejectedAssets);
@@ -76,37 +66,6 @@ export default function useData() {
       }
     }
   };
-
-  const ejectAssetData = useCallback((data) => {
-    const assetArray = [];
-
-    if (data) {
-      data.protocols.map((item) => {
-        for (const key in item.assets) {
-          assetArray.push(item.assets[key]);
-        }
-      });
-    }
-
-    return assetArray;
-  }, []);
-
-  const formatAsset = (assets) =>
-    assets.map((item) => {
-      return {...item.balance.token, id: uuidv4()};
-    });
-
-  const getAllAssetSum = useCallback((assets) => {
-    let sum = 0;
-
-    if (assets) {
-      assets.map((item) =>
-        item.values.map((val) => (sum += Number(val.value.split(',').join('')))),
-      );
-
-      return sum;
-    }
-  }, []);
 
   return {getData};
 }

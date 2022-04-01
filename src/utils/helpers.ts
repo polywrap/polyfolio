@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export const filteredDropdown = (array, currentId) => {
   return array?.filter((e) => e?.id !== currentId);
 };
@@ -12,3 +14,7 @@ export const fillArray = (n) => {
 
   return arr;
 };
+
+export const getAssetsValueSum = (assets) => {
+  return _.sumBy(assets, (value) => Number(formatInputNumbers(value['balance'].token.values[0].value)));
+}
