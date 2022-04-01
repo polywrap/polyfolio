@@ -34,7 +34,7 @@ function ProtocolsItem(menuItem) {
         <div className={styles.menu_item}>
           <div className={styles.title_container}>
             <Icon src={icon} className={styles.icon} />
-            <div className={styles.title}>{translation.Protocols[title]}</div>
+            <div className={styles.title}>{title}</div>
           </div>
           <PricesValue
             secondaryPricePercentTitle={secondaryTitlePercent}

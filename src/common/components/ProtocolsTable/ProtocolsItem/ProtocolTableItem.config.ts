@@ -19,7 +19,7 @@ export const GetProtocols = () => {
         valueTitle: balance?.protocols[i].assets[0].balance.token.values[0].value,
         valueIsMinus: false,
         title: balance?.protocols[i].protocol.name,
-        id: i + 1,
+        id: balance?.protocols[i].protocol.id,
       })
     }
   }
