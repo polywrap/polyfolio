@@ -1,8 +1,9 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useMemo} from 'react';
 import classNames from 'classnames';
 import iconsObj from 'assets/icons/iconsObj';
 import Icon from 'common/components/Icon/Icon';
 import _map from 'lodash/map';
+import _sumBy from 'lodash/sumBy';
 import styles from './Protocols.module.scss';
 
 import GetProtocols from './ProtocolsItem/ProtocolTableItem.config';
@@ -28,6 +29,10 @@ function ProtocolsTable() {
     setFilter({...filters, protocols: {...filter.protocols, [name]: !value?.checked}});
   };
 
+  const summaryValue = useMemo(() => {
+    return _sumBy(menuItems, (val) => val.valueTitle)
+  }, [menuItems])
+
   return (
     <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>
       <HeaderTable
@@ -42,7 +47,7 @@ function ProtocolsTable() {
         menuFields={menuFields}
         onChange={onChange}
         isOpen={isOpen}
-        sum={3837337.0}
+        sum={summaryValue}
       />
       <div className={classNames(styles.table_container, {[styles.hidden]: tableIsOpen})}>
         <div className={styles.title_container}>

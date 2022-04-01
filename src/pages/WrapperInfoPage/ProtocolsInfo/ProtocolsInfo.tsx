@@ -13,12 +13,11 @@ function ProtocolsInfo() {
   const {id} = useParams();
   const menuItems = GetProtocols();
   const current = _find(menuItems, {id});
-  console.log(current)
 
   return (
     <>
       <HeaderPage
-        title={`${translation.Protocols[current.title]} ${translation.Networks.network}`}
+        title={`${current.title} ${translation.Networks.network}`}
         icon={current?.icon}
       />
       <HeaderPageInfo title={current.valueTitle} />
