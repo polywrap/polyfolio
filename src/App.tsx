@@ -104,11 +104,7 @@ function App() {
           />
           <Route
             path={RoutePath.Settings}
-            element={
-              <ProtectedRoute user={user}>
-                <SettingsPage />
-              </ProtectedRoute>
-            }
+            element={<SettingsPage />}
           />
           <Route path={'*'} element={<Navigate to={RoutePath.BaseRoute} />} />
         </Fragment>
