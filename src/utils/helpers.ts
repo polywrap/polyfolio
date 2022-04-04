@@ -19,7 +19,9 @@ export const fillArray = (n) => {
 };
 
 export const getAssetsValueSum = (assets) => {
-  return _.sumBy(assets, (value) => 
-    _.round(Number(rmCommasFromNum(value['balance'].token.values[0].value)), 2)
-  );
+  if (assets) {
+    return _.sumBy(assets, (value) => 
+      _.round(Number(rmCommasFromNum(value['balance'].token.values[0].value)), 2)
+    );
+  }
 };

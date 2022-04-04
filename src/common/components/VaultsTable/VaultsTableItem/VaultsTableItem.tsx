@@ -23,7 +23,6 @@ function VaultsItem(menuItem) {
     title,
     icon,
   } = menuItem;
-
   const {filters} = useFiltersTables();
 
   return (
@@ -33,8 +32,8 @@ function VaultsItem(menuItem) {
           <div className={styles.title_container}>
             <Icon src={icon} className={styles.icon} />
             <div>
-              <div className={styles.title}>{translation.Assets[title]}</div>
-              <div className={styles.titleSecondary}>{translation.Assets[secondaryTitle]}</div>
+              <div className={styles.title}>{title}</div>
+              <div className={styles.titleSecondary}>{secondaryTitle}</div>
             </div>
           </div>
           <div

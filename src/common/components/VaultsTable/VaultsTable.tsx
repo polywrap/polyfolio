@@ -5,7 +5,7 @@ import Icon from 'common/components/Icon/Icon';
 import _map from 'lodash/map';
 import styles from './Vaults.module.scss';
 
-import {menuItems} from './VaultsTableItem/VaultsTableItem.config';
+import GetVaults from './VaultsTableItem/VaultsTableItem.config';
 import VaultsItem from './VaultsTableItem/VaultsTableItem';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import HeaderTable from '../HeaderTable/HeaderTable';
@@ -14,7 +14,7 @@ import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
 import {menuFields} from './FilterFieldsVaults.config';
 
-function ProtocolsTable() {
+function ProtocolsTable({totalTableValue}: {totalTableValue: number}) {
   const [tableIsOpen, setTableIsOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null);
@@ -22,6 +22,7 @@ function ProtocolsTable() {
   const translation = useTranslation();
   const {filters, setFilters} = useFiltersTables();
   const [filter, setFilter] = useState<Filters>(filters);
+  const menuItems = GetVaults();
 
   const onChange = (name, value) => {
     setFilter({...filter, vaults: {...filter.vaults, [name]: !value?.checked}});
@@ -41,7 +42,7 @@ function ProtocolsTable() {
         menuFields={menuFields}
         onChange={onChange}
         isOpen={isOpen}
-        sum={9337337.0}
+        sum={totalTableValue}
       />
       <div className={classNames(styles.table_container, {[styles.hidden]: tableIsOpen})}>
         <div className={styles.title_container}>
