@@ -9,7 +9,7 @@ import MenuArrow from 'common/components/MenuArrow/MenuArrow';
 import iconsObj from 'assets/icons/iconsObj';
 import classNames from 'classnames';
 
-const NetworkDropdownItem = (dropdownItem: NetworkDropdownItemConfig) => {
+const NetworkDropdownItem = (dropdownItem: NetworkDropdownItemConfig, onClick: () => void, checked = false) => {
   return (
     <label>
       {dropdownItem?.icon && (
@@ -18,8 +18,13 @@ const NetworkDropdownItem = (dropdownItem: NetworkDropdownItemConfig) => {
         </div>
       )}
       <div>{[dropdownItem.title]}</div>
-      <div className={styles.iconContainer}>
-        <Icon src={dropdownItem.icon} className={styles.icon} />
+      <div className={styles.lastIconContainer}>
+        {
+          checked ? <Icon src={iconsObj.checkedIcon} className={styles.icon} style={{margin: 0}} />
+            : <div className={styles.empty}>
+              <img src={iconsObj.checkedIcon} style={{width: 24, height: 24, opacity: 0}} />
+            </div>
+        }
       </div>
       <input type='checkbox' name={dropdownItem?.name} />
     </label>
@@ -47,7 +52,7 @@ function NetworkDropdown({ array, current, isOpen, setIsOpen, onClick, className
               className={styles.menu_item_dropdown}
               key={dropdownItem.id}
             >
-              <NetworkDropdownItem {...dropdownItem} onClick={onClick} key={dropdownItem.id} />
+              <NetworkDropdownItem {...dropdownItem} che onClick={onClick} key={dropdownItem.id} />
             </div>
           ))}
         </div>

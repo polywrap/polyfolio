@@ -13,6 +13,7 @@ export interface IconsMapper extends Record<string, unknown> {
   protocolGel: string;
   protocolEth: string;
   protocolUfo: string;
+  checkedIcon: string;
   assetsUsdt: string;
   disconnect: string;
   mobileMenu: string;
