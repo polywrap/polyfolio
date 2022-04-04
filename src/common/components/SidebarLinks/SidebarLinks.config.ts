@@ -20,4 +20,19 @@ const sidebarLinks: SidebarLink[] = [
   },
 ];
 
-export {sidebarLinks};
+const networkDropdown = [
+  {
+    id: 1,
+    icon: iconsObj.ethereum,
+    title: 'Ethereum',
+    name: 'ethereum'
+  },
+  {
+    id: 2,
+    icon: iconsObj.polygon,
+    title: 'Polygon',
+    name: 'polygon'
+  },
+];
+
+export {sidebarLinks, networkDropdown};
