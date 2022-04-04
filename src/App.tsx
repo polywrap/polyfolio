@@ -26,10 +26,6 @@ function App() {
   useEffect(() => {
     if (MetaMaskOnboarding.isMetaMaskInstalled()) {
       window['ethereum'].on('accountsChanged', check);
-
-      return () => {
-        window['ethereum'].off('accountsChanged', check);
-      };
     }
   }, []);
 
@@ -108,11 +104,7 @@ function App() {
           />
           <Route
             path={RoutePath.Settings}
-            element={
-              <ProtectedRoute user={user}>
-                <SettingsPage />
-              </ProtectedRoute>
-            }
+            element={<SettingsPage />}
           />
           <Route path={'*'} element={<Navigate to={RoutePath.BaseRoute} />} />
         </Fragment>

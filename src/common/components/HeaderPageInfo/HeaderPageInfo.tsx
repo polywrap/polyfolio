@@ -8,7 +8,7 @@ import {content} from './HeaderPageInfo.config';
 import numberFormatter from 'utils/numberFormatter';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 
-function HeaderPageInfo({title}: {title: number}) {
+function HeaderPageInfo({title}: {title: string}) {
   const theme = useTheme();
   const translation = useTranslation();
 

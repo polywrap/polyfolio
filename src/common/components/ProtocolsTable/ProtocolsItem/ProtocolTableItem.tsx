@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './ProtocolTableItem.module.scss';
-import useTranslation from 'common/hooks/useTranslation/useTranslation';
+//import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import Icon from 'common/components/Icon/Icon';
 import numberFormatter from 'utils/numberFormatter';
 import {useNavigate} from 'react-router-dom';
@@ -12,7 +12,7 @@ import classNames from 'classnames';
 
 function ProtocolsItem(menuItem) {
   const navigate = useNavigate();
-  const translation = useTranslation();
+  //const translation = useTranslation();
   const {
     secondaryTitleDollar,
     secondaryTitlePercent,
@@ -34,7 +34,7 @@ function ProtocolsItem(menuItem) {
         <div className={styles.menu_item}>
           <div className={styles.title_container}>
             <Icon src={icon} className={styles.icon} />
-            <div className={styles.title}>{translation.Protocols[title]}</div>
+            <div className={styles.title}>{title}</div>
           </div>
           <PricesValue
             secondaryPricePercentTitle={secondaryTitlePercent}

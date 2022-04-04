@@ -1,3 +1,3 @@
-export default function numberFormatter({value, size}: {size: number; value: number}) {
-  return value.toLocaleString('en-US', {minimumFractionDigits: size});
+export default function numberFormatter({value, size}) {
+  return Number(value).toLocaleString('en-US', {minimumFractionDigits: size});
 }

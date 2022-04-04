@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, {useState} from 'react';
 import classNames from 'classnames';
 import Icon from 'common/components/Icon/Icon';
@@ -102,7 +101,7 @@ function HeaderTable({
         />
       </div>
       <div className={styles.filter_container}>
-        <h4>${numberFormatter({value: sum, size: 2})}</h4>
+        <h4>${numberFormatter({value: sum ?? 0, size: 2})}</h4>
         <TooltipTrigger isOpen={filterIsOpen} placement={'bottom-end'} popper={<Menu />}>
           <button onClick={() => setFilterIsOpen()}>
             <Icon src={iconsObj.filterIcon} className={styles.icon} />

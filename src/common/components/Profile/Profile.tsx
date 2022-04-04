@@ -15,6 +15,7 @@ import useOnClickOutside from 'common/hooks/useOnClickOutside/useOnClickOutside'
 import ProfileDropdownMenu from 'common/components/ProfileDropdownMenu/ProfileDropdownMenu';
 import Button from '../Button/Button';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
+import useWallet from 'common/hooks/useWallet/useWallet';
 
 const MOCK_VALUE = 13337337;
 
@@ -23,6 +24,8 @@ function Profile() {
   const ref = useRef(null);
   const translation = useTranslation();
   const {user, logOut} = useAuth();
+  const {connect} = useWallet();
+  
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   useOnClickOutside(ref.current, () => isOpen && setIsOpen(false));
@@ -53,7 +56,7 @@ function Profile() {
       ) : (
         <div className={styles.public_profile}>
           <div className={styles.title}>{translation.Profile.title}</div>
-          <Button title={translation.Profile.button} size={'small'} />
+          <Button title={translation.Profile.button} onClick={() => connect()} size={'small'} />
         </div>
       )}
     </div>

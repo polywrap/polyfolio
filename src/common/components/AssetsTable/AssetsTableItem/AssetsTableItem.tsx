@@ -40,8 +40,8 @@ function AssetsItem(menuItem) {
           <div className={styles.title_container}>
             <Icon src={icon} className={styles.icon} />
             <div>
-              <div className={styles.title}>{translation.Assets[title]}</div>
-              <div className={styles.titleSecondary}>{translation.Assets[secondaryTitle]}</div>
+              <div className={styles.title}>{title}</div>
+              <div className={styles.titleSecondary}>{secondaryTitle}</div>
             </div>
           </div>
           <div
@@ -66,13 +66,13 @@ function AssetsItem(menuItem) {
             </div>
           </div>
           <PricesValue
-            secondaryPricePercentTitle={secondaryPricePercentTitle}
-            pricePercentDollar={pricePercentDollar}
+            secondaryPricePercentTitle={numberFormatter({value: secondaryPricePercentTitle ?? 0, size: 2})}
+            pricePercentDollar={numberFormatter({value: pricePercentDollar ?? 0, size: 2})}
             className={classNames(styles.price_container, {
               [styles.hidden]: filters.assets.price,
             })}
             valueIsMinus={valueIsMinus}
-            priceTitle={priceTitle}
+            priceTitle={numberFormatter({value: priceTitle ?? 0, size: 2})}
           />
           <div
             className={classNames(styles.value_container, {
