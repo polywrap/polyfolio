@@ -2,7 +2,7 @@ import {AssetsItem} from './AssetsTableItem.types';
 import iconsObj from 'assets/icons/iconsObj';
 import RoutePath from 'common/modules/routing/routing.enums';
 import {useRecoilValue} from 'recoil';
-import {allAssetsState, allAssetsSumState} from 'common/hooks/useData/useData';
+import {allAssetsState, allAssetsSumState} from 'common/hooks/useBalance/useBalance';
 import {rmCommasFromNum} from 'utils/helpers';
 
 

@@ -22,7 +22,7 @@ export const allAssetsSumState = atom({
   default: null,
 });
 
-export default function useData() {
+export default function useBalance() {
   const {user} = useAuth();
 
   const [, setBalance] = useRecoilState(balanceState);
@@ -41,7 +41,7 @@ export default function useData() {
     }`,
   });
 
-  const getData = async () => {
+  const getBalance = async () => {
     if (user && !loading && !data) {
       const {data: response, errors} = await execute({
         accountAddress: user,
@@ -68,5 +68,5 @@ export default function useData() {
     }
   };
 
-  return {getData};
+  return {getBalance};
 }

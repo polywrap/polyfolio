@@ -14,7 +14,7 @@ import HeaderTable from '../HeaderTable/HeaderTable';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
-import {allAssetsSumState} from 'common/hooks/useData/useData';
+import {allAssetsSumState} from 'common/hooks/useBalance/useBalance';
 
 function AssetsTable() {
   const allAssetsSum = useRecoilValue(allAssetsSumState);

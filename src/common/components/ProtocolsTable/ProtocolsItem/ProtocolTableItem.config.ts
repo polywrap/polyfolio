@@ -1,7 +1,7 @@
 import {ProtocolsItem} from './ProtocolTableItem.types';
 import iconsObj from 'assets/icons/iconsObj';
 import RoutePath from 'common/modules/routing/routing.enums';
-import {balanceState} from 'common/hooks/useData/useData';
+import {balanceState} from 'common/hooks/useBalance/useBalance';
 import {useRecoilValue} from 'recoil';
 import {rmCommasFromNum} from 'utils/helpers';
 
