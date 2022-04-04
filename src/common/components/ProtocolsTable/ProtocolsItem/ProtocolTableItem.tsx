@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './ProtocolTableItem.module.scss';
 //import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import Icon from 'common/components/Icon/Icon';
-import {toFixed} from 'utils/helpers';
+import numberFormatter from 'utils/numberFormatter';
 import {useNavigate} from 'react-router-dom';
 
 import MenuArrow from 'common/components/MenuArrow/MenuArrow';
@@ -43,7 +43,7 @@ function ProtocolsItem(menuItem) {
               [styles.hidden]: filters.protocols.value,
             })}
             valueIsMinus={valueIsMinus}
-            priceTitle={toFixed({value: valueTitle, size: 2})}
+            priceTitle={valueTitle}
           />
           <div
             className={classNames(styles.claimable_container, {
@@ -51,7 +51,7 @@ function ProtocolsItem(menuItem) {
             })}
           >
             <div className={styles.secondaryTitle}>
-              ${toFixed({value: claimableValue, size: 2})}
+              ${numberFormatter({value: claimableValue, size: 2})}
             </div>
             <MenuArrow className={styles.arrowIcon} startPosition="right" size="10px" />
           </div>

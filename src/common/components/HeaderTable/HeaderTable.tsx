@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, {useState} from 'react';
 import classNames from 'classnames';
 import Icon from 'common/components/Icon/Icon';

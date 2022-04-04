@@ -3,6 +3,7 @@ import iconsObj from 'assets/icons/iconsObj';
 import RoutePath from 'common/modules/routing/routing.enums';
 import {balanceState} from 'common/hooks/useData/useData';
 import {useRecoilValue} from 'recoil';
+import {rmCommasFromNum} from 'utils/helpers';
 
 export const GetProtocols = () => {
   const balance = useRecoilValue(balanceState);
@@ -13,10 +14,10 @@ export const GetProtocols = () => {
       menuItems.push({
         icon: iconsObj.protocolBardger,
         link: `${RoutePath.Protocol}`,
-        secondaryTitleDollar: 777,
-        secondaryTitlePercent: 777,
-        claimableValue: 777,
-        valueTitle: balance?.protocols[i].assets[0].balance.token.values[0].value,
+        secondaryTitleDollar: rmCommasFromNum(777),
+        secondaryTitlePercent: rmCommasFromNum(777),
+        claimableValue: rmCommasFromNum(777),
+        valueTitle: rmCommasFromNum(balance?.protocols[i].assets[0].balance.token.values[0].value),
         valueIsMinus: false,
         title: balance?.protocols[i].protocol.name,
         id: balance?.protocols[i].protocol.id,

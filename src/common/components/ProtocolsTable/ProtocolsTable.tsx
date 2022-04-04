@@ -30,7 +30,7 @@ function ProtocolsTable() {
   };
 
   const summaryValue = useMemo(() => {
-    return _sumBy(menuItems, (val) => val.valueTitle)
+    return _sumBy(menuItems, (val) => Number(val.valueTitle))
   }, [menuItems])
 
   return (
