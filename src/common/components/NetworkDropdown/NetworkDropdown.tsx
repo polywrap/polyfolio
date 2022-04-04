@@ -4,34 +4,44 @@ import _map from 'lodash/map';
 import styles from './NetworkDropdown.module.scss';
 
 import Icon from 'common/components/Icon/Icon';
-import { NetworkDropdownItemConfig } from './NetworkDropdown.types';
 import MenuArrow from 'common/components/MenuArrow/MenuArrow';
 import iconsObj from 'assets/icons/iconsObj';
 import classNames from 'classnames';
 
-const NetworkDropdownItem = (dropdownItem: NetworkDropdownItemConfig, onClick: () => void, checked = false) => {
+const NetworkDropdownItem = ({
+  name,
+  icon,
+  checked,
+  title,
+  onChange,
+}) => {
   return (
-    <label>
-      {dropdownItem?.icon && (
+    <label htmlFor={name}>
+      {icon && (
         <div className={styles.iconContainer}>
-          <Icon src={dropdownItem.icon} className={styles.icon} />
+          <Icon src={icon} className={styles.icon} />
         </div>
       )}
-      <div>{[dropdownItem.title]}</div>
+      <div>{[title]}</div>
       <div className={styles.lastIconContainer}>
         {
-          checked ? <Icon src={iconsObj.checkedIcon} className={styles.icon} style={{margin: 0}} />
+          checked ? <Icon src={iconsObj.checkedIcon} className={styles.icon} style={{ margin: 0 }} />
             : <div className={styles.empty}>
-              <img src={iconsObj.checkedIcon} style={{width: 24, height: 24, opacity: 0}} />
+              <img src={iconsObj.checkedIcon} style={{ width: 24, height: 24, opacity: 0 }} />
             </div>
         }
       </div>
-      <input type='checkbox' name={dropdownItem?.name} />
+      <input
+        type='checkbox'
+        checked={checked}
+        onChange={() => onChange(name)}
+        id={name}
+      />
     </label>
   );
 };
 
-function NetworkDropdown({ array, current, isOpen, setIsOpen, onClick, className }) {
+function NetworkDropdown({ array, current, isOpen, setIsOpen, onChange, className }) {
   return (
     <>
       <div className={`${styles.menu_item_dropdown} ${styles.dropdown}`}>
@@ -52,7 +62,7 @@ function NetworkDropdown({ array, current, isOpen, setIsOpen, onClick, className
               className={styles.menu_item_dropdown}
               key={dropdownItem.id}
             >
-              <NetworkDropdownItem {...dropdownItem} che onClick={onClick} key={dropdownItem.id} />
+              <NetworkDropdownItem {...dropdownItem} onChange={onChange} key={dropdownItem.id} />
             </div>
           ))}
         </div>
