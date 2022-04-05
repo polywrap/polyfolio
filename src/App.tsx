@@ -14,6 +14,7 @@ import Portfolio from 'pages/DashboardPage/Portfolio/Portfolio';
 import Transactions from 'pages/DashboardPage/Transactions/Transactions';
 import SettingsPage from 'pages/SettingsPage/SettingsPage';
 import AssetPage from 'pages/DashboardPage/AssetPage/AssetPage';
+import PageUnderConstruction from 'pages/PageUnderConstruction/PageUnderConstruction';
 import WrapperInfoPage from 'pages/WrapperInfoPage/WrapperInfoPage';
 import NetworksInfo from 'pages/WrapperInfoPage/NetworksInfo/NetworksInfo';
 import ProtocolsInfo from 'pages/WrapperInfoPage/ProtocolsInfo/ProtocolsInfo';
@@ -57,7 +58,6 @@ function App() {
               </AuthorizedMainRoute>
             }
           />
-          <Route path={RoutePath.Docs} element={<LandingPage />} />
           <Route
             path={RoutePath.Asset}
             element={
@@ -105,6 +105,18 @@ function App() {
           <Route
             path={RoutePath.Settings}
             element={<SettingsPage />}
+          />
+          <Route
+            path={RoutePath.Support}
+            element={<PageUnderConstruction />}
+          />
+          <Route
+            path={RoutePath.Polywrap}
+            element={<PageUnderConstruction />}
+          />
+          <Route
+            path={RoutePath.Docs}
+            element={<PageUnderConstruction />}
           />
           <Route path={'*'} element={<Navigate to={RoutePath.BaseRoute} />} />
         </Fragment>
