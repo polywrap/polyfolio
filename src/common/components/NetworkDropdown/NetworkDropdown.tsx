@@ -25,10 +25,15 @@ const NetworkDropdownItem = ({
       <div>{[title]}</div>
       <div className={styles.lastIconContainer}>
         {
-          checked ? <Icon src={iconsObj.checkedIcon} className={styles.icon} style={{ margin: 0 }} />
-            : <div className={styles.empty}>
-              <img src={iconsObj.checkedIcon} style={{ width: 24, height: 24, opacity: 0 }} />
-            </div>
+          checked
+          ? (
+              <Icon src={iconsObj.checkedIcon} className={styles.icon} style={{ margin: 0 }} />
+            )
+            : (
+              <div className={styles.empty}>
+                <img src={iconsObj.checkedIcon} style={{ width: 24, height: 24, opacity: 0 }} />
+              </div>
+            )
         }
       </div>
       <input

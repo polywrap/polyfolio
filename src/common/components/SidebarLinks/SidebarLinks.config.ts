@@ -26,7 +26,7 @@ const networkDropdown: INetworksList[] = [
     icon: iconsObj.ethereum,
     title: 'Ethereum',
     name: 'ethereum',
-    checked: false,
+    checked: true,
   },
   {
     id: 2,

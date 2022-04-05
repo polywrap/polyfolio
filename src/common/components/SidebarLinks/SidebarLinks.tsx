@@ -21,7 +21,6 @@ function SidebarLinks() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleNetworkChange = useCallback((name) => {
-    console.log(name)
     setNetworkList(networkList.map(network =>
       network.name === name
         ? {...network, checked: !network.checked}
