@@ -7,6 +7,7 @@ import {RecoilRoot} from 'recoil';
 import App from './App';
 import 'common/themes/styles.scss';
 import {Web3ApiProvider} from '@web3api/react';
+import {ethereumPlugin} from '@web3api/ethereum-plugin-js';
 import reportWebVitals from './reportWebVitals';
 import ThemeContext from 'common/themes/Themes.context';
 import WalletContext from 'common/services/Wallet.context';
@@ -20,6 +21,20 @@ if (process.env.NODE_ENV !== 'development') {
   console.error = () => {};
 }
 
+const plugins = [
+  {
+    uri: "ens/ethereum.web3api.eth",
+    plugin: ethereumPlugin({
+      networks: {
+        mainnet: {
+          provider:
+            "https://mainnet.infura.io/v3/b00b2c2cc09c487685e9fb061256d6a6",
+        },
+      },
+    }),
+  },
+]
+
 ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>
@@ -29,7 +44,7 @@ ReactDOM.render(
             <CurrencyContext>
               <BrowserRouter>
                 <WalletContext>
-                  <Web3ApiProvider>
+                  <Web3ApiProvider plugins={plugins}>
                     <App />
                   </Web3ApiProvider>
                 </WalletContext>
