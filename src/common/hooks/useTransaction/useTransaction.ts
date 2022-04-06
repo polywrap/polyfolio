@@ -33,18 +33,21 @@ export default function useTransactions() {
     query: `query {
       getTransactions(
         accountAddress: $accountAddress
-        vsCurrencies: $vsCurrencies
+        vsCurrency: $vsCurrency
       )
     }`,
     config: {
       envs: [
         {
-          uri: "ens/ethereum.web3api.eth",
-          query: {
+          uri: 'ens/rinkeby/mock.defiwrapper.eth',
+          common: {
             connection: {
-              node: "https://mainnet.infura.io/v3/b00b2c2cc09c487685e9fb061256d6a6",
+              node: null,
+              networkNameOrChainId: 1,
             },
           },
+          query: {},
+          mutation: {},
         },
       ],
     },
@@ -54,7 +57,7 @@ export default function useTransactions() {
     if (user && !loading && !data) {
       const {data: response, errors} = await execute({
         accountAddress: user,
-        vsCurrencies: 'USDT',
+        vsCurrency: 'USDT',
       });
   
       if (response && !errors?.length) {
