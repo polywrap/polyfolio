@@ -1,5 +1,5 @@
 import iconsObj from 'assets/icons/iconsObj';
-import {SidebarLink} from './SidebarLinks.types';
+import {SidebarLink, INetworksList} from './SidebarLinks.types';
 import RoutePath from 'common/modules/routing/routing.enums';
 
 const sidebarLinks: SidebarLink[] = [
@@ -20,4 +20,21 @@ const sidebarLinks: SidebarLink[] = [
   },
 ];
 
-export {sidebarLinks};
+const networkDropdown: INetworksList[] = [
+  {
+    id: 1,
+    icon: iconsObj.ethereum,
+    title: 'Ethereum',
+    name: 'ethereum',
+    checked: true,
+  },
+  {
+    id: 2,
+    icon: iconsObj.polygon,
+    title: 'Polygon',
+    name: 'polygon',
+    checked: false,
+  },
+];
+
+export {sidebarLinks, networkDropdown};

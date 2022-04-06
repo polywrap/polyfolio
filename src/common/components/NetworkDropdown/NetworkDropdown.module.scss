@@ -1,0 +1,123 @@
+@import 'common/themes/mixins';
+
+.dark {
+	--color: var(--color_blue_gray_50);
+	--bg_dropdown: rgba(30, 43, 69, 1);
+	--bg_hover: var(--color_blue_gray_700);
+	--border: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.light {
+	--color: var(--color_blue_gray);
+	--bg_hover: rgba(30, 43, 69, 0.1);
+	--bg_dropdown: rgba(255, 255, 255, 1);
+	--border: 1px solid var(--color_blue_gray_200);
+}
+
+.dropdown {
+	width: 100%;
+	position: relative;
+	display: inline-block;
+	border: 1px solid rgba(255, 255, 255, 0.13);
+	border-radius: 8px;
+
+	.icon {
+		margin-right: 10px;
+		width: 24px;
+		height: 24px;
+	}
+
+	.dropbtn {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		background-color: var(--bg_dropdown);
+		color: var(--color);
+		font-size: 16px;
+		width: 99.6%;
+		cursor: pointer;
+		border: var(--border);
+		border-radius: 8px;
+		padding: 16px 0 16px 16px;
+		margin: 0;
+	}
+
+	.dropdown_content {
+		display: none;
+		position: absolute;
+		background-color: var(--color_blue_gray_800);
+		border: var(--border);
+		border-radius: 8px;
+		border-top: none;
+		width: 99.6%;
+		padding: 16px 25px 16px 16px;
+		z-index: 1;
+	}
+
+	.show {
+		display: block;
+	}
+
+	.showBtn {
+		border-radius: 8px;
+	}
+
+	.menu_item_dropdown {
+		display: flex;
+		align-items: center;
+		width: 99.6%;
+		border-radius: 4px;
+		cursor: pointer;
+
+		&:not(:first-child) {
+			margin-top: 20px;
+		}
+
+		&:not(.menu_item_dropdown_current):hover {
+			background-color: var(--color_blue_gray_700);
+		}
+	}
+
+	.menu_item_dropdown {
+		label {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			width: 99.6%;
+			border-radius: 4px;
+			padding: 6px 5px 6px 5px;
+			cursor: pointer;
+
+			&:not(:first-child) {
+				margin-top: 20px;
+			}
+
+			&:not(.menu_item_dropdown_current):hover {
+				background-color: var(--color_blue_gray_700);
+			}
+
+			.iconContainer, .lastIconContainer {
+				display: flex;
+				align-items: center;
+			}
+			.lastIconContainer {
+				margin-left: auto;
+
+				.empty {
+					height: 24px;
+					width: 24px;
+					border: 1px solid rgba(255, 255, 255, 0.13);
+					border-radius: 8px;
+				}
+			}
+		}
+	}
+
+	.menu_item_dropdown_current {
+		margin-bottom: 0;
+	}
+
+	.menu_item_dropdown>div {
+		cursor: pointer;
+	}
+}

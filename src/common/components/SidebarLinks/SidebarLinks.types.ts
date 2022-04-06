@@ -4,3 +4,11 @@ export interface SidebarLink {
   icon: string;
   isExternal?: boolean;
 }
+
+export interface INetworksList {
+  id: number;
+  title: string;
+  name: string;
+  icon: string;
+  checked: boolean;
+}
