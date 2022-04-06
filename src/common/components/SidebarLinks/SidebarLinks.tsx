@@ -29,7 +29,6 @@ function SidebarLinks() {
   }, [networkList])
 
   useEffect(() => {
-    console.log(networkList)
     let checked = false;
     networkList.forEach((network) => {
       if (network.checked) {
