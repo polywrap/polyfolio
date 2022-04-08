@@ -1,4 +1,35 @@
 import iconsObj from 'assets/icons/iconsObj';
+import {transactionState} from 'common/hooks/useTransaction/useTransaction';
+import {useRecoilValue} from 'recoil';
+
+const GetTransactions = () => {
+  const state = useRecoilValue(transactionState);
+  const data = [];
+
+  const {transaction} = state;
+
+  for (let i = 0; i < transaction.length; i++) {
+    data.push({
+      id: 1,
+      type: 'send',
+      icon: iconsObj.sendTransaction,
+      time: '10:09 AM',
+      token: [
+        {
+          id: '1.1',
+          icon: iconsObj.assetsToken,
+          token_amount: '5,323.39',
+          token_ticker: 'AVAX',
+          dollar_amount: '163.63',
+        }
+      ],
+      subjectOfAction: {
+        icon: iconsObj.profile,
+        address: '0x378...3832',
+      },
+    })
+  }
+}
 
 export const data = [
   {

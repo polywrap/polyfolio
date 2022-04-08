@@ -22,7 +22,6 @@ function DashboardPage({ children }: { children: ReactNode }) {
     if (user) {
       getBalance();
       getTransactions();
-      console.log('effect')
     }
   }, [getBalance, getTransactions, user])
 
