@@ -3,7 +3,7 @@ import _ from 'lodash';
 
 import {useWeb3ApiQuery} from '@web3api/react';
 import useAuth from '../useAuth/useAuth';
-import {getAssetsValueSum} from 'utils/helpers';
+import {getAssetsValueSum, ejectAssetsFromProtocol} from 'utils/dataFormating';
 
 const BALANCE_STATE_KEY = 'polyfolio_balance';
 const ALL_ASSETS_STATE_KEY = 'polyfolio_allAssets';
@@ -52,7 +52,7 @@ export default function useBalance() {
   
       if (response && !errors?.length) {
         const balance = response?.getAccountBalance;
-        const ejectedAssets = _.flatten(_.map(balance['protocols'], item => item.assets));
+        const ejectedAssets = ejectAssetsFromProtocol(balance['protocols']);
         const sum = getAssetsValueSum(ejectedAssets);
         console.log(balance);
 
