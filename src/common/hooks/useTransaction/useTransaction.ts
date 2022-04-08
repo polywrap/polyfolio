@@ -43,7 +43,7 @@ export default function useTransactions() {
           common: {
             connection: {
               node: null,
-              networkNameOrChainId: 1,
+              networkNameOrChainId: '1',
             },
           },
           query: {},
