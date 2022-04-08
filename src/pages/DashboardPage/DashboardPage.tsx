@@ -10,20 +10,21 @@ import useTheme from 'common/hooks/useTheme/useTheme';
 import Sidebar from 'common/components/Sidebar/Sidebar';
 import useAuth from 'common/hooks/useAuth/useAuth';
 import useBalance from 'common/hooks/useBalance/useBalance';
-//import useTransactions from 'common/hooks/useTransaction/useTransaction';
+import useTransactions from 'common/hooks/useTransaction/useTransaction';
 
 function DashboardPage({ children }: { children: ReactNode }) {
   const theme = useTheme();
   const {user} = useAuth();
   const {getBalance} = useBalance();
-  //const {getTransactions} = useTransactions();
+  const {getTransactions} = useTransactions();
 
   useEffect(function DashboardPage () {
     if (user) {
       getBalance();
-      //getTransactions();
+      getTransactions();
+      console.log('effect')
     }
-  }, [getBalance, user])
+  }, [getBalance, getTransactions, user])
 
   return (
     <div className={classNames(styles.landing_page, styles[theme])}>

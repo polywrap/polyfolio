@@ -1,5 +1,5 @@
+import {useCallback} from 'react';
 import {atom, useRecoilState} from 'recoil';
-
 import {useWeb3ApiQuery} from '@web3api/react';
 import useAuth from '../useAuth/useAuth';
 import {getAssetsValueSum, ejectAssetsFromProtocol} from 'utils/dataFormating';
@@ -41,7 +41,7 @@ export default function useBalance() {
     }`,
   });
 
-  const getBalance = async (/* id, name */) => {
+  const getBalance = useCallback(async (/* id, name */) => {
     if (user && !loading && !data) {
       const {data: response, errors} = await execute({
         accountAddress: user,
@@ -67,7 +67,7 @@ export default function useBalance() {
         console.log('-----ERRORS');
       }
     }
-  };
+  }, [data, execute, loading, setAllAssets, setAllAssetsSum, setBalance, user]);
 
   /* const balanceInitialization = () => {
     networks.forEach((item) => getBalance(item.chainId, name))
