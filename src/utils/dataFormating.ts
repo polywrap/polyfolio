@@ -11,3 +11,4 @@ export const getAssetsValueSum = (assets) => {
 
 export const ejectAssetsFromProtocol = (protocols) => 
   _.flatten(_.map(protocols, item => item.assets));
+

@@ -1,9 +1,9 @@
 import {atom, useRecoilState} from 'recoil';
-import _ from 'lodash';
 
 import {useWeb3ApiQuery} from '@web3api/react';
 import useAuth from '../useAuth/useAuth';
 import {getAssetsValueSum, ejectAssetsFromProtocol} from 'utils/dataFormating';
+// import {networks} from 'utils/constants';
 
 const BALANCE_STATE_KEY = 'polyfolio_balance';
 const ALL_ASSETS_STATE_KEY = 'polyfolio_allAssets';
@@ -41,7 +41,7 @@ export default function useBalance() {
     }`,
   });
 
-  const getBalance = async () => {
+  const getBalance = async (/* id, name */) => {
     if (user && !loading && !data) {
       const {data: response, errors} = await execute({
         accountAddress: user,
@@ -56,6 +56,7 @@ export default function useBalance() {
         const sum = getAssetsValueSum(ejectedAssets);
         console.log(balance);
 
+        // setBalance({...balance as Record<string, unknown>, [name]: balance });
         setBalance(balance);
         setAllAssets(ejectedAssets);
         setAllAssetsSum(sum);
@@ -67,6 +68,10 @@ export default function useBalance() {
       }
     }
   };
+
+  /* const balanceInitialization = () => {
+    networks.forEach((item) => getBalance(item.chainId, name))
+  } */
 
   return {getBalance};
 }

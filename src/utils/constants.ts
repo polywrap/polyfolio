@@ -1,4 +1,12 @@
-export const networks = {
-  ethereum: {jsonRPC: 'http://infura.io/...', chainId: 1},
-  polygon: {jsonRPC: 'http://infura.io/...', chainId: 137},
-}
+export const networks = [
+  {
+    name: 'ethereum',
+    jsonRPC: 'http://infura.io/...',
+    chainId: 1,
+  },
+  {
+    name: 'polygon',
+    jsonRPC: 'http://infura.io/...',
+    chainId: 137,
+  }
+];
