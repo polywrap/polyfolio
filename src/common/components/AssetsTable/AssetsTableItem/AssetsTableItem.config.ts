@@ -1,16 +1,20 @@
-import {AssetsItem} from './AssetsTableItem.types';
-import iconsObj from 'assets/icons/iconsObj';
-import RoutePath from 'common/modules/routing/routing.enums';
 import {useRecoilValue} from 'recoil';
-import {allAssetsState, allAssetsSumState} from 'common/hooks/useBalance/useBalance';
+import iconsObj from 'assets/icons/iconsObj';
 import {rmCommasFromNum} from 'utils/helpers';
+import {AssetsItem} from './AssetsTableItem.types';
+import RoutePath from 'common/modules/routing/routing.enums';
+import balanceState from 'common/modules/atoms/balanceState';
+import {ejectAssetsFromProtocol} from 'utils/dataFormating';
+import allAssetsSumState from 'common/modules/atoms/allAssetsSum';
 
 
-const GetItems = () => {
-  const allAssets = useRecoilValue(allAssetsState);
-  const allAssetsSum = useRecoilValue(allAssetsSumState);
+const useAssets = () => {
+  const balance = useRecoilValue(balanceState);
+  const assetsSum = useRecoilValue(allAssetsSumState);
   const menuItems: AssetsItem[] = [];
 
+  const allAssets = ejectAssetsFromProtocol(balance?.ethereum['protocols']);
+  
   if (allAssets) {
     for (let i = 0; i < allAssets.length; i++) {
       menuItems.push({
@@ -25,7 +29,7 @@ const GetItems = () => {
         valueIsMinus: false,
         priceTitle: rmCommasFromNum(allAssets[i].balance.token.values[0].price),
         title: allAssets[i].balance.token.token.symbol,
-        percent: Number(rmCommasFromNum(allAssets[i].balance.token.values[0].value)) * 100 / allAssetsSum,
+        percent: Number(rmCommasFromNum(allAssets[i].balance.token.values[0].value)) * 100 / assetsSum["ethereum"],
         id: allAssets[i].balance.token.token.symbol.toLowerCase(),
       });
     }
@@ -34,4 +38,4 @@ const GetItems = () => {
   return menuItems;
 }
 
-export default GetItems;
+export default useAssets;

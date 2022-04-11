@@ -10,7 +10,7 @@ import VaultsTable from 'common/components/VaultsTable/VaultsTable';
 import AssetTransaction from 'common/components/AssetTransaction/AssetTransaction';
 import currentProtocol from 'common/modules/atoms/currentProtocol';
 import {useRecoilState, useRecoilValue} from 'recoil';
-import {balanceState} from 'common/hooks/useBalance/useBalance';
+import balanceState from 'common/modules/atoms/balanceState';
 import {getAssetsValueSum} from 'utils/dataFormating';
 
 function ProtocolsInfo() {

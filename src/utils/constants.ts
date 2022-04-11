@@ -4,9 +4,9 @@ export const networks = [
     jsonRPC: 'http://infura.io/...',
     chainId: 1,
   },
-  {
+  /* {
     name: 'polygon',
     jsonRPC: 'http://infura.io/...',
     chainId: 137,
-  }
+  } */
 ];
