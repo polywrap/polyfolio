@@ -20,6 +20,7 @@ export const useProtocols = () => {
         valueTitle: rmCommasFromNum(balance?.ethereum.protocols[i].assets[0].balance.token.values[0].value),
         valueIsMinus: false,
         title: balance?.ethereum.protocols[i].protocol.name,
+        network: balance?.ethereum.network,
         id: balance?.ethereum.protocols[i].protocol.id,
       })
     }

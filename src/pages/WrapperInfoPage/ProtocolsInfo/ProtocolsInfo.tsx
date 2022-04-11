@@ -24,13 +24,13 @@ function ProtocolsInfo() {
 
   useEffect(() => {
     if (!currProtocol) {
-      _map(balance?.protocols, (protocol) => {
+      _map(balance[current.network.toLowerCase()]?.protocols, (protocol) => {
         if (protocol.protocol.id === current.id) {
           setCurrProtocol(protocol);
         }
       });
     }
-  }, [balance?.protocols, currProtocol, current.id, setCurrProtocol])
+  }, [balance, balance.protocols, currProtocol, current.id, current.network, setCurrProtocol])
 
   useEffect(() => {
     if (currProtocol) {

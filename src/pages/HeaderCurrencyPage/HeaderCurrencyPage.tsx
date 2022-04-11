@@ -3,7 +3,7 @@ import styles from './HeaderCurrencyPage.module.scss';
 import classNames from 'classnames';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import {useParams, useNavigate} from 'react-router-dom';
-import GetItems from 'common/components/AssetsTable/AssetsTableItem/AssetsTableItem.config';
+import useAssets from 'common/components/AssetsTable/AssetsTableItem/AssetsTableItem.config';
 import Icon from 'common/components/Icon/Icon';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import iconsObj from 'assets/icons/iconsObj';
@@ -15,7 +15,7 @@ function HeaderCurrencyPage() {
   const {id} = useParams();
   const translation = useTranslation();
   const navigate = useNavigate();
-  const menuItems = GetItems();
+  const menuItems = useAssets();
   const currency = _find(menuItems, {id});
 
   return (
@@ -26,8 +26,8 @@ function HeaderCurrencyPage() {
       </button>
       <div className={styles.titleContainer}>
         <Icon src={currency?.iconInfoPage} className={styles.icon} />
-        <h1 className={styles.title}>{translation.Assets[currency?.secondaryTitle]}</h1>
-        <h4 className={styles.secondaryTitle}>{translation.Assets[currency?.title]}</h4>
+        <h1 className={styles.title}>{currency?.secondaryTitle}</h1>
+        <h4 className={styles.secondaryTitle}>{currency?.title}</h4>
       </div>
     </div>
   );
