@@ -17,7 +17,7 @@ const useNetworks = () => {
         secondaryTitle: '5323.39',
         icon: iconsObj.ethereum,
         link: RoutePath.Network,
-        id: item.chainId,
+        id: item.name.toLowerCase(),
       })
     })
   }

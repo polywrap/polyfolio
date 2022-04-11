@@ -10,17 +10,17 @@ import _find from 'lodash/find';
 
 function NetworksInfo() {
   const translation = useTranslation();
-  const {id: idNetworks} = useParams();
+  const {id} = useParams();
   const menuItems = useNetworks();
-  const current = _find(menuItems, {id: +idNetworks});
+  const current = _find(menuItems, {id});
 
   return (
     <>
       <HeaderPage
-        title={`${translation.Networks[current.title]} ${translation.Networks.network}`}
+        title={`${translation.Networks[current?.title]} ${translation.Networks.network}`}
         icon={current?.icon}
       />
-      <HeaderPageInfo title={current.secondaryTitle} />
+      <HeaderPageInfo title={current?.secondaryTitle} />
       <AssetsTable />
       <ProtocolsTable />
     </>

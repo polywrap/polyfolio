@@ -6,9 +6,16 @@ import RoutePath from 'common/modules/routing/routing.enums';
 import balanceState from 'common/modules/atoms/balanceState';
 import {ejectAssetsFromProtocol} from 'utils/dataFormating';
 import allAssetsSumState from 'common/modules/atoms/allAssetsSum';
+import { useLocation } from 'react-router-dom';
+import {getStringFromPath} from 'utils/helpers';
+import { useMemo } from 'react';
 
 
 const useAssets = () => {
+  const {pathname} = useLocation();
+  console.log(pathname);
+  const page = getStringFromPath(pathname, 2);
+  console.log(page);
   const balance = useRecoilValue(balanceState);
   const assetsSum = useRecoilValue(allAssetsSumState);
   const menuItems: AssetsItem[] = [];

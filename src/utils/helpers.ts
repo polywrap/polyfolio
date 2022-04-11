@@ -1,3 +1,4 @@
+import { getPackedSettings } from 'http2';
 import _ from 'lodash';
 
 export const filteredDropdown = (array, currentId) => {
@@ -17,3 +18,7 @@ export const fillArray = (n) => {
 
   return arr;
 };
+
+export const getStringFromPath = (path, index) => {
+  if (path) return path.split('/')[index ?? 1];
+}
