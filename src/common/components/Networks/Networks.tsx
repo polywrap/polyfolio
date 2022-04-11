@@ -7,7 +7,7 @@ import numberFormatter from 'utils/numberFormatter';
 import MenuArrow from 'common/components/MenuArrow/MenuArrow';
 import {useNavigate} from 'react-router-dom';
 import {NetworksItem} from './Networks.types';
-import {menuItems} from './Networks.config';
+import useNetworks from './Networks.config';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import Icon from 'common/components/Icon/Icon';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
@@ -17,6 +17,7 @@ function Networks() {
   const theme = useTheme();
   const translation = useTranslation();
   const navigate = useNavigate();
+  const menuItems = useNetworks();
 
   const MenuItem = (menuItem: NetworksItem) => {
     const path = menuItem.link.replace(':id', `${menuItem.id}`);
