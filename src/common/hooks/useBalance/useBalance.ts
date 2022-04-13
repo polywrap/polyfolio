@@ -53,8 +53,14 @@ export default function useBalance() {
 
   const getBalance = useCallback(async () => {
     if (user && !balance) {
-      networks.forEach(async item => 
-        setBalance({...balance, [item.name.toLowerCase()]: await balanceRequest(item.name.toLowerCase())}))
+      let temporaryBalance = {}
+
+      for (let i = 0; i < networks.length; i++) {
+        const name = networks[i].name;
+        temporaryBalance = {...temporaryBalance, [name]: await balanceRequest(name)};
+      }
+
+      setBalance(temporaryBalance);
     }
   }, [balance, balanceRequest, setBalance, user]);
 

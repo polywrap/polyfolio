@@ -22,7 +22,6 @@ export const getEventType = (eventName, userAddress?, params?) => {
     case 'Approval': return 'approval';
     case 'Transfer':
       let type = '';
-      console.log(params)
       params.forEach(param => {
         if (param.name === 'from' && param.value === userAddress) type = 'send';
         else if (param.name === 'to' && param.value === userAddress) type = 'receive';
@@ -30,20 +29,26 @@ export const getEventType = (eventName, userAddress?, params?) => {
 
       return type
   }
+
+  return '???'
 }
 
 export const getEventIcon = (eventName, userAddress?, params?) => {
-  switch (eventName) {
-    case 'Approval': return iconsObj.approvalTransaction;
-    case 'Transfer':
-      let icon = '';
-      params.forEach(param => {
-        if (param.name === 'from' && param.value === userAddress) icon = iconsObj.sendTransaction;
-        else if (param.name === 'to' && param.value === userAddress) icon = iconsObj.receiveTransaction;
-      })
-
-      return icon
+  if (eventName) {
+    switch (eventName) {
+      case 'Approval': return iconsObj.approvalTransaction;
+      case 'Transfer':
+        let icon = '';
+        params.forEach(param => {
+          if (param.name === 'from' && param.value === userAddress) icon = iconsObj.sendTransaction;
+          else if (param.name === 'to' && param.value === userAddress) icon = iconsObj.receiveTransaction;
+        })
+  
+        return icon
+    }
   }
+
+  return '???'
 }
 
 export const getTransactionAddress = (event, from, to) => {
@@ -57,10 +62,12 @@ export const getTransactionAddress = (event, from, to) => {
     case 'exchange':
       return from;
   }
+
+  return '???'
 }
 
 export const findTokenName = (assets, tokenAddress) => {
-  let name = '';
+  let name = '???';
 
   assets.forEach(asset => {
     if (asset.balance.token.token.address === tokenAddress) {
@@ -81,7 +88,7 @@ export const getTokenAmount = (value, assets, tokenSymbol) => {
     }
   })
 
-  return result.toFixed();
+  return result ? result.toFixed() : '???';
 }
 
 export const getTokenPrice = (assets, tokenSymbol) => {
@@ -93,5 +100,5 @@ export const getTokenPrice = (assets, tokenSymbol) => {
     }
   })
 
-  return price;
+  return price === 0 ? '???' : price;
 }

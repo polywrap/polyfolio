@@ -27,7 +27,7 @@ function Networks() {
         <div className={styles.title_container}>
           <Icon src={menuItem.icon} className={styles.icon} />
           <div>
-            <div className={styles.title}>{translation.Networks[menuItem.title]}</div>
+            <div className={styles.title}>{menuItem.title}</div>
 
             <div className={styles.secondaryTitle}>
               ${numberFormatter({value: menuItem.secondaryTitle, size: 2})}

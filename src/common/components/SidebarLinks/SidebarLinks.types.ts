@@ -6,7 +6,7 @@ export interface SidebarLink {
 }
 
 export interface INetworksList {
-  id: number;
+  id: string;
   title: string;
   name: string;
   icon: string;
