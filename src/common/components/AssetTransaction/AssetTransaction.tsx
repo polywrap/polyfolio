@@ -5,10 +5,11 @@ import style from './AssetTransaction.module.scss';
 import useTheme from "common/hooks/useTheme/useTheme";
 import TableHeader from "../TableHeader/TableHeader";
 import TableBlock from "../TableBlock/TableBlock";
-import { data } from "./mock";
+import useTransactions, { data } from "./mock";
 
 function AssetTransaction() {
   const theme = useTheme()
+  const items = useTransactions()
   
   return (
     <div className={classNames(style[theme], style.transaction)}>

@@ -13,9 +13,9 @@ import { useMemo } from 'react';
 
 const useAssets = () => {
   const {pathname} = useLocation();
-  console.log(pathname);
+  //console.log(pathname);
   const page = getStringFromPath(pathname, 2);
-  console.log(page);
+  //console.log(page);
   const balance = useRecoilValue(balanceState);
   const assetsSum = useRecoilValue(allAssetsSumState);
   const menuItems: AssetsItem[] = [];
