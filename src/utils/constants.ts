@@ -5,10 +5,10 @@ export const networks = [
     chainId: 1,
     title: 'Ethereum',
   },
-/*   {
-    name: 'polygon',
+  {
+    name: 'ropset',
     jsonRPC: 'http://infura.io/...',
-    chainId: 137,
-    title: 'Polygon',
-  } */
+    chainId: 3, //137
+    title: 'Ropsten',
+  }
 ];
