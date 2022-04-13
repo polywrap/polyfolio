@@ -25,12 +25,13 @@ export const getEventType = (eventName, userAddress?, params?) => {
       params.forEach(param => {
         if (param.name === 'from' && param.value === userAddress) type = 'send';
         else if (param.name === 'to' && param.value === userAddress) type = 'receive';
+        else type = 'send'; //temporary
       })
 
       return type
   }
 
-  return '???'
+  return 'send'
 }
 
 export const getEventIcon = (eventName, userAddress?, params?) => {

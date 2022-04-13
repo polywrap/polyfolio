@@ -31,7 +31,7 @@ const useTransactions = () => {
       logs.length > 0 ? logs[0].event.name : null,
       user,
       logs.length > 0 ? logs[0].event.params : null
-    ) ?? '???';
+    );
     const icon = getEventIcon(
       logs.length > 0 ? logs[0].event.name : null,
       user,
@@ -44,10 +44,10 @@ const useTransactions = () => {
       tokenTicker
     ) ?? '???';
     const tokenPrice = getTokenPrice(assets, tokenTicker) ?? '???';
-
+    
     data.push({
       id: transaction.offset,
-      type: event,
+      type: event ?? '???',
       icon,
       time: moment(transaction.timestamp).utc().format('hh:mm'),
       token: [

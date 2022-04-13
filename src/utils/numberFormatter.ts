@@ -1,3 +1,5 @@
 export default function numberFormatter({value, size}) {
-  return Number(value).toLocaleString('en-US', {minimumFractionDigits: size});
+  if (value)
+    return Number(value).toLocaleString('en-US', {minimumFractionDigits: size});
+  else return '???'
 }
