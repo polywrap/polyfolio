@@ -14,7 +14,7 @@ export default function useBalance() {
   const [balance, setBalance] = useRecoilState(balanceState);
   const [allAssetsSum, setAllAssetsSum] = useRecoilState(allAssetsSumState);
 
-  const balanceRequest = useCallback(async (name) => {
+  const balanceRequest = useCallback(async (name, chainId) => {
     const { data: response, errors } = await client.query({
       uri: `ipfs/QmRYP5qwQd7AotVbtcx7KhN8HuHX9DCg8sS9LVE4kstpVw`,
       query: `query {
@@ -30,7 +30,22 @@ export default function useBalance() {
         vsCurrencies: [],
         noTruncate: false,
         underlyingPrice: false,
-      }
+      },
+      config: {
+        envs: [
+          {
+            uri: 'ens/rinkeby/mock.defiwrapper.eth',
+            common: {
+              connection: {
+                node: null,
+                networkNameOrChainId: chainId,
+              },
+            },
+            query: {},
+            mutation: {},
+          },
+        ],
+      }, 
     });
 
     if (response && !errors?.length) {
@@ -57,7 +72,8 @@ export default function useBalance() {
 
       for (let i = 0; i < networks.length; i++) {
         const name = networks[i].name;
-        temporaryBalance = {...temporaryBalance, [name]: await balanceRequest(name)};
+        const chainId = networks[i].chainId.toString();
+        temporaryBalance = {...temporaryBalance, [name]: await balanceRequest(name, chainId)};
       }
 
       setBalance(temporaryBalance);

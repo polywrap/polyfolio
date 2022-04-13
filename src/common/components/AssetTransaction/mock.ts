@@ -35,20 +35,20 @@ const useTransactions = () => {
       logs.length > 0 ? logs[0].event.name : null,
       user,
       logs.length > 0 ? logs[0].event.params : null
-    ) ?? '???';
+    );
     const tokenTicker = findTokenName(assets, logs.length > 0 ? logs[0].contractAddress : null);
     const tokenAmount = getTokenAmount(
       logs.length > 0 ? logs[0].event.params[2].value : null,
       assets,
       tokenTicker
-    ) ?? '???';
-    const tokenPrice = getTokenPrice(assets, tokenTicker) ?? '???';
+    );
+    const tokenPrice = getTokenPrice(assets, tokenTicker);
 
     if (logs[0]) {
       
       data.push({
         id: transaction.offset,
-        type: event ?? '???',
+        type: event,
         icon,
         time: moment(transaction.timestamp).utc().format('hh:mm'),
         token: [
@@ -66,7 +66,7 @@ const useTransactions = () => {
             event,
             transaction.from,
             transaction.to
-          ), 4), //'0x378...3832'
+          ), 4),
         },
       })
     }

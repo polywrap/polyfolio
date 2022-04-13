@@ -18,11 +18,22 @@ import PageUnderConstruction from 'pages/PageUnderConstruction/PageUnderConstruc
 import WrapperInfoPage from 'pages/WrapperInfoPage/WrapperInfoPage';
 import NetworksInfo from 'pages/WrapperInfoPage/NetworksInfo/NetworksInfo';
 import ProtocolsInfo from 'pages/WrapperInfoPage/ProtocolsInfo/ProtocolsInfo';
+import useBalance from 'common/hooks/useBalance/useBalance';
+import useTransactions from 'common/hooks/useTransaction/useTransaction';
 
 function App() {
   useRouteChange();
   const {user} = useAuth();
   const {check} = useWallet();
+  const {getBalance} = useBalance();
+  const {getTransactions} = useTransactions();
+
+  useEffect(function DashboardPage () {
+    if (user) {
+      getBalance();
+      getTransactions();
+    }
+  }, [getBalance, getTransactions, user])
 
   useEffect(() => {
     if (MetaMaskOnboarding.isMetaMaskInstalled()) {
