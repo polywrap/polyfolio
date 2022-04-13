@@ -4,13 +4,8 @@ import _ from 'lodash';
 import {useWeb3ApiQuery} from '@web3api/react';
 import useAuth from '../useAuth/useAuth';
 import { useCallback } from 'react';
+import transactionState from 'common/modules/atoms/transactionState';
 
-const TRANSACTION_STATE_KEY = 'polyfolio_transactions';
-
-export const transactionState = atom({
-  key: TRANSACTION_STATE_KEY,
-  default: null,
-});
 
 export default function useTransactions() {
   const {user} = useAuth();

@@ -1,5 +1,5 @@
 import iconsObj from 'assets/icons/iconsObj';
-import {transactionState} from 'common/hooks/useTransaction/useTransaction';
+import transactionState from 'common/modules/atoms/transactionState';
 import {useRecoilValue} from 'recoil';
 
 const GetTransactions = () => {
