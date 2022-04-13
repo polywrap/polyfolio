@@ -17,6 +17,7 @@ const useAssets = () => {
   const balance = useRecoilValue(balanceState);
   const assetsSum = useRecoilValue(allAssetsSumState);
   const menuItems: AssetsItem[] = [];
+  console.log(balance);
 
   const allAssets = ejectAssetsFromProtocol(balance?.ethereum['protocols']);
   

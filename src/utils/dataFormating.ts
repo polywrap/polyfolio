@@ -43,6 +43,7 @@ export const getEventIcon = (eventName, userAddress?, params?) => {
         params.forEach(param => {
           if (param.name === 'from' && param.value === userAddress) icon = iconsObj.sendTransaction;
           else if (param.name === 'to' && param.value === userAddress) icon = iconsObj.receiveTransaction;
+          else icon = iconsObj.sendTransaction;
         })
   
         return icon

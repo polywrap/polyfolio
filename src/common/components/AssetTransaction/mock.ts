@@ -22,8 +22,7 @@ const useTransactions = () => {
   const data = [];
 
   const assets = ejectAssetsFromProtocol(balance?.ethereum['protocols']);
-  //console.log(assets);
-  //console.log(state);
+  console.log(state);
 
   state?.transactions.forEach(transaction => {
     const logs = transaction.logs;
@@ -44,30 +43,33 @@ const useTransactions = () => {
       tokenTicker
     ) ?? '???';
     const tokenPrice = getTokenPrice(assets, tokenTicker) ?? '???';
-    
-    data.push({
-      id: transaction.offset,
-      type: event ?? '???',
-      icon,
-      time: moment(transaction.timestamp).utc().format('hh:mm'),
-      token: [
-        {
-          id: tokenTicker,
-          icon: iconsObj.assetsToken,
-          token_amount: tokenAmount,
-          token_ticker: tokenTicker,
-          dollar_amount: tokenPrice,
-        }
-      ],
-      subjectOfAction: {
-        icon: iconsObj.profile,
-        address: shorteredAddress(getTransactionAddress(
-          event,
-          transaction.from,
-          transaction.to
-        ), 4), //'0x378...3832'
-      },
-    })
+
+    if (logs[0]) {
+      
+      data.push({
+        id: transaction.offset,
+        type: event ?? '???',
+        icon,
+        time: moment(transaction.timestamp).utc().format('hh:mm'),
+        token: [
+          {
+            id: tokenTicker,
+            icon: iconsObj.assetsToken,
+            token_amount: tokenAmount,
+            token_ticker: tokenTicker,
+            dollar_amount: tokenPrice,
+          }
+        ],
+        subjectOfAction: {
+          icon: iconsObj.profile,
+          address: shorteredAddress(getTransactionAddress(
+            event,
+            transaction.from,
+            transaction.to
+          ), 4), //'0x378...3832'
+        },
+      })
+    }
   });
 
   return data;
