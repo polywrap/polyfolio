@@ -1,11 +1,11 @@
-import React, {useRef, useState} from 'react';
+import React, {useMemo, useRef, useState} from 'react';
 import classNames from 'classnames';
 import iconsObj from 'assets/icons/iconsObj';
 import Icon from 'common/components/Icon/Icon';
 import _map from 'lodash/map';
 import styles from './AssetsTable.module.scss';
 
-import GetItems from './AssetsTableItem/AssetsTableItem.config';
+import useAssets from './AssetsTableItem/AssetsTableItem.config';
 import {menuFields} from './FilterFieldsAssets.config';
 import AssetsTableItem from './AssetsTableItem/AssetsTableItem';
 import {useRecoilValue} from 'recoil';
@@ -14,7 +14,7 @@ import HeaderTable from '../HeaderTable/HeaderTable';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
-import {allAssetsSumState} from 'common/hooks/useBalance/useBalance';
+import allAssetsSumState from 'common/modules/atoms/allAssetsSum';
 
 function AssetsTable() {
   const allAssetsSum = useRecoilValue(allAssetsSumState);
@@ -25,11 +25,17 @@ function AssetsTable() {
   const ref = useRef(null);
   const theme = useTheme();
   const translation = useTranslation();
-  const assets = GetItems();
+  const assets = useAssets();
 
   const onChange = (name, value) => {
     setFilter({...filters, assets: {...filter.assets, [name]: !value?.checked}});
   };
+
+  const sum = useMemo(() => {
+    if (allAssetsSum) {
+      return allAssetsSum['ethereum']
+    }
+  }, [allAssetsSum])
   
   return (
     <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>
@@ -45,7 +51,7 @@ function AssetsTable() {
         filter={filter.assets}
         onChange={onChange}
         isOpen={isOpen}
-        sum={allAssetsSum}
+        sum={sum}
       />
       <div className={classNames(styles.table_container, {[styles.hidden]: tableIsOpen})}>
         <div className={styles.title_container}>

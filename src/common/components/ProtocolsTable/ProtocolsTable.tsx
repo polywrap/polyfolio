@@ -6,7 +6,7 @@ import _map from 'lodash/map';
 import _sumBy from 'lodash/sumBy';
 import styles from './Protocols.module.scss';
 
-import GetProtocols from './ProtocolsItem/ProtocolTableItem.config';
+import useProtocols from './ProtocolsItem/ProtocolTableItem.config';
 import ProtocolTableItem from './ProtocolsItem/ProtocolTableItem';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
@@ -23,7 +23,7 @@ function ProtocolsTable() {
   const ref = useRef(null);
   const theme = useTheme();
   const translation = useTranslation();
-  const menuItems = GetProtocols();
+  const menuItems = useProtocols();
 
   const onChange = (name, value) => {
     setFilter({...filters, protocols: {...filter.protocols, [name]: !value?.checked}});

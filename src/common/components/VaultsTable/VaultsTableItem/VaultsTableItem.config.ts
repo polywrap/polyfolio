@@ -2,7 +2,8 @@ import {VaultItem} from './VaultsTableItem.types';
 import iconsObj from 'assets/icons/iconsObj';
 import {useRecoilValue} from 'recoil';
 import currentProtocol from 'common/modules/atoms/currentProtocol'
-import {rmCommasFromNum, getAssetsValueSum} from 'utils/helpers';
+import {rmCommasFromNum} from 'utils/helpers';
+import {getAssetsValueSum} from 'utils/dataFormating';
 import _ from 'lodash';
 
 export const GetVaults = () => {

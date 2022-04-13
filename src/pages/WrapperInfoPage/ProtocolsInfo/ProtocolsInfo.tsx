@@ -9,9 +9,9 @@ import GetProtocols from 'common/components/ProtocolsTable/ProtocolsItem/Protoco
 import VaultsTable from 'common/components/VaultsTable/VaultsTable';
 import AssetTransaction from 'common/components/AssetTransaction/AssetTransaction';
 import currentProtocol from 'common/modules/atoms/currentProtocol';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { balanceState } from 'common/hooks/useBalance/useBalance';
-import { getAssetsValueSum } from 'utils/helpers'
+import {useRecoilState, useRecoilValue} from 'recoil';
+import balanceState from 'common/modules/atoms/balanceState';
+import {getAssetsValueSum} from 'utils/dataFormating';
 
 function ProtocolsInfo() {
   const [currProtocol, setCurrProtocol] = useRecoilState(currentProtocol);
@@ -24,13 +24,13 @@ function ProtocolsInfo() {
 
   useEffect(() => {
     if (!currProtocol) {
-      _map(balance?.protocols, (protocol) => {
+      _map(balance[current.network.toLowerCase()]?.protocols, (protocol) => {
         if (protocol.protocol.id === current.id) {
           setCurrProtocol(protocol);
         }
       });
     }
-  }, [balance?.protocols, currProtocol, current.id, setCurrProtocol])
+  }, [balance, balance.protocols, currProtocol, current.id, current.network, setCurrProtocol])
 
   useEffect(() => {
     if (currProtocol) {

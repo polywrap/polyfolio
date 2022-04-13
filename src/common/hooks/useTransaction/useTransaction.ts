@@ -1,32 +1,21 @@
-//import {atom, useRecoilState} from 'recoil';
+import {atom, useRecoilState} from 'recoil';
 import _ from 'lodash';
 
 import {useWeb3ApiQuery} from '@web3api/react';
 import useAuth from '../useAuth/useAuth';
+import { useCallback } from 'react';
 
-//const BALANCE_STATE_KEY = 'polyfolio_balance';
-//const ALL_ASSETS_STATE_KEY = 'polyfolio_allAssets';
-//const ALL_ASSETS_SUM_STATE_KEY = 'polyfolio_allAssetsSum';
+const TRANSACTION_STATE_KEY = 'polyfolio_transactions';
 
-/* export const balanceState = atom({
-  key: BALANCE_STATE_KEY,
+export const transactionState = atom({
+  key: TRANSACTION_STATE_KEY,
   default: null,
 });
-export const allAssetsState = atom({
-  key: ALL_ASSETS_STATE_KEY,
-  default: null,
-});
-export const allAssetsSumState = atom({
-  key: ALL_ASSETS_SUM_STATE_KEY,
-  default: null,
-}); */
 
 export default function useTransactions() {
   const {user} = useAuth();
 
-  //const [, setBalance] = useRecoilState(balanceState);
-  //const [, setAllAssets] = useRecoilState(allAssetsState);
-  //const [, setAllAssetsSum] = useRecoilState(allAssetsSumState);
+  const [, setTransaction] = useRecoilState(transactionState);
 
   const {execute, loading, data} = useWeb3ApiQuery({
     uri: `ens/rinkeby/mock.defiwrapper.eth`,
@@ -53,7 +42,7 @@ export default function useTransactions() {
     },
   });
 
-  const getTransactions = async () => {
+  const getTransactions = useCallback(async () => {
     if (user && !loading && !data) {
       const {data: response, errors} = await execute({
         accountAddress: user,
@@ -61,8 +50,10 @@ export default function useTransactions() {
       });
   
       if (response && !errors?.length) {
-        const transactions = response;
+        const transactions = response?.getTransactions;
         console.log(transactions);
+
+        setTransaction(transactions);
       } else {
         // ADD ERROR HANDLER
         console.log('ERRORS-------');
@@ -70,7 +61,7 @@ export default function useTransactions() {
         console.log('-----ERRORS');
       }
     }
-  };
+  }, [data, execute, loading, setTransaction, user]);
 
   return {getTransactions};
 }

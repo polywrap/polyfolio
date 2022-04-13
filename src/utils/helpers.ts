@@ -1,3 +1,4 @@
+import { getPackedSettings } from 'http2';
 import _ from 'lodash';
 
 export const filteredDropdown = (array, currentId) => {
@@ -18,10 +19,6 @@ export const fillArray = (n) => {
   return arr;
 };
 
-export const getAssetsValueSum = (assets) => {
-  if (assets) {
-    return _.sumBy(assets, (value) => 
-      _.round(Number(rmCommasFromNum(value['balance'].token.values[0].value)), 2)
-    );
-  }
-};
+export const getStringFromPath = (path, index) => {
+  if (path) return path.split('/')[index ?? 1];
+}

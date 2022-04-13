@@ -7,5 +7,6 @@ export interface ProtocolsItem {
   title: string;
   icon?: string;
   link?: string;
+  network: string;
   id: string;
 }

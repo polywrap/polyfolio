@@ -1,64 +1,28 @@
-import {NetworksItem} from './Networks.types';
+import { NetworksItem } from './Networks.types';
 import iconsObj from 'assets/icons/iconsObj';
 import RoutePath from 'common/modules/routing/routing.enums';
+import balanceState from 'common/modules/atoms/balanceState';
+import _ from 'lodash';
+import { useRecoilValue } from 'recoil';
+import {networks} from 'utils/constants';
 
-const menuItems: NetworksItem[] = [
-  {
-    title: 'eth',
-    secondaryTitle: '5323.39',
-    icon: iconsObj.ethereum,
-    link: RoutePath.Network,
-    id: 1,
-  },
-  {
-    title: 'polygon',
-    secondaryTitle: '5323.39',
-    icon: iconsObj.polygon,
-    link: RoutePath.Network,
-    id: 2,
-  },
-  {
-    title: 'avalanch',
-    secondaryTitle: '5323.39',
-    icon: iconsObj.avalanch,
-    link: RoutePath.Network,
-    id: 3,
-  },
-  {
-    title: 'eth',
-    secondaryTitle: '5323.39',
-    icon: iconsObj.ethereum,
-    link: RoutePath.Network,
-    id: 4,
-  },
-  {
-    title: 'polygon',
-    secondaryTitle: '5323.39',
-    icon: iconsObj.polygon,
-    link: RoutePath.Network,
-    id: 5,
-  },
-  {
-    title: 'avalanch',
-    secondaryTitle: '5323.39',
-    icon: iconsObj.avalanch,
-    link: RoutePath.Network,
-    id: 6,
-  },
-  {
-    title: 'polygon',
-    secondaryTitle: '5323.39',
-    icon: iconsObj.polygon,
-    link: RoutePath.Network,
-    id: 7,
-  },
-  {
-    title: 'avalanch',
-    secondaryTitle: '5323.39',
-    icon: iconsObj.avalanch,
-    link: RoutePath.Network,
-    id: 8,
-  },
-];
+const useNetworks = () => {
+  const balance = useRecoilValue(balanceState);
+  const menuItems: NetworksItem[] = [];
 
-export {menuItems};
+  if (balance) {
+    networks.forEach(item => {
+      return menuItems.push({
+        title: item.title,
+        secondaryTitle: '5323.39',
+        icon: iconsObj.ethereum,
+        link: RoutePath.Network,
+        id: item.name.toLowerCase(),
+      })
+    })
+  }
+
+  return menuItems;
+}
+
+export default useNetworks;
