@@ -16,7 +16,7 @@ export default function useBalance() {
 
   const balanceRequest = useCallback(async (name) => {
     const { data: response, errors } = await client.query({
-      uri: `ipfs/QmRYP5qwQd7AotVbtcx7KhN8HuHX9DCg8sS9LVE4kstpVw`,
+      uri: `ens/rinkeby/mock.defiwrapper.eth`,
       query: `query {
         getAccountBalance(
           accountAddress: $accountAddress
@@ -30,8 +30,25 @@ export default function useBalance() {
         vsCurrencies: [],
         noTruncate: false,
         underlyingPrice: false,
-      }
+      },
+      config: {
+        envs: [
+          {
+            uri: 'ens/rinkeby/mock.defiwrapper.eth',
+            common: {
+              connection: {
+                node: null,
+                networkNameOrChainId: '3',
+              },
+            },
+            query: {},
+            mutation: {},
+          },
+        ],
+      },
     });
+    
+    console.log('getAccountBalance', response);
 
     if (response && !errors?.length) {
       setAllAssetsSum({
