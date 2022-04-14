@@ -20,6 +20,8 @@ import NetworksInfo from 'pages/WrapperInfoPage/NetworksInfo/NetworksInfo';
 import ProtocolsInfo from 'pages/WrapperInfoPage/ProtocolsInfo/ProtocolsInfo';
 import useBalance from 'common/hooks/useBalance/useBalance';
 import useTransactions from 'common/hooks/useTransaction/useTransaction';
+import balanceState from 'common/modules/atoms/balanceState';
+import { useRecoilValue } from 'recoil';
 
 function App() {
   useRouteChange();
@@ -27,11 +29,13 @@ function App() {
   const {check} = useWallet();
   const {getBalance} = useBalance();
   const {getTransactions} = useTransactions();
+  const balance = useRecoilValue(balanceState);
 
   useEffect(function DashboardPage () {
-    if (user) {
-      getBalance();
-      getTransactions();
+    if (user && !balance) {
+      getBalance()
+        .then(() => getTransactions())
+        .catch((error) => console.error(error));
     }
   }, [getBalance, getTransactions, user])
 

@@ -3,8 +3,6 @@ import {useRecoilState} from 'recoil';
 import {useWeb3ApiClient} from '@web3api/react';
 import useAuth from '../useAuth/useAuth';
 import {networks} from 'utils/constants';
-import {ejectAssetsFromProtocol, getAssetsValueSum} from 'utils/dataFormating';
-import allAssetsSumState from 'common/modules/atoms/allAssetsSum';
 import balanceState from 'common/modules/atoms/balanceState';
 
 export default function useBalance() {
@@ -12,9 +10,8 @@ export default function useBalance() {
   const client = useWeb3ApiClient();
 
   const [balance, setBalance] = useRecoilState(balanceState);
-  const [allAssetsSum, setAllAssetsSum] = useRecoilState(allAssetsSumState);
 
-  const balanceRequest = useCallback(async (name, chainId) => {
+  const balanceRequest = useCallback(async (chainId) => {
     const { data: response, errors } = await client.query({
       uri: `ens/rinkeby/mock.defiwrapper.eth`,
       query: `query {
@@ -48,16 +45,7 @@ export default function useBalance() {
       },
     });
     
-    console.log('getAccountBalance', response);
-
     if (response && !errors?.length) {
-      setAllAssetsSum({
-        ...allAssetsSum,
-        [name]: getAssetsValueSum(
-          ejectAssetsFromProtocol(response?.getAccountBalance['protocols'])
-        )
-      })
-      
       return response?.getAccountBalance
     }
     else {
@@ -66,7 +54,7 @@ export default function useBalance() {
       console.log(errors);
       console.log('-----ERRORS');
     }
-  }, [allAssetsSum, client, setAllAssetsSum, user])
+  }, [client, user])
 
   const getBalance = useCallback(async () => {
     if (user && !balance) {
@@ -75,7 +63,11 @@ export default function useBalance() {
       for (let i = 0; i < networks.length; i++) {
         const name = networks[i].name;
         const chainId = networks[i].chainId.toString();
-        temporaryBalance = {...temporaryBalance, [name]: await balanceRequest(name, chainId)};
+
+        if (!balance || balance && !Object.keys(balance).includes(name)) {
+          const response = await balanceRequest(chainId);
+          temporaryBalance = {...temporaryBalance, [name]: response};
+        }
       }
 
       setBalance(temporaryBalance);
