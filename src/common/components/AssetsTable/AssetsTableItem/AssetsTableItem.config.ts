@@ -5,6 +5,7 @@ import {AssetsItem} from './AssetsTableItem.types';
 import RoutePath from 'common/modules/routing/routing.enums';
 import balanceState from 'common/modules/atoms/balanceState';
 import {ejectAssetsFromProtocol} from 'utils/dataFormating';
+import useGetData from 'common/hooks/useGetData/useGetData';
 //import { useLocation } from 'react-router-dom';
 //import {getStringFromPath} from 'utils/helpers';
 
@@ -14,11 +15,16 @@ const useAssets = () => {
   //const page = getStringFromPath(pathname, 2);
   //console.log(page);
   const balance = useRecoilValue(balanceState);
-  const assetsSum = 100;
+  const formateData = useGetData();
+  const preparedData = balance ? formateData() : null;
+
   const menuItems: AssetsItem[] = [];
   console.log(balance);
-
-  const allAssets = ejectAssetsFromProtocol(balance?.ethereum['protocols']);
+  console.log(preparedData);
+  
+  const allAssets = preparedData ? preparedData['allAssets'] : null;
+  const assetsSum = preparedData ? preparedData['allAssetsSum'] : null;
+  console.log(assetsSum)
   
   if (allAssets) {
     for (let i = 0; i < allAssets.length; i++) {
