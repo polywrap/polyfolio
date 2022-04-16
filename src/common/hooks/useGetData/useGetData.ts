@@ -25,11 +25,11 @@ const useGetData = (name?: string) => {
         })
         console.log(allProtocols)
         _.forEach(allProtocols, protocol => {
-          allAssets = [...allAssets, ...ejectAssetsFromProtocol(protocol)];
+          allAssets = _.flatten([...allAssets, ...ejectAssetsFromProtocol(protocol)]);
         })
         console.log(allAssets)
   
-        const allAssetsSum: number = getAssetsValueSum(allAssets);
+        const allAssetsSum = getAssetsValueSum(allAssets);
 
         console.log(`balance = ${balance}`)
         console.log(`allAssets = ${allAssets}`)

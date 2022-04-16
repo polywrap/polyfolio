@@ -6,14 +6,18 @@ import iconsObj from 'assets/icons/iconsObj';
 export const getAssetsValueSum = (assets) => {
   if (assets) {
     return _.sumBy(assets, (value) => 
-      _.round(Number(rmCommasFromNum(value['balance'].token.values[0].value)), 2)
+      _.round(Number(rmCommasFromNum(value['token'].values[0].value)), 2)
     );
   }
 };
 
 export const ejectProtocolsFromNetwork = (network) => network ? network.protocols : null;
 
-export const ejectAssetsFromProtocol = (protocols) => protocols ? protocols.assets : null;
+export const ejectAssetsFromProtocol = (protocols) => {
+  if (protocols) {
+    return _.map(protocols.assets, asset => asset.balance.components)
+  }
+}
 
 export const getEventType = (eventName, userAddress?, params?) => {
   switch (eventName) {
