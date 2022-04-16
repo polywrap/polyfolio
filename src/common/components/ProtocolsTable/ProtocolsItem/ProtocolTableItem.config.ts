@@ -1,27 +1,28 @@
 import {ProtocolsItem} from './ProtocolTableItem.types';
 import iconsObj from 'assets/icons/iconsObj';
 import RoutePath from 'common/modules/routing/routing.enums';
-import balanceState from 'common/modules/atoms/balanceState';
-import {useRecoilValue} from 'recoil';
 import {rmCommasFromNum} from 'utils/helpers';
+import useGetData from 'common/hooks/useGetData/useGetData';
 
 export const useProtocols = () => {
-  const balance = useRecoilValue(balanceState);
+  const formateData = useGetData();
+  const preparedData = formateData();
   const menuItems: ProtocolsItem[] = [];
   
-  if (balance) {
-    for (let i = 0; i < balance?.ethereum.protocols.length; i++) {
+  if (preparedData['allProtocols']) {
+    for (let i = 0; i < preparedData['allProtocols'].length; i++) {
       menuItems.push({
         icon: iconsObj.protocolBardger,
         link: `${RoutePath.Protocol}`,
         secondaryTitleDollar: rmCommasFromNum(777),
         secondaryTitlePercent: rmCommasFromNum(777),
         claimableValue: rmCommasFromNum(777),
-        valueTitle: rmCommasFromNum(balance?.ethereum.protocols[i].assets[0].balance.token.values[0].value),
+        valueTitle: rmCommasFromNum(
+          preparedData['allProtocols'][i].assets[0].balance.token.values[0].value
+        ),
         valueIsMinus: false,
-        title: balance?.ethereum.protocols[i].protocol.name,
-        network: balance?.ethereum.network,
-        id: balance?.ethereum.protocols[i].protocol.id,
+        title: preparedData['allProtocols'][i].protocol.name,
+        id: preparedData['allProtocols'][i].protocol.id,
       })
     }
   }

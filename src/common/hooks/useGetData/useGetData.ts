@@ -1,8 +1,6 @@
-import {useState, useCallback} from 'react';
-
 import _ from 'lodash';
 import {useRecoilValue} from 'recoil';
-import {ejectAssetsFromProtocol, getAssetsValueSum} from 'utils/dataFormating';
+import {ejectAssetsFromProtocol, ejectProtocolsFromNetwork, getAssetsValueSum} from 'utils/dataFormating';
 import balanceState from 'common/modules/atoms/balanceState';
 
 const useGetData = (name?: string) => {
@@ -19,10 +17,17 @@ const useGetData = (name?: string) => {
       case 'polygon':
         break;
       default:
+        let allProtocols = [];
         let allAssets = [];
-        _.forEach(balance, networkData => {
-          allAssets = [...allAssets, ...ejectAssetsFromProtocol(networkData.protocols)];
+
+        _.forEach(balance ?? [], networkData => {
+          allProtocols = [...allProtocols, ...ejectProtocolsFromNetwork(networkData)];
         })
+        console.log(allProtocols)
+        _.forEach(allProtocols, protocol => {
+          allAssets = [...allAssets, ...ejectAssetsFromProtocol(protocol)];
+        })
+        console.log(allAssets)
   
         const allAssetsSum: number = getAssetsValueSum(allAssets);
 
@@ -34,6 +39,7 @@ const useGetData = (name?: string) => {
           ...preparedData,
           balance,
           allAssets,
+          allProtocols,
           allAssetsSum,
         }
         break;

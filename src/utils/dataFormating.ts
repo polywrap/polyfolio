@@ -11,11 +11,9 @@ export const getAssetsValueSum = (assets) => {
   }
 };
 
-export const ejectAssetsFromProtocol = (protocols) => {
-  if (protocols) {
-    return _.flatten(_.map(protocols, item => item.assets));
-  }
-}
+export const ejectProtocolsFromNetwork = (network) => network ? network.protocols : null;
+
+export const ejectAssetsFromProtocol = (protocols) => protocols ? protocols.assets : null;
 
 export const getEventType = (eventName, userAddress?, params?) => {
   switch (eventName) {
