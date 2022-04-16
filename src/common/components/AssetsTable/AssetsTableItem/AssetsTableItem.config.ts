@@ -4,7 +4,6 @@ import {rmCommasFromNum} from 'utils/helpers';
 import {AssetsItem} from './AssetsTableItem.types';
 import RoutePath from 'common/modules/routing/routing.enums';
 import balanceState from 'common/modules/atoms/balanceState';
-import {ejectAssetsFromProtocol} from 'utils/dataFormating';
 import useGetData from 'common/hooks/useGetData/useGetData';
 //import { useLocation } from 'react-router-dom';
 //import {getStringFromPath} from 'utils/helpers';
@@ -40,7 +39,7 @@ const useAssets = () => {
         valueIsMinus: false,
         priceTitle: rmCommasFromNum(allAssets[i].balance.token.values[0].price),
         title: allAssets[i].balance.token.token.symbol,
-        percent: Number(rmCommasFromNum(allAssets[i].balance.token.values[0].value)) * 100 / assetsSum["ethereum"],
+        percent: Number(rmCommasFromNum(allAssets[i].balance.token.values[0].value)) * 100 / assetsSum,
         id: allAssets[i].balance.token.token.symbol.toLowerCase(),
       });
     }
