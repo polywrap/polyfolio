@@ -17,7 +17,7 @@ function NetworksInfo() {
   return (
     <>
       <HeaderPage
-        title={`${translation.Networks[current?.title]} ${translation.Networks.network}`}
+        title={`${current?.title} ${translation.Networks.network}`}
         icon={current?.icon}
       />
       <HeaderPageInfo title={current?.secondaryTitle} />

@@ -5,25 +5,20 @@ import {AssetsItem} from './AssetsTableItem.types';
 import RoutePath from 'common/modules/routing/routing.enums';
 import balanceState from 'common/modules/atoms/balanceState';
 import useGetData from 'common/hooks/useGetData/useGetData';
-//import { useLocation } from 'react-router-dom';
-//import {getStringFromPath} from 'utils/helpers';
+import { useLocation } from 'react-router-dom';
+import {getStringFromPath} from 'utils/helpers';
 
 const useAssets = () => {
-  //const {pathname} = useLocation();
-  //console.log(pathname);
-  //const page = getStringFromPath(pathname, 2);
-  //console.log(page);
+  const {pathname} = useLocation();
+  const page = getStringFromPath(pathname, 2);
   const balance = useRecoilValue(balanceState);
-  const formateData = useGetData();
+  const formateData = useGetData(page);
   const preparedData = balance ? formateData() : null;
 
   const menuItems: AssetsItem[] = [];
-  console.log(balance);
-  console.log(preparedData);
   
   const allAssets = preparedData ? preparedData['allAssets'] : null;
   const assetsSum = preparedData ? preparedData['allAssetsSum'] : null;
-  console.log(assetsSum)
   
   if (allAssets) {
     for (let i = 0; i < allAssets.length; i++) {

@@ -1,13 +1,15 @@
 import {ProtocolsItem} from './ProtocolTableItem.types';
 import iconsObj from 'assets/icons/iconsObj';
 import RoutePath from 'common/modules/routing/routing.enums';
-import {rmCommasFromNum} from 'utils/helpers';
+import {getStringFromPath, rmCommasFromNum} from 'utils/helpers';
 import useGetData from 'common/hooks/useGetData/useGetData';
 import _ from 'lodash';
-import { tokenToString } from 'typescript';
+import { useLocation } from 'react-router-dom';
 
 export const useProtocols = () => {
-  const formateData = useGetData();
+  const {pathname} = useLocation();
+  const page = getStringFromPath(pathname, 2);
+  const formateData = useGetData(page);
   const preparedData = formateData();
   const menuItems: ProtocolsItem[] = [];
   

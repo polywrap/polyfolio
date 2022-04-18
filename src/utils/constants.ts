@@ -6,9 +6,9 @@ export const networks = [
     title: 'Ethereum',
   },
   {
-    name: 'ropsten',
+    name: 'Polygon',
     jsonRPC: 'http://infura.io/...',
     chainId: 137,
-    title: 'Ropsten',
+    title: 'Polygon',
   }
 ];

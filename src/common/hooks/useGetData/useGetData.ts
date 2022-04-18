@@ -1,7 +1,7 @@
-import _ from 'lodash';
 import {useRecoilValue} from 'recoil';
-import {ejectAssetsFromProtocol, ejectProtocolsFromNetwork, getAssetsValueSum} from 'utils/dataFormating';
 import balanceState from 'common/modules/atoms/balanceState';
+import networkDataFormating from 'utils/networkDataFormating';
+import allNetworksDataFormating from 'utils/allNetworksDataFormating';
 
 const useGetData = (name?: string) => {
   const balance = useRecoilValue(balanceState);
@@ -10,38 +10,17 @@ const useGetData = (name?: string) => {
     let preparedData = {};
 
     switch (name) {
-      case 'ethereum':
+      case 'ethereum':  
+        preparedData = networkDataFormating(name, balance);
         break;
       case 'ropsten':
+        preparedData = networkDataFormating(name, balance);
         break;
       case 'polygon':
+        preparedData = networkDataFormating(name, balance);
         break;
       default:
-        let allProtocols = [];
-        let allAssets = [];
-
-        _.forEach(balance ?? [], networkData => {
-          allProtocols = [...allProtocols, ...ejectProtocolsFromNetwork(networkData)];
-        })
-        console.log(allProtocols)
-        _.forEach(allProtocols, protocol => {
-          allAssets = _.flatten([...allAssets, ...ejectAssetsFromProtocol(protocol)]);
-        })
-        console.log(allAssets)
-  
-        const allAssetsSum = getAssetsValueSum(allAssets);
-
-        console.log(`balance = ${balance}`)
-        console.log(`allAssets = ${allAssets}`)
-        console.log(`allAssetsSum ${allAssetsSum}`)
-  
-        preparedData = {
-          ...preparedData,
-          balance,
-          allAssets,
-          allProtocols,
-          allAssetsSum,
-        }
+        preparedData = allNetworksDataFormating(balance);
         break;
     }
 
