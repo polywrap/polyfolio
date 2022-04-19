@@ -3,6 +3,18 @@ import BN from 'bn.js';
 import {rmCommasFromNum} from './helpers';
 import iconsObj from 'assets/icons/iconsObj';
 
+export const insertChainIdToProtocol = (balance) => {
+  _.map(balance, (network) => {
+    const chainId = network.chainId;
+
+    _.map(network?.protocols, (protocol) => {
+      if (protocol) {
+        protocol.protocol = {...protocol?.protocol, chainId};
+      } 
+    });
+  });
+}
+
 export const getAssetsValueSum = (assets) => {
   if (assets) {
     return _.sumBy(assets, (value) => 

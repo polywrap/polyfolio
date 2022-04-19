@@ -5,6 +5,7 @@ import {getStringFromPath, rmCommasFromNum} from 'utils/helpers';
 import useGetData from 'common/hooks/useGetData/useGetData';
 import _ from 'lodash';
 import { useLocation } from 'react-router-dom';
+import { chainIdToNetwork } from 'utils/constants';
 
 export const useProtocols = () => {
   const {pathname} = useLocation();
@@ -22,6 +23,8 @@ export const useProtocols = () => {
         )
       })
 
+      const network = preparedData['allProtocols'][i].protocol.chainId;
+
       menuItems.push({
         icon: iconsObj.protocolBardger,
         link: `${RoutePath.Protocol}`,
@@ -31,6 +34,7 @@ export const useProtocols = () => {
         valueTitle: valueTitle.toString(),
         valueIsMinus: false,
         title: preparedData['allProtocols'][i].protocol.name,
+        network: chainIdToNetwork[network], 
         id: preparedData['allProtocols'][i].protocol.id,
       })
     }

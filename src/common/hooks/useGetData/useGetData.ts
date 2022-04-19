@@ -10,7 +10,7 @@ const useGetData = (name?: string) => {
     let preparedData = {};
 
     switch (name) {
-      case 'ethereum':  
+      case 'ethereum':
         preparedData = networkDataFormating(name, balance);
         break;
       case 'ropsten':

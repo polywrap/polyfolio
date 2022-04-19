@@ -13,7 +13,7 @@ enum RoutePath {
   Support = '/support',
   Asset = '/asset/:id',
   Network = '/network/:id',
-  Protocol = '/protocol/:id',
+  Protocol = '/:net/protocol/:id',
   Dashboard = '/dashboard/portfolio',
   DashboardTransactions = '/dashboard/transactions',
 }

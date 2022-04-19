@@ -19,12 +19,14 @@ function ProtocolsItem(menuItem) {
     claimableValue,
     valueIsMinus,
     valueTitle,
+    network,
     title,
     link,
     icon,
     id,
   } = menuItem;
-  const path = id && link.replace(':id', `${id}`);
+  const path = id && link.replace(':id', `${id}`).replace(':net', `${network}`);
+  console.log(path)
 
   const {filters} = useFiltersTables();
 

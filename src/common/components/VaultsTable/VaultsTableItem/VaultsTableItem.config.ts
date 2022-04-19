@@ -1,27 +1,27 @@
-import {VaultItem} from './VaultsTableItem.types';
 import iconsObj from 'assets/icons/iconsObj';
-import {useRecoilValue} from 'recoil';
-import currentProtocol from 'common/modules/atoms/currentProtocol'
-import {rmCommasFromNum} from 'utils/helpers';
-import {getAssetsValueSum} from 'utils/dataFormating';
+import {getStringFromPath, rmCommasFromNum} from 'utils/helpers';
 import _ from 'lodash';
+import useGetData from 'common/hooks/useGetData/useGetData';
+import {useLocation} from 'react-router-dom';
 
 export const GetVaults = () => {
-  const protocol = useRecoilValue(currentProtocol);
-  const assetsTotalValue = getAssetsValueSum(protocol?.assets);
-
-  return _.map(protocol?.assets, asset => {
+  const {pathname} = useLocation()
+  const page = getStringFromPath(pathname, 1);
+  const formateData = useGetData(page);
+  const preparedData = formateData();
+  
+  return _.map(preparedData['allAssets'], asset => {
     return {
       secondaryPricePercentTitle: rmCommasFromNum(777),
-      secondaryTitle: asset.balance.token.token.name,
+      secondaryTitle: preparedData['allAssetsSum'],
       pricePercentDollar: rmCommasFromNum(777),
       icon: iconsObj.assetsUsdt,
       valueTitle: rmCommasFromNum(777),
       valueIsMinus: false,
-      priceTitle: rmCommasFromNum(asset.balance.token.values[0].value),
-      title: asset.balance.token.token.symbol,
-      percent: Number(rmCommasFromNum(asset.balance.token.values[0].value)) * 100 / assetsTotalValue,
-      id: asset.balance.token.token.symbol.toLowerCase(),  
+      priceTitle: rmCommasFromNum(asset.token.values[0].value),
+      title: asset.token.token.symbol,
+      percent: Number(rmCommasFromNum(asset.token.values[0].value)) * 100 / preparedData['allAssetsSum'],
+      id: asset.token.token.symbol.toLowerCase(),  
     }
   })
 }

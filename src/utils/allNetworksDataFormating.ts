@@ -12,11 +12,10 @@ const allNetworksDataFormating = (balance) => {
   _.forEach(balance ?? [], networkData => {
     allProtocols = [...allProtocols, ...ejectProtocolsFromNetwork(networkData)];
   })
-  console.log(allProtocols)
   _.forEach(allProtocols, protocol => {
     allAssets = _.flatten([...allAssets, ...ejectAssetsFromProtocol(protocol)]);
   })
-  console.log(allAssets)
+  console.log(balance)
 
   const allAssetsSum = getAssetsValueSum(allAssets);
 

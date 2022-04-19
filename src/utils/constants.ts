@@ -6,9 +6,14 @@ export const networks = [
     title: 'Ethereum',
   },
   {
-    name: 'Polygon',
+    name: 'polygon',
     jsonRPC: 'http://infura.io/...',
     chainId: 137,
     title: 'Polygon',
   }
 ];
+
+export const chainIdToNetwork = {
+  1: 'ethereum',
+  137: 'polygon',
+};

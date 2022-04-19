@@ -4,6 +4,7 @@ import {useWeb3ApiClient} from '@web3api/react';
 import useAuth from '../useAuth/useAuth';
 import {networks} from 'utils/constants';
 import balanceState from 'common/modules/atoms/balanceState';
+import { insertChainIdToProtocol } from 'utils/dataFormating';
 
 export default function useBalance() {
   const {user} = useAuth();
@@ -69,6 +70,8 @@ export default function useBalance() {
           temporaryBalance = {...temporaryBalance, [name]: response};
         }
       }
+
+      insertChainIdToProtocol(temporaryBalance);
 
       setBalance(temporaryBalance);
     }
