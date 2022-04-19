@@ -17,9 +17,13 @@ export const useProtocols = () => {
   if (preparedData['allProtocols']) {
     for (let i = 0; i < preparedData['allProtocols'].length; i++) {
       let valueTitle = 0;
+      let claimableValue = 0;
       _.forEach(preparedData['allProtocols'][i].assets, asset => {
         valueTitle += _.sumBy(asset['balance'].components, assetItem => 
           Number(rmCommasFromNum(assetItem['token'].values[0].value))
+        )
+        claimableValue += _.sumBy(asset['claimableTokens'], assetItem => 
+          Number(rmCommasFromNum(assetItem['values'][0].value))
         )
       })
 
@@ -30,7 +34,7 @@ export const useProtocols = () => {
         link: `${RoutePath.Protocol}`,
         secondaryTitleDollar: rmCommasFromNum(777),
         secondaryTitlePercent: rmCommasFromNum(777),
-        claimableValue: rmCommasFromNum(777),
+        claimableValue,
         valueTitle: valueTitle.toString(),
         valueIsMinus: false,
         title: preparedData['allProtocols'][i].protocol.name,
