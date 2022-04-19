@@ -5,7 +5,7 @@ import style from './AssetTransaction.module.scss';
 import useTheme from "common/hooks/useTheme/useTheme";
 import TableHeader from "../TableHeader/TableHeader";
 import TableBlock from "../TableBlock/TableBlock";
-import useTransactions from "./mock";
+import useTransactions from "./useTransactions";
 
 function AssetTransaction() {
   const theme = useTheme()
