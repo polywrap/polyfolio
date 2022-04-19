@@ -13,8 +13,13 @@ import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
 import {menuFields} from './FilterFieldsVaults.config';
+import { useLocation } from 'react-router-dom';
+import { getStringFromPath } from 'utils/helpers';
+import useGetData from 'common/hooks/useGetData/useGetData';
 
-function ProtocolsTable({totalTableValue}: {totalTableValue: number}) {
+function VaultsTable() {
+  const {pathname} = useLocation();
+  const page = getStringFromPath(pathname, 1);
   const [tableIsOpen, setTableIsOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null);
@@ -23,6 +28,8 @@ function ProtocolsTable({totalTableValue}: {totalTableValue: number}) {
   const {filters, setFilters} = useFiltersTables();
   const [filter, setFilter] = useState<Filters>(filters);
   const menuItems = GetVaults();
+  const formateData = useGetData(page);
+  const preparedData = formateData();
 
   const onChange = (name, value) => {
     setFilter({...filter, vaults: {...filter.vaults, [name]: !value?.checked}});
@@ -42,7 +49,7 @@ function ProtocolsTable({totalTableValue}: {totalTableValue: number}) {
         menuFields={menuFields}
         onChange={onChange}
         isOpen={isOpen}
-        sum={totalTableValue}
+        sum={preparedData['allAssetsSum']}
       />
       <div className={classNames(styles.table_container, {[styles.hidden]: tableIsOpen})}>
         <div className={styles.title_container}>
@@ -81,4 +88,4 @@ function ProtocolsTable({totalTableValue}: {totalTableValue: number}) {
   );
 }
 
-export default ProtocolsTable;
+export default VaultsTable;

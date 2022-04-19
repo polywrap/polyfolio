@@ -13,34 +13,49 @@ export default function useTransactions() {
 
   const {execute, loading, data} = useWeb3ApiQuery({
     uri: `ens/rinkeby/mock.defiwrapper.eth`,
-    query: `query {
+    query: `
+    query GetTransactions($account: String!, $currency: String!) {
       getTransactions(
-        accountAddress: $accountAddress
-        vsCurrency: $vsCurrency
+        account: $account
+        currency: $currency # This will be moved to env of account-resolver
       )
-    }`,
+    }
+    `,
     config: {
       envs: [
         {
-          uri: 'ens/rinkeby/mock.defiwrapper.eth',
-          common: {
+          uri: "ens/rinkeby/ethereum.token.resolvers.defiwrapper.eth",
+          query: {
             connection: {
-              node: null,
-              networkNameOrChainId: '1',
+              networkNameOrChainId: "MAINNET",
             },
           },
-          query: {},
-          mutation: {},
+          mutation: {}
         },
+        {
+          uri: "w3://ens/rinkeby/covalent.account.resolvers.defiwrapper.eth",
+          query: {
+            apiKey: "ckey_910089969da7451cadf38655ede",
+            chainId: 1,
+          },
+          common: {},
+          mutation: {},
+        }
       ],
+      redirects: [
+        {
+          to: "w3://ens/rinkeby/ethereum.token.resolvers.defiwrapper.eth",
+          from: "w3://ens/ethereum.token-resolvers.defiwrapper.eth",
+        }
+      ]
     },
   });
 
   const getTransactions = useCallback(async () => {
     if (user && !loading && !data) {
       const {data: response, errors} = await execute({
-        accountAddress: user,
-        vsCurrency: 'USDT',
+        account: user,
+        сurrency: 'USDT',
       });
   
       if (response && !errors?.length) {

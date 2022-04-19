@@ -1,21 +1,30 @@
 import { NetworksItem } from './Networks.types';
 import iconsObj from 'assets/icons/iconsObj';
 import RoutePath from 'common/modules/routing/routing.enums';
-import balanceState from 'common/modules/atoms/balanceState';
+import { networks } from 'utils/constants';
+import useGetData from 'common/hooks/useGetData/useGetData';
+import { rmCommasFromNum } from 'utils/helpers';
 import _ from 'lodash';
-import { useRecoilValue } from 'recoil';
-import {networks} from 'utils/constants';
+import { ejectAssetsFromProtocol, getAssetsValueSum } from 'utils/dataFormating';
 
 const useNetworks = () => {
-  const balance = useRecoilValue(balanceState);
+  const formateData = useGetData();
+  const preparedData = formateData();
   const menuItems: NetworksItem[] = [];
+  let allAssets = [];
 
-  if (balance) {
+  if (preparedData['balance']) {
     networks.forEach(item => {
+      _.forEach(preparedData['balance'][item.name]?.protocols, protocol => {
+        allAssets = _.flatten([...allAssets, ...ejectAssetsFromProtocol(protocol)]);
+      })
+
+      const allAssetsSum = getAssetsValueSum(allAssets);
+
       return menuItems.push({
         title: item.title,
-        secondaryTitle: '5323.39',
-        icon: iconsObj.ethereum,
+        secondaryTitle: rmCommasFromNum(allAssetsSum),
+        icon: iconsObj[item.name] as string,
         link: RoutePath.Network,
         id: item.name.toLowerCase(),
       })

@@ -7,10 +7,8 @@ import _find from 'lodash/find';
 import GetProtocols from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.config';
 import VaultsTable from 'common/components/VaultsTable/VaultsTable';
 import AssetTransaction from 'common/components/AssetTransaction/AssetTransaction';
-//import {getAssetsValueSum} from 'utils/dataFormating';
 
 function ProtocolsInfo() {
-  //const [totalTableValue, setTotalTableValue] = useState<number>(0);
   const translation = useTranslation();
   const { id } = useParams();
   const menuItems = GetProtocols();
@@ -23,7 +21,7 @@ function ProtocolsInfo() {
         icon={current?.icon}
       />
       <HeaderPageInfo title={current?.valueTitle} />
-      <VaultsTable totalTableValue={10000} />
+      <VaultsTable />
       <AssetTransaction />
     </>
   );

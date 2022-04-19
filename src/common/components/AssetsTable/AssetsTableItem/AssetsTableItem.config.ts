@@ -1,19 +1,16 @@
-import {useRecoilValue} from 'recoil';
 import iconsObj from 'assets/icons/iconsObj';
 import {rmCommasFromNum} from 'utils/helpers';
 import {AssetsItem} from './AssetsTableItem.types';
 import RoutePath from 'common/modules/routing/routing.enums';
-import balanceState from 'common/modules/atoms/balanceState';
 import useGetData from 'common/hooks/useGetData/useGetData';
-import { useLocation } from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 import {getStringFromPath} from 'utils/helpers';
 
 const useAssets = () => {
   const {pathname} = useLocation();
   const page = getStringFromPath(pathname, 2);
-  const balance = useRecoilValue(balanceState);
   const formateData = useGetData(page);
-  const preparedData = balance ? formateData() : null;
+  const preparedData = formateData();
 
   const menuItems: AssetsItem[] = [];
   

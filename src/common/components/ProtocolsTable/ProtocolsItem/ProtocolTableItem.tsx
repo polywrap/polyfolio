@@ -26,7 +26,6 @@ function ProtocolsItem(menuItem) {
     id,
   } = menuItem;
   const path = id && link.replace(':id', `${id}`).replace(':net', `${network}`);
-  console.log(path)
 
   const {filters} = useFiltersTables();
 
