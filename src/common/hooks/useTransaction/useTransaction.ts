@@ -55,7 +55,7 @@ export default function useTransactions() {
     if (user && !loading && !data) {
       const {data: response, errors} = await execute({
         account: user,
-        сurrency: 'USDT',
+        currency: 'USDT',
       });
   
       if (response && !errors?.length) {
