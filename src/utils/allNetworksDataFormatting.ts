@@ -3,22 +3,23 @@ import {
   ejectAssetsFromProtocol,
   ejectProtocolsFromNetwork,
   getAssetsValueSum
-} from './dataFormating';
+} from './dataFormatting';
 
-const networkDataFormating = (page: string, balance) => {
-  let preparedData = {};
+const allNetworksDataFormatting = (balance) => {
   let allProtocols = [];
   let allAssets = [];
 
-  allProtocols = [...allProtocols, ...ejectProtocolsFromNetwork(balance[page])];
+  _.forEach(balance ?? [], networkData => {
+    allProtocols = [...allProtocols, ...ejectProtocolsFromNetwork(networkData)];
+  })
   _.forEach(allProtocols, protocol => {
     allAssets = _.flatten([...allAssets, ...ejectAssetsFromProtocol(protocol)]);
   })
+  console.log('allNetworksBalance', balance)
 
   const allAssetsSum: number = getAssetsValueSum(allAssets);
 
-  return preparedData = {
-    ...preparedData,
+  return {
     balance,
     allAssets,
     allProtocols,
@@ -26,4 +27,4 @@ const networkDataFormating = (page: string, balance) => {
   }
 }
 
-export default networkDataFormating;
+export default allNetworksDataFormatting;

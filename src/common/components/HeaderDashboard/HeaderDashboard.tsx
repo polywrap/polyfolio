@@ -10,7 +10,7 @@ import Dropdown from '../Dropdown/Dropdown';
 import {filteredDropdown} from 'utils/helpers';
 import numberFormatter from 'utils/numberFormatter';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
-import useGetData from 'common/hooks/useGetData/useGetData';
+import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 
 function HeaderDashboard() {
   const [isOpen, setIsOpen] = useState<boolean>(false);

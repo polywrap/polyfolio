@@ -2,7 +2,7 @@ import {ProtocolsItem} from './ProtocolTableItem.types';
 import iconsObj from 'assets/icons/iconsObj';
 import RoutePath from 'common/modules/routing/routing.enums';
 import {getStringFromPath, rmCommasFromNum} from 'utils/helpers';
-import useGetData from 'common/hooks/useGetData/useGetData';
+import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 import _ from 'lodash';
 import { useLocation } from 'react-router-dom';
 import { chainIdToNetwork } from 'utils/constants';
@@ -10,8 +10,8 @@ import { chainIdToNetwork } from 'utils/constants';
 export const useProtocols = () => {
   const {pathname} = useLocation();
   const page = getStringFromPath(pathname, 2);
-  const formateData = useGetData(page);
-  const preparedData = formateData();
+  const formatData = useGetData(page);
+  const preparedData = formatData();
   const menuItems: ProtocolsItem[] = [];
   
   if (preparedData['allProtocols']) {

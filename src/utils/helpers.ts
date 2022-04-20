@@ -21,7 +21,7 @@ export const getStringFromPath = (path: string, index: number) => {
   if (path) return path.split('/')[index ?? 1];
 }
 
-export const shorteredAddress = (address: string, size = 4) => {
+export const shortenedAddress = (address: string, size = 4) => {
   if (address && address != '???') {
     return `${_.slice(address, 0, size).join('')}...${_.slice(address, -size).join('')}`;
   }

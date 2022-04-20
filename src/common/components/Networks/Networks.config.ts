@@ -1,15 +1,15 @@
-import { NetworksItem } from './Networks.types';
+import {NetworksItem} from './Networks.types';
 import iconsObj from 'assets/icons/iconsObj';
 import RoutePath from 'common/modules/routing/routing.enums';
-import { networks } from 'utils/constants';
-import useGetData from 'common/hooks/useGetData/useGetData';
-import { rmCommasFromNum } from 'utils/helpers';
+import {networks} from 'utils/constants';
+import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
+import {rmCommasFromNum} from 'utils/helpers';
 import _ from 'lodash';
-import { ejectAssetsFromProtocol, getAssetsValueSum } from 'utils/dataFormating';
+import {ejectAssetsFromProtocol, getAssetsValueSum} from 'utils/dataFormatting';
 
 const useNetworks = () => {
-  const formateData = useGetData();
-  const preparedData = formateData();
+  const formatData = useGetData();
+  const preparedData = formatData();
   const menuItems: NetworksItem[] = [];
   
   if (preparedData['balance']) {

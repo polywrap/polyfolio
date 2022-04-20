@@ -1,4 +1,11 @@
-export const items = [
+interface IAssetOverviewItems {
+  id: number;
+  label: string;
+  content: string;
+  type: string;
+}
+
+export const items: IAssetOverviewItems[] = [
   {
     id: 1,
     label: "0x378...3832 Owns",

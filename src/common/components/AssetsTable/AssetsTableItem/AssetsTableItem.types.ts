@@ -1,8 +1,7 @@
 export interface AssetsItem {
-  secondaryPricePercentTitle?: string;
+  secondaryPricePercentTitle: string;
   valueSecondaryTitle: string;
-  pricePercentDollar?: string;
-  claimableValue?: number;
+  pricePercentDollar: string;
   secondaryTitle: string;
   valueIsMinus?: boolean;
   iconInfoPage?: string;
@@ -11,6 +10,6 @@ export interface AssetsItem {
   percent: string;
   title: string;
   icon?: string;
-  link?: string;
+  link: string;
   id: string;
 }

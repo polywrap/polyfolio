@@ -16,7 +16,7 @@ import ProfileDropdownMenu from 'common/components/ProfileDropdownMenu/ProfileDr
 import Button from '../Button/Button';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useWallet from 'common/hooks/useWallet/useWallet';
-import useGetData from 'common/hooks/useGetData/useGetData';
+import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 
 const MOCK_VALUE = 13337337;
 

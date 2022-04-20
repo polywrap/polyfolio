@@ -15,7 +15,7 @@ import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
 import {menuFields} from './FilterFieldsVaults.config';
 import { useLocation } from 'react-router-dom';
 import { getStringFromPath } from 'utils/helpers';
-import useGetData from 'common/hooks/useGetData/useGetData';
+import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 
 function VaultsTable() {
   const {pathname} = useLocation();
@@ -28,8 +28,8 @@ function VaultsTable() {
   const {filters, setFilters} = useFiltersTables();
   const [filter, setFilter] = useState<Filters>(filters);
   const menuItems = GetVaults();
-  const formateData = useGetData(page);
-  const preparedData = formateData();
+  const formatData = useGetData(page);
+  const preparedData = formatData();
 
   const onChange = (name, value) => {
     setFilter({...filter, vaults: {...filter.vaults, [name]: !value?.checked}});

@@ -2,15 +2,15 @@ import iconsObj from 'assets/icons/iconsObj';
 import {rmCommasFromNum} from 'utils/helpers';
 import {AssetsItem} from './AssetsTableItem.types';
 import RoutePath from 'common/modules/routing/routing.enums';
-import useGetData from 'common/hooks/useGetData/useGetData';
+import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 import {useLocation} from 'react-router-dom';
 import {getStringFromPath} from 'utils/helpers';
 
 const useAssets = () => {
   const {pathname} = useLocation();
   const page = getStringFromPath(pathname, 2);
-  const formateData = useGetData(page);
-  const preparedData = formateData();
+  const formatData = useGetData(page);
+  const preparedData = formatData();
 
   const menuItems: AssetsItem[] = [];
   

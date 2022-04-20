@@ -4,10 +4,12 @@ import {useWeb3ApiQuery} from '@web3api/react';
 import useAuth from '../useAuth/useAuth';
 import {useCallback} from 'react';
 import transactionState from 'common/modules/atoms/transactionState';
+import { useCurrency } from 'common/currency/Currency.context';
 
 
 export default function useTransactions() {
   const {user} = useAuth();
+  const {currency} = useCurrency();
 
   const [, setTransaction] = useRecoilState(transactionState);
 
@@ -55,13 +57,12 @@ export default function useTransactions() {
     if (user && !loading && !data) {
       const {data: response, errors} = await execute({
         account: user,
-        currency: 'USD',
+        currency: currency,
       });
   
       if (response && !errors?.length) {
         const transactions = response?.getTransactions;
 
-        console.log(transactions)
         setTransaction(transactions);
       } else {
         // ADD ERROR HANDLER

@@ -10,34 +10,35 @@ import {
   getTokenAmount,
   getTokenPrice,
   getTransactionAddress
-} from 'utils/dataFormating';
-import {shorteredAddress} from 'utils/helpers';
-import useGetData from 'common/hooks/useGetData/useGetData';
+} from 'utils/dataFormatting';
+import {shortenedAddress} from 'utils/helpers';
+import {ITransaction} from './AssetTransactions.type';
+import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 
 const useTransactions = () => {
   const state = useRecoilValue(transactionState);
-  const formateData = useGetData();
-  const preparedData = formateData();
+  const formatData = useGetData();
+  const preparedData = formatData();
   const {user} = useAuth();
-  const data = [];
-
-  console.log(state);
+  const data: ITransaction[] = [];
 
   state?.transactions.forEach(transaction => {
     const logs = transaction.logs;
+    const eventNameInLogs = logs.length > 0 ? logs[0].event.name : null;
+    const eventParamsInLogs = logs.length > 0 ? logs[0].event.params : null;
     const event = getEventType(
-      logs.length > 0 ? logs[0].event.name : null,
+      eventNameInLogs,
       user,
-      logs.length > 0 ? logs[0].event.params : null
+      eventParamsInLogs
     );
     const icon = getEventIcon(
-      logs.length > 0 ? logs[0].event.name : null,
+      eventNameInLogs,
       user,
-      logs.length > 0 ? logs[0].event.params : null
+      eventParamsInLogs
     );
     const tokenTicker = findTokenName(preparedData['allAssets'], logs.length > 0 ? logs[0].contractAddress : null);
     const tokenAmount = getTokenAmount(
-      logs.length > 0 ? logs[0].event.params[2].value : null,
+      logs.length > 0 ? eventParamsInLogs[2].value : null,
       preparedData['allAssets'],
       tokenTicker
     );
@@ -61,7 +62,7 @@ const useTransactions = () => {
         ],
         subjectOfAction: {
           icon: iconsObj.profile,
-          address: shorteredAddress(getTransactionAddress(
+          address: shortenedAddress(getTransactionAddress(
             event,
             transaction.from,
             transaction.to
