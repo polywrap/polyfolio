@@ -31,7 +31,7 @@ function HeaderTable({
   menuFields;
   title: string;
   setIsOpen;
-  sum: number;
+  sum: string;
 }) {
   const [isOpen, setIsOpen] = useState(true);
   const [dataRange, setDataRange] = useState({});
@@ -101,7 +101,7 @@ function HeaderTable({
         />
       </div>
       <div className={styles.filter_container}>
-        <h4>${numberFormatter({value: sum ?? 0, size: 2})}</h4>
+        <h4>${numberFormatter({value: sum ?? '0', size: 2})}</h4>
         <TooltipTrigger isOpen={filterIsOpen} placement={'bottom-end'} popper={<Menu />}>
           <button onClick={() => setFilterIsOpen()}>
             <Icon src={iconsObj.filterIcon} className={styles.icon} />

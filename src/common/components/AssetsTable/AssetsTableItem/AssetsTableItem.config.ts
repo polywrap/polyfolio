@@ -19,19 +19,21 @@ const useAssets = () => {
   
   if (allAssets) {
     for (let i = 0; i < allAssets.length; i++) {
+      const percent = Number(rmCommasFromNum(allAssets[i].token.values[0].value)) * 100 / assetsSum;
+
       menuItems.push({
-        secondaryPricePercentTitle: 777,
+        secondaryPricePercentTitle: rmCommasFromNum('777'),
         link: `${RoutePath.Asset}`,
         secondaryTitle: allAssets[i].token.token.name,
         valueSecondaryTitle: rmCommasFromNum(allAssets[i].token.values[0].value),
-        pricePercentDollar: rmCommasFromNum(777),
+        pricePercentDollar: rmCommasFromNum('777'),
         iconInfoPage: iconsObj.usdt,
         icon: iconsObj.assetsUsdt,
         valueTitle: rmCommasFromNum(allAssets[i].token.values[0].value),
         valueIsMinus: false,
         priceTitle: rmCommasFromNum(allAssets[i].token.values[0].price),
         title: allAssets[i].token.token.symbol,
-        percent: Number(rmCommasFromNum(allAssets[i].token.values[0].value)) * 100 / assetsSum,
+        percent: percent.toString(), 
         id: allAssets[i].token.token.symbol.toLowerCase(),
       });
     }

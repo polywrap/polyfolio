@@ -5,7 +5,7 @@ import {
   getAssetsValueSum
 } from './dataFormating';
 
-const networkDataFormating = (page, balance) => {
+const networkDataFormating = (page: string, balance) => {
   let preparedData = {};
   let allProtocols = [];
   let allAssets = [];
@@ -15,7 +15,7 @@ const networkDataFormating = (page, balance) => {
     allAssets = _.flatten([...allAssets, ...ejectAssetsFromProtocol(protocol)]);
   })
 
-  const allAssetsSum = getAssetsValueSum(allAssets);
+  const allAssetsSum: number = getAssetsValueSum(allAssets);
 
   return preparedData = {
     ...preparedData,

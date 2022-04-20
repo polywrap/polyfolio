@@ -47,7 +47,7 @@ function ProtocolsTable() {
         menuFields={menuFields}
         onChange={onChange}
         isOpen={isOpen}
-        sum={summaryValue}
+        sum={summaryValue.toString()}
       />
       <div className={classNames(styles.table_container, {[styles.hidden]: tableIsOpen})}>
         <div className={styles.title_container}>

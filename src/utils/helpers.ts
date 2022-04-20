@@ -4,9 +4,8 @@ export const filteredDropdown = (array, currentId) => {
   return array?.filter((e) => e?.id !== currentId);
 };
 
-export const rmCommasFromNum = (num) => {
+export const rmCommasFromNum = (num: string) => {
   if (!num) return null;
-  if (typeof num !== 'string') num = num.toString();
   
   return num.includes(',') ? num.split(',').join('') : num;
 };
@@ -18,11 +17,11 @@ export const fillArray = (n) => {
   return arr;
 };
 
-export const getStringFromPath = (path, index) => {
+export const getStringFromPath = (path: string, index: number) => {
   if (path) return path.split('/')[index ?? 1];
 }
 
-export const shorteredAddress = (address, size = 4) => {
+export const shorteredAddress = (address: string, size = 4) => {
   if (address && address != '???') {
     return `${_.slice(address, 0, size).join('')}...${_.slice(address, -size).join('')}`;
   }

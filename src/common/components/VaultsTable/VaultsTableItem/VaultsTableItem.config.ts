@@ -12,11 +12,11 @@ export const GetVaults = () => {
 
   return _.map(preparedData['allAssets'], asset => {    
     return {
-      secondaryPricePercentTitle: rmCommasFromNum(777),
+      secondaryPricePercentTitle: rmCommasFromNum('777'),
       secondaryTitle: preparedData['allAssetsSum'],
-      pricePercentDollar: rmCommasFromNum(777),
+      pricePercentDollar: rmCommasFromNum('777'),
       icon: iconsObj.assetsUsdt,
-      valueTitle: rmCommasFromNum(777),
+      valueTitle: rmCommasFromNum('777'),
       valueIsMinus: false,
       priceTitle: rmCommasFromNum(asset.token.values[0].value),
       title: asset.token.token.symbol,

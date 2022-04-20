@@ -23,7 +23,7 @@ const useNetworks = () => {
 
       return menuItems.push({
         title: item.title,
-        secondaryTitle: rmCommasFromNum(allAssetsSum),
+        secondaryTitle: rmCommasFromNum(allAssetsSum.toString()),
         icon: iconsObj[item.name] as string,
         link: RoutePath.Network,
         id: item.name.toLowerCase(),

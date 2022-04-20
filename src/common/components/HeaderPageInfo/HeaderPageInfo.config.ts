@@ -1,9 +1,9 @@
 import {HeaderInfoTypes} from './HeaderPageInfo.types';
 
 const content: HeaderInfoTypes = {
-  title: 13337337,
-  value: 0.56,
-  percent: 0.02,
+  title: '13337337',
+  value: '???',
+  percent: '???',
   id: 1,
 };
 

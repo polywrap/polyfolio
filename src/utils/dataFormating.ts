@@ -31,7 +31,7 @@ export const ejectAssetsFromProtocol = (protocols) => {
   }
 }
 
-export const getEventType = (eventName, userAddress?, params?) => {
+export const getEventType = (eventName: string, userAddress?: string, params?) => {
   switch (eventName) {
     case 'Approval': return 'approval';
     case 'Transfer':
@@ -48,7 +48,7 @@ export const getEventType = (eventName, userAddress?, params?) => {
   return 'send'
 }
 
-export const getEventIcon = (eventName, userAddress?, params?) => {
+export const getEventIcon = (eventName: string, userAddress?: string, params?) => {
   if (eventName) {
     switch (eventName) {
       case 'Approval': return iconsObj.approvalTransaction;
@@ -67,7 +67,7 @@ export const getEventIcon = (eventName, userAddress?, params?) => {
   return '???'
 }
 
-export const getTransactionAddress = (event, from, to) => {
+export const getTransactionAddress = (event: string, from: string, to: string) => {
   switch (event) {
     case 'approval':
       return from;
@@ -82,7 +82,7 @@ export const getTransactionAddress = (event, from, to) => {
   return '???'
 }
 
-export const findTokenName = (assets, tokenAddress) => {
+export const findTokenName = (assets, tokenAddress: string) => {
   let name = '???';
 
   assets.forEach(asset => {
@@ -94,7 +94,7 @@ export const findTokenName = (assets, tokenAddress) => {
   return name;
 }
 
-export const getTokenAmount = (value, assets, tokenSymbol) => {
+export const getTokenAmount = (value: string, assets, tokenSymbol: string) => {
   const bigValue = new BN(value);
   let result: BN;
 
@@ -107,7 +107,7 @@ export const getTokenAmount = (value, assets, tokenSymbol) => {
   return result ? result.toFixed() : '???';
 }
 
-export const getTokenPrice = (assets, tokenSymbol) => {
+export const getTokenPrice = (assets, tokenSymbol: string) => {
   let price = 0;
 
   assets.forEach(asset => {

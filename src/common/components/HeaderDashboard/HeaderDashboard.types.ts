@@ -1,6 +1,6 @@
 export interface DashboardTypes {
-  title?: number;
+  title?: string;
   id?: number;
-  value?: number;
-  percent?: number;
+  value?: string;
+  percent?: string;
 }

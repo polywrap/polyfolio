@@ -17,7 +17,7 @@ const allNetworksDataFormating = (balance) => {
   })
   console.log('allNetworksBalance', balance)
 
-  const allAssetsSum = getAssetsValueSum(allAssets);
+  const allAssetsSum: number = getAssetsValueSum(allAssets);
 
   return {
     balance,
