@@ -55,12 +55,13 @@ export default function useTransactions() {
     if (user && !loading && !data) {
       const {data: response, errors} = await execute({
         account: user,
-        currency: 'USDT',
+        currency: 'USD',
       });
   
       if (response && !errors?.length) {
         const transactions = response?.getTransactions;
 
+        console.log(transactions)
         setTransaction(transactions);
       } else {
         // ADD ERROR HANDLER
