@@ -81,10 +81,10 @@ function AssetsItem(menuItem) {
           >
             <div>
               <div className={styles.valueTitle}>
-                ${numberFormatter({value: valueTitle, size: 2})}
+                {numberFormatter({value: valueTitle, size: 2})}
               </div>
               <div className={styles.valueSecondaryContainer}>
-                ${numberFormatter({value: valueSecondaryTitle, size: 2})}
+                {numberFormatter({value: valueSecondaryTitle, size: 2})}
                 <div style={{marginLeft: '5px'}}>{translation.Assets[title]}</div>
               </div>
             </div>
