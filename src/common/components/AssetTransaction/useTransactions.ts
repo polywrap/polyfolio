@@ -2,10 +2,8 @@ import moment from 'moment';
 import iconsObj from 'assets/icons/iconsObj';
 import useAuth from 'common/hooks/useAuth/useAuth';
 import transactionState from 'common/modules/atoms/transactionState';
-import balanceState from 'common/modules/atoms/balanceState';
 import { useRecoilValue } from 'recoil';
 import {
-  ejectAssetsFromProtocol,
   findTokenName,
   getEventIcon,
   getEventType,
@@ -14,14 +12,15 @@ import {
   getTransactionAddress
 } from 'utils/dataFormating';
 import {shorteredAddress} from 'utils/helpers';
+import useGetData from 'common/hooks/useGetData/useGetData';
 
 const useTransactions = () => {
   const state = useRecoilValue(transactionState);
-  const balance = useRecoilValue(balanceState);
-  const { user } = useAuth();
+  const formateData = useGetData();
+  const preparedData = formateData();
+  const {user} = useAuth();
   const data = [];
 
-  const assets = ejectAssetsFromProtocol(balance?.ethereum['protocols']);
   console.log(state);
 
   state?.transactions.forEach(transaction => {
@@ -36,13 +35,13 @@ const useTransactions = () => {
       user,
       logs.length > 0 ? logs[0].event.params : null
     );
-    const tokenTicker = findTokenName(assets, logs.length > 0 ? logs[0].contractAddress : null);
+    const tokenTicker = findTokenName(preparedData['allAssets'], logs.length > 0 ? logs[0].contractAddress : null);
     const tokenAmount = getTokenAmount(
       logs.length > 0 ? logs[0].event.params[2].value : null,
-      assets,
+      preparedData['allAssets'],
       tokenTicker
     );
-    const tokenPrice = getTokenPrice(assets, tokenTicker);
+    const tokenPrice = getTokenPrice(preparedData['allAssets'], tokenTicker);
 
     if (logs[0]) {
       

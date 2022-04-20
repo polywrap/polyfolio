@@ -11,10 +11,10 @@ const useNetworks = () => {
   const formateData = useGetData();
   const preparedData = formateData();
   const menuItems: NetworksItem[] = [];
-  let allAssets = [];
-
+  
   if (preparedData['balance']) {
     networks.forEach(item => {
+      let allAssets = [];
       _.forEach(preparedData['balance'][item.name]?.protocols, protocol => {
         allAssets = _.flatten([...allAssets, ...ejectAssetsFromProtocol(protocol)]);
       })

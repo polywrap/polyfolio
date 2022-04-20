@@ -22,6 +22,7 @@ import useBalance from 'common/hooks/useBalance/useBalance';
 import useTransactions from 'common/hooks/useTransaction/useTransaction';
 import balanceState from 'common/modules/atoms/balanceState';
 import { useRecoilValue } from 'recoil';
+import transactionState from 'common/modules/atoms/transactionState';
 
 function App() {
   useRouteChange();
@@ -30,14 +31,19 @@ function App() {
   const {getBalance} = useBalance();
   const {getTransactions} = useTransactions();
   const balance = useRecoilValue(balanceState);
+  const transaction = useRecoilValue(transactionState);
 
-  useEffect(function DashboardPage () {
+  useEffect(function fetchBalance () {
     if (user && !balance) {
-      getBalance()
-        .then(() => getTransactions())
-        .catch((error) => console.error(error));
+      getBalance();
     }
-  }, [getBalance, getTransactions, user])
+  }, [getBalance, user, balance])
+
+  useEffect(function fetchTransaction () {
+    if (balance && !transaction) {
+      getTransactions();
+    }
+  }, [getTransactions, balance, transaction])
 
   useEffect(() => {
     if (MetaMaskOnboarding.isMetaMaskInstalled()) {

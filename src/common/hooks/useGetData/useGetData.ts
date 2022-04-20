@@ -9,19 +9,21 @@ const useGetData = (name?: string) => {
   const formateData = () => {
     let preparedData = {};
 
-    switch (name) {
-      case 'ethereum':
-        preparedData = networkDataFormating(name, balance);
-        break;
-      case 'ropsten':
-        preparedData = networkDataFormating(name, balance);
-        break;
-      case 'polygon':
-        preparedData = networkDataFormating(name, balance);
-        break;
-      default:
-        preparedData = allNetworksDataFormating(balance);
-        break;
+    if (balance) {
+      switch (name) {
+        case 'ethereum':
+          preparedData = networkDataFormating(name, balance);
+          break;
+        case 'ropsten':
+          preparedData = networkDataFormating(name, balance);
+          break;
+        case 'polygon':
+          preparedData = networkDataFormating(name, balance);
+          break;
+        default:
+          preparedData = allNetworksDataFormating(balance);
+          break;
+      }
     }
 
     return preparedData;
