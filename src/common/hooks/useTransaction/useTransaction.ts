@@ -16,8 +16,8 @@ export default function useTransactions() {
     query: `
     query GetTransactions($account: String!, $currency: String!) {
       getTransactions(
-        account: $account
-        currency: $currency # This will be moved to env of account-resolver
+        accountAddress: $account
+        vsCurrency: $currency
       )
     }
     `,
@@ -54,8 +54,8 @@ export default function useTransactions() {
   const getTransactions = useCallback(async () => {
     if (user && !loading && !data) {
       const {data: response, errors} = await execute({
-        account: user,
-        currency: 'USDT',
+        accountAddress: user,
+        vsCurrency: 'USDT',
       });
   
       if (response && !errors?.length) {
