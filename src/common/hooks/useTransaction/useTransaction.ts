@@ -54,8 +54,8 @@ export default function useTransactions() {
   const getTransactions = useCallback(async () => {
     if (user && !loading && !data) {
       const {data: response, errors} = await execute({
-        accountAddress: user,
-        vsCurrency: 'USDT',
+        account: user,
+        currency: 'USDT',
       });
   
       if (response && !errors?.length) {
