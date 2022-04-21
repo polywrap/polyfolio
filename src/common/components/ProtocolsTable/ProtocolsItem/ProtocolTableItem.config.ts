@@ -32,8 +32,8 @@ export const useProtocols = () => {
       menuItems.push({
         icon: iconsObj.protocolBardger,
         link: `${RoutePath.Protocol}`,
-        secondaryTitleDollar: rmCommasFromNum('777'),
-        secondaryTitlePercent: rmCommasFromNum('777'),
+        secondaryTitleDollar: '???',
+        secondaryTitlePercent: '???',
         claimableValue,
         valueTitle: valueTitle.toString(),
         valueIsMinus: false,

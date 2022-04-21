@@ -5,6 +5,7 @@ import useAuth from '../useAuth/useAuth';
 import {useCallback} from 'react';
 import transactionState from 'common/modules/atoms/transactionState';
 import { useCurrency } from 'common/currency/Currency.context';
+import {uri, query, redirects, envsUri, apiKey} from './useTransaction.config'; 
 
 
 export default function useTransactions() {
@@ -14,19 +15,12 @@ export default function useTransactions() {
   const [, setTransaction] = useRecoilState(transactionState);
 
   const {execute, loading, data} = useWeb3ApiQuery({
-    uri: `ens/rinkeby/mock.defiwrapper.eth`,
-    query: `
-    query GetTransactions($account: String!, $currency: String!) {
-      getTransactions(
-        accountAddress: $account
-        vsCurrency: $currency
-      )
-    }
-    `,
+    uri,
+    query,
     config: {
       envs: [
         {
-          uri: "ens/rinkeby/ethereum.token.resolvers.defiwrapper.eth",
+          uri: envsUri.uri_1,
           query: {
             connection: {
               networkNameOrChainId: "MAINNET",
@@ -35,21 +29,16 @@ export default function useTransactions() {
           mutation: {}
         },
         {
-          uri: "w3://ens/rinkeby/covalent.account.resolvers.defiwrapper.eth",
+          uri: envsUri.uri_2,
           query: {
-            apiKey: "ckey_910089969da7451cadf38655ede",
+            apiKey,
             chainId: 1,
           },
           common: {},
           mutation: {},
         }
       ],
-      redirects: [
-        {
-          to: "w3://ens/rinkeby/ethereum.token.resolvers.defiwrapper.eth",
-          from: "w3://ens/ethereum.token-resolvers.defiwrapper.eth",
-        }
-      ]
+      redirects,
     },
   });
 

@@ -73,7 +73,7 @@ function VaultsItem(menuItem) {
           >
             <div>
               <div className={styles.valueTitle}>
-                ${numberFormatter({value: valueTitle, size: 2})}
+                {numberFormatter({value: valueTitle, size: 2})}
               </div>
             </div>
           </div>

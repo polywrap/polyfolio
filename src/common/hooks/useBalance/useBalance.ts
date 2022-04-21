@@ -5,6 +5,7 @@ import useAuth from '../useAuth/useAuth';
 import {networks} from 'utils/constants';
 import balanceState from 'common/modules/atoms/balanceState';
 import {insertChainIdToProtocol} from 'utils/dataFormatting';
+import {uri, query} from './useBalance.config';
 
 export default function useBalance() {
   const {user} = useAuth();
@@ -14,15 +15,8 @@ export default function useBalance() {
 
   const balanceRequest = useCallback(async (chainId) => {
     const { data: response, errors } = await client.query({
-      uri: `ens/rinkeby/mock.defiwrapper.eth`,
-      query: `query {
-        getAccountBalance(
-          accountAddress: $accountAddress
-          vsCurrencies: $vsCurrencies
-          noTruncate: $noTruncate
-          underlyingPrice: $underlyingPrice
-        )
-      }`,
+      uri,
+      query,
       variables: {
         accountAddress: user,
         vsCurrencies: [],
@@ -32,7 +26,7 @@ export default function useBalance() {
       config: {
         envs: [
           {
-            uri: 'ens/rinkeby/mock.defiwrapper.eth',
+            uri,
             common: {
               connection: {
                 node: null,

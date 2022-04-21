@@ -118,3 +118,18 @@ export const getTokenPrice = (assets, tokenSymbol: string) => {
 
   return price === 0 ? '???' : price;
 }
+
+export const getClaimableValue = (protocols, address: string) => {
+  let value: string;
+  _.map(protocols, protocol => {
+    _.map(protocol.assets, asset => {
+      _.map(asset.claimableTokens, claimableToken => {
+        if (claimableToken.token.address === address) {
+          value = claimableToken.values[0].value;
+        }
+      });
+    });
+  });
+
+  return value ?? '0';
+}

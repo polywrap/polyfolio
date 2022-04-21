@@ -3,6 +3,7 @@ import { getStringFromPath, rmCommasFromNum } from 'utils/helpers';
 import _ from 'lodash';
 import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 import { useLocation } from 'react-router-dom';
+import { getClaimableValue } from 'utils/dataFormatting';
 
 export const GetVaults = () => {
   const { pathname } = useLocation()
@@ -10,13 +11,13 @@ export const GetVaults = () => {
   const formatData = useGetData(page);
   const preparedData = formatData();
 
-  return _.map(preparedData['allAssets'], asset => {    
+  return _.map(preparedData['allAssets'], asset => {
     return {
-      secondaryPricePercentTitle: rmCommasFromNum('777'),
+      secondaryPricePercentTitle: '???',
       secondaryTitle: preparedData['allAssetsSum'],
-      pricePercentDollar: rmCommasFromNum('777'),
+      pricePercentDollar: '???',
       icon: iconsObj.assetsUsdt,
-      valueTitle: rmCommasFromNum('777'),
+      valueTitle: getClaimableValue(preparedData['allProtocols'], asset.token.token.address),
       valueIsMinus: false,
       priceTitle: rmCommasFromNum(asset.token.values[0].value),
       title: asset.token.token.symbol,

@@ -22,11 +22,11 @@ const useAssets = () => {
       const percent = Number(rmCommasFromNum(allAssets[i].token.values[0].value)) * 100 / assetsSum;
 
       menuItems.push({
-        secondaryPricePercentTitle: rmCommasFromNum('777'),
+        secondaryPricePercentTitle: '???',
         link: `${RoutePath.Asset}`,
         secondaryTitle: allAssets[i].token.token.name,
         valueSecondaryTitle: rmCommasFromNum(allAssets[i].token.values[0].value),
-        pricePercentDollar: rmCommasFromNum('777'),
+        pricePercentDollar: '???',
         iconInfoPage: iconsObj.usdt,
         icon: iconsObj.assetsUsdt,
         valueTitle: rmCommasFromNum(allAssets[i].token.values[0].value),
