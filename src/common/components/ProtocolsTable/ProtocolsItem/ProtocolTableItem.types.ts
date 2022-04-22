@@ -1,7 +1,7 @@
 export interface ProtocolsItem {
   secondaryTitlePercent: string;
   secondaryTitleDollar: string;
-  claimableValue?: number;
+  claimableValue: number;
   valueIsMinus?: boolean;
   valueTitle: string;
   title: string;

@@ -4,8 +4,9 @@ import RoutePath from 'common/modules/routing/routing.enums';
 import {getStringFromPath, rmCommasFromNum} from 'utils/helpers';
 import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 import _ from 'lodash';
-import { useLocation } from 'react-router-dom';
-import { chainIdToNetwork } from 'utils/constants';
+import {useLocation} from 'react-router-dom';
+import {chainIdToNetwork} from 'utils/constants';
+import {getClaimableValueFromCurrProtocol} from 'utils/dataFormatting';
 
 export const useProtocols = () => {
   const {pathname} = useLocation();
@@ -13,21 +14,20 @@ export const useProtocols = () => {
   const formatData = useGetData(page);
   const preparedData = formatData();
   const menuItems: ProtocolsItem[] = [];
+  const allProtocols = preparedData['allProtocols'];
   
-  if (preparedData['allProtocols']) {
-    for (let i = 0; i < preparedData['allProtocols'].length; i++) {
+  if (allProtocols) {
+    for (let i = 0; i < allProtocols.length; i++) {
       let valueTitle = 0;
       let claimableValue = 0;
-      _.forEach(preparedData['allProtocols'][i].assets, asset => {
+      _.forEach(allProtocols[i].assets, asset => {
         valueTitle += _.sumBy(asset['balance'].components, assetItem => 
           Number(rmCommasFromNum(assetItem['token'].values[0].value))
         )
-        claimableValue += _.sumBy(asset['claimableTokens'], assetItem => 
-          Number(rmCommasFromNum(assetItem['values'][0].value))
-        )
+        claimableValue += getClaimableValueFromCurrProtocol(asset);
       })
 
-      const network = preparedData['allProtocols'][i].protocol.chainId;
+      const network = allProtocols[i].protocol.chainId;
 
       menuItems.push({
         icon: iconsObj.protocolBardger,
