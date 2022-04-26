@@ -21,6 +21,10 @@ const useAssets = () => {
   if (allAssets) {
     for (let i = 0; i < allAssets.length; i++) {
       const percent = Number(rmCommasFromNum(allAssets[i].token.values[0].value)) * 100 / assetsSum;
+      const valueTitle = (
+        Number(rmCommasFromNum(allAssets[i].token.values[0].value))
+        * Number(rmCommasFromNum(allAssets[i].token.values[0].price))
+      ).toString();
 
       menuItems.push({
         secondaryPricePercentTitle: '???',
@@ -30,7 +34,7 @@ const useAssets = () => {
         pricePercentDollar: '???',
         iconInfoPage: iconsObj.usdt,
         icon: iconsObj.assetsUsdt,
-        valueTitle: rmCommasFromNum(allAssets[i].token.values[0].value),
+        valueTitle,
         valueIsMinus: false,
         priceTitle: rmCommasFromNum(allAssets[i].token.values[0].price),
         title: allAssets[i].token.token.symbol,

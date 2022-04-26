@@ -13,13 +13,13 @@ import classNames from 'classnames';
 import {fillArray} from 'utils/helpers';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import useSearch from 'common/hooks/useSearch/useSearch';
-import RoutePath from 'common/modules/routing/routing.enums';
 
 function AssetsItem(menuItem) {
   const {filters} = useFiltersTables();
   const translation = useTranslation();
   const navigate = useNavigate();
   const {
+    valueSecondaryTitleCurrency,
     secondaryPricePercentTitle,
     valueSecondaryTitle,
     pricePercentDollar,
@@ -85,10 +85,10 @@ function AssetsItem(menuItem) {
           >
             <div>
               <div className={styles.valueTitle}>
-                {numberFormatter({value: valueTitle, size: 2})}
+                ${numberFormatter({value: valueTitle, size: 2})}
               </div>
               <div className={styles.valueSecondaryContainer}>
-                {numberFormatter({value: valueSecondaryTitle, size: 2})}
+                {numberFormatter({value: valueSecondaryTitle, size: 2})} {symbol.toUpperCase()}
                 <div style={{marginLeft: '5px'}}>{translation.Assets[title]}</div>
               </div>
             </div>

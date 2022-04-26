@@ -33,7 +33,9 @@ function VaultsItem(menuItem) {
             <Icon src={icon} className={styles.icon} />
             <div>
               <div className={styles.title}>{title}</div>
-              <div className={styles.titleSecondary}>{secondaryTitle}</div>
+              <div className={styles.titleSecondary}>
+                {numberFormatter({value: secondaryTitle, size: 2})}
+              </div>
             </div>
           </div>
           <div
