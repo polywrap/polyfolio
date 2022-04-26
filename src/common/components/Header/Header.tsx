@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useCallback} from 'react';
 import classNames from 'classnames';
 
 import styles from './Header.module.scss';
@@ -18,6 +18,7 @@ import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import ThemeSwitcher from 'common/components/ThemeSwitcher/ThemeSwitcher';
 import CurrencyPicker from 'common/components/CurrencyPicker/CurrencyPicker';
 import useResizeObserver from 'common/hooks/useResizeObserver/useResizeObserver';
+import useBalance from 'common/hooks/useBalance/useBalance';
 
 function Header({
   className = '',
@@ -28,6 +29,7 @@ function Header({
 }) {
   const theme = useTheme();
   const {user} = useAuth();
+  const {getBalance} = useBalance();
   const translation = useTranslation();
   const [value, setValue] = useState<string>();
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState<boolean>(false);
@@ -35,6 +37,14 @@ function Header({
   const menuRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLDivElement>(null);
   const {width} = useResizeObserver(menuRef);
+
+  const handleChange = useCallback((val: string) => {
+    setValue(val);
+  }, [setValue])
+  
+  const handleClick = useCallback(() => {
+    getBalance(value);
+  }, [getBalance, value])
 
   return (
     <div className={styles.wrapper}>
@@ -53,7 +63,8 @@ function Header({
             <Logo />
             <Input
               value={value}
-              onChange={setValue}
+              onChange={handleChange}
+              onClick={handleClick}
               icon={iconsObj.search}
               wrapperClassName={classNames(styles.input, inputClassName)}
               placeholder={translation.Common.searchPlaceholder}

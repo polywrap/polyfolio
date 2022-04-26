@@ -13,12 +13,12 @@ export default function useBalance() {
 
   const [balance, setBalance] = useRecoilState(balanceState);
 
-  const balanceRequest = useCallback(async (chainId) => {
+  const balanceRequest = useCallback(async (chainId, otherUserAddress?) => {
     const { data: response, errors } = await client.query({
       uri,
       query,
       variables: {
-        accountAddress: user,
+        accountAddress: otherUserAddress ?? user,
         vsCurrencies: [],
         noTruncate: false,
         underlyingPrice: false,
@@ -51,25 +51,23 @@ export default function useBalance() {
     }
   }, [client, user])
 
-  const getBalance = useCallback(async () => {
-    if (user && !balance) {
+  const getBalance = useCallback(async (otherUserAddress?) => {
+    if (user) {
       let temporaryBalance = {}
 
       for (let i = 0; i < networks.length; i++) {
         const name = networks[i].name;
         const chainId = networks[i].chainId.toString();
 
-        if (!balance || balance && !Object.keys(balance).includes(name)) {
-          const response = await balanceRequest(chainId);
+        const response = await balanceRequest(chainId, otherUserAddress);
           temporaryBalance = {...temporaryBalance, [name]: response};
-        }
       }
 
       insertChainIdToProtocol(temporaryBalance);
 
       setBalance(temporaryBalance);
     }
-  }, [balance, balanceRequest, setBalance, user]);
+  }, [balanceRequest, setBalance, user]);
 
   return {getBalance};
 }
