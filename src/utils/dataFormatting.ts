@@ -138,7 +138,6 @@ export const getClaimableValue = (protocols, address: string) => {
 
 export const getClaimableValueFromCurrProtocol = (asset) => {
   let value = 0;
-  console.log(asset)
   _.forEach(asset.balance.components, component => {
     _.forEach(asset.claimableTokens, claimableToken => {
       if (component.token.token.address === claimableToken.token.address) {
