@@ -19,46 +19,40 @@ global.console = {
   warn: jest.fn(),
 };
 
-const AppWithContext = () => (
-  <RecoilRoot>
-    <ThemeContext>
-      <LocalizationContext>
-        <FiltersContextProvider>
-          <CurrencyContext>
-            <BrowserRouter>
-              <WalletContext>
-                <Web3ApiProvider>
-                  <App />
-                </Web3ApiProvider>
-              </WalletContext>
-            </BrowserRouter>
-          </CurrencyContext>
-        </FiltersContextProvider>
-      </LocalizationContext>
-    </ThemeContext>
-  </RecoilRoot>
-);
-
 test('renders header', () => {
-  render(<AppWithContext />);
+  render(
+    <RecoilRoot>
+      <ThemeContext>
+        <LocalizationContext>
+          <FiltersContextProvider>
+            <CurrencyContext>
+              <BrowserRouter>
+                <WalletContext>
+                  <Web3ApiProvider>
+                    <App />
+                  </Web3ApiProvider>
+                </WalletContext>
+              </BrowserRouter>
+            </CurrencyContext>
+          </FiltersContextProvider>
+        </LocalizationContext>
+      </ThemeContext>
+    </RecoilRoot>,
+  );
 
   const header = screen.queryByTestId('header');
 
   expect(header).toBeVisible();
 });
 
-test('renders footer', () => {
-  render(<AppWithContext />);
+test('test isFour', () => {
+  const isFour = 2 + 2;
 
-  const footer = screen.queryAllByTestId('footer')[0];
-
-  expect(footer).toBeVisible();
+  expect(isFour).toBe(4);
 });
 
-test('renders nothing', () => {
-  render(<AppWithContext />);
+test('renders isSix', () => {
+  const isSix = 2 + 2 * 2;
 
-  const nothing = screen.queryByTestId('nothing');
-
-  expect(nothing).toBeNull();
+  expect(isSix).toBe(6);
 });
