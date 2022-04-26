@@ -1,16 +1,15 @@
 export interface AssetsItem {
-  secondaryPricePercentTitle?: number;
-  valueSecondaryTitle: number;
-  pricePercentDollar?: number;
-  claimableValue?: number;
+  secondaryPricePercentTitle: string;
+  valueSecondaryTitle: string;
+  pricePercentDollar: string;
   secondaryTitle: string;
   valueIsMinus?: boolean;
   iconInfoPage?: string;
-  valueTitle?: number;
-  priceTitle?: number;
-  percent?: number;
+  valueTitle: string;
+  priceTitle: string;
+  percent: string;
   title: string;
   icon?: string;
-  link?: string;
+  link: string;
   id: string;
 }

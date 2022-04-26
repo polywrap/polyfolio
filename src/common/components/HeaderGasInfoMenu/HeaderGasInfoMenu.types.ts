@@ -1,9 +1,9 @@
 export interface HeaderGasInfoItem {
   title?: string;
   time?: string;
-  price?: number;
+  price?: string;
   colorIcon?: string;
-  titlePrice?: number;
+  titlePrice?: string;
   isDivider?: boolean;
   isExternal?: boolean;
 }

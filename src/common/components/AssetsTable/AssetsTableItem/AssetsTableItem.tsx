@@ -66,13 +66,13 @@ function AssetsItem(menuItem) {
             </div>
           </div>
           <PricesValue
-            secondaryPricePercentTitle={numberFormatter({value: secondaryPricePercentTitle ?? 0, size: 2})}
-            pricePercentDollar={numberFormatter({value: pricePercentDollar ?? 0, size: 2})}
+            secondaryPricePercentTitle={secondaryPricePercentTitle}
+            pricePercentDollar={pricePercentDollar}
             className={classNames(styles.price_container, {
               [styles.hidden]: filters.assets.price,
             })}
             valueIsMinus={valueIsMinus}
-            priceTitle={numberFormatter({value: priceTitle ?? 0, size: 2})}
+            priceTitle={priceTitle}
           />
           <div
             className={classNames(styles.value_container, {
@@ -81,10 +81,10 @@ function AssetsItem(menuItem) {
           >
             <div>
               <div className={styles.valueTitle}>
-                ${numberFormatter({value: valueTitle, size: 2})}
+                {numberFormatter({value: valueTitle, size: 2})}
               </div>
               <div className={styles.valueSecondaryContainer}>
-                ${numberFormatter({value: valueSecondaryTitle, size: 2})}
+                {numberFormatter({value: valueSecondaryTitle, size: 2})}
                 <div style={{marginLeft: '5px'}}>{translation.Assets[title]}</div>
               </div>
             </div>

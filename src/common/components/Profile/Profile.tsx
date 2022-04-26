@@ -16,6 +16,7 @@ import ProfileDropdownMenu from 'common/components/ProfileDropdownMenu/ProfileDr
 import Button from '../Button/Button';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useWallet from 'common/hooks/useWallet/useWallet';
+import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 
 const MOCK_VALUE = 13337337;
 
@@ -25,6 +26,8 @@ function Profile() {
   const translation = useTranslation();
   const {user, logOut} = useAuth();
   const {connect} = useWallet();
+  const formatedData = useGetData();
+  const preparedData = formatedData();
   
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -50,7 +53,12 @@ function Profile() {
                 </TooltipTrigger>
               </div>
             </div>
-            <div className={styles.amount}>${numberFormatter({value: MOCK_VALUE, size: 2})}</div>
+            <div className={styles.amount}>
+              ${numberFormatter({
+                value: preparedData['allAssetsSum'],
+                size: 2
+              })}
+            </div>
           </div>
         </>
       ) : (

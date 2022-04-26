@@ -10,12 +10,15 @@ import Dropdown from '../Dropdown/Dropdown';
 import {filteredDropdown} from 'utils/helpers';
 import numberFormatter from 'utils/numberFormatter';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
+import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 
 function HeaderDashboard() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [currency, setCurrency] = useState(dropdownItems[0]);
   const theme = useTheme();
   const translation = useTranslation();
+  const formatedData = useGetData();
+  const preparedData = formatedData();
 
   const onChangeCurrency = (item) => {
     setCurrency(item);
@@ -28,7 +31,7 @@ function HeaderDashboard() {
       <div className={styles.contentContainer}>
         <div>
           <span className={styles.secondaryTitle}>{translation.Dashboard.secondaryTitle}</span>
-          <h2>${numberFormatter({value: content.title, size: 2})}</h2>
+          <h2>${numberFormatter({value: preparedData['allAssetsSum'], size: 2})}</h2>
           <div className={styles.secondaryValue}>
             <div className={styles.value}>
               +{numberFormatter({value: content.percent, size: 2})}%

@@ -1,43 +1,40 @@
-import {useRecoilValue} from 'recoil';
 import iconsObj from 'assets/icons/iconsObj';
 import {rmCommasFromNum} from 'utils/helpers';
 import {AssetsItem} from './AssetsTableItem.types';
 import RoutePath from 'common/modules/routing/routing.enums';
-import balanceState from 'common/modules/atoms/balanceState';
-import {ejectAssetsFromProtocol} from 'utils/dataFormating';
-import allAssetsSumState from 'common/modules/atoms/allAssetsSum';
-import { useLocation } from 'react-router-dom';
+import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
+import {useLocation} from 'react-router-dom';
 import {getStringFromPath} from 'utils/helpers';
-import { useMemo } from 'react';
-
 
 const useAssets = () => {
   const {pathname} = useLocation();
-  console.log(pathname);
   const page = getStringFromPath(pathname, 2);
-  console.log(page);
-  const balance = useRecoilValue(balanceState);
-  const assetsSum = useRecoilValue(allAssetsSumState);
-  const menuItems: AssetsItem[] = [];
+  const formatData = useGetData(page);
+  const preparedData = formatData();
 
-  const allAssets = ejectAssetsFromProtocol(balance?.ethereum['protocols']);
+  const menuItems: AssetsItem[] = [];
+  
+  const allAssets = preparedData ? preparedData['allAssets'] : null;
+  const assetsSum = preparedData ? preparedData['allAssetsSum'] : null;
   
   if (allAssets) {
     for (let i = 0; i < allAssets.length; i++) {
+      const percent = Number(rmCommasFromNum(allAssets[i].token.values[0].value)) * 100 / assetsSum;
+
       menuItems.push({
-        secondaryPricePercentTitle: 777,
+        secondaryPricePercentTitle: '???',
         link: `${RoutePath.Asset}`,
-        secondaryTitle: allAssets[i].balance.token.token.name,
-        valueSecondaryTitle: rmCommasFromNum(allAssets[i].balance.token.values[0].value),
-        pricePercentDollar: rmCommasFromNum(777),
+        secondaryTitle: allAssets[i].token.token.name,
+        valueSecondaryTitle: rmCommasFromNum(allAssets[i].token.values[0].value),
+        pricePercentDollar: '???',
         iconInfoPage: iconsObj.usdt,
         icon: iconsObj.assetsUsdt,
-        valueTitle: rmCommasFromNum(allAssets[i].balance.token.values[0].value),
+        valueTitle: rmCommasFromNum(allAssets[i].token.values[0].value),
         valueIsMinus: false,
-        priceTitle: rmCommasFromNum(allAssets[i].balance.token.values[0].price),
-        title: allAssets[i].balance.token.token.symbol,
-        percent: Number(rmCommasFromNum(allAssets[i].balance.token.values[0].value)) * 100 / assetsSum["ethereum"],
-        id: allAssets[i].balance.token.token.symbol.toLowerCase(),
+        priceTitle: rmCommasFromNum(allAssets[i].token.values[0].price),
+        title: allAssets[i].token.token.symbol,
+        percent: percent.toString(), 
+        id: allAssets[i].token.token.symbol.toLowerCase(),
       });
     }
   }

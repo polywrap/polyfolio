@@ -18,11 +18,32 @@ import PageUnderConstruction from 'pages/PageUnderConstruction/PageUnderConstruc
 import WrapperInfoPage from 'pages/WrapperInfoPage/WrapperInfoPage';
 import NetworksInfo from 'pages/WrapperInfoPage/NetworksInfo/NetworksInfo';
 import ProtocolsInfo from 'pages/WrapperInfoPage/ProtocolsInfo/ProtocolsInfo';
+import useBalance from 'common/hooks/useBalance/useBalance';
+import useTransactions from 'common/hooks/useTransaction/useTransaction';
+import balanceState from 'common/modules/atoms/balanceState';
+import { useRecoilValue } from 'recoil';
+import transactionState from 'common/modules/atoms/transactionState';
 
 function App() {
   useRouteChange();
   const {user} = useAuth();
   const {check} = useWallet();
+  const {getBalance} = useBalance();
+  const {getTransactions} = useTransactions();
+  const balance = useRecoilValue(balanceState);
+  const transaction = useRecoilValue(transactionState);
+
+  useEffect(function fetchBalance () {
+    if (user && !balance) {
+      getBalance();
+    }
+  }, [getBalance, user, balance])
+
+  useEffect(function fetchTransaction () {
+    if (balance && !transaction) {
+      getTransactions();
+    }
+  }, [getTransactions, balance, transaction])
 
   useEffect(() => {
     if (MetaMaskOnboarding.isMetaMaskInstalled()) {

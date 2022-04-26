@@ -1,27 +1,28 @@
-import {VaultItem} from './VaultsTableItem.types';
 import iconsObj from 'assets/icons/iconsObj';
-import {useRecoilValue} from 'recoil';
-import currentProtocol from 'common/modules/atoms/currentProtocol'
-import {rmCommasFromNum} from 'utils/helpers';
-import {getAssetsValueSum} from 'utils/dataFormating';
+import { getStringFromPath, rmCommasFromNum } from 'utils/helpers';
 import _ from 'lodash';
+import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
+import { useLocation } from 'react-router-dom';
+import { getClaimableValue } from 'utils/dataFormatting';
 
 export const GetVaults = () => {
-  const protocol = useRecoilValue(currentProtocol);
-  const assetsTotalValue = getAssetsValueSum(protocol?.assets);
+  const { pathname } = useLocation()
+  const page = getStringFromPath(pathname, 1);
+  const formatData = useGetData(page);
+  const preparedData = formatData();
 
-  return _.map(protocol?.assets, asset => {
+  return _.map(preparedData['allAssets'], asset => {
     return {
-      secondaryPricePercentTitle: rmCommasFromNum(777),
-      secondaryTitle: asset.balance.token.token.name,
-      pricePercentDollar: rmCommasFromNum(777),
+      secondaryPricePercentTitle: '???',
+      secondaryTitle: preparedData['allAssetsSum'],
+      pricePercentDollar: '???',
       icon: iconsObj.assetsUsdt,
-      valueTitle: rmCommasFromNum(777),
+      valueTitle: getClaimableValue(preparedData['allProtocols'], asset.token.token.address),
       valueIsMinus: false,
-      priceTitle: rmCommasFromNum(asset.balance.token.values[0].value),
-      title: asset.balance.token.token.symbol,
-      percent: Number(rmCommasFromNum(asset.balance.token.values[0].value)) * 100 / assetsTotalValue,
-      id: asset.balance.token.token.symbol.toLowerCase(),  
+      priceTitle: rmCommasFromNum(asset.token.values[0].value),
+      title: asset.token.token.symbol,
+      percent: Number(rmCommasFromNum(asset.token.values[0].value)) * 100 / preparedData['allAssetsSum'],
+      id: asset.token.token.symbol.toLowerCase(),
     }
   })
 }
