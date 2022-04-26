@@ -18,7 +18,7 @@ function HeaderCurrencyPage() {
   const translation = useTranslation();
   const navigate = useNavigate();
   const menuItems = useAssets();
-  const currency = _find(menuItems, {id});
+  const currency = _find(menuItems, {symbol: id});
 
   const to = search ? RoutePath.DashboardAlternative.replace(':id', search) : RoutePath.Dashboard;
 

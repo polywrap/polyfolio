@@ -11,9 +11,9 @@ import DashboardPage from '../DashboardPage';
 
 function ProtocolPage() {
   const translation = useTranslation();
-  const { id } = useParams();
+  const {id} = useParams();
   const menuItems = GetProtocols();
-  const current = _find(menuItems, { id });
+  const current = _find(menuItems, {symbol: id});
 
   return (
     <DashboardPage>

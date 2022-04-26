@@ -12,6 +12,8 @@ import _map from 'lodash/map';
 import classNames from 'classnames';
 import {fillArray} from 'utils/helpers';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
+import useSearch from 'common/hooks/useSearch/useSearch';
+import RoutePath from 'common/modules/routing/routing.enums';
 
 function AssetsItem(menuItem) {
   const {filters} = useFiltersTables();
@@ -29,9 +31,11 @@ function AssetsItem(menuItem) {
     title,
     link,
     icon,
-    id,
+    symbol,
   } = menuItem;
-  const path = id && link.replace(':id', `${id}`);
+  const {search} = useSearch();
+  const path = symbol && !search ? link.replace(':id', `${symbol}`)
+    : search ? link.replace(':id', `${symbol}`) + `?${search}` : '/404';
 
   return (
     <>

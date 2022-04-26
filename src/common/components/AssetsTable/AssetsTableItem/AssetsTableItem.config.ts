@@ -1,4 +1,5 @@
 import iconsObj from 'assets/icons/iconsObj';
+import { v4 as uuidv4 } from 'uuid';
 import {rmCommasFromNum} from 'utils/helpers';
 import {AssetsItem} from './AssetsTableItem.types';
 import RoutePath from 'common/modules/routing/routing.enums';
@@ -33,8 +34,9 @@ const useAssets = () => {
         valueIsMinus: false,
         priceTitle: rmCommasFromNum(allAssets[i].token.values[0].price),
         title: allAssets[i].token.token.symbol,
-        percent: percent.toString(), 
-        id: allAssets[i].token.token.symbol.toLowerCase(),
+        percent: percent.toString(),
+        symbol: allAssets[i].token.token.symbol.toLowerCase(),
+        id: uuidv4(),
       });
     }
   }
