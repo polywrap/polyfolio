@@ -18,7 +18,7 @@ function ProtocolPage() {
   return (
     <DashboardPage>
       <HeaderPage
-        title={`${current?.title} ${translation.Networks.network}`}
+        title={`${current?.title} ${translation.Protocols.protocol}`}
         icon={current?.icon}
       />
       <HeaderPageInfo title={current?.valueTitle} />

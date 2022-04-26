@@ -35,7 +35,7 @@ export const useProtocols = () => {
         link: `${RoutePath.Protocol}`,
         secondaryTitleDollar: '???',
         secondaryTitlePercent: '???',
-        claimableValue,
+        claimableValue: claimableValue.toString(),
         valueTitle: valueTitle.toString(),
         valueIsMinus: false,
         title: preparedData['allProtocols'][i].protocol.name,
