@@ -15,9 +15,8 @@ import Transactions from 'pages/DashboardPage/Transactions/Transactions';
 import SettingsPage from 'pages/SettingsPage/SettingsPage';
 import AssetPage from 'pages/DashboardPage/AssetPage/AssetPage';
 import PageUnderConstruction from 'pages/PageUnderConstruction/PageUnderConstruction';
-import WrapperInfoPage from 'pages/WrapperInfoPage/WrapperInfoPage';
-import NetworksInfo from 'pages/WrapperInfoPage/NetworksInfo/NetworksInfo';
-import ProtocolsInfo from 'pages/WrapperInfoPage/ProtocolsInfo/ProtocolsInfo';
+import NetworkPage from 'pages/DashboardPage/NetworkPage/NetworksPage';
+import ProtocolPage from 'pages/DashboardPage/ProtocolPage/ProtocolPage';
 import useBalance from 'common/hooks/useBalance/useBalance';
 import useTransactions from 'common/hooks/useTransaction/useTransaction';
 import balanceState from 'common/modules/atoms/balanceState';
@@ -107,9 +106,7 @@ function App() {
             path={RoutePath.Network}
             element={
               <ProtectedRoute user={user}>
-                <WrapperInfoPage>
-                  <NetworksInfo />
-                </WrapperInfoPage>
+                <NetworkPage />
               </ProtectedRoute>
             }
           />
@@ -117,9 +114,7 @@ function App() {
             path={RoutePath.Protocol}
             element={
               <ProtectedRoute user={user}>
-                <WrapperInfoPage>
-                  <ProtocolsInfo />
-                </WrapperInfoPage>
+                <ProtocolPage />
               </ProtectedRoute>
             }
           />

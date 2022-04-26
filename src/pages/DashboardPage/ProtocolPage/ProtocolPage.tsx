@@ -7,15 +7,16 @@ import _find from 'lodash/find';
 import GetProtocols from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.config';
 import VaultsTable from 'common/components/VaultsTable/VaultsTable';
 import AssetTransaction from 'common/components/AssetTransaction/AssetTransaction';
+import DashboardPage from '../DashboardPage';
 
-function ProtocolsInfo() {
+function ProtocolPage() {
   const translation = useTranslation();
   const { id } = useParams();
   const menuItems = GetProtocols();
   const current = _find(menuItems, { id });
 
   return (
-    <>
+    <DashboardPage>
       <HeaderPage
         title={`${current?.title} ${translation.Networks.network}`}
         icon={current?.icon}
@@ -23,8 +24,8 @@ function ProtocolsInfo() {
       <HeaderPageInfo title={current?.valueTitle} />
       <VaultsTable />
       <AssetTransaction />
-    </>
+    </DashboardPage>
   );
 }
 
-export default ProtocolsInfo;
+export default ProtocolPage;
