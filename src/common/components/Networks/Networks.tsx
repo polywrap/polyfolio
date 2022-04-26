@@ -11,6 +11,7 @@ import useNetworks from './Networks.config';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import Icon from 'common/components/Icon/Icon';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
+import useSearch from 'common/hooks/useSearch/useSearch';
 
 function Networks() {
   const ref = useRef(null);
@@ -20,7 +21,9 @@ function Networks() {
   const menuItems = useNetworks();
 
   const MenuItem = (menuItem: NetworksItem) => {
-    const path = menuItem.link.replace(':id', `${menuItem.id}`);
+    const {search} = useSearch();
+    const path = menuItem.id && !search ? menuItem.link.replace(':id', `${menuItem.id}`)
+    : search ? menuItem.link.replace(':id', `${menuItem.id}`) + `?${search}` : '/404';
 
     return (
       <div className={styles.menu_item} onClick={() => navigate(path)}>
