@@ -13,17 +13,12 @@ import classNames from 'classnames';
 import {fillArray} from 'utils/helpers';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import useSearch from 'common/hooks/useSearch/useSearch';
-<<<<<<< HEAD
-=======
-import RoutePath from 'common/modules/routing/routing.enums';
->>>>>>> f1cf49593587e6bf15f52fe3a9e7b6502d29490f
 
 function AssetsItem(menuItem) {
   const {filters} = useFiltersTables();
   const translation = useTranslation();
   const navigate = useNavigate();
   const {
-    valueSecondaryTitleCurrency,
     secondaryPricePercentTitle,
     valueSecondaryTitle,
     pricePercentDollar,
