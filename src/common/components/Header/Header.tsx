@@ -38,7 +38,7 @@ function Header({
 
   return (
     <div className={styles.wrapper}>
-      <header className={classNames(styles.common_header, styles[theme])}>
+      <header data-testid="header" className={classNames(styles.common_header, styles[theme])}>
         <div className={classNames(styles.content, className)}>
           <div
             className={styles.hamburger_menu}
