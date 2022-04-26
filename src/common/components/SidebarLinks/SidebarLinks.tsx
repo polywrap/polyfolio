@@ -12,6 +12,7 @@ import navigateToExternalLink from 'utils/navigateToExternalLink';
 import MaskIcon from '../MaskIcon/MaskIcon';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import NetworkDropdown from '../NetworkDropdown/NetworkDropdown';
+import useSearch from 'common/hooks/useSearch/useSearch';
 
 function SidebarLinks() {
   const theme = useTheme();
@@ -19,6 +20,14 @@ function SidebarLinks() {
   const [networkList, setNetworkList] = useState<INetworksList[]>(networkDropdown)
   const [network, setNetwork] = useState<INetworksList>(networkDropdown[0])
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const {search, setSearch} = useSearch();
+
+  const handleClick = useCallback((event, link, isExternal) => {
+    if (search) {
+      setSearch(null);
+    }
+    navigateToExternalLink({event, link, isExternal});
+  }, [search, setSearch])
 
   const handleNetworkChange = useCallback((name) => {
     setNetworkList(networkList.map(network =>
@@ -56,7 +65,7 @@ function SidebarLinks() {
         return (
           <Link
             key={icon}
-            onClick={(event) => navigateToExternalLink({event, link, isExternal})}
+            onClick={(event) => handleClick(event, link, isExternal)}
             className={styles.link}
             to={link}
           >

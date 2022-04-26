@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, {Fragment, useEffect} from 'react';
 import {Route, Routes, Navigate} from 'react-router-dom';
 import MetaMaskOnboarding from '@metamask/onboarding';
@@ -20,12 +19,14 @@ import ProtocolPage from 'pages/DashboardPage/ProtocolPage/ProtocolPage';
 import useBalance from 'common/hooks/useBalance/useBalance';
 import useTransactions from 'common/hooks/useTransaction/useTransaction';
 import balanceState from 'common/modules/atoms/balanceState';
-import { useRecoilValue } from 'recoil';
+import {useRecoilValue} from 'recoil';
 import transactionState from 'common/modules/atoms/transactionState';
+import useSearch from 'common/hooks/useSearch/useSearch';
 
 function App() {
   useRouteChange();
   const {user} = useAuth();
+  const {search} = useSearch();
   const {check} = useWallet();
   const {getBalance} = useBalance();
   const {getTransactions} = useTransactions();
@@ -33,10 +34,12 @@ function App() {
   const transaction = useRecoilValue(transactionState);
 
   useEffect(function fetchBalance () {
-    if (user && !balance) {
+    if (user && !search) {
       getBalance();
+    } else if (search) {
+      getBalance(search)
     }
-  }, [getBalance, user, balance])
+  }, [getBalance, user, search])
 
   useEffect(function fetchTransaction () {
     if (balance && !transaction) {
@@ -48,7 +51,7 @@ function App() {
     if (MetaMaskOnboarding.isMetaMaskInstalled()) {
       window['ethereum'].on('accountsChanged', check);
     }
-  }, []);
+  }, [check]);
 
   const ProtectedRoute = ({user, redirectPath = RoutePath.BaseRoute, children}) => {
     if (!user) {
@@ -88,6 +91,14 @@ function App() {
           />
           <Route
             path={RoutePath.Dashboard}
+            element={
+              <ProtectedRoute user={user}>
+                <Portfolio />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={RoutePath.DashboardAlternative}
             element={
               <ProtectedRoute user={user}>
                 <Portfolio />

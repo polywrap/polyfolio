@@ -20,6 +20,7 @@ import CurrencyPicker from 'common/components/CurrencyPicker/CurrencyPicker';
 import useResizeObserver from 'common/hooks/useResizeObserver/useResizeObserver';
 import RoutePath from 'common/modules/routing/routing.enums';
 import {useNavigate} from 'react-router-dom';
+import useSearch from 'common/hooks/useSearch/useSearch';
 
 function Header({
   className = '',
@@ -30,6 +31,7 @@ function Header({
 }) {
   const theme = useTheme();
   const {user} = useAuth();
+  const {setSearch} = useSearch();
   const navigate = useNavigate();
   const translation = useTranslation();
   const [value, setValue] = useState<string>();
@@ -44,8 +46,9 @@ function Header({
   }, [setValue])
   
   const handleClick = useCallback(() => {
+    setSearch(value)
     navigate(RoutePath.DashboardAlternative.replace(':id', value));
-  }, [navigate, value])
+  }, [navigate, setSearch, value])
 
   return (
     <div className={styles.wrapper}>
