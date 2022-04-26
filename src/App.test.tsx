@@ -54,5 +54,5 @@ test('test isFour', () => {
 test('renders isSix', () => {
   const isSix = 2 + 2 * 2;
 
-  expect(isSix).toBe(6);
+  expect(isSix).toBe(8);
 });
