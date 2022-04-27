@@ -60,7 +60,7 @@ export default function useTransactions() {
         console.log('-----ERRORS');
       }
     }
-  }, [data, execute, loading, setTransaction, user]);
+  }, [currency, data, execute, loading, setTransaction, user]);
 
   return {getTransactions};
 }

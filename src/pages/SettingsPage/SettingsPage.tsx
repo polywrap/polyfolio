@@ -11,7 +11,7 @@ import Sidebar from 'common/components/Sidebar/Sidebar';
 import SettingsBody from './SettingsBody/SettingsBody';
 
 function SettingsPage() {
-  const theme = useTheme()
+  const theme = useTheme();
 
   return (
     <div className={classNames(styles[theme])}>

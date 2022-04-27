@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useCallback} from 'react';
 import classNames from 'classnames';
 
 import styles from './Header.module.scss';
@@ -18,6 +18,9 @@ import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import ThemeSwitcher from 'common/components/ThemeSwitcher/ThemeSwitcher';
 import CurrencyPicker from 'common/components/CurrencyPicker/CurrencyPicker';
 import useResizeObserver from 'common/hooks/useResizeObserver/useResizeObserver';
+import RoutePath from 'common/modules/routing/routing.enums';
+import {useNavigate} from 'react-router-dom';
+import useSearch from 'common/hooks/useSearch/useSearch';
 
 function Header({
   className = '',
@@ -28,6 +31,8 @@ function Header({
 }) {
   const theme = useTheme();
   const {user} = useAuth();
+  const {setSearch} = useSearch();
+  const navigate = useNavigate();
   const translation = useTranslation();
   const [value, setValue] = useState<string>();
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState<boolean>(false);
@@ -36,9 +41,18 @@ function Header({
   const searchRef = useRef<HTMLDivElement>(null);
   const {width} = useResizeObserver(menuRef);
 
+  const handleChange = useCallback((val: string) => {
+    setValue(val);
+  }, [setValue])
+  
+  const handleClick = useCallback(() => {
+    setSearch(value)
+    navigate(RoutePath.DashboardAlternative.replace(':id', value));
+  }, [navigate, setSearch, value])
+
   return (
     <div className={styles.wrapper}>
-      <header className={classNames(styles.common_header, styles[theme])}>
+      <header data-testid="header" className={classNames(styles.common_header, styles[theme])}>
         <div className={classNames(styles.content, className)}>
           <div
             className={styles.hamburger_menu}
@@ -53,7 +67,8 @@ function Header({
             <Logo />
             <Input
               value={value}
-              onChange={setValue}
+              onChange={handleChange}
+              onClick={handleClick}
               icon={iconsObj.search}
               wrapperClassName={classNames(styles.input, inputClassName)}
               placeholder={translation.Common.searchPlaceholder}

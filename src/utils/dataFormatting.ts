@@ -124,8 +124,6 @@ export const getClaimableValue = (protocols, address: string) => {
   _.map(protocols, protocol => {
     _.map(protocol.assets, asset => {
       _.map(asset.claimableTokens, claimableToken => {
-        console.log(`${claimableToken.token.address} === ${address}`)
-
         if (claimableToken.token.address === address) {
           value = claimableToken.values[0].value;
         }
@@ -138,7 +136,6 @@ export const getClaimableValue = (protocols, address: string) => {
 
 export const getClaimableValueFromCurrProtocol = (asset) => {
   let value = 0;
-  console.log(asset)
   _.forEach(asset.balance.components, component => {
     _.forEach(asset.claimableTokens, claimableToken => {
       if (component.token.token.address === claimableToken.token.address) {

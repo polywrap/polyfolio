@@ -1,4 +1,5 @@
 import {ProtocolsItem} from './ProtocolTableItem.types';
+import { v4 as uuidv4 } from 'uuid';
 import iconsObj from 'assets/icons/iconsObj';
 import RoutePath from 'common/modules/routing/routing.enums';
 import {getStringFromPath, rmCommasFromNum} from 'utils/helpers';
@@ -34,12 +35,13 @@ export const useProtocols = () => {
         link: `${RoutePath.Protocol}`,
         secondaryTitleDollar: '???',
         secondaryTitlePercent: '???',
-        claimableValue,
+        claimableValue: claimableValue.toString(),
         valueTitle: valueTitle.toString(),
         valueIsMinus: false,
         title: preparedData['allProtocols'][i].protocol.name,
-        network: chainIdToNetwork[network], 
-        id: preparedData['allProtocols'][i].protocol.id,
+        network: chainIdToNetwork[network],
+        symbol: preparedData['allProtocols'][i].protocol.id,
+        id: uuidv4(),
       })
     }
   }

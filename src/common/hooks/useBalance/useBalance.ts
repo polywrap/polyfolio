@@ -2,23 +2,24 @@ import {useCallback} from 'react';
 import {useRecoilState} from 'recoil';
 import {useWeb3ApiClient} from '@web3api/react';
 import useAuth from '../useAuth/useAuth';
-import {networks} from 'utils/constants';
 import balanceState from 'common/modules/atoms/balanceState';
 import {insertChainIdToProtocol} from 'utils/dataFormatting';
 import {uri, query} from './useBalance.config';
+import {useNetworks} from 'common/networks/Networks.context';
 
 export default function useBalance() {
   const {user} = useAuth();
   const client = useWeb3ApiClient();
+  const {network} = useNetworks();
 
-  const [balance, setBalance] = useRecoilState(balanceState);
+  const [, setBalance] = useRecoilState(balanceState);
 
-  const balanceRequest = useCallback(async (chainId) => {
+  const balanceRequest = useCallback(async (chainId, otherUserAddress?) => {
     const { data: response, errors } = await client.query({
       uri,
       query,
       variables: {
-        accountAddress: user,
+        accountAddress: otherUserAddress ?? user,
         vsCurrencies: [],
         noTruncate: false,
         underlyingPrice: false,
@@ -51,16 +52,16 @@ export default function useBalance() {
     }
   }, [client, user])
 
-  const getBalance = useCallback(async () => {
-    if (user && !balance) {
+  const getBalance = useCallback(async (otherUserAddress?) => {
+    if (user) {
       let temporaryBalance = {}
 
-      for (let i = 0; i < networks.length; i++) {
-        const name = networks[i].name;
-        const chainId = networks[i].chainId.toString();
-
-        if (!balance || balance && !Object.keys(balance).includes(name)) {
-          const response = await balanceRequest(chainId);
+      for (let i = 0; i < network.length; i++) {
+        if (network[i].checked) {
+          const name = network[i].name;
+          const chainId = network[i].chainId.toString();
+          
+          const response = await balanceRequest(chainId, otherUserAddress);
           temporaryBalance = {...temporaryBalance, [name]: response};
         }
       }
@@ -69,7 +70,7 @@ export default function useBalance() {
 
       setBalance(temporaryBalance);
     }
-  }, [balance, balanceRequest, setBalance, user]);
+  }, [balanceRequest, network, setBalance, user]);
 
   return {getBalance};
 }
