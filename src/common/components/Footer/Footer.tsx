@@ -12,7 +12,7 @@ function Header({wrapperClassName = ''}: {wrapperClassName?: string}) {
 
   return (
     <div className={classNames(styles.common_footer, wrapperClassName, styles[theme])}>
-      <footer className={styles.footer}>
+      <footer data-testid="footer" className={styles.footer}>
         <Logo className={styles.logo} />
         <FooterLinks className={styles.links} />
         <div className={styles.copyright}>&copy; {new Date().getFullYear()} Polyfolio</div>
