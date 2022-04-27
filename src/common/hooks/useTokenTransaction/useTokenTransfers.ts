@@ -61,7 +61,7 @@ export default function useTokenTransfers() {
       console.log(errors);
       console.log('-----ERRORS');
     }
-  }, [client, setTokenTransaction, user])
+  }, [client, currency, setTokenTransaction, user])
 
   return getTokenTransfers;
 }

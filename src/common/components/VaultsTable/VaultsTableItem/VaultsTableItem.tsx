@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './VaultsTableItem.module.scss';
-import useTranslation from 'common/hooks/useTranslation/useTranslation';
 
 import Icon from 'common/components/Icon/Icon';
 import numberFormatter from 'utils/numberFormatter';
@@ -11,7 +10,6 @@ import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import classNames from 'classnames';
 
 function VaultsItem(menuItem) {
-  const translation = useTranslation();
   const {
     secondaryPricePercentTitle,
     pricePercentDollar,

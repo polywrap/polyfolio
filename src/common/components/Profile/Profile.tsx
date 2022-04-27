@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import classNames from 'classnames';
 
 import styles from './Profile.module.scss';
@@ -17,18 +17,17 @@ import Button from '../Button/Button';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useWallet from 'common/hooks/useWallet/useWallet';
 import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
-
-const MOCK_VALUE = 13337337;
+import Skeleton from '../Skeleton/Skeleton';
 
 function Profile() {
   const theme = useTheme();
   const ref = useRef(null);
   const translation = useTranslation();
-  const {user, logOut} = useAuth();
-  const {connect} = useWallet();
+  const { user, logOut } = useAuth();
+  const { connect } = useWallet();
   const formatedData = useGetData();
   const preparedData = formatedData();
-  
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   useOnClickOutside(ref.current, () => isOpen && setIsOpen(false));
@@ -53,12 +52,21 @@ function Profile() {
                 </TooltipTrigger>
               </div>
             </div>
-            <div className={styles.amount}>
-              ${numberFormatter({
-                value: preparedData['allAssetsSum'],
-                size: 2
-              })}
-            </div>
+            {
+              preparedData['allAssetsSum']
+                ? (
+                  <div className={styles.amount}>
+                    ${numberFormatter({
+                      value: preparedData['allAssetsSum'],
+                      size: 2
+                    })}
+                  </div>
+                )
+                : (
+                  <Skeleton width={127.7} height={32} />
+                )
+            }
+
           </div>
         </>
       ) : (

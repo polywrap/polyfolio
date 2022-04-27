@@ -12,7 +12,7 @@ export default function useBalance() {
   const client = useWeb3ApiClient();
   const {network} = useNetworks();
 
-  const [balance, setBalance] = useRecoilState(balanceState);
+  const [, setBalance] = useRecoilState(balanceState);
 
   const balanceRequest = useCallback(async (chainId, otherUserAddress?) => {
     const { data: response, errors } = await client.query({

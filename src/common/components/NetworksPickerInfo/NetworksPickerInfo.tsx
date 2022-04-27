@@ -4,7 +4,6 @@ import classNames from 'classnames';
 
 import styles from './NetworksPickerInfo.module.scss';
 
-import { menuItems } from './NetworksPickerConfig';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import {INetworks} from 'common/networks/Networks.types';
 import Icon from 'common/components/Icon/Icon';
