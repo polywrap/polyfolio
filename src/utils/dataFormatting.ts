@@ -124,8 +124,6 @@ export const getClaimableValue = (protocols, address: string) => {
   _.map(protocols, protocol => {
     _.map(protocol.assets, asset => {
       _.map(asset.claimableTokens, claimableToken => {
-        console.log(`${claimableToken.token.address} === ${address}`)
-
         if (claimableToken.token.address === address) {
           value = claimableToken.values[0].value;
         }

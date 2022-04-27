@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, {Fragment, useEffect} from 'react';
 import {Route, Routes, Navigate} from 'react-router-dom';
 import MetaMaskOnboarding from '@metamask/onboarding';
@@ -15,29 +14,36 @@ import Transactions from 'pages/DashboardPage/Transactions/Transactions';
 import SettingsPage from 'pages/SettingsPage/SettingsPage';
 import AssetPage from 'pages/DashboardPage/AssetPage/AssetPage';
 import PageUnderConstruction from 'pages/PageUnderConstruction/PageUnderConstruction';
-import WrapperInfoPage from 'pages/WrapperInfoPage/WrapperInfoPage';
-import NetworksInfo from 'pages/WrapperInfoPage/NetworksInfo/NetworksInfo';
-import ProtocolsInfo from 'pages/WrapperInfoPage/ProtocolsInfo/ProtocolsInfo';
+import NetworkPage from 'pages/DashboardPage/NetworkPage/NetworksPage';
+import ProtocolPage from 'pages/DashboardPage/ProtocolPage/ProtocolPage';
 import useBalance from 'common/hooks/useBalance/useBalance';
 import useTransactions from 'common/hooks/useTransaction/useTransaction';
 import balanceState from 'common/modules/atoms/balanceState';
-import { useRecoilValue } from 'recoil';
+import {useRecoilValue} from 'recoil';
 import transactionState from 'common/modules/atoms/transactionState';
+import tokenTransferState from 'common/modules/atoms/tokenTransferState';
+import useSearch from 'common/hooks/useSearch/useSearch';
+import useTokenTransfers from 'common/hooks/useTokenTransaction/useTokenTransfers';
 
 function App() {
   useRouteChange();
   const {user} = useAuth();
+  const {search} = useSearch();
   const {check} = useWallet();
   const {getBalance} = useBalance();
   const {getTransactions} = useTransactions();
+  const getTokenTransfer = useTokenTransfers();
   const balance = useRecoilValue(balanceState);
   const transaction = useRecoilValue(transactionState);
+  const tokenTransfer = useRecoilValue(tokenTransferState);
 
   useEffect(function fetchBalance () {
-    if (user && !balance) {
+    if (user && !search) {
       getBalance();
+    } else if (search) {
+      getBalance(search)
     }
-  }, [getBalance, user, balance])
+  }, [getBalance, user, search])
 
   useEffect(function fetchTransaction () {
     if (balance && !transaction) {
@@ -45,11 +51,19 @@ function App() {
     }
   }, [getTransactions, balance, transaction])
 
+  useEffect(function fetchTokenTransfer () {
+    if (balance && !tokenTransfer) {
+      getTokenTransfer('0x5fb', 1);
+    }
+  }, [getTokenTransfer, balance, tokenTransfer])
+
+  console.log('tokenTransfer', tokenTransfer)
+
   useEffect(() => {
     if (MetaMaskOnboarding.isMetaMaskInstalled()) {
       window['ethereum'].on('accountsChanged', check);
     }
-  }, []);
+  }, [check]);
 
   const ProtectedRoute = ({user, redirectPath = RoutePath.BaseRoute, children}) => {
     if (!user) {
@@ -96,6 +110,14 @@ function App() {
             }
           />
           <Route
+            path={RoutePath.DashboardAlternative}
+            element={
+              <ProtectedRoute user={user}>
+                <Portfolio />
+              </ProtectedRoute>
+            }
+          />
+          <Route
             path={RoutePath.DashboardTransactions}
             element={
               <ProtectedRoute user={user}>
@@ -107,9 +129,7 @@ function App() {
             path={RoutePath.Network}
             element={
               <ProtectedRoute user={user}>
-                <WrapperInfoPage>
-                  <NetworksInfo />
-                </WrapperInfoPage>
+                <NetworkPage />
               </ProtectedRoute>
             }
           />
@@ -117,9 +137,7 @@ function App() {
             path={RoutePath.Protocol}
             element={
               <ProtectedRoute user={user}>
-                <WrapperInfoPage>
-                  <ProtocolsInfo />
-                </WrapperInfoPage>
+                <ProtocolPage />
               </ProtectedRoute>
             }
           />

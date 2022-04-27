@@ -1,16 +1,17 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import classNames from 'classnames';
 
 import styles from './HeaderDashboard.module.scss';
 
-import {dropdownItems} from './HederDashboardDropdown/HederDashboardDropdown.config';
+import { dropdownItems } from './HederDashboardDropdown/HederDashboardDropdown.config';
 import useTheme from 'common/hooks/useTheme/useTheme';
-import {content} from './HeaderDashboard.config';
+import { content } from './HeaderDashboard.config';
 import Dropdown from '../Dropdown/Dropdown';
-import {filteredDropdown} from 'utils/helpers';
+import { filteredDropdown } from 'utils/helpers';
 import numberFormatter from 'utils/numberFormatter';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
+import Skeleton from '../Skeleton/Skeleton';
 
 function HeaderDashboard() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -31,14 +32,37 @@ function HeaderDashboard() {
       <div className={styles.contentContainer}>
         <div>
           <span className={styles.secondaryTitle}>{translation.Dashboard.secondaryTitle}</span>
-          <h2>${numberFormatter({value: preparedData['allAssetsSum'], size: 2})}</h2>
+          {
+            preparedData['allAssetsSum']
+              ? (
+                <h2>${numberFormatter({ value: preparedData['allAssetsSum'], size: 2 })}</h2>
+              )
+              : <Skeleton width={215} height={54} />
+          }
           <div className={styles.secondaryValue}>
-            <div className={styles.value}>
-              +{numberFormatter({value: content.percent, size: 2})}%
-            </div>
-            <div className={classNames(styles.value, styles.percent)}>
-              +${numberFormatter({value: content.value, size: 2})}
-            </div>
+            {
+              content.percent
+                ? (
+                  <div className={styles.value}>
+                    +{numberFormatter({ value: content.percent, size: 2 })}%
+                  </div>
+                )
+                : (
+                  <Skeleton width={40.5} height={19} />
+                )
+            }
+            {
+              content.value
+                ? (
+                  <div className={classNames(styles.value, styles.percent)}>
+                    +${numberFormatter({ value: content.value, size: 2 })}
+                  </div>
+                )
+                : (
+                  <Skeleton width={35.6} height={19} />
+                )
+            }
+
           </div>
         </div>
         <div className={styles.dropdownContainer}>

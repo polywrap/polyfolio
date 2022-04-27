@@ -9,6 +9,7 @@ import MenuArrow from 'common/components/MenuArrow/MenuArrow';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import PricesValue from '../../PricesValue/PricesValue';
 import classNames from 'classnames';
+import useSearch from 'common/hooks/useSearch/useSearch';
 
 function ProtocolsItem(menuItem) {
   const navigate = useNavigate();
@@ -23,9 +24,12 @@ function ProtocolsItem(menuItem) {
     title,
     link,
     icon,
-    id,
+    symbol,
   } = menuItem;
-  const path = id && link.replace(':id', `${id}`).replace(':net', `${network}`);
+  const {search} = useSearch();
+  const path = symbol && !search ? link.replace(':id', `${symbol}`).replace(':net', `${network}`)
+    : search ? link.replace(':id', `${symbol}`).replace(':net', `${network}`) + `?${search}` 
+    : '/404';
 
   const {filters} = useFiltersTables();
 
