@@ -1,32 +1,29 @@
 import React, {useEffect, useContext, createContext} from 'react';
 import {atom, useRecoilState} from 'recoil';
 
-import {Networks, NetworksContextProps} from './Networks.types';
-import useLocalStorage from 'common/hooks/useLocalStorage/useLocalStorage';
+import {networks} from './Networks.config';
+import {NetworksContextProps, INetworks} from './Networks.types';
 
-const NETWORKS_LS_KEY = 'polyfolio_network';
 const NETWORKS_STATE_KEY = 'polyfolio_network_state';
 
 const NetworksContext = createContext<NetworksContextProps>(null);
 export const useNetworks = () => useContext(NetworksContext);
 
 export default function NetworksContextProvider({children}) {
-  const [persistedNetworks, setPersistedNetworks] = useLocalStorage<Networks>(
-    NETWORKS_LS_KEY,
-    null,
-  );
-  const themePersistState = atom({
+  const networkPersistState = atom<INetworks[]>({
     key: NETWORKS_STATE_KEY,
-    default: persistedNetworks,
+    default: null,
   });
 
-  const [network, setNetworks] = useRecoilState(themePersistState);
+  const [network, setNetwork] = useRecoilState(networkPersistState);
 
   useEffect(() => {
-    setPersistedNetworks(network ?? Networks.ethereum);
-  }, [network, setPersistedNetworks]);
+    if (!network) {
+      setNetwork(networks);
+    }
+  }, [network, setNetwork]);
 
   return (
-    <NetworksContext.Provider value={{network, setNetworks}}>{children}</NetworksContext.Provider>
+    <NetworksContext.Provider value={{network, setNetwork}}>{children}</NetworksContext.Provider>
   );
 }

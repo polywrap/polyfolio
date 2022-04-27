@@ -1,21 +1,23 @@
 import {NetworksItem} from './Networks.types';
 import iconsObj from 'assets/icons/iconsObj';
 import RoutePath from 'common/modules/routing/routing.enums';
-import {networks} from 'utils/constants';
 import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 import {rmCommasFromNum} from 'utils/helpers';
 import _ from 'lodash';
 import {ejectAssetsFromProtocol, getAssetsValueSum} from 'utils/dataFormatting';
+import {useNetworks} from 'common/networks/Networks.context';
 
-const useNetworks = () => {
+const useNetwork = () => {
   const formatData = useGetData();
   const preparedData = formatData();
+  const {network} = useNetworks();
   const menuItems: NetworksItem[] = [];
   
   if (preparedData['balance']) {
-    networks.forEach(item => {
+    network.forEach(item => {
       let allAssets = [];
-      _.forEach(preparedData['balance'][item.name]?.protocols, protocol => {
+      const name = item['name'];
+      _.forEach(preparedData['balance'][name]?.protocols, protocol => {
         allAssets = _.flatten([...allAssets, ...ejectAssetsFromProtocol(protocol)]);
       })
 
@@ -24,9 +26,9 @@ const useNetworks = () => {
       return menuItems.push({
         title: item.title,
         secondaryTitle: rmCommasFromNum(allAssetsSum.toString()),
-        icon: iconsObj[item.name] as string,
+        icon: iconsObj[name] as string,
         link: RoutePath.Network,
-        id: item.name.toLowerCase(),
+        id: name.toLowerCase(),
       })
     })
   }
@@ -34,4 +36,4 @@ const useNetworks = () => {
   return menuItems;
 }
 
-export default useNetworks;
+export default useNetwork;

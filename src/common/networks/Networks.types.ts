@@ -1,11 +1,14 @@
 import {Dispatch, SetStateAction} from 'react';
 
-export enum Networks {
-  ethereum = 'ethereum',
-  polygon ='polygon',
+export interface INetworks {
+  name: string;
+  jsonRPC: string;
+  chainId: number;
+  title: string;
+  checked: boolean;
 }
 
 export interface NetworksContextProps {
-  network: Networks;
-  setNetworks: Dispatch<SetStateAction<Networks>>;
+  network: INetworks[];
+  setNetwork: Dispatch<SetStateAction<INetworks[]>>;
 }

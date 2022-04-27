@@ -6,14 +6,33 @@
   --color: var(--color_blue_gray);
 }
 
-.common_currency_picker {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
+.NetworksPickerInfo {
+  padding: 16px 0 16px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 8px;
+  background-color: var(--bg_dropdown);
 
-  .currency {
-    color: var(--color);
-    font-size: var(--font_size_medium);
-    font-weight: var(--font_weight_bolder);
+  .icon {
+    background-color: var(--color);
+    margin-right: 12px;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+  }
+
+  .common_currency_picker {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  
+    .currency {
+      color: var(--color);
+      font-size: var(--font_size_medium);
+      font-weight: var(--font_weight_bolder);
+    }
+
+    .menu_arrow {
+      margin-left: 3.8em;
+    }
   }
 }
