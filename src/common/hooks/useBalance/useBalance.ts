@@ -5,7 +5,7 @@ import useAuth from '../useAuth/useAuth';
 import balanceState from 'common/modules/atoms/balanceState';
 import {insertChainIdToProtocol} from 'utils/dataFormatting';
 import {uri, query} from './useBalance.config';
-import { useNetworks } from 'common/networks/Networks.context';
+import {useNetworks} from 'common/networks/Networks.context';
 
 export default function useBalance() {
   const {user} = useAuth();
