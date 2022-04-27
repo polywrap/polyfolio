@@ -28,16 +28,15 @@ function DashboardPage({children}: {children: ReactNode}) {
   });
 
   useEffect(() => {
-    const getData = async () => {
-      const data = await execute({
-        accountAddress: user,
-        vsCurrencies: [],
-        noTruncate: false,
-        underlyingPrice: false,
-      });
-      console.log(data);
-    };
-
+    // const getData = async () => {
+    //   const data = await execute({
+    //     accountAddress: user,
+    //     vsCurrencies: [],
+    //     noTruncate: false,
+    //     underlyingPrice: false,
+    //   });
+    //   console.log(data);
+    // };
     // getData();
   }, [execute, user]);
 
