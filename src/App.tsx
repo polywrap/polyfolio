@@ -113,9 +113,7 @@ function App() {
           <Route
             path={RoutePath.DashboardAlternative}
             element={
-              <ProtectedRoute user={user}>
-                <Portfolio />
-              </ProtectedRoute>
+              <Portfolio />
             }
           />
           <Route
