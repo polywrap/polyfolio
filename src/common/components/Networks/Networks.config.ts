@@ -23,7 +23,7 @@ const useNetwork = () => {
 
       const allAssetsSum = getAssetsValueSum(allAssets);
 
-      return menuItems.push({
+      if (item.checked) menuItems.push({
         title: item.title,
         secondaryTitle: rmCommasFromNum(allAssetsSum.toString()),
         icon: iconsObj[name] as string,
