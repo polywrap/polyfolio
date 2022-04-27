@@ -4,7 +4,6 @@ name: CI
 
 # Controls when the workflow will run
 on:
-
   # Triggers the workflow on push or pull request events for all branches
   push:
     branches:
@@ -12,7 +11,7 @@ on:
 
   # Triggers the workflow on PR events but only for the master branch
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -22,6 +21,8 @@ jobs:
   build:
     name: Test APP
     runs-on: ubuntu-latest
+    env:
+      CI: ''
     steps:
       - uses: actions/checkout@v2
       - uses: borales/actions-yarn@v2.3.0
@@ -30,9 +31,9 @@ jobs:
       - uses: borales/actions-yarn@v2.3.0
         with:
           cmd: lint # will run `yarn lint` command
-#      - uses: borales/actions-yarn@v2.3.0
-#        with:
-#          cmd: test # will run `yarn test` command
+      #      - uses: borales/actions-yarn@v2.3.0
+      #        with:
+      #          cmd: test # will run `yarn test` command
       - uses: borales/actions-yarn@v2.3.0
         with:
           cmd: build # will run `yarn build` command
