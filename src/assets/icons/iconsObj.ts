@@ -1,5 +1,6 @@
 import {IconsMapper} from './iconsObj.types';
 import filterIconSecondary from 'assets/icons/images/filterIconSecondary.svg';
+import addressStatusIcon from 'assets/icons/images/addressStatusIcon.svg';
 import menuArrowFilled from 'assets/icons/images/menu-arrow-filled.svg';
 import mobileMenu from 'assets/icons/images/mobile-menu.svg';
 import disconnect from 'assets/icons/images/disconnect.svg';
@@ -73,6 +74,7 @@ import {
 const iconsObj: IconsMapper = {
   filterIconSecondary,
   approvalTransaction,
+  addressStatusIcon,
   sendTransaction,
   receiveTransaction,
   exchangeTransaction,

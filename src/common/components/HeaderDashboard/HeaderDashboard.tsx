@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import classNames from 'classnames';
 
 import styles from './HeaderDashboard.module.scss';
@@ -12,14 +12,25 @@ import numberFormatter from 'utils/numberFormatter';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 import Skeleton from '../Skeleton/Skeleton';
+import { useLocation } from 'react-router-dom';
+import YounderProfile from '../YounderProfile/YounderProfile';
 
 function HeaderDashboard() {
+  const {pathname} = useLocation();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [currency, setCurrency] = useState(dropdownItems[0]);
   const theme = useTheme();
   const translation = useTranslation();
   const formatedData = useGetData();
   const preparedData = formatedData();
+
+  const younderAddress = useMemo(() => {
+    const splitedUrl = pathname.split('/');
+
+    if (splitedUrl.length > 2) {
+      return splitedUrl[2].substring(0, 2) === '0x' ? splitedUrl[2] : '';
+    } else return '';
+  }, [pathname])
 
   const onChangeCurrency = (item) => {
     setCurrency(item);
@@ -28,7 +39,18 @@ function HeaderDashboard() {
 
   return (
     <div className={classNames(styles.headerDashboardContainer, styles[theme])}>
-      <h1 className={styles.title}>{translation.Dashboard.title}</h1>
+      {
+        younderAddress 
+          ? (
+            <YounderProfile
+              ens={younderAddress}
+              address={younderAddress}
+              style={styles.younder}
+            />
+          ) : (
+            <h1 className={styles.title}>{translation.Dashboard.title}</h1>
+          )
+      }
       <div className={styles.contentContainer}>
         <div>
           <span className={styles.secondaryTitle}>{translation.Dashboard.secondaryTitle}</span>

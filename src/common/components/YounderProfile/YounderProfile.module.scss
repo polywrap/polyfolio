@@ -1,0 +1,39 @@
+.dark {
+  --color: var(--color_blue_gray_50);
+  --border: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.light {
+  --color: var(--color_blue_gray);
+  --border: 1px solid var(--color_blue_gray_200);
+}
+
+.YounderProfile {
+  display: flex;
+
+  .icon {
+    height: 48px;
+    width: 48px;
+  }
+
+  .addressContainer {
+    margin-left: 8px;
+
+    .ens {
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 900;
+      line-height: 24px;
+    }
+
+    .address {
+      display: flex;
+      align-items: center;
+      .icon_min {
+        margin-left: 8px;
+        height: 16px;
+        width: 16px;
+      }
+    }
+  }
+}

@@ -46,10 +46,11 @@ function App() {
   }, [getBalance, user, search])
 
   useEffect(function fetchTransaction () {
-    if (balance && !transaction) {
-      getTransactions();
-    }
-  }, [getTransactions, balance, transaction])
+    if (balance && !search && !transaction) getTransactions();
+    else getTransactions(search)
+  }, [getTransactions, balance, transaction, search])
+
+  console.log('transactions', transaction)
 
   useEffect(function fetchTokenTransfer () {
     if (balance && !tokenTransfer) {
