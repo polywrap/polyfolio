@@ -14,7 +14,7 @@ export const GetVaults = () => {
   return _.map(preparedData['allAssets'], asset => {
     return {
       secondaryPricePercentTitle: '???',
-      secondaryTitle: preparedData['allAssetsSum'],
+      secondaryTitle: rmCommasFromNum(asset.token.values[0].value),
       pricePercentDollar: '???',
       icon: iconsObj.assetsUsdt,
       valueTitle: getClaimableValue(preparedData['allProtocols'], asset.token.token.address),

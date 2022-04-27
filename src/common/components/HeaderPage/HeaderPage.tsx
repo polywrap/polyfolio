@@ -8,6 +8,8 @@ import useTranslation from 'common/hooks/useTranslation/useTranslation';
 
 import { NavLink } from 'react-router-dom';
 import Icon from '../Icon/Icon';
+import useSearch from 'common/hooks/useSearch/useSearch';
+import RoutePath from 'common/modules/routing/routing.enums';
 
 interface IHeaderPage {
   icon: string;
@@ -20,13 +22,16 @@ function HeaderPage({
   title,
   secondaryTitle,
 }: IHeaderPage) {
-  const theme = useTheme()
-  const translation = useTranslation()
+  const theme = useTheme();
+  const {search} = useSearch();
+  const translation = useTranslation();
+
+  const to = search ? RoutePath.DashboardAlternative.replace(':id', search) : RoutePath.Dashboard;
 
   return (
     <div className={classNames(styles[theme])}>
       <div>
-        <NavLink className={styles.link} to='/dashboard/portfolio'>
+        <NavLink className={styles.link} to={to}>
           <div className={styles.arrow_container}>
             <Icon src={iconsObj.backArrow} className={styles.arrow} />
           </div>

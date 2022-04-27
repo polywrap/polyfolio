@@ -11,5 +11,6 @@ export interface AssetsItem {
   title: string;
   icon?: string;
   link: string;
+  symbol: string;
   id: string;
 }

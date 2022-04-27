@@ -7,20 +7,24 @@ import numberFormatter from 'utils/numberFormatter';
 import MenuArrow from 'common/components/MenuArrow/MenuArrow';
 import {useNavigate} from 'react-router-dom';
 import {NetworksItem} from './Networks.types';
-import useNetworks from './Networks.config';
+import useNetwork from './Networks.config';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import Icon from 'common/components/Icon/Icon';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
+import useSearch from 'common/hooks/useSearch/useSearch';
+import Skeleton from '../Skeleton/Skeleton';
 
 function Networks() {
   const ref = useRef(null);
   const theme = useTheme();
   const translation = useTranslation();
   const navigate = useNavigate();
-  const menuItems = useNetworks();
+  const menuItems = useNetwork();
 
   const MenuItem = (menuItem: NetworksItem) => {
-    const path = menuItem.link.replace(':id', `${menuItem.id}`);
+    const {search} = useSearch();
+    const path = menuItem.id && !search ? menuItem.link.replace(':id', `${menuItem.id}`)
+    : search ? menuItem.link.replace(':id', `${menuItem.id}`) + `?${search}` : '/404';
 
     return (
       <div className={styles.menu_item} onClick={() => navigate(path)}>
@@ -41,7 +45,7 @@ function Networks() {
     );
   };
 
-  return (
+  return menuItems.length > 0 ? (
     <div ref={ref} className={styles[theme]}>
       <h3>{translation.Table.networks}</h3>
       <div className={styles.networks_container}>
@@ -50,6 +54,8 @@ function Networks() {
         ))}
       </div>
     </div>
+  ) : (
+    <Skeleton width={1256} height={300} />
   );
 }
 

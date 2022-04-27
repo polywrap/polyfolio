@@ -15,6 +15,7 @@ enum RoutePath {
   Network = '/network/:id',
   Protocol = '/:net/protocol/:id',
   Dashboard = '/dashboard/portfolio',
+  DashboardAlternative = '/dashboard/:id',
   DashboardTransactions = '/dashboard/transactions',
 }
 

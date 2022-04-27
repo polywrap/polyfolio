@@ -14,6 +14,7 @@ import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import HeaderTable from '../HeaderTable/HeaderTable';
 import {menuFields} from './FilterFieldsProtokols.config';
+import Skeleton from '../Skeleton/Skeleton';
 
 function ProtocolsTable() {
   const [tableIsOpen, setTableIsOpen] = useState(false);
@@ -33,8 +34,8 @@ function ProtocolsTable() {
     return _sumBy(menuItems, (val) => Number(val.valueTitle))
   }, [menuItems])
 
-  return (
-    <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>
+  return menuItems.length > 0 ? (
+<div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>
       <HeaderTable
         onSaveFilter={() => {
           setFilters(filter);
@@ -74,6 +75,10 @@ function ProtocolsTable() {
           <ProtocolTableItem {...menuItem} key={menuItem.id} />
         ))}
       </div>
+    </div>
+  ) : (
+    <div style={{marginBottom: 48}}>
+      <Skeleton width={1256} height={435} />
     </div>
   );
 }
