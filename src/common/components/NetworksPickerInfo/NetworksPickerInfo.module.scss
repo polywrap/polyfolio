@@ -2,12 +2,14 @@
 
 .dark {
   --color: var(--color_blue_gray_50);
-  --bg_dropdown: var(--color_blue_gray_bg);
+  --bg_dropdown: rgba(30, 43, 69, 1);
+  --border_color: 1px solid rgba(255, 255, 255, 0.13);
 }
 
 .light {
   --color: var(--color_blue_gray);
-  --bg_dropdown: var(--color_white);
+  --bg_dropdown: rgba(255, 255, 255, 1);
+  --border_color: 1px solid var(--color_blue_gray_200);
 }
 
 .common_header_gas_info_menu {
@@ -16,11 +18,10 @@
     rgba(217, 217, 218, 0.25) 0%,
     rgba(70, 85, 104, 0.5) 100%
   );
-  width: 336px;
+  width: 208px;
   max-height: 496px;
-  padding: 0 24px;
+  padding: 0 20px;
   overflow: auto;
-  margin: 0 8px;
   .menu_item {
     display: flex;
     align-items: center;
@@ -47,6 +48,15 @@
       position: relative;
       right: -20px;
     }
+    .checkbox {
+      width: 24px;
+      height: 24px;
+      margin-right: 12px;
+      border-radius: 8px;
+      border: var(--border_color);
+      background-color: var(--bg_dropdown);
+      cursor: pointer;
+    }
     .iconSelected {
       background-color: var(--divider);
       margin-right: 12px;
@@ -58,7 +68,7 @@
       font-family: var(--font_family);
       font-weight: var(--font_weight_normal);
       font-size: var(--font_size_normal);
-      color: var(--color_blue_gray_50);
+      color: var(--color);
     }
   }
 }
