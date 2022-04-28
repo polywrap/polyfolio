@@ -43,14 +43,16 @@ export default function useTransactions() {
   });
 
   const getTransactions = useCallback(async (otherUserAddress?: string) => {
-    if (user && !loading && !data) {
-      const {data: response, errors} = await execute({
-        account: otherUserAddress ?? user,
+    const account = otherUserAddress ? otherUserAddress : user;
+
+    if (account && !loading && !data) {
+      const {data, errors} = await execute({
+        account,
         currency: currency,
       });
   
-      if (response && !errors?.length) {
-        const transactions = response?.getTransactions;
+      if (data && !errors?.length) {
+        const transactions = data?.getTransactions;
 
         setTransaction(transactions);
       } else {

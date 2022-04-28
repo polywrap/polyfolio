@@ -34,7 +34,6 @@ function App() {
   const {getTransactions} = useTransactions();
   const getTokenTransfer = useTokenTransfers();
   const balance = useRecoilValue(balanceState);
-  const transaction = useRecoilValue(transactionState);
   const tokenTransfer = useRecoilValue(tokenTransferState);
 
   useEffect(function fetchBalance () {
@@ -46,11 +45,9 @@ function App() {
   }, [getBalance, user, search])
 
   useEffect(function fetchTransaction () {
-    if (balance && !search && !transaction) getTransactions();
+    if (balance && !search) getTransactions();
     else getTransactions(search)
-  }, [getTransactions, balance, transaction, search])
-
-  console.log('transactions', transaction)
+  }, [getTransactions, balance, search])
 
   useEffect(function fetchTokenTransfer () {
     if (balance && !tokenTransfer) {
@@ -119,9 +116,7 @@ function App() {
           <Route
             path={RoutePath.DashboardTransactions}
             element={
-              <ProtectedRoute user={user}>
-                <Transactions />
-              </ProtectedRoute>
+              <Transactions />
             }
           />
           <Route

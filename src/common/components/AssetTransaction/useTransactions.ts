@@ -22,6 +22,7 @@ const useTransactions = () => {
   const {user} = useAuth();
   const data: ITransaction[] = [];
 
+  console.log('state', state)
   state?.transactions.forEach(transaction => {
     const logs = transaction.logs;
     const eventNameInLogs = logs.length > 0 ? logs[0].event.name : null;
@@ -37,12 +38,20 @@ const useTransactions = () => {
       eventParamsInLogs
     );
     const tokenTicker = findTokenName(preparedData['allAssets'], logs.length > 0 ? logs[0].contractAddress : null);
+    console.log('eventParamsInLogs', eventParamsInLogs)
     const tokenAmount = getTokenAmount(
-      logs.length > 0 ? eventParamsInLogs[2].value : null,
+      eventParamsInLogs ? eventParamsInLogs[2].value : null,
       preparedData['allAssets'],
       tokenTicker
     );
     const tokenPrice = getTokenPrice(preparedData['allAssets'], tokenTicker);
+    console.log('logs', logs)
+    console.log('eventNameInLogs', eventNameInLogs)
+    console.log('event', event)
+    console.log('icon', icon)
+    console.log('tokenTicker', tokenTicker)
+    console.log('tokenAmount', tokenAmount)
+    console.log('tokenPrice', tokenPrice)
 
     if (logs[0]) {
       
