@@ -75,7 +75,7 @@ function App() {
 
   const AuthorizedMainRoute = ({user, redirectPath = RoutePath.Dashboard, children}) => {
     if (user) {
-      return <Navigate to={redirectPath} replace />;
+      return <Navigate to={redirectPath.replace(':portfolio', user)} replace />;
     }
 
     return children;
@@ -103,14 +103,6 @@ function App() {
           />
           <Route
             path={RoutePath.Dashboard}
-            element={
-              <ProtectedRoute user={user}>
-                <Portfolio />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path={RoutePath.DashboardAlternative}
             element={
               <ProtectedRoute user={user}>
                 <Portfolio />

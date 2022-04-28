@@ -2,6 +2,7 @@ import _ from 'lodash';
 import BN from 'bn.js';
 import {rmCommasFromNum} from './helpers';
 import iconsObj from 'assets/icons/iconsObj';
+import {chainIdToNetwork} from 'utils/constants';
 
 export const insertChainIdToProtocol = (balance) => {
   _.map(balance, (network) => {
@@ -29,6 +30,26 @@ export const ejectAssetsFromProtocol = (protocols) => {
   if (protocols) {
     return _.map(protocols.assets, asset => asset.balance.components)
   }
+}
+
+export const detectProtocolAndChainIdForAsset = (allProtocols, tokenSymbol) => {
+  let chainId: string;
+  let protocolId: string;
+
+  if (allProtocols) {
+    _.forEach(allProtocols, (protocol) => {
+      _.forEach(protocol.assets, (asset) => {
+        _.forEach(asset.balance.components, (component) => {
+          if (component.token.token.symbol === tokenSymbol) {
+            chainId = chainIdToNetwork[protocol.protocol.chainId];
+            protocolId = protocol.protocol.id;
+          }
+        })
+      })
+    })
+  }
+
+  return [chainId, protocolId];
 }
 
 export const getEventType = (eventName: string, userAddress?: string, params?) => {

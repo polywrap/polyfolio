@@ -11,9 +11,9 @@ import DashboardPage from '../DashboardPage';
 
 function NetworksPage() {
   const translation = useTranslation();
-  const {id} = useParams();
+  const {network} = useParams();
   const menuItems = useNetworks();
-  const current = _find(menuItems, {id});
+  const current = _find(menuItems, {id: network});
 
   return (
     <DashboardPage>

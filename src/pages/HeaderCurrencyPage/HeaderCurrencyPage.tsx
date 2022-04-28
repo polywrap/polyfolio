@@ -13,14 +13,14 @@ import useSearch from 'common/hooks/useSearch/useSearch';
 
 function HeaderCurrencyPage() {
   const theme = useTheme();
-  const {id} = useParams();
+  const {asset} = useParams();
   const {search} = useSearch();
   const translation = useTranslation();
   const navigate = useNavigate();
   const menuItems = useAssets();
-  const currency = _find(menuItems, {symbol: id});
+  const currency = _find(menuItems, {symbol: asset});
 
-  const to = search ? RoutePath.DashboardAlternative.replace(':id', search) : RoutePath.Dashboard;
+  const to = search ? RoutePath.Dashboard.replace(':profile', search) : RoutePath.BaseRoute;
 
   return (
     <div className={classNames(styles.headerContainer, styles[theme])}>

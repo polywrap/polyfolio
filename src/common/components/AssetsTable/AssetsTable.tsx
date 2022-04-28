@@ -31,7 +31,6 @@ function AssetsTable() {
   const assets = useAssets();
   const formatedData = useGetData(page);
   const preparedData = formatedData();
-  console.log(preparedData)
 
   const onChange = (name, value) => {
     setFilter({ ...filters, assets: { ...filter.assets, [name]: !value?.checked } });

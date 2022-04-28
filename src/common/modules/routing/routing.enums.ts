@@ -11,12 +11,11 @@ enum RoutePath {
 
   RoadMap = '/roadmap',
   Support = '/support',
-  Asset = '/asset/:id',
-  Network = '/network/:id',
-  Protocol = '/:net/protocol/:id',
-  Dashboard = '/dashboard/portfolio',
-  DashboardAlternative = '/dashboard/:id',
-  DashboardTransactions = '/dashboard/transactions',
+  Asset = '/:network/:protocol/:asset/:user',
+  Network = '/:network/:user',
+  Protocol = '/:network/:protocol/:user',
+  Dashboard = '/dashboard/:portfolio',
+  DashboardTransactions = '/dashboard/transactions/:user',
 }
 
 export default RoutePath;

@@ -47,7 +47,7 @@ function Header({
   
   const handleClick = useCallback(() => {
     setSearch(value)
-    navigate(RoutePath.DashboardAlternative.replace(':id', value));
+    navigate(RoutePath.Dashboard.replace(':profile', value));
   }, [navigate, setSearch, value])
 
   return (

@@ -13,10 +13,12 @@ import classNames from 'classnames';
 import {fillArray} from 'utils/helpers';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import useSearch from 'common/hooks/useSearch/useSearch';
+import useAuth from 'common/hooks/useAuth/useAuth';
 
 function AssetsItem(menuItem) {
   const {filters} = useFiltersTables();
   const translation = useTranslation();
+  const {user} = useAuth();
   const navigate = useNavigate();
   const {
     secondaryPricePercentTitle,
@@ -30,12 +32,23 @@ function AssetsItem(menuItem) {
     title,
     link,
     icon,
+    protocol,
+    network,
     symbol,
   } = menuItem;
   const {search} = useSearch();
-  const path = symbol && !search ? link.replace(':id', `${symbol}`)
-    : search ? link.replace(':id', `${symbol}`) + `?${search}` : '/404';
-
+  const path = symbol && !search 
+    ? link.replace(':network', network)
+        .replace(':protocol', protocol)
+        .replace(':asset', symbol)
+        .replace(':user', user)
+    : search 
+      ? link.replace(':network', network)
+          .replace(':protocol', protocol)
+          .replace(':asset', symbol)
+          .replace(':user', search) 
+      : '/404';
+  
   return (
     <>
       <button className={styles.buttonNavigate} onClick={() => navigate(path)}>

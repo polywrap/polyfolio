@@ -13,18 +13,21 @@ import Icon from 'common/components/Icon/Icon';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useSearch from 'common/hooks/useSearch/useSearch';
 import Skeleton from '../Skeleton/Skeleton';
+import useAuth from 'common/hooks/useAuth/useAuth';
 
 function Networks() {
   const ref = useRef(null);
   const theme = useTheme();
   const translation = useTranslation();
   const navigate = useNavigate();
+  const {user} = useAuth();
   const menuItems = useNetwork();
 
   const MenuItem = (menuItem: NetworksItem) => {
     const {search} = useSearch();
-    const path = menuItem.id && !search ? menuItem.link.replace(':id', `${menuItem.id}`)
-    : search ? menuItem.link.replace(':id', `${menuItem.id}`) + `?${search}` : '/404';
+    const path = menuItem.id && !search ? menuItem.link.replace(':network', `${menuItem.id}`).replace(':user', `${user}`)
+    : search ? menuItem.link.replace(':network', `${menuItem.id}`).replace(':user', `${search}`)
+    : '/404';
 
     return (
       <div className={styles.menu_item} onClick={() => navigate(path)}>
