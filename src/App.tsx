@@ -20,7 +20,6 @@ import useBalance from 'common/hooks/useBalance/useBalance';
 import useTransactions from 'common/hooks/useTransaction/useTransaction';
 import balanceState from 'common/modules/atoms/balanceState';
 import {useRecoilValue} from 'recoil';
-import transactionState from 'common/modules/atoms/transactionState';
 import tokenTransferState from 'common/modules/atoms/tokenTransferState';
 import useSearch from 'common/hooks/useSearch/useSearch';
 import useTokenTransfers from 'common/hooks/useTokenTransaction/useTokenTransfers';

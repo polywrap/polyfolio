@@ -31,6 +31,10 @@ export const ejectAssetsFromProtocol = (protocols) => {
   }
 }
 
+export const formatDataDueToEvent = (eventName: string, transaction) => {
+  
+}
+
 export const getEventType = (eventName: string, userAddress?: string, params?) => {
   switch (eventName) {
     case 'Approval': return 'approval';
