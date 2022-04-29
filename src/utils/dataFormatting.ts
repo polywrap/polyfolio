@@ -31,10 +31,6 @@ export const ejectAssetsFromProtocol = (protocols) => {
   }
 }
 
-export const formatDataDueToEvent = (eventName: string, transaction) => {
-  
-}
-
 export const getEventType = (eventName: string, userAddress?: string, params?) => {
   switch (eventName) {
     case 'Approval': return 'approval';
@@ -52,19 +48,13 @@ export const getEventType = (eventName: string, userAddress?: string, params?) =
   return 'send'
 }
 
-export const getEventIcon = (eventName: string, userAddress?: string, params?) => {
+export const getEventIcon = (eventName: string) => {
   if (eventName) {
     switch (eventName) {
       case 'Approval': return iconsObj.approvalTransaction;
-      case 'Transfer':
-        let icon = '';
-        params.forEach(param => {
-          if (param.name === 'from' && param.value === userAddress) icon = iconsObj.sendTransaction;
-          else if (param.name === 'to' && param.value === userAddress) icon = iconsObj.receiveTransaction;
-          else icon = iconsObj.sendTransaction;
-        })
-  
-        return icon
+      case 'Send': return iconsObj.sendTransaction;
+      case 'Receive': return iconsObj.receiveTransaction;
+      case 'Exchange': return iconsObj.exchangeTransaction;
     }
   }
 
@@ -99,6 +89,7 @@ export const findTokenName = (assets, tokenAddress: string) => {
 }
 
 export const getTokenAmount = (value: string, assets, tokenSymbol: string) => {
+  console.log('value', value)
   const bigValue = new BN(value);
   let result: BN;
 
