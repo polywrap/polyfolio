@@ -27,7 +27,10 @@ function Input({
   const theme = useTheme();
 
   return (
-    <div className={classNames(styles.common_input, styles[theme], wrapperClassName)}>
+    <form
+      className={classNames(styles.common_input, styles[theme], wrapperClassName)}
+      onSubmit={(event) => event.preventDefault()}
+    >
       <input
         type={type}
         value={value}
@@ -36,11 +39,11 @@ function Input({
         onChange={(event) => onChange(event.target.value ?? '')}
       />
       {!!icon && (
-        <button type='button' className={styles.icon_wrapper} onClick={onClick}>
+        <button type='submit' className={styles.icon_wrapper} onClick={onClick}>
           <MaskIcon src={icon} size={'12px'} />
         </button>
       )}
-    </div>
+    </form>
   );
 }
 
