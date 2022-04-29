@@ -36,7 +36,7 @@
   .aggregate {
     height: 40px;
     width: 0.9px;
-    background-color: #74dd9f;
+    background-color: var(--color_green_bg);
   }
   .hidden {
     display: none !important;
