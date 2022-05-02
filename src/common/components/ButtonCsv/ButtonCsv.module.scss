@@ -4,8 +4,8 @@
   margin-right: 10px;
 }
 .btn {
-  --color: #10c7a2;
-  --border: 1px solid #10c7a2;
+  --color: var(--color_green_500);
+  --border: 1px solid var(--color_green_500);
   --font_size: 16px;
   border: var(--border);
   margin-top: 32px;
