@@ -10,3 +10,23 @@ body {
 
   transition: all 250ms ease-out;
 }
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color_blue_gray) var(--color_blue_gray_900);
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--color_blue_gray_900);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color_blue_gray);
+  border-radius: 20px;
+  border: 1px solid var(--color_blue_gray_900);
+}

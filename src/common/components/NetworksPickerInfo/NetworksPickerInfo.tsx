@@ -24,11 +24,17 @@ function NetworksPickerInfo({ onClick }: { onClick: Dispatch<INetworks> }) {
           <div className={styles.secondaryTitle}>
             {menuItem.title}
           </div>
-          {menuItem.checked && (
-            <div className={styles.iconCurrency}>
-              <Icon src={iconsObj.checkedIcon} className={styles.iconSelected} />
-            </div>
-          )}
+          {
+            menuItem.checked ? (
+              <div className={styles.iconCurrency}>
+                <Icon src={iconsObj.checkedIcon} className={styles.iconSelected} />
+              </div>
+            ) : (
+              <div className={styles.iconCurrency}>
+                <div className={styles.checkbox} />
+              </div>
+            )
+          }
         </div>
         <input type='checkbox' id={menuItem.name}/>
       </label>
@@ -36,7 +42,7 @@ function NetworksPickerInfo({ onClick }: { onClick: Dispatch<INetworks> }) {
   };
 
   return (
-    <div className={classNames(styles.common_header_gas_info_menu, styles[theme])}>
+    <div className={classNames(styles[theme], styles.common_header_gas_info_menu)}>
       {_map(network, (networkItem) => (
         <MenuItem {...networkItem} key={networkItem.chainId} />
       ))}
