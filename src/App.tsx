@@ -50,7 +50,7 @@ function App() {
 
   useEffect(function fetchTokenTransfer () {
     if (balance && !tokenTransfer) {
-      getTokenTransfer('0x5fb', 1);
+      getTokenTransfer('0x5de2c159acf8736d19c70aef04e4b9997e4fe07f', 1);
     }
   }, [getTokenTransfer, balance, tokenTransfer])
 

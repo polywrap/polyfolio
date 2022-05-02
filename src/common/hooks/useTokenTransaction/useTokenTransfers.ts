@@ -41,7 +41,7 @@ export default function useTokenTransfers() {
             uri: envsUri.uri_2,
             query: {
               apiKey,
-              chainId: chainId.toString(),
+              chainId: chainId,
             },
             common: {},
             mutation: {},
