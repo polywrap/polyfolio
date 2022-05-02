@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, {useMemo} from 'react';
 import classNames from 'classnames';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import Icon from '../Icon/Icon';
@@ -28,7 +28,17 @@ const YounderProfile = (
         <div className={styles.ens}>{name}</div>
         <div className={styles.address}>
           <ProfileWallet address={address} size={6} />
-          <Icon src={iconsObj.addressStatusIcon} className={styles.icon_min} />
+          <a
+            href={`https://rinkeby.etherscan.io/address/${address}`}
+            target='_blank'
+            className={styles.address}
+            rel="noreferrer"
+          >
+            <Icon 
+              src={iconsObj.addressStatusIcon}
+              className={styles.icon_min}
+            />
+          </a>
         </div>
       </div>
     </div>

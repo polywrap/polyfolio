@@ -89,7 +89,6 @@ export const findTokenName = (assets, tokenAddress: string) => {
 }
 
 export const getTokenAmount = (value: string, assets, tokenSymbol: string) => {
-  console.log('value', value)
   const bigValue = new BN(value);
   let result: BN;
 

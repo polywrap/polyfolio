@@ -11,11 +11,9 @@ export const formatDataAccordingToEvent = (transaction, user: string, assets) =>
   
   if (transaction) {
     if (transaction.logs.length > 0) {
-      console.log(transaction)
       _forEach(transaction.logs, (log) => {
         eventName = log.event.name;
         const eventParams = log.event.params;
-        console.log(eventName)
 
         switch (eventName) {
           case 'Approval':

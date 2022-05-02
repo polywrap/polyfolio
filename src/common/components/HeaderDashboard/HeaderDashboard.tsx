@@ -3,20 +3,20 @@ import classNames from 'classnames';
 
 import styles from './HeaderDashboard.module.scss';
 
-import { dropdownItems } from './HederDashboardDropdown/HederDashboardDropdown.config';
+import {dropdownItems} from './HederDashboardDropdown/HederDashboardDropdown.config';
 import useTheme from 'common/hooks/useTheme/useTheme';
-import { content } from './HeaderDashboard.config';
+import {content} from './HeaderDashboard.config';
 import Dropdown from '../Dropdown/Dropdown';
-import { filteredDropdown } from 'utils/helpers';
+import {filteredDropdown} from 'utils/helpers';
 import numberFormatter from 'utils/numberFormatter';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 import Skeleton from '../Skeleton/Skeleton';
-import { useLocation } from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 import YounderProfile from '../YounderProfile/YounderProfile';
 
 function HeaderDashboard() {
-  const {pathname} = useLocation();
+  const {pathname, search} = useLocation();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [currency, setCurrency] = useState(dropdownItems[0]);
   const theme = useTheme();
@@ -25,12 +25,20 @@ function HeaderDashboard() {
   const preparedData = formatedData();
 
   const younderAddress = useMemo(() => {
-    const splitedUrl = pathname.split('/');
+    // need to change after approve routes
 
-    if (splitedUrl.length > 2) {
-      return splitedUrl[2].substring(0, 2) === '0x' ? splitedUrl[2] : '';
-    } else return '';
-  }, [pathname])
+    if (search) {
+      const splitedUrl = search.split('?');
+
+      return splitedUrl[1].substring(0, 2) === '0x' ? splitedUrl[1] : '';
+    } else {
+      const splitedUrl = pathname.split('/');
+
+      if (splitedUrl.length > 2) {
+        return splitedUrl[2].substring(0, 2) === '0x' ? splitedUrl[2] : '';
+      }  
+    }
+  }, [pathname, search])
 
   const onChangeCurrency = (item) => {
     setCurrency(item);
