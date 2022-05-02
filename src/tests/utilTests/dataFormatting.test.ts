@@ -1,6 +1,5 @@
 import * as dataFormatting from 'utils/dataFormatting';
 import {
-  balance,
   network,
   protocols,
   components,
@@ -38,5 +37,5 @@ test('Get Claimable Value For Curr Protocol', () => {
 
 test('Eject Assets From Protocols', () => {
   const result = dataFormatting.ejectAssetsFromProtocol(protocols[0]);
-  expect(result).toStrictEqual(components);
+  expect(result).toStrictEqual([components, components]);
 })
