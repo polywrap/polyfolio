@@ -39,9 +39,9 @@ export const components = [
   {
     token: {
       token: {
-          address: "0x35bD01FC9d6D5D81CA9E055Db88Dc49aa2c699A8",
-          name: "Friends With Benefits Pro",
-          symbol: "FWB",
+          address: "0x02bD01FC9d6D5D81CA9E055Db88Dc48aa2c699A8",
+          name: "Korben Balas",
+          symbol: "KB",
           decimals: 18,
           totalSupply: "1000000000000000000000000"
       },
@@ -102,7 +102,6 @@ export const balance = {
   token,
   unresolvedComponents: 0,
   components,
-  claimableTokens,
 };
 
 export const balance_alt = {
@@ -110,19 +109,20 @@ export const balance_alt = {
   unresolvedComponents: 0,
   components,
   isDebt: false,
-  claimableTokens,
 };
 
 export const asset = {
   apr: null,
   apy: "8.67",
   balance,
+  claimableTokens,
 }
 
 export const asset_alt = {
   apr: null,
   apy: null,
   balance: balance_alt,
+  claimableTokens,
 }
 
 export const assets = [

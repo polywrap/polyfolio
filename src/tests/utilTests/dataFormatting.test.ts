@@ -27,13 +27,13 @@ test('Get Claimable Value', () => {
     '0x35bD01FC9d6D5D81CA9E055Db88Dc49aa2c699A8'
   );
 
-  expect(result).toBe("0");
-  expect(result_alt).toBe(199);
+  expect(result).toBe<number>(0);
+  expect(result_alt).toBe<number>(796);
 })
 
-test('Get Claimable Value For Curr Asset', () => {
+test('Get Claimable Value For Curr Protocol', () => {
   const result = dataFormatting.getClaimableValueFromCurrProtocol(asset);
-  expect(result).toBe(238.8);
+  expect(result).toBe<number>(199);
 })
 
 test('Eject Assets From Protocols', () => {
