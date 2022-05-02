@@ -41,7 +41,7 @@ function NetworksPicker({className = ''}: {className?: string}) {
   }, [network])
 
   return (
-    <div ref={ref} className={classNames(styles.NetworksPickerInfo, className)}>
+    <div ref={ref} className={classNames(styles[theme], styles.NetworksPicker, className)}>
       <TooltipTrigger
         isOpen={isOpen}
         placement={'bottom-end'}
@@ -54,7 +54,7 @@ function NetworksPicker({className = ''}: {className?: string}) {
         >
           <Icon src={iconsObj.ethereum} className={styles.icon} />
           <span className={styles.currency}>{networks[name].name}</span>
-          <MenuArrow startPosition={!isOpen ? 'down' : 'up'} className={styles.menu_arrow} />
+          <MenuArrow startPosition={!isOpen ? 'right' : 'left'} className={styles.menu_arrow} filled />
         </div>
       </TooltipTrigger>
     </div>
