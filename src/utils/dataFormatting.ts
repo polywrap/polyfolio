@@ -116,18 +116,18 @@ export const getTokenPrice = (assets, tokenSymbol: string) => {
 }
 
 export const getClaimableValue = (protocols, address: string) => {
-  let value: string;
+  let value = 0;
   _.map(protocols, protocol => {
     _.map(protocol.assets, asset => {
       _.map(asset.claimableTokens, claimableToken => {
         if (claimableToken.token.address === address) {
-          value = claimableToken.values[0].value;
+          value = value + Number(claimableToken.values[0].value);
         }
       });
     });
   });
 
-  return value ?? '0';
+  return value;
 }
 
 export const getClaimableValueFromCurrProtocol = (asset) => {
@@ -140,5 +140,5 @@ export const getClaimableValueFromCurrProtocol = (asset) => {
     });
   });
   
-  return value ?? 0;
+  return value;
 }
