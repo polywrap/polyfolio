@@ -1,14 +1,18 @@
 .dark {
   --color: var(--color_blue_gray_50);
+  --bg_dropdown: var(--color_blue_gray_bg);
+  --border: 1px solid rgba(255, 255, 255, 0.13);
 }
 
 .light {
   --color: var(--color_blue_gray);
+  --bg_dropdown: var(--color_white);
+  --border: 1px solid var(--color_blue_gray_200);
 }
 
-.NetworksPickerInfo {
+.NetworksPicker {
   padding: 16px 0 16px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.13);
+  border: var(--border);
   border-radius: 8px;
   background-color: var(--bg_dropdown);
 
