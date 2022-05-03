@@ -52,7 +52,7 @@ function App() {
     if (balance && !tokenTransfer) {
       getTokenTransfer('0x236919c55bd83cdd4eaf3ff4f454aa9440f1296c', 1, search);
     }
-  }, [getTokenTransfer, balance, tokenTransfer])
+  }, [getTokenTransfer, balance, tokenTransfer, search])
 
   console.log('tokenTransfer', tokenTransfer)
 
