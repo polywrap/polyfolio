@@ -10,10 +10,10 @@ import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedDa
 import {formatDataAccordingToEvent} from 'utils/formatDataAccordingToEvent';
 
 const useTransactions = () => {
-  const state = useRecoilValue(transactionState);
   const formatData = useGetData();
   const preparedData = formatData();
   const {user} = useAuth();
+  const state = useRecoilValue(transactionState);
   const data: ITransaction[] = [];
 
   console.log('state', state)

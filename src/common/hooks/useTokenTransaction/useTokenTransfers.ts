@@ -15,12 +15,13 @@ export default function useTokenTransfers() {
 
   const [, setTokenTransaction] = useRecoilState(tokenTransferState);
 
-  const getTokenTransfers = useCallback(async (token: string, chainId: number) => {
+  const getTokenTransfers = useCallback(async (token: string, chainId: number, search: string) => {
+    const account = search ?? user;
     const {data: response, errors} = await client.query({
       uri,
       query,
       variables: {
-        account: user,
+        account,
         token,
         currency,
       },
@@ -52,9 +53,9 @@ export default function useTokenTransfers() {
     })
 
     if (response && !errors?.length) {
-      const tokenTokenTransfers = response?.getTokenTransfers;
+      const tokenTransfers = response?.getTokenTransfers;
 
-      setTokenTransaction(tokenTokenTransfers);
+      setTokenTransaction(tokenTransfers);
     } else {
       // ADD ERROR HANDLER
       console.log('ERRORS-------');
