@@ -20,6 +20,31 @@ const useAssetMetadata = (id: string, chainId: number, tokenAddrres: string) => 
         id: id,
         contract_address: tokenAddrres,
       },
+      config: {
+        envs: [
+          {
+            uri: envsUri.uri_1,
+            common: {
+              connection: {
+                node: null,
+                networkNameOrChainId: chainId.toString(),
+              },
+            },
+            query: {},
+            mutation: {},
+          },
+          {
+            uri: envsUri.uri_2,
+            query: {
+              apiKey,
+              chainId: chainId.toString(),
+            },
+            common: {},
+            mutation: {},
+          },
+        ],
+        redirects,
+      },
     })
 
     if (response && !errors?.length) {
