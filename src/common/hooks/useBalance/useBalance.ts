@@ -53,7 +53,7 @@ export default function useBalance() {
   }, [client, user])
 
   const getBalance = useCallback(async (otherUserAddress?) => {
-    if (user) {
+    if (user || otherUserAddress) {
       let temporaryBalance = {}
 
       for (let i = 0; i < network.length; i++) {
