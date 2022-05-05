@@ -26,7 +26,7 @@ function HeaderPage({
   const {search} = useSearch();
   const translation = useTranslation();
 
-  const to = search ? RoutePath.Dashboard.replace(':profile', search) : RoutePath.BaseRoute;
+  const to = search ? RoutePath.Dashboard.replace(':user', search) : RoutePath.BaseRoute;
 
   return (
     <div className={classNames(styles[theme])}>

@@ -18,8 +18,8 @@ function DashboardNavigation() {
   const {search} = useSearch();
   const theme = useTheme();
 
-  const linkToDashboard = search ? RoutePath.Dashboard.replace(':portfolio', search)
-    : RoutePath.Dashboard.replace(':portfolio', user);
+  const linkToDashboard = search ? RoutePath.Dashboard.replace(':user', search)
+    : RoutePath.Dashboard.replace(':user', user);
 
   const linkToTransactions = search ? RoutePath.DashboardTransactions.replace(':user', search)
   : RoutePath.DashboardTransactions.replace(':user', user);

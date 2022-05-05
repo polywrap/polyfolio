@@ -14,6 +14,7 @@ import {fillArray} from 'utils/helpers';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import useSearch from 'common/hooks/useSearch/useSearch';
 import useAuth from 'common/hooks/useAuth/useAuth';
+import { networkToChainId } from 'utils/constants';
 
 function AssetsItem(menuItem) {
   const {filters} = useFiltersTables();
@@ -32,19 +33,16 @@ function AssetsItem(menuItem) {
     title,
     link,
     icon,
-    protocol,
     network,
     symbol,
   } = menuItem;
   const {search} = useSearch();
   const path = symbol && !search 
-    ? link.replace(':network', network)
-        .replace(':protocol', protocol)
+    ? link.replace(':chainId', networkToChainId[network])
         .replace(':asset', symbol)
         .replace(':user', user)
     : search 
-      ? link.replace(':network', network)
-          .replace(':protocol', protocol)
+      ? link.replace(':chainId', networkToChainId[network])
           .replace(':asset', symbol)
           .replace(':user', search) 
       : '/404';

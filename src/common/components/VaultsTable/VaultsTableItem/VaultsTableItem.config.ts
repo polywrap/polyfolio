@@ -1,12 +1,12 @@
 import iconsObj from 'assets/icons/iconsObj';
-import { getStringFromPath, rmCommasFromNum } from 'utils/helpers';
+import {getStringFromPath, rmCommasFromNum} from 'utils/helpers';
 import _ from 'lodash';
 import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
-import { useLocation } from 'react-router-dom';
-import { getClaimableValue } from 'utils/dataFormatting';
+import {useLocation} from 'react-router-dom';
+import {getClaimableValue} from 'utils/dataFormatting';
 
 export const GetVaults = () => {
-  const { pathname } = useLocation()
+  const {pathname} = useLocation()
   const page = getStringFromPath(pathname, 1);
   const formatData = useGetData(page);
   const preparedData = formatData();

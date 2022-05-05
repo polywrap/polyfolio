@@ -20,7 +20,7 @@ function HeaderCurrencyPage() {
   const menuItems = useAssets();
   const currency = _find(menuItems, {symbol: asset});
 
-  const to = search ? RoutePath.Dashboard.replace(':profile', search) : RoutePath.BaseRoute;
+  const to = search ? RoutePath.Dashboard.replace(':user', search) : RoutePath.BaseRoute;
 
   return (
     <div className={classNames(styles.headerContainer, styles[theme])}>

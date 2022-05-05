@@ -10,6 +10,7 @@ import PricesValue from '../../PricesValue/PricesValue';
 import classNames from 'classnames';
 import useSearch from 'common/hooks/useSearch/useSearch';
 import useAuth from 'common/hooks/useAuth/useAuth';
+import { networkToChainId } from 'utils/constants';
 
 function ProtocolsItem(menuItem) {
   const navigate = useNavigate();
@@ -29,11 +30,11 @@ function ProtocolsItem(menuItem) {
   const {search} = useSearch();
   const path = symbol && !search 
     ? link.replace(':protocol', `${symbol}`)
-        .replace(':network', `${network}`)
+        .replace(':chainId', `${networkToChainId[network]}`)
         .replace(':user', `${user}`)
     : search 
       ? link.replace(':protocol', `${symbol}`)
-          .replace(':network', `${network}`)
+          .replace(':chainId', `${networkToChainId[network]}`)
           .replace(':user', `${search}`) 
       : '/404';
 
