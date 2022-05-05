@@ -37,7 +37,7 @@ function App() {
   const balance = useRecoilValue(balanceState);
   const transaction = useRecoilValue(transactionState);
   const tokenTransfer = useRecoilValue(tokenTransferState);
-  const assetMetaData = useAssetMetadata('usdt', 1, '0xdAC17F958D2ee523a2206206994597C13D831ec7');
+  const assetMetaData = useAssetMetadata('ethereum', 1, '0xdAC17F958D2ee523a2206206994597C13D831ec7');
   console.log('assetMetaData', assetMetaData)
 
   useEffect(function fetchBalance () {

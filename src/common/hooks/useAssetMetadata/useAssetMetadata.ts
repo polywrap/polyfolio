@@ -17,7 +17,7 @@ const useAssetMetadata = (id: string, chainId: number, tokenAddrres: string) => 
       uri,
       query,
       variables: {
-        id: id,
+        id,
         contract_address: tokenAddrres,
       },
       config: {
@@ -57,7 +57,7 @@ const useAssetMetadata = (id: string, chainId: number, tokenAddrres: string) => 
       console.log(errors);
       console.log('-----ERRORS');
     }
-  }, [chainId, client, id, tokenAddrres])
+  }, [chainId, client, tokenAddrres])
 
   useEffect(() => {
     getAssetMetadata()
