@@ -16,6 +16,7 @@ import useSearch from 'common/hooks/useSearch/useSearch';
 import useAuth from 'common/hooks/useAuth/useAuth';
 import {networkToChainId} from 'utils/constants';
 import RoutePath from 'common/modules/routing/routing.enums';
+import replaceRouteParameters from 'utils/replaceRouteParameters';
 
 function AssetsItem(menuItem) {
   const {filters} = useFiltersTables();
@@ -39,13 +40,9 @@ function AssetsItem(menuItem) {
   } = menuItem;
   const {search} = useSearch();
   const path = symbol && !search 
-    ? link.replace(':chainId', networkToChainId[network])
-        .replace(':asset', symbol)
-        .replace(':user', user)
+    ? replaceRouteParameters(link, {chainId: networkToChainId[network], asset: symbol, user})
     : search 
-      ? link.replace(':chainId', networkToChainId[network])
-          .replace(':asset', symbol)
-          .replace(':user', search) 
+      ? replaceRouteParameters(link, {chainId: networkToChainId[network], asset: symbol, search}) 
       : RoutePath.NotFound;
   
   return (

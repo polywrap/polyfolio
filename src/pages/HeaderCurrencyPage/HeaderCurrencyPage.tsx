@@ -10,6 +10,7 @@ import iconsObj from 'assets/icons/iconsObj';
 import RoutePath from 'common/modules/routing/routing.enums';
 import _find from 'lodash/find';
 import useSearch from 'common/hooks/useSearch/useSearch';
+import replaceRouteParameters from 'utils/replaceRouteParameters';
 
 function HeaderCurrencyPage() {
   const theme = useTheme();
@@ -20,7 +21,7 @@ function HeaderCurrencyPage() {
   const menuItems = useAssets();
   const currency = _find(menuItems, {symbol: asset});
 
-  const to = search ? RoutePath.Dashboard.replace(':user', search) : RoutePath.BaseRoute;
+  const to = search ? replaceRouteParameters(RoutePath.Dashboard, {search}) : RoutePath.BaseRoute;
 
   return (
     <div className={classNames(styles.headerContainer, styles[theme])}>

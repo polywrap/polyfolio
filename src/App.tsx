@@ -24,6 +24,7 @@ import transactionState from 'common/modules/atoms/transactionState';
 import tokenTransferState from 'common/modules/atoms/tokenTransferState';
 import useSearch from 'common/hooks/useSearch/useSearch';
 import useTokenTransfers from 'common/hooks/useTokenTransaction/useTokenTransfers';
+import replaceRouteParameters from 'utils/replaceRouteParameters';
 
 function App() {
   useRouteChange();
@@ -75,7 +76,7 @@ function App() {
 
   const AuthorizedMainRoute = ({user, redirectPath = RoutePath.Dashboard, children}) => {
     if (user) {
-      return <Navigate to={redirectPath.replace(':user', user)} replace />;
+      return <Navigate to={replaceRouteParameters(redirectPath, {user})} replace />;
     }
 
     return children;

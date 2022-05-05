@@ -15,6 +15,8 @@ import useSearch from 'common/hooks/useSearch/useSearch';
 import Skeleton from '../Skeleton/Skeleton';
 import useAuth from 'common/hooks/useAuth/useAuth';
 import { networkToChainId } from 'utils/constants';
+import RoutePath from 'common/modules/routing/routing.enums';
+import replaceRouteParameters from 'utils/replaceRouteParameters';
 
 function Networks() {
   const ref = useRef(null);
@@ -26,12 +28,10 @@ function Networks() {
 
   const MenuItem = (menuItem: NetworksItem) => {
     const {search} = useSearch();
-    const path = menuItem.id && !search ? menuItem.link
-      .replace(':user', `${user}`)
-      .replace(':chainId', `${networkToChainId[menuItem.id]}`)
-    : search ? menuItem.link
-      .replace(':user', `${search}`)
-      .replace(':chainId', `${networkToChainId[menuItem.id]}`)
+    const path = menuItem.id && !search ?
+      replaceRouteParameters(menuItem.link, {chainId: networkToChainId[menuItem.id], user})
+    : search ? 
+      replaceRouteParameters(menuItem.link, {chainId: networkToChainId[menuItem.id], search})
     : RoutePath.NotFound;
 
     return (

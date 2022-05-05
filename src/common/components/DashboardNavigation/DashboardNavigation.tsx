@@ -8,6 +8,7 @@ import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import {Tab} from './DashboardNavigation.config';
 import useSearch from 'common/hooks/useSearch/useSearch';
 import useAuth from 'common/hooks/useAuth/useAuth';
+import replaceRouteParameters from 'utils/replaceRouteParameters';
 
 function DashboardNavigation() {
   const {user} = useAuth();
@@ -18,11 +19,11 @@ function DashboardNavigation() {
   const {search} = useSearch();
   const theme = useTheme();
 
-  const linkToDashboard = search ? RoutePath.Dashboard.replace(':user', search)
-    : RoutePath.Dashboard.replace(':user', user);
+  const linkToDashboard = search ? replaceRouteParameters(RoutePath.Dashboard, {search})
+    : replaceRouteParameters(RoutePath.Dashboard, {user});
 
-  const linkToTransactions = search ? RoutePath.DashboardTransactions.replace(':user', search)
-  : RoutePath.DashboardTransactions.replace(':user', user);
+  const linkToTransactions = search ? replaceRouteParameters(RoutePath.DashboardTransactions, {search})
+  : replaceRouteParameters(RoutePath.DashboardTransactions, {user});
 
   useEffect(() => {
     if (pathname === linkToDashboard) {
