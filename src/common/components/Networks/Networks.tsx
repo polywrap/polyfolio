@@ -32,7 +32,7 @@ function Networks() {
     : search ? menuItem.link
       .replace(':user', `${search}`)
       .replace(':chainId', `${networkToChainId[menuItem.id]}`)
-    : '/404';
+    : RoutePath.NotFound;
 
     return (
       <div className={styles.menu_item} onClick={() => navigate(path)}>

@@ -1,6 +1,7 @@
 enum RoutePath {
   BaseRoute = '/',
 
+  NotFound = '/not-found',
   RequestFeatures = '/request-features',
   Docs = '/docs',
   Polywrap = '/polywrap',

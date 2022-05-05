@@ -14,7 +14,8 @@ import {fillArray} from 'utils/helpers';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import useSearch from 'common/hooks/useSearch/useSearch';
 import useAuth from 'common/hooks/useAuth/useAuth';
-import { networkToChainId } from 'utils/constants';
+import {networkToChainId} from 'utils/constants';
+import RoutePath from 'common/modules/routing/routing.enums';
 
 function AssetsItem(menuItem) {
   const {filters} = useFiltersTables();
@@ -45,7 +46,7 @@ function AssetsItem(menuItem) {
       ? link.replace(':chainId', networkToChainId[network])
           .replace(':asset', symbol)
           .replace(':user', search) 
-      : '/404';
+      : RoutePath.NotFound;
   
   return (
     <>

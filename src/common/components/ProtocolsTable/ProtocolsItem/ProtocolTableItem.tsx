@@ -36,7 +36,7 @@ function ProtocolsItem(menuItem) {
       ? link.replace(':protocol', `${symbol}`)
           .replace(':chainId', `${networkToChainId[network]}`)
           .replace(':user', `${search}`) 
-      : '/404';
+      : RoutePath.NotFound;
 
   const {filters} = useFiltersTables();
 
