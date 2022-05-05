@@ -24,7 +24,6 @@ import transactionState from 'common/modules/atoms/transactionState';
 import tokenTransferState from 'common/modules/atoms/tokenTransferState';
 import useSearch from 'common/hooks/useSearch/useSearch';
 import useTokenTransfers from 'common/hooks/useTokenTransaction/useTokenTransfers';
-import useAssetMetadata from 'common/hooks/useAssetMetadata/useAssetMetadata';
 
 function App() {
   useRouteChange();
@@ -37,8 +36,6 @@ function App() {
   const balance = useRecoilValue(balanceState);
   const transaction = useRecoilValue(transactionState);
   const tokenTransfer = useRecoilValue(tokenTransferState);
-  const assetMetaData = useAssetMetadata('ethereum', 1, '0xdAC17F958D2ee523a2206206994597C13D831ec7');
-  console.log('assetMetaData', assetMetaData)
 
   useEffect(function fetchBalance () {
     if (user && !search) {

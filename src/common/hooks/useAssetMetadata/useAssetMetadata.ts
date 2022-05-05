@@ -57,11 +57,11 @@ const useAssetMetadata = (id: string, chainId: number, tokenAddrres: string) => 
       console.log(errors);
       console.log('-----ERRORS');
     }
-  }, [chainId, client, tokenAddrres])
+  }, [chainId, client, id, tokenAddrres])
 
   useEffect(() => {
     getAssetMetadata()
-  }, [getAssetMetadata])
+  }, [getAssetMetadata, id, chainId, tokenAddrres])
 
   return asset;
 }

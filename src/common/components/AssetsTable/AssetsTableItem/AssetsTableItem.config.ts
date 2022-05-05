@@ -1,11 +1,13 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import iconsObj from 'assets/icons/iconsObj';
-import { v4 as uuidv4 } from 'uuid';
+import {v4 as uuidv4} from 'uuid';
 import {rmCommasFromNum} from 'utils/helpers';
 import {AssetsItem} from './AssetsTableItem.types';
 import RoutePath from 'common/modules/routing/routing.enums';
 import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 import {useLocation} from 'react-router-dom';
 import {getStringFromPath} from 'utils/helpers';
+import useAssetMetadata from 'common/hooks/useAssetMetadata/useAssetMetadata';
 
 const useAssets = () => {
   const {pathname} = useLocation();
@@ -20,6 +22,8 @@ const useAssets = () => {
   
   if (allAssets) {
     for (let i = 0; i < allAssets.length; i++) {
+      const assetMetaData = useAssetMetadata('ethereum', 1, '0xdAC17F958D2ee523a2206206994597C13D831ec7');
+      console.log('assetMetaData', assetMetaData)
       const percent = Number(rmCommasFromNum(allAssets[i].token.values[0].value)) * 100 / assetsSum;
       const valueTitle = (
         Number(rmCommasFromNum(allAssets[i].token.values[0].value))
