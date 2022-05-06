@@ -17,6 +17,7 @@ import useAuth from 'common/hooks/useAuth/useAuth';
 import {networkToChainId} from 'utils/constants';
 import RoutePath from 'common/modules/routing/routing.enums';
 import replaceRouteParameters from 'utils/replaceRouteParameters';
+import Skeleton from 'common/components/Skeleton/Skeleton';
 
 function AssetsItem(menuItem) {
   const {filters} = useFiltersTables();
@@ -50,7 +51,13 @@ function AssetsItem(menuItem) {
       <button className={styles.buttonNavigate} onClick={() => navigate(path)}>
         <div className={styles.menu_item}>
           <div className={styles.title_container}>
-            <Icon src={icon} className={styles.icon} />
+            {
+              icon ? (
+                <Icon src={icon} className={styles.icon} />
+              ) : (
+                <Skeleton width={40} height={40} />
+              )
+            }
             <div>
               <div className={styles.title}>{title}</div>
               <div className={styles.titleSecondary}>{secondaryTitle}</div>

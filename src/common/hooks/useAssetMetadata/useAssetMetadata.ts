@@ -48,7 +48,7 @@ const useAssetMetadata = (id: string, chainId: number, tokenAddrres: string) => 
     })
 
     if (response && !errors?.length) {
-      const assetData = response;
+      const assetData = response?.tokenInfo;
 
       setAsset(assetData);
     } else {

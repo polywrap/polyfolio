@@ -3,7 +3,7 @@ import React from 'react';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import classNames from 'classnames';
 import style from './AssetOverview.module.scss';
-import { items, items2 } from './mock'
+import { items, items2 } from './AssetOverview.config'
 import { Row } from './components';
 
 function AssetOverview() {

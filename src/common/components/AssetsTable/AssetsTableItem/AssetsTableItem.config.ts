@@ -8,7 +8,7 @@ import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedDa
 import {useLocation} from 'react-router-dom';
 import useAssetMetadata from 'common/hooks/useAssetMetadata/useAssetMetadata';
 import {detectProtocolAndChainIdForAsset} from 'utils/dataFormatting';
-import {chainIdToNetwork} from 'utils/constants';
+import {chainIdToNetwork, networkToChainId} from 'utils/constants';
 
 const useAssets = () => {
   const {pathname} = useLocation();
@@ -24,16 +24,20 @@ const useAssets = () => {
   
   if (allAssets) {
     for (let i = 0; i < allAssets.length; i++) {
-      const assetMetaData = useAssetMetadata('ethereum', 1, '0xdAC17F958D2ee523a2206206994597C13D831ec7');
-      console.log('assetMetaData', assetMetaData)
       const percent = Number(rmCommasFromNum(allAssets[i].token.values[0].value)) * 100 / assetsSum;
       const valueTitle = (
         Number(rmCommasFromNum(allAssets[i].token.values[0].value))
         * Number(rmCommasFromNum(allAssets[i].token.values[0].price))
-      ).toString();
-
-      const symbol = allAssets[i].token.token.symbol;
-      const [network, protocol] = detectProtocolAndChainIdForAsset(allProtocols, symbol);
+        ).toString();
+        
+        const symbol = allAssets[i].token.token.symbol;
+        const [network, protocol] = detectProtocolAndChainIdForAsset(allProtocols, symbol);
+        const assetMetaData = useAssetMetadata(
+          network,
+          networkToChainId[network],
+          allAssets[i].token.token.address
+        );
+        console.log('assetMetaData', assetMetaData)
 
       menuItems.push({
         secondaryPricePercentTitle: '???',
@@ -41,8 +45,8 @@ const useAssets = () => {
         secondaryTitle: allAssets[i].token.token.name,
         valueSecondaryTitle: rmCommasFromNum(allAssets[i].token.values[0].value),
         pricePercentDollar: '???',
-        iconInfoPage: iconsObj.usdt,
-        icon: iconsObj.assetsUsdt,
+        iconInfoPage: assetMetaData?.image.large,
+        icon: assetMetaData?.image.small,
         valueTitle,
         valueIsMinus: false,
         priceTitle: rmCommasFromNum(allAssets[i].token.values[0].price),
