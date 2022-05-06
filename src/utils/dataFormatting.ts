@@ -170,3 +170,43 @@ export const getClaimableValueFromCurrProtocol = (asset) => {
   
   return value;
 }
+
+export const getMarketCap = (currency: string, marketCap) => {
+  let result: string;
+
+  if (marketCap) {
+    marketCap.forEach(item => {
+      if (item.currency === currency.toLowerCase()) result = item.volume;
+    });
+  }
+
+  return result;
+}
+
+export const getVolume = (currency: string, volume) => {
+  let result: string;
+
+  if (volume) {
+    volume.forEach(item => {
+      if (item.currency === currency.toLowerCase()) result = item.volume;
+    });
+  }
+
+  return result;
+}
+
+export const getPriceChangePercentage = (currency: string, priceChangePercentage) => {
+  let percentage: string;
+  let style = 'profit';
+
+  if (priceChangePercentage) {
+    priceChangePercentage.forEach(item => {
+      if (item.currency === currency.toLowerCase()) {
+        percentage = item.percentage;
+        if (item.percentage[0] === '-') style = 'loss'
+      }
+    });
+  }
+
+  return [percentage, style];
+}

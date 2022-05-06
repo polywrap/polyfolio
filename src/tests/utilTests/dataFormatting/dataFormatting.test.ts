@@ -4,6 +4,8 @@ import {
   protocols,
   components,
   asset,
+  marketCapArray,
+  volume,
 } from './testConstants';
 
 test('Test Asset Sum', () => {
@@ -38,4 +40,16 @@ test('Get Claimable Value For Curr Protocol', () => {
 test('Eject Assets From Protocols', () => {
   const result = dataFormatting.ejectAssetsFromProtocol(protocols[0]);
   expect(result).toStrictEqual([components, components]);
+})
+
+test('Get Market Currency', () => {
+  const result = dataFormatting.getMarketCap('aed', marketCapArray);
+
+  expect(result).toBe('56289965');
+})
+
+test('Get Volume', () => {
+  const result = dataFormatting.getVolume('aed', volume);
+
+  expect(result).toBe('151580');
 })

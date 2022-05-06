@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import _, { result } from 'lodash';
+import BN from 'bn.js';
 
 export const filteredDropdown = (array, currentId) => {
   return array?.filter((e) => e?.id !== currentId);
@@ -27,4 +28,12 @@ export const shortenedAddress = (address: string, size = 4) => {
   }
 
   return '???'
+}
+
+export const fromBnToNumber = (numberInString: string, decimal: number | string) => {
+  const value = new BN(numberInString);
+  const divider = new BN(Math.pow(10, Number(decimal)).toString());
+  const result = value.div(divider);
+
+  return result.toNumber();
 }

@@ -23,7 +23,8 @@ function RowItem({
       }
       <div className={style.text}>
         <div className={style.label}>{label}</div>
-        <div className={classNames(style.content, type === 'profit' ? style.profit : '')}>
+        <div className={classNames(style.content, type === 'profit' ? style.profit : '',
+          type === 'loss' ? style.loss : '')}>
           {content}
         </div>
       </div>

@@ -37,7 +37,6 @@ const useAssets = () => {
           networkToChainId[network],
           allAssets[i].token.token.address
         );
-        console.log('assetMetaData', assetMetaData)
 
       menuItems.push({
         secondaryPricePercentTitle: '???',
@@ -53,6 +52,7 @@ const useAssets = () => {
         title: allAssets[i].token.token.symbol,
         percent: percent.toString(),
         symbol: symbol.toLowerCase(),
+        address: allAssets[i].token.token.address,
         network, 
         protocol,
         id: uuidv4(),
