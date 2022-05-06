@@ -1,4 +1,4 @@
-import _, { result } from 'lodash';
+import _ from 'lodash';
 import BN from 'bn.js';
 
 export const filteredDropdown = (array, currentId) => {

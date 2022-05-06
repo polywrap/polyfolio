@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import iconsObj from 'assets/icons/iconsObj';
 import {v4 as uuidv4} from 'uuid';
 import {rmCommasFromNum, getStringFromPath} from 'utils/helpers';
 import {AssetsItem} from './AssetsTableItem.types';
