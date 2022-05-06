@@ -17,3 +17,8 @@ export const chainIdToNetwork = {
   1: 'ethereum',
   137: 'polygon',
 };
+
+export const networkToChainId = {
+  ethereum: 1,
+  polygon: 137,
+};

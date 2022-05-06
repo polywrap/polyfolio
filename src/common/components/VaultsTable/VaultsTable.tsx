@@ -13,8 +13,8 @@ import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
 import {menuFields} from './FilterFieldsVaults.config';
-import { useLocation } from 'react-router-dom';
-import { getStringFromPath } from 'utils/helpers';
+import {useLocation} from 'react-router-dom';
+import {getStringFromPath} from 'utils/helpers';
 import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 
 function VaultsTable() {
