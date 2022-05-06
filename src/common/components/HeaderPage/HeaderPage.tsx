@@ -10,6 +10,7 @@ import { NavLink } from 'react-router-dom';
 import Icon from '../Icon/Icon';
 import useSearch from 'common/hooks/useSearch/useSearch';
 import RoutePath from 'common/modules/routing/routing.enums';
+import replaceRouteParameters from 'utils/replaceRouteParameters';
 
 interface IHeaderPage {
   icon: string;
@@ -26,7 +27,7 @@ function HeaderPage({
   const {search} = useSearch();
   const translation = useTranslation();
 
-  const to = search ? RoutePath.DashboardAlternative.replace(':id', search) : RoutePath.Dashboard;
+  const to = search ? replaceRouteParameters(RoutePath.Dashboard, {search}) : RoutePath.BaseRoute;
 
   return (
     <div className={classNames(styles[theme])}>

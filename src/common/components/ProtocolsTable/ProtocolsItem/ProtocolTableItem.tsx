@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './ProtocolTableItem.module.scss';
-//import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import Icon from 'common/components/Icon/Icon';
 import numberFormatter from 'utils/numberFormatter';
 import {useNavigate} from 'react-router-dom';
@@ -10,10 +9,14 @@ import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import PricesValue from '../../PricesValue/PricesValue';
 import classNames from 'classnames';
 import useSearch from 'common/hooks/useSearch/useSearch';
+import useAuth from 'common/hooks/useAuth/useAuth';
+import { networkToChainId } from 'utils/constants';
+import RoutePath from 'common/modules/routing/routing.enums';
+import replaceRouteParameters from 'utils/replaceRouteParameters';
 
 function ProtocolsItem(menuItem) {
   const navigate = useNavigate();
-  //const translation = useTranslation();
+  const {user} = useAuth();
   const {
     secondaryTitleDollar,
     secondaryTitlePercent,
@@ -27,9 +30,11 @@ function ProtocolsItem(menuItem) {
     symbol,
   } = menuItem;
   const {search} = useSearch();
-  const path = symbol && !search ? link.replace(':id', `${symbol}`).replace(':net', `${network}`)
-    : search ? link.replace(':id', `${symbol}`).replace(':net', `${network}`) + `?${search}` 
-    : '/404';
+  const path = symbol && !search 
+    ? replaceRouteParameters(link, {chainId: networkToChainId[network], user, protocol: symbol})
+    : search 
+      ? replaceRouteParameters(link, {chainId: networkToChainId[network], search, protocol: symbol}) 
+      : RoutePath.NotFound;
 
   const {filters} = useFiltersTables();
 

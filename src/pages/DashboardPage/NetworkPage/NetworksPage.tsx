@@ -8,12 +8,13 @@ import useNetworks from 'common/components/Networks/Networks.config';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import _find from 'lodash/find';
 import DashboardPage from '../DashboardPage';
+import {chainIdToNetwork} from 'utils/constants';
 
 function NetworksPage() {
   const translation = useTranslation();
-  const {id} = useParams();
+  const {chainId} = useParams();
   const menuItems = useNetworks();
-  const current = _find(menuItems, {id});
+  const current = _find(menuItems, {id: chainIdToNetwork[chainId]});
 
   return (
     <DashboardPage>
