@@ -19,6 +19,7 @@ function PricesValue({
             [styles.minusValuePrice]: valueIsMinus,
           })}
         >
+          {(valueIsMinus ? '-' : '+')}
           ${numberFormatter({value: pricePercentDollar, size: 2})}
         </div>
         <div
@@ -26,7 +27,10 @@ function PricesValue({
             [styles.minusValue]: valueIsMinus,
           })}
         >
-          +{numberFormatter({value: secondaryPricePercentTitle, size: 2})}%
+          {
+            (valueIsMinus ? '' : '+')
+            +numberFormatter({value: secondaryPricePercentTitle, size: 2})
+          }%
         </div>
       </div>
     </div>

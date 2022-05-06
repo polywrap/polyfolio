@@ -20,11 +20,9 @@ const useAssetOverviewData = () => {
     networkToChainId[assetData.network],
     assetData.address
   );
-  console.log('assetMetaData', assetMetaData)
   const marketCap = getMarketCap(currency, assetMetaData?.market_data.market_cap);
   const volume = getVolume(currency, assetMetaData?.market_data.total_volume);
   const [percentage, style] = getPriceChangePercentage(
-    currency,
     assetMetaData?.market_data.price_change_percentage_24h_in_currency
   );
 

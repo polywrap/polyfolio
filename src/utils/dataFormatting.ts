@@ -195,18 +195,29 @@ export const getVolume = (currency: string, volume) => {
   return result;
 }
 
-export const getPriceChangePercentage = (currency: string, priceChangePercentage) => {
+export const getPriceChangePercentage = (priceChangePercentage: string) => {
   let percentage: string;
   let style = 'profit';
+
+  if (priceChangePercentage && priceChangePercentage[0] === '-') {
+    percentage = priceChangePercentage;
+    style = 'loss';
+  }
+
+  return [percentage, style];
+}
+
+export const getPriceChangeCurrency = (currency: string, priceChangePercentage) => {
+  let percentage: string;
 
   if (priceChangePercentage) {
     priceChangePercentage.forEach(item => {
       if (item.currency === currency.toLowerCase()) {
-        percentage = item.percentage;
-        if (item.percentage[0] === '-') style = 'loss'
+        percentage = item.percentage[0] === '-' 
+          ? item.percentage.substring(1) : item.percentage;
       }
     });
   }
 
-  return [percentage, style];
+  return percentage;
 }

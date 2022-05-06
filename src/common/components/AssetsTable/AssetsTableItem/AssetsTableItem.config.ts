@@ -6,10 +6,16 @@ import RoutePath from 'common/modules/routing/routing.enums';
 import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 import {useLocation} from 'react-router-dom';
 import useAssetMetadata from 'common/hooks/useAssetMetadata/useAssetMetadata';
-import {detectProtocolAndChainIdForAsset} from 'utils/dataFormatting';
+import {
+  detectProtocolAndChainIdForAsset,
+  getPriceChangeCurrency,
+  getPriceChangePercentage
+} from 'utils/dataFormatting';
 import {chainIdToNetwork, networkToChainId} from 'utils/constants';
+import { useCurrency } from 'common/currency/Currency.context';
 
 const useAssets = () => {
+  const {currency} = useCurrency();
   const {pathname} = useLocation();
   const page = getStringFromPath(pathname, 4);
   const formatData = useGetData(chainIdToNetwork[page]);
@@ -36,17 +42,25 @@ const useAssets = () => {
           networkToChainId[network],
           allAssets[i].token.token.address
         );
+        const [percentage, style] = getPriceChangePercentage(
+          assetMetaData?.market_data.price_change_percentage_24h
+        );
+        console.log(assetMetaData)
+        const pricePercentDollar = getPriceChangeCurrency(
+          currency,
+          assetMetaData?.market_data.price_change_percentage_24h_in_currency
+        );
 
       menuItems.push({
-        secondaryPricePercentTitle: '???',
+        secondaryPricePercentTitle: percentage,
         link: `${RoutePath.Asset}`,
         secondaryTitle: allAssets[i].token.token.name,
         valueSecondaryTitle: rmCommasFromNum(allAssets[i].token.values[0].value),
-        pricePercentDollar: '???',
+        pricePercentDollar,
         iconInfoPage: assetMetaData?.image.large,
         icon: assetMetaData?.image.small,
         valueTitle,
-        valueIsMinus: false,
+        valueIsMinus: style === 'profit' ? false : true,
         priceTitle: rmCommasFromNum(allAssets[i].token.values[0].price),
         title: allAssets[i].token.token.symbol,
         percent: percent.toString(),
