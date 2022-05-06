@@ -1,3 +1,6 @@
+export const linkToAccountOnEtherscan = 'https://rinkeby.etherscan.io/address/';
+export const startOfEthereumAddress = '0x';
+
 export const networks = [
   {
     name: 'ethereum',
@@ -18,5 +21,7 @@ export const chainIdToNetwork = {
   137: 'polygon',
 };
 
-export const linkToAccountOnEtherscan = 'https://rinkeby.etherscan.io/address/';
-export const startOfEthereumAddress = '0x';
+export const networkToChainId = {
+  ethereum: 1,
+  polygon: 137,
+};

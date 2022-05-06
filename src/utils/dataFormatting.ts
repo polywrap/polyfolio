@@ -1,13 +1,17 @@
-import _ from 'lodash';
+import _map from 'lodash/map';
+import _forEach from 'lodash/forEach';
+import _sumBy from 'lodash/sumBy';
+import _round from 'lodash/round';
 import BN from 'bn.js';
 import {rmCommasFromNum} from './helpers';
 import iconsObj from 'assets/icons/iconsObj';
+import {chainIdToNetwork} from 'utils/constants';
 
 export const insertChainIdToProtocol = (balance) => {
-  _.map(balance, (network) => {
+  _map(balance, (network) => {
     const chainId = network.chainId;
 
-    _.map(network?.protocols, (protocol) => {
+    _map(network?.protocols, (protocol) => {
       if (protocol) {
         protocol.protocol = {...protocol?.protocol, chainId};
       } 
@@ -17,8 +21,8 @@ export const insertChainIdToProtocol = (balance) => {
 
 export const getAssetsValueSum = (assets) => {
   if (assets) {
-    return _.sumBy(assets, (value) => 
-      _.round(Number(rmCommasFromNum(value['token'].values[0].value)), 2)
+    return _sumBy(assets, (value) => 
+      _round(Number(rmCommasFromNum(value['token'].values[0].value)), 2)
     );
   }
 };
@@ -27,8 +31,28 @@ export const ejectProtocolsFromNetwork = (network) => network ? network.protocol
 
 export const ejectAssetsFromProtocol = (protocols) => {
   if (protocols) {
-    return _.map(protocols.assets, asset => asset.balance.components)
+    return _map(protocols.assets, asset => asset.balance.components)
   }
+}
+
+export const detectProtocolAndChainIdForAsset = (allProtocols, tokenSymbol) => {
+  let chainId: string;
+  let protocolId: string;
+
+  if (allProtocols) {
+    _forEach(allProtocols, (protocol) => {
+      _forEach(protocol.assets, (asset) => {
+        _forEach(asset.balance.components, (component) => {
+          if (component.token.token.symbol === tokenSymbol) {
+            chainId = chainIdToNetwork[protocol.protocol.chainId];
+            protocolId = protocol.protocol.id;
+          }
+        })
+      })
+    })
+  }
+
+  return [chainId, protocolId];
 }
 
 export const getEventType = (eventName: string, userAddress?: string, params?) => {
@@ -117,9 +141,9 @@ export const getTokenPrice = (assets, tokenSymbol: string) => {
 
 export const getClaimableValue = (protocols, address: string) => {
   let value = 0;
-  _.map(protocols, protocol => {
-    _.map(protocol.assets, asset => {
-      _.map(asset.claimableTokens, claimableToken => {
+  _map(protocols, protocol => {
+    _map(protocol.assets, asset => {
+      _map(asset.claimableTokens, claimableToken => {
         if (claimableToken.token.address === address) {
           value = value + Number(claimableToken.values[0].value);
         }
@@ -132,8 +156,8 @@ export const getClaimableValue = (protocols, address: string) => {
 
 export const getClaimableValueFromCurrProtocol = (asset) => {
   let value = 0;
-  _.forEach(asset.balance.components, component => {
-    _.forEach(asset.claimableTokens, claimableToken => {
+  _forEach(asset.balance.components, component => {
+    _forEach(asset.claimableTokens, claimableToken => {
       if (component.token.token.address === claimableToken.token.address) {
         value = value + Number(claimableToken.values[0].value);
       }

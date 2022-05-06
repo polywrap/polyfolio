@@ -23,6 +23,7 @@ import {useRecoilValue} from 'recoil';
 import tokenTransferState from 'common/modules/atoms/tokenTransferState';
 import useSearch from 'common/hooks/useSearch/useSearch';
 import useTokenTransfers from 'common/hooks/useTokenTransaction/useTokenTransfers';
+import replaceRouteParameters from 'utils/replaceRouteParameters';
 
 function App() {
   useRouteChange();
@@ -72,7 +73,7 @@ function App() {
 
   const AuthorizedMainRoute = ({user, redirectPath = RoutePath.Dashboard, children}) => {
     if (user) {
-      return <Navigate to={redirectPath} replace />;
+      return <Navigate to={replaceRouteParameters(redirectPath, {user})} replace />;
     }
 
     return children;
@@ -104,12 +105,6 @@ function App() {
               <ProtectedRoute user={user}>
                 <Portfolio />
               </ProtectedRoute>
-            }
-          />
-          <Route
-            path={RoutePath.DashboardAlternative}
-            element={
-              <Portfolio />
             }
           />
           <Route

@@ -21,6 +21,7 @@ import useResizeObserver from 'common/hooks/useResizeObserver/useResizeObserver'
 import RoutePath from 'common/modules/routing/routing.enums';
 import {useNavigate} from 'react-router-dom';
 import useSearch from 'common/hooks/useSearch/useSearch';
+import replaceRouteParameters from 'utils/replaceRouteParameters';
 
 function Header({
   className = '',
@@ -47,7 +48,7 @@ function Header({
   
   const handleClick = useCallback(() => {
     setSearch(value)
-    navigate(RoutePath.DashboardAlternative.replace(':id', value));
+    navigate(replaceRouteParameters(RoutePath.Dashboard, {user: value}));
   }, [navigate, setSearch, value])
 
   return (

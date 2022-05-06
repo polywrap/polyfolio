@@ -7,22 +7,23 @@ import RoutePath from 'common/modules/routing/routing.enums';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import {Tab} from './DashboardNavigation.config';
 import useSearch from 'common/hooks/useSearch/useSearch';
+import useAuth from 'common/hooks/useAuth/useAuth';
+import replaceRouteParameters from 'utils/replaceRouteParameters';
 
 function DashboardNavigation() {
+  const {user} = useAuth();
   const [activeTab, setActiveTab] = useState('');
   const navigate = useNavigate();
   const {pathname} = useLocation();
   const translation = useTranslation();
   const {search} = useSearch();
-
-  const linkToDashboard = search ? RoutePath.DashboardAlternative.replace(':id', search)
-    : RoutePath.Dashboard;
-
-  const linkToTransactions = search ? RoutePath.DashboardTransactions + `?${search}`
-  : RoutePath.DashboardTransactions;
-
-
   const theme = useTheme();
+
+  const linkToDashboard = search ? replaceRouteParameters(RoutePath.Dashboard, {search})
+    : replaceRouteParameters(RoutePath.Dashboard, {user});
+
+  const linkToTransactions = search ? replaceRouteParameters(RoutePath.DashboardTransactions, {search})
+  : replaceRouteParameters(RoutePath.DashboardTransactions, {user});
 
   useEffect(() => {
     if (pathname === linkToDashboard) {
