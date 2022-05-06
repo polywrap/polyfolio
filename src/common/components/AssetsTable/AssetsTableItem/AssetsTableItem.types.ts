@@ -12,5 +12,7 @@ export interface AssetsItem {
   icon?: string;
   link: string;
   symbol: string;
+  protocol: string;
+  network: string;
   id: string;
 }

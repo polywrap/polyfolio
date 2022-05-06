@@ -13,10 +13,15 @@ import classNames from 'classnames';
 import {fillArray} from 'utils/helpers';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import useSearch from 'common/hooks/useSearch/useSearch';
+import useAuth from 'common/hooks/useAuth/useAuth';
+import {networkToChainId} from 'utils/constants';
+import RoutePath from 'common/modules/routing/routing.enums';
+import replaceRouteParameters from 'utils/replaceRouteParameters';
 
 function AssetsItem(menuItem) {
   const {filters} = useFiltersTables();
   const translation = useTranslation();
+  const {user} = useAuth();
   const navigate = useNavigate();
   const {
     secondaryPricePercentTitle,
@@ -30,12 +35,16 @@ function AssetsItem(menuItem) {
     title,
     link,
     icon,
+    network,
     symbol,
   } = menuItem;
   const {search} = useSearch();
-  const path = symbol && !search ? link.replace(':id', `${symbol}`)
-    : search ? link.replace(':id', `${symbol}`) + `?${search}` : '/404';
-
+  const path = symbol && !search 
+    ? replaceRouteParameters(link, {chainId: networkToChainId[network], asset: symbol, user})
+    : search 
+      ? replaceRouteParameters(link, {chainId: networkToChainId[network], asset: symbol, search}) 
+      : RoutePath.NotFound;
+  
   return (
     <>
       <button className={styles.buttonNavigate} onClick={() => navigate(path)}>

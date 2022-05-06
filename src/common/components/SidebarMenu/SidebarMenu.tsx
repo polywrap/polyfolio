@@ -38,7 +38,7 @@ function SidebarMenu() {
         key={icon}
         onClick={(event) => handleClick(event, link, isExternal)}
         className={classNames(styles.link, {[styles.link_active]: !!isActive})}
-        to={link}
+        to={link.replace(':user', user)}
       >
         <MaskIcon size={'18px'} src={icon} className={styles.icon} />
         {translation.SidebarMenu[title]}

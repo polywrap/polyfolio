@@ -11,8 +11,8 @@ import {getClaimableValueFromCurrProtocol} from 'utils/dataFormatting';
 
 export const useProtocols = () => {
   const {pathname} = useLocation();
-  const page = getStringFromPath(pathname, 2);
-  const formatData = useGetData(page);
+  const page = getStringFromPath(pathname, 4);
+  const formatData = useGetData(chainIdToNetwork[page]);
   const preparedData = formatData();
   const menuItems: ProtocolsItem[] = [];
   const allProtocols = preparedData['allProtocols'];
