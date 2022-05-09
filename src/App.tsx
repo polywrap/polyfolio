@@ -31,7 +31,7 @@ function App() {
   const {search} = useSearch();
   const {check} = useWallet();
   const {getBalance} = useBalance();
-  const {getTransactions} = useTransactions();
+  const getTransactions = useTransactions();
   const getTokenTransfer = useTokenTransfers();
   const balance = useRecoilValue(balanceState);
   const tokenTransfer = useRecoilValue(tokenTransferState);
@@ -46,7 +46,7 @@ function App() {
 
   useEffect(function fetchTransaction () {
     if (balance && !search) getTransactions();
-    else getTransactions(search)
+    else if (balance && search) getTransactions(search);
   }, [getTransactions, balance, search])
 
   useEffect(function fetchTokenTransfer () {

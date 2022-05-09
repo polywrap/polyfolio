@@ -1,58 +1,59 @@
 import {useRecoilState} from 'recoil';
 
-import {useWeb3ApiQuery} from '@web3api/react';
+import {useWeb3ApiClient} from '@web3api/react';
 import useAuth from '../useAuth/useAuth';
 import {useCallback} from 'react';
 import transactionState from 'common/modules/atoms/transactionState';
-import { useCurrency } from 'common/currency/Currency.context';
-import {uri, query, redirects, envsUri, apiKey} from './useTransaction.config'; 
+import { useCurrency} from 'common/currency/Currency.context';
+import {uri, query, redirects, envsUri, apiKey} from './useTransaction.config';
 
 
 export default function useTransactions() {
   const {user} = useAuth();
   const {currency} = useCurrency();
+  const client = useWeb3ApiClient();
 
   const [, setTransaction] = useRecoilState(transactionState);
 
-  const {execute, loading, data} = useWeb3ApiQuery({
-    uri,
-    query,
-    config: {
-      envs: [
-        {
-          uri: envsUri.uri_1,
-          query: {
-            connection: {
-              networkNameOrChainId: "MAINNET",
-            },
-          },
-          mutation: {}
+  const getTransactions = useCallback(async (otherAddress?: string) => {
+    const account = otherAddress ?? user;
+    
+    if (account) {
+      const {data: response, errors} = await client.query({
+        uri,
+        query,
+        variables: {
+          account,
+          currency,
         },
-        {
-          uri: envsUri.uri_2,
-          query: {
-            apiKey,
-            chainId: 1,
-          },
-          common: {},
-          mutation: {},
-        }
-      ],
-      redirects,
-    },
-  });
-
-  const getTransactions = useCallback(async (otherUserAddress?: string) => {
-    const account = otherUserAddress ? otherUserAddress : user;
-
-    if (account && !loading && !data) {
-      const {data, errors} = await execute({
-        account,
-        currency: currency,
+        config: {
+          envs: [
+            {
+              uri: envsUri.uri_1,
+              query: {
+                connection: {
+                  networkNameOrChainId: "MAINNET",
+                },
+              },
+              mutation: {}
+            },
+            {
+              uri: envsUri.uri_2,
+              query: {
+                apiKey,
+                chainId: 1,
+              },
+              common: {},
+              mutation: {},
+            }
+          ],
+          redirects,
+        },
       });
-  
-      if (data && !errors?.length) {
-        const transactions = data?.getTransactions;
+
+      if (response && !errors?.length) {
+        const transactions = response?.getTransactions;
+        console.log(transactions)
 
         setTransaction(transactions);
       } else {
@@ -62,7 +63,7 @@ export default function useTransactions() {
         console.log('-----ERRORS');
       }
     }
-  }, [currency, data, execute, loading, setTransaction, user]);
+  }, [client, currency, setTransaction, user]);
 
-  return {getTransactions};
+  return getTransactions;
 }
