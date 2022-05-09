@@ -6,6 +6,7 @@ import style from './RowItem.module.scss';
 
 import iconsObj from 'assets/icons/iconsObj';
 import Icon from 'common/components/Icon/Icon';
+import Skeleton from 'common/components/Skeleton/Skeleton';
 
 function RowItem({
   label,
@@ -25,7 +26,11 @@ function RowItem({
         <div className={style.label}>{label}</div>
         <div className={classNames(style.content, type === 'profit' ? style.profit : '',
           type === 'loss' ? style.loss : '')}>
-          {content}
+          {
+            content
+            ? content
+            : <Skeleton width={190} height={64}/>
+          }
         </div>
       </div>
     </div>

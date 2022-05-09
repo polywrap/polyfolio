@@ -45,7 +45,6 @@ const useAssets = () => {
         const [percentage, style] = getPriceChangePercentage(
           assetMetaData?.market_data.price_change_percentage_24h
         );
-        console.log(assetMetaData)
         const pricePercentDollar = getPriceChangeCurrency(
           currency,
           assetMetaData?.market_data.price_change_percentage_24h_in_currency
