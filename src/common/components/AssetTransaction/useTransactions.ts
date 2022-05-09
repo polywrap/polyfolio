@@ -8,8 +8,10 @@ import {shortenedAddress} from 'utils/helpers';
 import {ITransaction} from './AssetTransactions.type';
 import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 import {formatDataAccordingToEvent} from 'utils/formatDataAccordingToEvent';
+import {useLocation} from 'react-router-dom';
 
 const useTransactions = () => {
+  const {pathname} = useLocation();
   const formatData = useGetData();
   const preparedData = formatData();
   const {user} = useAuth();
