@@ -14,9 +14,11 @@ import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedDa
 import Skeleton from '../Skeleton/Skeleton';
 import {useLocation} from 'react-router-dom';
 import YounderProfile from '../YounderProfile/YounderProfile';
+import useAuth from 'common/hooks/useAuth/useAuth';
 
 function HeaderDashboard() {
-  const {pathname, search} = useLocation();
+  const {user} = useAuth();
+  const {pathname} = useLocation();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [currency, setCurrency] = useState(dropdownItems[0]);
   const theme = useTheme();
@@ -25,20 +27,10 @@ function HeaderDashboard() {
   const preparedData = formatedData();
 
   const younderAddress = useMemo(() => {
-    // need to change after approve routes
+    const splitedUrl = pathname.split('/');
 
-    if (search) {
-      const splitedUrl = search.split('?');
-
-      return splitedUrl[1].substring(0, 2) === '0x' ? splitedUrl[1] : '';
-    } else {
-      const splitedUrl = pathname.split('/');
-
-      if (splitedUrl.length > 2) {
-        return splitedUrl[2].substring(0, 2) === '0x' ? splitedUrl[2] : '';
-      }  
-    }
-  }, [pathname, search])
+    return splitedUrl[2] === user ? '' : splitedUrl[2]; 
+  }, [pathname, user])
 
   const onChangeCurrency = (item) => {
     setCurrency(item);
