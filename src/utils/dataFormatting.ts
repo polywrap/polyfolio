@@ -202,7 +202,7 @@ export const getPriceChangePercentage = (priceChangePercentage: string) => {
   if (priceChangePercentage && priceChangePercentage[0] === '-') {
     percentage = priceChangePercentage;
     style = 'loss';
-  }
+  } else if (priceChangePercentage) percentage = priceChangePercentage;
 
   return [percentage, style];
 }

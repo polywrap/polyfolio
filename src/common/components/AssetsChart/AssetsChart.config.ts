@@ -1,12 +1,13 @@
-import { useCurrency } from 'common/currency/Currency.context';
+import {useCurrency} from 'common/currency/Currency.context';
 import {useParams} from 'react-router-dom';
 import _find from 'lodash/find';
 import useAssets from '../AssetsTable/AssetsTableItem/AssetsTableItem.config';
 import {networkToChainId} from 'utils/constants';
 import useAssetMetadata from 'common/hooks/useAssetMetadata/useAssetMetadata';
-import {getPriceChangeCurrency, getPriceChangePercentage} from 'utils/dataFormatting';
+import useAssetPageData from 'common/hooks/useAssetPageData/useAssetPageData';
+import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.types';
 
-const useAsserChartConfig = () => {
+const useAssetChartConfig = (dataRange: DataRangeSelectorItem) => {
   const {currency} = useCurrency();
   const {asset} = useParams();
   const menuItems = useAssets();
@@ -18,20 +19,19 @@ const useAsserChartConfig = () => {
     assetData?.address
   );
 
-  const [percentage, style] = getPriceChangePercentage(
-    assetMetaData?.market_data.price_change_percentage_24h
-  );
-  const pricePercentDollar = getPriceChangeCurrency(
+  const assetPreparedData = useAssetPageData(
     currency,
-    assetMetaData?.market_data.price_change_percentage_24h_in_currency
+    assetMetaData,
+    assetData?.priceTitle,
+    dataRange,
   );
 
   return {
     title: assetData?.priceTitle,
-    secondaryTitleValue: pricePercentDollar,
-    secondaryTitlePercent: percentage,
-    style,
+    secondaryTitleValue: assetPreparedData?.pricePercentDollar,
+    secondaryTitlePercent: assetPreparedData?.percentage,
+    style: assetPreparedData?.style,
   }
 }
 
-export default useAsserChartConfig;
+export default useAssetChartConfig;

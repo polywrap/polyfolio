@@ -5,10 +5,10 @@ import useAssetMetadata from 'common/hooks/useAssetMetadata/useAssetMetadata';
 import {networkToChainId} from 'utils/constants';
 import numberFormatter from 'utils/numberFormatter';
 import {useCurrency} from 'common/currency/Currency.context';
-import {getMarketCap, getPriceChangePercentage, getVolume} from 'utils/dataFormatting';
 import {shortenedAddress} from 'utils/helpers';
 import useAuth from 'common/hooks/useAuth/useAuth';
 import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.types';
+import useAssetPageData from 'common/hooks/useAssetPageData/useAssetPageData';
 
 const useAssetOverviewData = (dataRange: DataRangeSelectorItem) => {
   const {user} = useAuth();
@@ -21,10 +21,11 @@ const useAssetOverviewData = (dataRange: DataRangeSelectorItem) => {
     networkToChainId[assetData?.network],
     assetData?.address
   );
-  const marketCap = getMarketCap(currency, assetMetaData?.market_data.market_cap);
-  const volume = getVolume(currency, assetMetaData?.market_data.total_volume);
-  const [percentage, style] = getPriceChangePercentage(
-    assetMetaData?.market_data.price_change_percentage_24h
+  const assetPreparedData = useAssetPageData(
+    currency,
+    assetMetaData,
+    assetData?.priceTitle,
+    dataRange,  
   );
 
   return {
@@ -33,7 +34,7 @@ const useAssetOverviewData = (dataRange: DataRangeSelectorItem) => {
         id: 1,
         label: `${shortenedAddress(user, 4)} Owns`,
         content: `${numberFormatter({
-          value: assetData.valueSecondaryTitle,
+          value: assetData?.valueSecondaryTitle,
           size: 2
         })} ${assetMetaData?.symbol.toUpperCase()}`,
         type: "main",
@@ -46,13 +47,13 @@ const useAssetOverviewData = (dataRange: DataRangeSelectorItem) => {
       },
       {
         id: 3,
-        label: `Change (${dataRange.title.toUpperCase()})`,
-        content: (style === 'profit' ? '+' : '')
+        label: `Change (1${dataRange?.title?.toUpperCase()})`,
+        content: (assetPreparedData?.style === 'profit' ? '+' : '')
         + numberFormatter({
-          value: percentage,
+          value: assetPreparedData?.percentage,
           size: 2
         }) + '%',
-        type: style,
+        type: assetPreparedData?.style,
       },
     ],
     row2Items: [
@@ -61,7 +62,7 @@ const useAssetOverviewData = (dataRange: DataRangeSelectorItem) => {
         label: "Market Cap",
         content: '$'
         +numberFormatter({
-          value: marketCap,
+          value: assetPreparedData?.marketCap,
           size: 2
         }),
         type: "common",
@@ -78,10 +79,10 @@ const useAssetOverviewData = (dataRange: DataRangeSelectorItem) => {
       },
       {
         id: 3,
-        label: `Volume (${dataRange.title.toUpperCase()})`,
+        label: `Volume (1${dataRange?.title?.toUpperCase()})`,
         content: '$'
         +numberFormatter({
-          value: volume,
+          value: assetPreparedData?.volume,
           size: 2
         }),
         type: "common",

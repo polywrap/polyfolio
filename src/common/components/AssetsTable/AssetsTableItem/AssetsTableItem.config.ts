@@ -12,7 +12,7 @@ import {
   getPriceChangePercentage
 } from 'utils/dataFormatting';
 import {chainIdToNetwork, networkToChainId} from 'utils/constants';
-import { useCurrency } from 'common/currency/Currency.context';
+import {useCurrency} from 'common/currency/Currency.context';
 
 const useAssets = () => {
   const {currency} = useCurrency();

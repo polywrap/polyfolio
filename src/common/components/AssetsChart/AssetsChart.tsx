@@ -3,7 +3,7 @@ import styles from './AssetsChart.module.scss';
 import Charts from '../Charts/Сharts';
 import classNames from 'classnames';
 import useTheme from 'common/hooks/useTheme/useTheme';
-import useAsserChartConfig from './AssetsChart.config';
+import useAssetChartConfig from './AssetsChart.config';
 import numberFormatter from 'utils/numberFormatter';
 import {value} from './mocValue';
 import _map from 'lodash/map';
@@ -12,7 +12,7 @@ import Skeleton from '../Skeleton/Skeleton';
 
 function AssetsCharts({changeDataRange, setIsOpen, isOpen, dataRange}) {
   const theme = useTheme();
-  const item = useAsserChartConfig();
+  const item = useAssetChartConfig(dataRange);
 
   return (
     <div className={classNames(styles.assetsChartsContainer, styles[theme])}>

@@ -1,11 +1,18 @@
-import {DataRangeSelectorItem} from "common/components/DateRangeSelector/DataRangeSelector.types";
-import { getMarketCap, getPriceChangeCurrency, getPriceChangePercentage, getVolume } from "utils/dataFormatting";
+/* eslint-disable max-params */
+import {DataRangeSelectorItem} from 'common/components/DateRangeSelector/DataRangeSelector.types';
+import {
+  getMarketCap,
+  getPriceChangeCurrency,
+  getPriceChangePercentage,
+  getVolume
+} from 'utils/dataFormatting';
 
-export const useAssetPageData = (
+function useAssetPageData (
   currency: string,
   assetMetaData,
+  price?: string,
   dataRange?: DataRangeSelectorItem,
-) => {
+) {
   let percentage: string, style: string;
   let pricePercentDollar: string;
   const marketCap = getMarketCap(currency, assetMetaData?.market_data.market_cap);
@@ -16,10 +23,9 @@ export const useAssetPageData = (
       [percentage, style] = getPriceChangePercentage(
         assetMetaData?.market_data.price_change_percentage_24h
       );
-      pricePercentDollar = getPriceChangeCurrency(
-        currency,
-        assetMetaData?.market_data.price_change_percentage_24h_in_currency
-      );
+      pricePercentDollar = percentage
+        ? ((Number(percentage) * Number(price)) / 100).toString()
+        : '';
 
     return {
       marketCap,
@@ -33,6 +39,10 @@ export const useAssetPageData = (
         currency,
         assetMetaData?.market_data.price_change_percentage_1h_in_currency
       );
+      style = pricePercentDollar[0] === '-' ? 'loss' : 'profit';
+      percentage = pricePercentDollar
+      ? ((Number(pricePercentDollar) * Number(price)) / 100).toString()
+      : '';
 
       return {
         marketCap,
@@ -45,21 +55,35 @@ export const useAssetPageData = (
       [percentage, style] = getPriceChangePercentage(
         assetMetaData?.market_data.price_change_percentage_7d
       );
-      pricePercentDollar = getPriceChangeCurrency(
-        currency,
-        assetMetaData?.market_data.price_change_percentage_7d_in_currency
-      );
-    break;
+      pricePercentDollar = percentage
+      ? ((Number(percentage) * Number(price)) / 100).toString()
+      : '';
+
+      return {
+        marketCap,
+        volume,
+        percentage,
+        style,
+        pricePercentDollar,
+      }
     case 'm':
       [percentage, style] = getPriceChangePercentage(
         assetMetaData?.market_data.price_change_percentage_30d
       );
-      pricePercentDollar = getPriceChangeCurrency(
-        currency,
-        assetMetaData?.market_data.price_change_percentage_30d_in_currency
-      );
-    break;
+      pricePercentDollar = percentage
+      ? ((Number(percentage) * Number(price)) / 100).toString()
+      : '';
+
+      return {
+        marketCap,
+        volume,
+        percentage,
+        style,
+        pricePercentDollar,
+      }
     default:
     break;
   }
 }
+
+export default useAssetPageData;

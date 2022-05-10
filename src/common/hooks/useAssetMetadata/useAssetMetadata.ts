@@ -8,7 +8,7 @@ import {
   redirects,
 } from './useAssetMetadata.config';
 
-const useAssetMetadata = (id: string, chainId: number, tokenAddrres: string) => {
+const useAssetMetadata = (id: string, chainId: number, tokenAddress: string) => {
   const client = useWeb3ApiClient();
   const [asset, setAsset] = useState(null);
 
@@ -18,7 +18,7 @@ const useAssetMetadata = (id: string, chainId: number, tokenAddrres: string) => 
       query,
       variables: {
         id,
-        contract_address: tokenAddrres,
+        contract_address: tokenAddress,
       },
       config: {
         envs: [
@@ -57,11 +57,11 @@ const useAssetMetadata = (id: string, chainId: number, tokenAddrres: string) => 
       console.log(errors);
       console.log('-----ERRORS');
     }
-  }, [chainId, client, id, tokenAddrres])
+  }, [chainId, client, id, tokenAddress])
 
   useEffect(() => {
     getAssetMetadata()
-  }, [getAssetMetadata, id, chainId, tokenAddrres])
+  }, [getAssetMetadata, id, chainId, tokenAddress])
 
   return asset;
 }
