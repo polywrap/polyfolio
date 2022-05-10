@@ -5,10 +5,11 @@ import classNames from 'classnames';
 import style from './AssetOverview.module.scss';
 import useAssetOverviewData from './AssetOverview.config'
 import {Row} from './components';
+import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.types';
 
-function AssetOverview() {
+function AssetOverview({dataRange}: {dataRange: DataRangeSelectorItem}) {
   const theme = useTheme()
-  const dataOverview = useAssetOverviewData();
+  const dataOverview = useAssetOverviewData(dataRange);
 
   return (
     <div className={classNames(style[theme], style.overview)}>

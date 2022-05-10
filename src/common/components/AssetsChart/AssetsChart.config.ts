@@ -8,23 +8,19 @@ import {getPriceChangeCurrency, getPriceChangePercentage} from 'utils/dataFormat
 
 const useAsserChartConfig = () => {
   const {currency} = useCurrency();
-  const {network, asset} = useParams();
+  const {asset} = useParams();
   const menuItems = useAssets();
   const assetData = _find(menuItems, {symbol: asset});
-  console.log(assetData)
-  console.log(network)
 
   const assetMetaData = useAssetMetadata(
     assetData?.network,
     networkToChainId[assetData?.network],
     assetData?.address
   );
-  console.log(assetMetaData)
 
   const [percentage, style] = getPriceChangePercentage(
     assetMetaData?.market_data.price_change_percentage_24h
   );
-  console.log(percentage)
   const pricePercentDollar = getPriceChangeCurrency(
     currency,
     assetMetaData?.market_data.price_change_percentage_24h_in_currency

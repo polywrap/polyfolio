@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styles from './AssetsChart.module.scss';
 import Charts from '../Charts/Сharts';
 import classNames from 'classnames';
@@ -10,17 +10,9 @@ import _map from 'lodash/map';
 import DataRangeSelector from '../DateRangeSelector/DateRangeSelector';
 import Skeleton from '../Skeleton/Skeleton';
 
-function AssetsCharts() {
-  const [isOpen, setIsOpen] = useState(true);
-  const [dataRange, setDataRange] = useState({});
+function AssetsCharts({changeDataRange, setIsOpen, isOpen, dataRange}) {
   const theme = useTheme();
-  const item = useAsserChartConfig(); 
-  console.log(item)
-
-  const changeDataRange = (e) => {
-    setDataRange(e);
-    setIsOpen(!isOpen);
-  };
+  const item = useAsserChartConfig();
 
   return (
     <div className={classNames(styles.assetsChartsContainer, styles[theme])}>

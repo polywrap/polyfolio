@@ -6,10 +6,11 @@ import {networkToChainId} from 'utils/constants';
 import numberFormatter from 'utils/numberFormatter';
 import {useCurrency} from 'common/currency/Currency.context';
 import {getMarketCap, getPriceChangePercentage, getVolume} from 'utils/dataFormatting';
-import { shortenedAddress } from 'utils/helpers';
+import {shortenedAddress} from 'utils/helpers';
 import useAuth from 'common/hooks/useAuth/useAuth';
+import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.types';
 
-const useAssetOverviewData = () => {
+const useAssetOverviewData = (dataRange: DataRangeSelectorItem) => {
   const {user} = useAuth();
   const {asset} = useParams();
   const {currency} = useCurrency();
@@ -45,7 +46,7 @@ const useAssetOverviewData = () => {
       },
       {
         id: 3,
-        label: "Change (1D)",
+        label: `Change (${dataRange.title.toUpperCase()})`,
         content: (style === 'profit' ? '+' : '')
         + numberFormatter({
           value: percentage,
@@ -77,7 +78,7 @@ const useAssetOverviewData = () => {
       },
       {
         id: 3,
-        label: "Volume (1D)",
+        label: `Volume (${dataRange.title.toUpperCase()})`,
         content: '$'
         +numberFormatter({
           value: volume,
