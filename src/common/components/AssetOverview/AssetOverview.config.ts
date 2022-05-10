@@ -16,14 +16,14 @@ const useAssetOverviewData = () => {
   const menuItems = useAssets();
   const assetData = _find(menuItems, { symbol: asset });
   const assetMetaData = useAssetMetadata(
-    assetData.network,
-    networkToChainId[assetData.network],
-    assetData.address
+    assetData?.network,
+    networkToChainId[assetData?.network],
+    assetData?.address
   );
   const marketCap = getMarketCap(currency, assetMetaData?.market_data.market_cap);
   const volume = getVolume(currency, assetMetaData?.market_data.total_volume);
   const [percentage, style] = getPriceChangePercentage(
-    assetMetaData?.market_data.price_change_percentage_24h_in_currency
+    assetMetaData?.market_data.price_change_percentage_24h
   );
 
   return {
