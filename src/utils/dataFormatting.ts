@@ -9,7 +9,7 @@ import {chainIdToNetwork} from 'utils/constants';
 
 export const insertChainIdToProtocol = (balance) => {
   _map(balance, (network) => {
-    const chainId = network.chainId;
+    const chainId = network?.chainId;
 
     _map(network?.protocols, (protocol) => {
       if (protocol) {

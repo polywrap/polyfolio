@@ -46,6 +46,7 @@ function AssetsCharts({changeDataRange, setIsOpen, isOpen, dataRange}) {
                 (item.style !== 'loss' ? '+'
                   + '$' + numberFormatter({value: item.secondaryTitleValue, size: 2}) : 
                   '-' + '$' + numberFormatter({value: item.secondaryTitleValue, size: 2})
+                  .substring(1)
                 )
                 
               ) : (
