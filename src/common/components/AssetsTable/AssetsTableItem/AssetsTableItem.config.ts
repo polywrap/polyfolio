@@ -34,6 +34,7 @@ const useAssets = () => {
         Number(rmCommasFromNum(allAssets[i].token.values[0].value))
         * Number(rmCommasFromNum(allAssets[i].token.values[0].price))
         ).toString();
+        const priceTitle = rmCommasFromNum(allAssets[i].token.values[0].price);
         
         const symbol = allAssets[i].token.token.symbol;
         const [network, protocol] = detectProtocolAndChainIdForAsset(allProtocols, symbol);
@@ -45,10 +46,9 @@ const useAssets = () => {
         const [percentage, style] = getPriceChangePercentage(
           assetMetaData?.market_data.price_change_percentage_24h
         );
-        const pricePercentDollar = getPriceChangeCurrency(
-          currency,
-          assetMetaData?.market_data.price_change_percentage_24h_in_currency
-        );
+        const pricePercentDollar = percentage
+        ? ((Number(percentage) * Number(priceTitle)) / 100).toString()
+        : '';
 
       menuItems.push({
         secondaryPricePercentTitle: percentage,
@@ -60,7 +60,7 @@ const useAssets = () => {
         icon: assetMetaData?.image.small,
         valueTitle,
         valueIsMinus: style === 'profit' ? false : true,
-        priceTitle: rmCommasFromNum(allAssets[i].token.values[0].price),
+        priceTitle,
         title: allAssets[i].token.token.symbol,
         percent: percent.toString(),
         symbol: symbol.toLowerCase(),

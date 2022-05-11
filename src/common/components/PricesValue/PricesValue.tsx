@@ -22,8 +22,9 @@ function PricesValue({
         >
           {
             pricePercentDollar ? (
-              (valueIsMinus ? '-' : '+') +
-              '$' + numberFormatter({value: pricePercentDollar, size: 2})
+              (valueIsMinus ? '-' + '$' + numberFormatter({value: pricePercentDollar, size: 2})
+              .substring(1)
+              : '+' + '$' + numberFormatter({value: pricePercentDollar, size: 2}))
             ) : (
               <Skeleton width={54} height={19} />
             )
