@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import Icon from 'common/components/Icon/Icon';
 import iconsObj from 'assets/icons/iconsObj';

@@ -28,6 +28,8 @@ const useAssetOverviewData = (dataRange: DataRangeSelectorItem) => {
     dataRange,  
   );
 
+  const valuedAt = (Number(assetData?.priceTitle) * Number(assetData?.valueSecondaryTitle)).toString();
+
   return {
     row1Items: [
       {
@@ -42,7 +44,10 @@ const useAssetOverviewData = (dataRange: DataRangeSelectorItem) => {
       {
         id: 2,
         label: "Valued at",
-        content: "$???",
+        content: `$${numberFormatter({
+          value: valuedAt,
+          size: 2
+        })}`,
         type: "common",
       },
       {

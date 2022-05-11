@@ -6,11 +6,7 @@ import RoutePath from 'common/modules/routing/routing.enums';
 import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 import {useLocation} from 'react-router-dom';
 import useAssetMetadata from 'common/hooks/useAssetMetadata/useAssetMetadata';
-import {
-  detectProtocolAndChainIdForAsset,
-  getPriceChangeCurrency,
-  getPriceChangePercentage
-} from 'utils/dataFormatting';
+import {detectProtocolAndChainIdForAsset} from 'utils/dataFormatting';
 import {chainIdToNetwork, networkToChainId} from 'utils/constants';
 import {useCurrency} from 'common/currency/Currency.context';
 import {DataRangeSelectorItem} from 'common/components/DateRangeSelector/DataRangeSelector.types';
