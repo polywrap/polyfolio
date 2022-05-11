@@ -18,6 +18,7 @@ import {useLocation} from 'react-router-dom';
 import {getStringFromPath} from 'utils/helpers';
 import Skeleton from '../Skeleton/Skeleton';
 import { chainIdToNetwork } from 'utils/constants';
+import { DataRangeSelectorItem } from '../DateRangeSelector/DataRangeSelector.types';
 
 function AssetsTable() {
   const {pathname} = useLocation();
@@ -29,9 +30,16 @@ function AssetsTable() {
   const ref = useRef(null);
   const theme = useTheme();
   const translation = useTranslation();
-  const assets = useAssets();
   const formatedData = useGetData(chainIdToNetwork[page]);
   const preparedData = formatedData();
+  const [dataRange, setDataRange] = useState<DataRangeSelectorItem>({});
+  const [dataRangeIsOpen, setDataRangeIsOpen] = useState(true);
+  const assets = useAssets(dataRange);
+
+  const changeDataRange = (e) => {
+    setDataRange(e);
+    setDataRangeIsOpen(!dataRangeIsOpen);
+  };
 
   const onChange = (name, value) => {
     setFilter({ ...filters, assets: { ...filter.assets, [name]: !value?.checked } });
@@ -53,6 +61,10 @@ function AssetsTable() {
             onChange={onChange}
             isOpen={isOpen}
             sum={preparedData['allAssetsSum']}
+            changeDataRange={changeDataRange}
+            dataRange={dataRange}
+            dataRangeIsOpen={dataRangeIsOpen}
+            setDataRangeIsOpen={setDataRangeIsOpen}
           />
           <div className={classNames(styles.table_container, { [styles.hidden]: tableIsOpen })}>
             <div className={styles.title_container}>

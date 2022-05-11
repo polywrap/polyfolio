@@ -13,8 +13,10 @@ import {
 } from 'utils/dataFormatting';
 import {chainIdToNetwork, networkToChainId} from 'utils/constants';
 import {useCurrency} from 'common/currency/Currency.context';
+import {DataRangeSelectorItem} from 'common/components/DateRangeSelector/DataRangeSelector.types';
+import useAssetPageData from 'common/hooks/useAssetPageData/useAssetPageData';
 
-const useAssets = () => {
+const useAssets = (dataRange?: DataRangeSelectorItem) => {
   const {currency} = useCurrency();
   const {pathname} = useLocation();
   const page = getStringFromPath(pathname, 4);
@@ -26,6 +28,7 @@ const useAssets = () => {
   const allProtocols = preparedData ? preparedData['allProtocols'] : null;
   const allAssets = preparedData ? preparedData['allAssets'] : null;
   const assetsSum = preparedData ? preparedData['allAssetsSum'] : null;
+  let assetPreparedData;
   
   if (allAssets) {
     for (let i = 0; i < allAssets.length; i++) {
@@ -43,23 +46,26 @@ const useAssets = () => {
           networkToChainId[network],
           allAssets[i].token.token.address
         );
-        const [percentage, style] = getPriceChangePercentage(
-          assetMetaData?.market_data.price_change_percentage_24h
-        );
-        const pricePercentDollar = percentage
-        ? ((Number(percentage) * Number(priceTitle)) / 100).toString()
-        : '';
+
+        if (dataRange) {
+          assetPreparedData = useAssetPageData(
+            currency,
+            assetMetaData,
+            priceTitle,
+            dataRange,  
+          );
+        }
 
       menuItems.push({
-        secondaryPricePercentTitle: percentage,
+        secondaryPricePercentTitle: assetPreparedData?.percentage ?? '',
         link: `${RoutePath.Asset}`,
         secondaryTitle: allAssets[i].token.token.name,
         valueSecondaryTitle: rmCommasFromNum(allAssets[i].token.values[0].value),
-        pricePercentDollar,
+        pricePercentDollar: assetPreparedData?.pricePercentDollar ?? '',
         iconInfoPage: assetMetaData?.image.large,
         icon: assetMetaData?.image.small,
         valueTitle,
-        valueIsMinus: style === 'profit' ? false : true,
+        valueIsMinus: assetPreparedData?.style === 'profit' ? false : true,
         priceTitle,
         title: allAssets[i].token.token.symbol,
         percent: percent.toString(),

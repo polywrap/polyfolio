@@ -16,6 +16,7 @@ import {menuFields} from './FilterFieldsVaults.config';
 import {useLocation} from 'react-router-dom';
 import {getStringFromPath} from 'utils/helpers';
 import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
+import { DataRangeSelectorItem } from '../DateRangeSelector/DataRangeSelector.types';
 
 function VaultsTable() {
   const {pathname} = useLocation();
@@ -27,9 +28,16 @@ function VaultsTable() {
   const translation = useTranslation();
   const {filters, setFilters} = useFiltersTables();
   const [filter, setFilter] = useState<Filters>(filters);
+  const [dataRange, setDataRange] = useState<DataRangeSelectorItem>({});
+  const [dataRangeIsOpen, setDataRangeIsOpen] = useState(true);
   const menuItems = GetVaults();
   const formatData = useGetData(page);
   const preparedData = formatData();
+
+  const changeDataRange = (e) => {
+    setDataRange(e);
+    setDataRangeIsOpen(!dataRangeIsOpen);
+  };
 
   const onChange = (name, value) => {
     setFilter({...filter, vaults: {...filter.vaults, [name]: !value?.checked}});
@@ -50,6 +58,10 @@ function VaultsTable() {
         onChange={onChange}
         isOpen={isOpen}
         sum={preparedData['allAssetsSum']}
+        changeDataRange={changeDataRange}
+        dataRange={dataRange}
+        dataRangeIsOpen={dataRangeIsOpen}
+        setDataRangeIsOpen={setDataRangeIsOpen}
       />
       <div className={classNames(styles.table_container, {[styles.hidden]: tableIsOpen})}>
         <div className={styles.title_container}>

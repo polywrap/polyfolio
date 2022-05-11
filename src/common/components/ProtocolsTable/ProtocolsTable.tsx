@@ -15,6 +15,7 @@ import useTheme from 'common/hooks/useTheme/useTheme';
 import HeaderTable from '../HeaderTable/HeaderTable';
 import {menuFields} from './FilterFieldsProtokols.config';
 import Skeleton from '../Skeleton/Skeleton';
+import { DataRangeSelectorItem } from '../DateRangeSelector/DataRangeSelector.types';
 
 function ProtocolsTable() {
   const [tableIsOpen, setTableIsOpen] = useState(false);
@@ -24,7 +25,14 @@ function ProtocolsTable() {
   const ref = useRef(null);
   const theme = useTheme();
   const translation = useTranslation();
+  const [dataRange, setDataRange] = useState<DataRangeSelectorItem>({});
+  const [dataRangeIsOpen, setDataRangeIsOpen] = useState(true);
   const menuItems = useProtocols();
+
+  const changeDataRange = (e) => {
+    setDataRange(e);
+    setDataRangeIsOpen(!dataRangeIsOpen);
+  };
 
   const onChange = (name, value) => {
     setFilter({...filters, protocols: {...filter.protocols, [name]: !value?.checked}});
@@ -49,6 +57,10 @@ function ProtocolsTable() {
         onChange={onChange}
         isOpen={isOpen}
         sum={summaryValue.toString()}
+        changeDataRange={changeDataRange}
+        dataRange={dataRange}
+        dataRangeIsOpen={dataRangeIsOpen}
+        setDataRangeIsOpen={setDataRangeIsOpen}
       />
       <div className={classNames(styles.table_container, {[styles.hidden]: tableIsOpen})}>
         <div className={styles.title_container}>

@@ -22,6 +22,10 @@ function HeaderTable({
   filter,
   title,
   sum,
+  changeDataRange,
+  dataRange,
+  dataRangeIsOpen,
+  setDataRangeIsOpen,
 }: {
   filter;
   setTableIsOpen;
@@ -32,17 +36,15 @@ function HeaderTable({
   title: string;
   setIsOpen;
   sum: string;
+  changeDataRange;
+  dataRange;
+  dataRangeIsOpen: boolean;
+  setDataRangeIsOpen;
 }) {
-  const [isOpen, setIsOpen] = useState(true);
-  const [dataRange, setDataRange] = useState({});
   const translation = useTranslation();
-
   const theme = useTheme();
-
-  const changeDataRange = (e) => {
-    setDataRange(e);
-    setIsOpen(!isOpen);
-  };
+  console.log(filterIsOpen)
+  console.log(dataRangeIsOpen)
 
   const Menu = () => {
     return (
@@ -94,9 +96,9 @@ function HeaderTable({
         <DataRangeSelector
           setDataRange={changeDataRange}
           className={styles.btn}
-          setIsOpen={setIsOpen}
+          setIsOpen={setDataRangeIsOpen}
           dataRange={dataRange}
-          isOpen={isOpen}
+          isOpen={dataRangeIsOpen}
           fontSize="14px"
         />
       </div>
