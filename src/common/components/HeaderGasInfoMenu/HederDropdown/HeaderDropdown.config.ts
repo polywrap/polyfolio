@@ -4,12 +4,12 @@ import iconsObj from 'assets/icons/iconsObj';
 const dropdownItems: DropdownItemConfig[] = [
   {
     title: 'Ethereum',
-    icon: iconsObj.usd,
+    icon: iconsObj.ethereum,
     id: 1,
   },
   {
     title: 'USD',
-    icon: iconsObj.ethereum,
+    icon: iconsObj.usd,
     id: 2,
   },
 ];
