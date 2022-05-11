@@ -43,8 +43,6 @@ function HeaderTable({
 }) {
   const translation = useTranslation();
   const theme = useTheme();
-  console.log(filterIsOpen)
-  console.log(dataRangeIsOpen)
 
   const Menu = () => {
     return (

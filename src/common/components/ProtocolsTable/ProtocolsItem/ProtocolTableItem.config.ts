@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import {ProtocolsItem} from './ProtocolTableItem.types';
 import { v4 as uuidv4 } from 'uuid';
 import iconsObj from 'assets/icons/iconsObj';
@@ -6,10 +7,12 @@ import {getStringFromPath, rmCommasFromNum} from 'utils/helpers';
 import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 import _ from 'lodash';
 import {useLocation} from 'react-router-dom';
-import {chainIdToNetwork} from 'utils/constants';
-import {getClaimableValueFromCurrProtocol} from 'utils/dataFormatting';
+import {chainIdToNetwork, networkToChainId} from 'utils/constants';
+import {getClaimableValueFromCurrProtocol, getAssetAddressFromProtocol} from 'utils/dataFormatting';
+import {DataRangeSelectorItem} from 'common/components/DateRangeSelector/DataRangeSelector.types';
+import useAssetMetadata from 'common/hooks/useAssetMetadata/useAssetMetadata';
 
-export const useProtocols = () => {
+export const useProtocols = (dataRange?: DataRangeSelectorItem) => {
   const {pathname} = useLocation();
   const page = getStringFromPath(pathname, 4);
   const formatData = useGetData(chainIdToNetwork[page]);
@@ -29,6 +32,14 @@ export const useProtocols = () => {
       })
 
       const network = allProtocols[i].protocol.chainId;
+      const assetAddress = getAssetAddressFromProtocol(allProtocols[i]);
+      const assetMetaData = useAssetMetadata(
+        network,
+        networkToChainId[network],
+        assetAddress
+      );
+      // try to save data in useAssets and pass it to protocol
+      // without invoke useAssetMetadata here
 
       menuItems.push({
         icon: iconsObj.protocolBardger,

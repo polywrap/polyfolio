@@ -16,6 +16,7 @@ const useAssetOverviewData = (dataRange: DataRangeSelectorItem) => {
   const {currency} = useCurrency();
   const menuItems = useAssets();
   const assetData = _find(menuItems, { symbol: asset });
+  
   const assetMetaData = useAssetMetadata(
     assetData?.network,
     networkToChainId[assetData?.network],
