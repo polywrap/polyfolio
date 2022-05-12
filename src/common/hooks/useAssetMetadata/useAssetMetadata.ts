@@ -27,7 +27,7 @@ const useAssetMetadata = (id: string, chainId: number, tokenAddress: string) => 
             common: {
               connection: {
                 node: null,
-                networkNameOrChainId: chainId.toString(),
+                networkNameOrChainId: chainId?.toString(),
               },
             },
             query: {},
@@ -37,7 +37,7 @@ const useAssetMetadata = (id: string, chainId: number, tokenAddress: string) => 
             uri: envsUri.uri_2,
             query: {
               apiKey,
-              chainId: chainId.toString(),
+              chainId: chainId?.toString(),
             },
             common: {},
             mutation: {},

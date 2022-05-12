@@ -27,7 +27,7 @@ function ProtocolsTable() {
   const translation = useTranslation();
   const [dataRange, setDataRange] = useState<DataRangeSelectorItem>({});
   const [dataRangeIsOpen, setDataRangeIsOpen] = useState(true);
-  const menuItems = useProtocols();
+  const menuItems = useProtocols(dataRange);
 
   const changeDataRange = (e) => {
     setDataRange(e);
