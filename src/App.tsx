@@ -51,7 +51,7 @@ function App() {
 
   useEffect(function fetchTokenTransfer () {
     if (balance && !tokenTransfer) {
-      getTokenTransfer('0x236919c55bd83cdd4eaf3ff4f454aa9440f1296c', 1, search);
+      getTokenTransfer('0x95A9bd206aE52C4BA8EecFc93d18EACDd41C88CC', 1, search);
     }
   }, [getTokenTransfer, balance, tokenTransfer, search])
 
