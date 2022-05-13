@@ -2,6 +2,7 @@
 
 .common_header_info {
   display: flex;
+  margin-left: 30px;
 
   .content {
     @include flex_centered_vert();
@@ -10,6 +11,6 @@
   }
 
   .icon {
-    margin-right: 7px;
+    margin-right: 8px;
   }
 }

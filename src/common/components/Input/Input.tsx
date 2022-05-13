@@ -37,7 +37,7 @@ function Input({
       />
       {!!icon && (
         <div className={styles.icon_wrapper} onClick={onClick}>
-          <MaskIcon src={icon} size={'12px'} />
+          <MaskIcon src={icon} size={'14px'} />
         </div>
       )}
     </div>
