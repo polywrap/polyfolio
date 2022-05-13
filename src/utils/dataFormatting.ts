@@ -27,7 +27,7 @@ export const getAssetsValueSum = (assets) => {
   }
 };
 
-export const ejectProtocolsFromNetwork = (network) => network ? network.protocols : null;
+export const ejectProtocolsFromNetwork = (network) => network ? network.protocols : [];
 
 export const ejectAssetsFromProtocol = (protocols) => {
   if (protocols) {
