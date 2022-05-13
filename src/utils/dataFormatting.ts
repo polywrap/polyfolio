@@ -33,6 +33,8 @@ export const ejectAssetsFromProtocol = (protocols) => {
   if (protocols) {
     return _map(protocols.assets, asset => asset.balance.components)
   }
+
+  return [];
 }
 
 export const detectProtocolAndChainIdForAsset = (allProtocols, tokenSymbol) => {
