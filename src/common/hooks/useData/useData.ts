@@ -39,7 +39,7 @@ export default function useData() {
     }
 
     getData()
-  }, [user])
+  }, [execute, setBalance, user])
 
 
   return {balance};
