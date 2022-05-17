@@ -9,14 +9,15 @@ import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import iconsObj from 'assets/icons/iconsObj';
 import RoutePath from 'common/modules/routing/routing.enums';
 import _find from 'lodash/find';
-import useSearch from 'common/hooks/useSearch/useSearch';
 import replaceRouteParameters from 'utils/replaceRouteParameters';
 import Skeleton from 'common/components/Skeleton/Skeleton';
+import { useRecoilValue } from 'recoil';
+import { searchPersistState } from 'common/modules/atoms/searchState';
 
 function HeaderCurrencyPage() {
   const theme = useTheme();
   const {asset} = useParams();
-  const {search} = useSearch();
+  const search = useRecoilValue(searchPersistState);
   const translation = useTranslation();
   const navigate = useNavigate();
   const menuItems = useAssets();

@@ -3,7 +3,6 @@ import {v4 as uuidv4} from 'uuid';
 import {rmCommasFromNum, getStringFromPath} from 'utils/helpers';
 import {AssetsItem} from './AssetsTableItem.types';
 import RoutePath from 'common/modules/routing/routing.enums';
-import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 import {useLocation} from 'react-router-dom';
 import useAssetMetadata from 'common/hooks/useAssetMetadata/useAssetMetadata';
 import {detectProtocolAndChainIdForAsset} from 'utils/dataFormatting';
@@ -11,13 +10,17 @@ import {chainIdToNetwork, networkToChainId} from 'utils/constants';
 import {useCurrency} from 'common/currency/Currency.context';
 import {DataRangeSelectorItem} from 'common/components/DateRangeSelector/DataRangeSelector.types';
 import useAssetPageData from 'common/hooks/useAssetPageData/useAssetPageData';
+import { useRecoilValue } from 'recoil';
+import balanceState from 'common/modules/atoms/balanceState';
+import getFormattedData from 'utils/getFormattedData';
 
 const useAssets = (dataRange?: DataRangeSelectorItem) => {
   const {currency} = useCurrency();
   const {pathname} = useLocation();
   const page = getStringFromPath(pathname, 4);
-  const formatData = useGetData(chainIdToNetwork[page]);
-  const preparedData = formatData();
+  const balance = useRecoilValue(balanceState);
+  const preparedData = getFormattedData(balance, chainIdToNetwork[page]);
+  
 
   const menuItems: AssetsItem[] = [];
   

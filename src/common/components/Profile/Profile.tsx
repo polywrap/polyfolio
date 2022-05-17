@@ -16,8 +16,10 @@ import ProfileDropdownMenu from 'common/components/ProfileDropdownMenu/ProfileDr
 import Button from '../Button/Button';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useWallet from 'common/hooks/useWallet/useWallet';
-import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 import Skeleton from '../Skeleton/Skeleton';
+import getFormattedData from 'utils/getFormattedData';
+import { useRecoilValue } from 'recoil';
+import balanceState from 'common/modules/atoms/balanceState';
 
 function Profile() {
   const theme = useTheme();
@@ -25,8 +27,8 @@ function Profile() {
   const translation = useTranslation();
   const { user, logOut } = useAuth();
   const { connect } = useWallet();
-  const formatedData = useGetData();
-  const preparedData = formatedData();
+  const balance = useRecoilValue(balanceState);
+  const preparedData = getFormattedData(balance);
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 

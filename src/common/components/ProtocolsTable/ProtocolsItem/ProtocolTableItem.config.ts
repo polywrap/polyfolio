@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from 'uuid';
 import iconsObj from 'assets/icons/iconsObj';
 import RoutePath from 'common/modules/routing/routing.enums';
 import {getStringFromPath, rmCommasFromNum} from 'utils/helpers';
-import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 import _ from 'lodash';
 import {useLocation} from 'react-router-dom';
 import {chainIdToNetwork, networkToChainId} from 'utils/constants';
@@ -13,13 +12,16 @@ import {DataRangeSelectorItem} from 'common/components/DateRangeSelector/DataRan
 import useAssetMetadata from 'common/hooks/useAssetMetadata/useAssetMetadata';
 import useAssetPageData from 'common/hooks/useAssetPageData/useAssetPageData';
 import { useCurrency } from 'common/currency/Currency.context';
+import getFormattedData from 'utils/getFormattedData';
+import { useRecoilValue } from 'recoil';
+import balanceState from 'common/modules/atoms/balanceState';
 
 export const useProtocols = (dataRange?: DataRangeSelectorItem) => {
   const {pathname} = useLocation();
   const page = getStringFromPath(pathname, 4);
   const {currency} = useCurrency();
-  const formatData = useGetData(chainIdToNetwork[page]);
-  const preparedData = formatData();
+  const balance = useRecoilValue(balanceState);
+  const preparedData = getFormattedData(balance, chainIdToNetwork[page]);
   const menuItems: ProtocolsItem[] = [];
   const allProtocols = preparedData['allProtocols'];
   

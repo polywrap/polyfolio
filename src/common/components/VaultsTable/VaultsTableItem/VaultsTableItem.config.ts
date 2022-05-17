@@ -1,15 +1,17 @@
 import iconsObj from 'assets/icons/iconsObj';
 import {getStringFromPath, rmCommasFromNum} from 'utils/helpers';
 import _ from 'lodash';
-import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 import {useLocation} from 'react-router-dom';
 import {getClaimableValue} from 'utils/dataFormatting';
+import balanceState from 'common/modules/atoms/balanceState';
+import { useRecoilValue } from 'recoil';
+import getFormattedData from 'utils/getFormattedData';
 
 export const GetVaults = () => {
   const {pathname} = useLocation()
   const page = getStringFromPath(pathname, 1);
-  const formatData = useGetData(page);
-  const preparedData = formatData();
+  const balance = useRecoilValue(balanceState);
+  const preparedData = getFormattedData(balance, page);
 
   return _.map(preparedData['allAssets'], asset => {
     return {

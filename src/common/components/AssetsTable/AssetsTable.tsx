@@ -13,12 +13,14 @@ import HeaderTable from '../HeaderTable/HeaderTable';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
-import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 import {useLocation} from 'react-router-dom';
 import {getStringFromPath} from 'utils/helpers';
 import Skeleton from '../Skeleton/Skeleton';
 import { chainIdToNetwork } from 'utils/constants';
 import { DataRangeSelectorItem } from '../DateRangeSelector/DataRangeSelector.types';
+import getFormattedData from 'utils/getFormattedData';
+import { useRecoilValue } from 'recoil';
+import balanceState from 'common/modules/atoms/balanceState';
 
 function AssetsTable() {
   const {pathname} = useLocation();
@@ -30,8 +32,8 @@ function AssetsTable() {
   const ref = useRef(null);
   const theme = useTheme();
   const translation = useTranslation();
-  const formatedData = useGetData(chainIdToNetwork[page]);
-  const preparedData = formatedData();
+  const balance = useRecoilValue(balanceState);
+  const preparedData = getFormattedData(balance, chainIdToNetwork[page]);
   const [dataRange, setDataRange] = useState<DataRangeSelectorItem>({});
   const [dataRangeIsOpen, setDataRangeIsOpen] = useState(true);
   const assets = useAssets(dataRange);

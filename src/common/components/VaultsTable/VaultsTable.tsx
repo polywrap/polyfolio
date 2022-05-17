@@ -15,8 +15,10 @@ import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
 import {menuFields} from './FilterFieldsVaults.config';
 import {useLocation} from 'react-router-dom';
 import {getStringFromPath} from 'utils/helpers';
-import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 import { DataRangeSelectorItem } from '../DateRangeSelector/DataRangeSelector.types';
+import balanceState from 'common/modules/atoms/balanceState';
+import { useRecoilValue } from 'recoil';
+import getFormattedData from 'utils/getFormattedData';
 
 function VaultsTable() {
   const {pathname} = useLocation();
@@ -31,8 +33,8 @@ function VaultsTable() {
   const [dataRange, setDataRange] = useState<DataRangeSelectorItem>({});
   const [dataRangeIsOpen, setDataRangeIsOpen] = useState(true);
   const menuItems = GetVaults();
-  const formatData = useGetData(page);
-  const preparedData = formatData();
+  const balance = useRecoilValue(balanceState);
+  const preparedData = getFormattedData(balance, page);
 
   const changeDataRange = (e) => {
     setDataRange(e);

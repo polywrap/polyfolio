@@ -6,12 +6,13 @@ import {networkToChainId} from 'utils/constants';
 import numberFormatter from 'utils/numberFormatter';
 import {useCurrency} from 'common/currency/Currency.context';
 import {shortenedAddress} from 'utils/helpers';
-import useAuth from 'common/hooks/useAuth/useAuth';
 import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.types';
 import useAssetPageData from 'common/hooks/useAssetPageData/useAssetPageData';
+import { useRecoilValue } from 'recoil';
+import { userPersistState } from 'common/modules/atoms/userAddress';
 
 const useAssetOverviewData = (dataRange: DataRangeSelectorItem) => {
-  const {user} = useAuth();
+  const user = useRecoilValue(userPersistState);
   const {asset} = useParams();
   const {currency} = useCurrency();
   const menuItems = useAssets();
