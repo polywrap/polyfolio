@@ -8,6 +8,7 @@ export default function useSearch() {
     default: null,
   });
 
+  console.log('search render')
   const [search, setSearch] = useRecoilState(searchPersistState);
 
   return {search, setSearch};

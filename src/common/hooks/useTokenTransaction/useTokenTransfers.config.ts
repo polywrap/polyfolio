@@ -1,10 +1,11 @@
 export const uri = 'ens/rinkeby/mock.defiwrapper.eth';
 export const query = `
-query GetTokenTransfers($account: String!, $token: String!, $currency: String!) {
+query GetTokenTransfers($account: String!, $token: String!, $currency: String! $chainId: Int!) {
   getTokenTransfers(
     accountAddress: $account
     tokenAddress: $token
     vsCurrency: $currency # This will be moved to env of account-resolver
+    chainId: $chainId
   )
 }
 `;

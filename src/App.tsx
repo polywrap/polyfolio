@@ -20,9 +20,7 @@ import useBalance from 'common/hooks/useBalance/useBalance';
 import useTransactions from 'common/hooks/useTransaction/useTransaction';
 import balanceState from 'common/modules/atoms/balanceState';
 import {useRecoilValue} from 'recoil';
-import tokenTransferState from 'common/modules/atoms/tokenTransferState';
 import useSearch from 'common/hooks/useSearch/useSearch';
-import useTokenTransfers from 'common/hooks/useTokenTransaction/useTokenTransfers';
 import replaceRouteParameters from 'utils/replaceRouteParameters';
 
 function App() {
@@ -32,9 +30,7 @@ function App() {
   const {check} = useWallet();
   const {getBalance} = useBalance();
   const getTransactions = useTransactions();
-  const getTokenTransfer = useTokenTransfers();
   const balance = useRecoilValue(balanceState);
-  const tokenTransfer = useRecoilValue(tokenTransferState);
 
   useEffect(function fetchBalance () {
     if (user && !search) {
@@ -48,14 +44,6 @@ function App() {
     if (balance && !search) getTransactions();
     else if (balance && search) getTransactions(search);
   }, [getTransactions, balance, search])
-
-  useEffect(function fetchTokenTransfer () {
-    if (balance && !tokenTransfer) {
-      getTokenTransfer('0x95A9bd206aE52C4BA8EecFc93d18EACDd41C88CC', 1, search);
-    }
-  }, [getTokenTransfer, balance, tokenTransfer, search])
-
-  console.log('tokenTransfer', tokenTransfer)
 
   useEffect(() => {
     if (MetaMaskOnboarding.isMetaMaskInstalled()) {

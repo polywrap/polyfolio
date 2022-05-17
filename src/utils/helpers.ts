@@ -32,4 +32,5 @@ export const shortenedAddress = (address: string, size = 4) => {
 export const detectAssetOrProtocolPage = (pathname: string) =>  {
   if (pathname && pathname.includes('protocol')) return 'protocol';
   else if (pathname && pathname.includes('assets')) return 'asset';
+  else 'default';
 }

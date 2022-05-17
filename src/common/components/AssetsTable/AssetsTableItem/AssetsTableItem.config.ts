@@ -14,6 +14,8 @@ const useAssets = () => {
   const formatData = useGetData(chainIdToNetwork[page]);
   const preparedData = formatData();
 
+  console.log('use assets render')
+
   const menuItems: AssetsItem[] = [];
   
   const allProtocols = preparedData ? preparedData['allProtocols'] : null;
@@ -47,6 +49,7 @@ const useAssets = () => {
         symbol: symbol.toLowerCase(),
         network, 
         protocol,
+        address: allAssets[i].token.token.address,
         id: uuidv4(),
       });
     }

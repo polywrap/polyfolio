@@ -14,5 +14,6 @@ export interface AssetsItem {
   symbol: string;
   protocol: string;
   network: string;
+  address: string;
   id: string;
 }
