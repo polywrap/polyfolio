@@ -21,9 +21,6 @@ const useAssets = (dataRange?: DataRangeSelectorItem) => {
   const balance = useRecoilValue(balanceState);
   const preparedData = getFormattedData(balance, chainIdToNetwork[page]);
   
-
-  console.log('use assets render')
-
   const menuItems: AssetsItem[] = [];
   
   const allProtocols = preparedData ? preparedData['allProtocols'] : null;
@@ -74,7 +71,6 @@ const useAssets = (dataRange?: DataRangeSelectorItem) => {
         address: allAssets[i].token.token.address,
         network, 
         protocol,
-        address: allAssets[i].token.token.address,
         id: uuidv4(),
       });
     }
