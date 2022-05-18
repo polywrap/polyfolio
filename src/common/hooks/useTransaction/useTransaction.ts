@@ -6,6 +6,7 @@ import transactionState from 'common/modules/atoms/transactionState';
 import {useCurrency} from 'common/currency/Currency.context';
 import {uri, query, apiKey, envsUri} from './useTransaction.config'; 
 import {userPersistState} from 'common/modules/atoms/userAddress';
+import { getCONFIG } from 'utils/constants';
 
 
 export default function useTransactions() {
@@ -24,28 +25,7 @@ export default function useTransactions() {
           account: user,
           currency: currency,
         },
-        config: {
-          envs: [
-            {
-              uri: envsUri.uri_1,
-              query: {
-                connection: {
-                  networkNameOrChainId: "MAINNET",
-                },
-              },
-              mutation: {}
-            },
-            {
-              uri: envsUri.uri_2,
-              query: {
-                apiKey,
-                chainId: 1,
-              },
-              common: {},
-              mutation: {},
-            }
-          ],
-        },
+        config: getCONFIG()
       });
 
       if (response && !errors?.length) {
