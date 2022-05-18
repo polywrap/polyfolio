@@ -9,9 +9,3 @@ export const envsUri = {
   uri_2: 'w3://ens/rinkeby/covalent.account.resolvers.defiwrapper.eth',
 };
 export const apiKey = 'ckey_910089969da7451cadf38655ede';
-export const redirects = [
-  {
-    to: "w3://ens/rinkeby/ethereum.token.resolvers.defiwrapper.eth",
-    from: "w3://ens/ethereum.token-resolvers.defiwrapper.eth",
-  },
-];
