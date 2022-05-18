@@ -42,26 +42,6 @@ const menuItems: CurrencyPickerItem[] = [
     secondaryTitle: 'inrSecondary',
     icon: iconsObj.inr,
   },
-  {
-    title: 'btc',
-    secondaryTitle: 'btcSecondary',
-    icon: iconsObj.bitcoin,
-  },
-  {
-    title: 'eth',
-    secondaryTitle: 'ethSecondary',
-    icon: iconsObj.ethereum,
-  },
-  {
-    title: 'usd',
-    secondaryTitle: 'usdSecondary',
-    icon: iconsObj.usd,
-  },
-  {
-    title: 'cad',
-    secondaryTitle: 'cadSecondary',
-    icon: iconsObj.cad,
-  },
 ];
 
 export {menuItems};

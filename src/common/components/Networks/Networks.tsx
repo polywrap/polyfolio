@@ -11,23 +11,24 @@ import useNetwork from './Networks.config';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import Icon from 'common/components/Icon/Icon';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
-import useSearch from 'common/hooks/useSearch/useSearch';
 import Skeleton from '../Skeleton/Skeleton';
-import useAuth from 'common/hooks/useAuth/useAuth';
 import { networkToChainId } from 'utils/constants';
 import RoutePath from 'common/modules/routing/routing.enums';
 import replaceRouteParameters from 'utils/replaceRouteParameters';
+import { useRecoilValue } from 'recoil';
+import { searchPersistState } from 'common/modules/atoms/searchState';
+import { userPersistState } from 'common/modules/atoms/userAddress';
 
 function Networks() {
   const ref = useRef(null);
   const theme = useTheme();
   const translation = useTranslation();
   const navigate = useNavigate();
-  const {user} = useAuth();
+  const user = useRecoilValue(userPersistState);
   const menuItems = useNetwork();
 
   const MenuItem = (menuItem: NetworksItem) => {
-    const {search} = useSearch();
+    const search = useRecoilValue(searchPersistState);
     const path = menuItem.id && !search ?
       replaceRouteParameters(menuItem.link, {chainId: networkToChainId[menuItem.id], user})
     : search ? 

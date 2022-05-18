@@ -51,5 +51,10 @@ export const colors = {
   color_blue_gray_800: '#1E293B',
   color_blue_gray_900: '#0F1422',
   color_blue_gray_bg: '#1E2B45',
+
+  // Red
+  color_red: '#e53e3e',
+
+  
   color_white: '#FFFFFF',
 };

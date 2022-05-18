@@ -6,17 +6,18 @@ import classNames from 'classnames';
 import RoutePath from 'common/modules/routing/routing.enums';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import {Tab} from './DashboardNavigation.config';
-import useSearch from 'common/hooks/useSearch/useSearch';
-import useAuth from 'common/hooks/useAuth/useAuth';
 import replaceRouteParameters from 'utils/replaceRouteParameters';
+import { useRecoilValue } from 'recoil';
+import { searchPersistState } from 'common/modules/atoms/searchState';
+import { userPersistState } from 'common/modules/atoms/userAddress';
 
 function DashboardNavigation() {
-  const {user} = useAuth();
+  const user = useRecoilValue(userPersistState);
   const [activeTab, setActiveTab] = useState('');
   const navigate = useNavigate();
   const {pathname} = useLocation();
   const translation = useTranslation();
-  const {search} = useSearch();
+  const search = useRecoilValue(searchPersistState);
   const theme = useTheme();
 
   const linkToDashboard = search ? replaceRouteParameters(RoutePath.Dashboard, {search})

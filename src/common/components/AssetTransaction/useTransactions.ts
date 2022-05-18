@@ -1,6 +1,5 @@
 import moment from 'moment';
 import iconsObj from 'assets/icons/iconsObj';
-import useAuth from 'common/hooks/useAuth/useAuth';
 import transactionState from 'common/modules/atoms/transactionState';
 import { useRecoilValue } from 'recoil';
 import {
@@ -13,13 +12,15 @@ import {
 } from 'utils/dataFormatting';
 import {shortenedAddress} from 'utils/helpers';
 import {ITransaction} from './AssetTransactions.type';
-import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
+import balanceState from 'common/modules/atoms/balanceState';
+import getFormattedData from 'utils/getFormattedData';
+import { userPersistState } from 'common/modules/atoms/userAddress';
 
 const useTransactions = () => {
   const state = useRecoilValue(transactionState);
-  const formatData = useGetData();
-  const preparedData = formatData();
-  const {user} = useAuth();
+  const balance = useRecoilValue(balanceState);
+  const preparedData = getFormattedData(balance);
+  const user = useRecoilValue(userPersistState);
   const data: ITransaction[] = [];
 
   state?.transactions.forEach(transaction => {

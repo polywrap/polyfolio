@@ -1,43 +1,26 @@
-import {useCallback} from 'react';
+import {useCallback, useEffect} from 'react';
 import {useRecoilState} from 'recoil';
 import {useWeb3ApiClient} from '@web3api/react';
-import useAuth from '../useAuth/useAuth';
 import balanceState from 'common/modules/atoms/balanceState';
 import {insertChainIdToProtocol} from 'utils/dataFormatting';
 import {uri, query} from './useBalance.config';
 import {useNetworks} from 'common/networks/Networks.context';
 
-export default function useBalance() {
-  const {user} = useAuth();
+export default function useBalance(address: string) {
   const client = useWeb3ApiClient();
   const {network} = useNetworks();
 
-  const [, setBalance] = useRecoilState(balanceState);
+  const [balance, setBalance] = useRecoilState(balanceState);
 
-  const balanceRequest = useCallback(async (chainId, otherUserAddress?) => {
-    const { data: response, errors } = await client.query({
+  const balanceRequest = useCallback(async (/* chainId */) => {
+    const {data: response, errors} = await client.query({
       uri,
       query,
       variables: {
-        accountAddress: otherUserAddress ?? user,
+        accountAddress: address,
         vsCurrencies: [],
         noTruncate: false,
         underlyingPrice: false,
-      },
-      config: {
-        envs: [
-          {
-            uri,
-            common: {
-              connection: {
-                node: null,
-                networkNameOrChainId: chainId,
-              },
-            },
-            query: {},
-            mutation: {},
-          },
-        ],
       },
     });
     
@@ -50,18 +33,18 @@ export default function useBalance() {
       console.log(errors);
       console.log('-----ERRORS');
     }
-  }, [client, user])
+  }, [address, client])
 
-  const getBalance = useCallback(async (otherUserAddress?) => {
-    if (user) {
+  const getBalance = useCallback(async () => {
+    if (address) {
       let temporaryBalance = {}
 
       for (let i = 0; i < network.length; i++) {
         if (network[i].checked) {
           const name = network[i].name;
-          const chainId = network[i].chainId.toString();
+          /* const chainId = network[i].chainId.toString(); */
           
-          const response = await balanceRequest(chainId, otherUserAddress);
+          const response = await balanceRequest(/* chainId */);
           temporaryBalance = {...temporaryBalance, [name]: response};
         }
       }
@@ -70,7 +53,13 @@ export default function useBalance() {
 
       setBalance(temporaryBalance);
     }
-  }, [balanceRequest, network, setBalance, user]);
+  }, [address, balanceRequest, network, setBalance]);
 
-  return {getBalance};
+  useEffect(() => {
+    if (address) {
+      getBalance();
+    }
+  }, [address, getBalance])
+
+  return balance;
 }

@@ -9,7 +9,7 @@ import {chainIdToNetwork} from 'utils/constants';
 
 export const insertChainIdToProtocol = (balance) => {
   _map(balance, (network) => {
-    const chainId = network.chainId;
+    const chainId = network?.chainId;
 
     _map(network?.protocols, (protocol) => {
       if (protocol) {
@@ -27,12 +27,14 @@ export const getAssetsValueSum = (assets) => {
   }
 };
 
-export const ejectProtocolsFromNetwork = (network) => network ? network.protocols : null;
+export const ejectProtocolsFromNetwork = (network) => network ? network.protocols : [];
 
 export const ejectAssetsFromProtocol = (protocols) => {
   if (protocols) {
     return _map(protocols.assets, asset => asset.balance.components)
   }
+
+  return [];
 }
 
 export const detectProtocolAndChainIdForAsset = (allProtocols, tokenSymbol) => {
@@ -169,4 +171,55 @@ export const getClaimableValueFromCurrProtocol = (asset) => {
   });
   
   return value;
+}
+
+export const getMarketCap = (currency: string, marketCap) => {
+  let result: string;
+
+  if (marketCap) {
+    marketCap.forEach(item => {
+      if (item.currency === currency.toLowerCase()) result = item.volume;
+    });
+  }
+
+  return result;
+}
+
+export const getVolume = (currency: string, volume) => {
+  let result: string;
+
+  if (volume) {
+    volume.forEach(item => {
+      if (item.currency === currency.toLowerCase()) result = item.volume;
+    });
+  }
+
+  return result;
+}
+
+export const getPriceChangePercentage = (priceChangePercentage: string) => {
+  let percentage: string;
+  let style = 'profit';
+
+  if (priceChangePercentage && priceChangePercentage[0] === '-') {
+    percentage = priceChangePercentage;
+    style = 'loss';
+  } else if (priceChangePercentage) percentage = priceChangePercentage;
+
+  return [percentage, style];
+}
+
+export const getPriceChangeCurrency = (currency: string, priceChangePercentage) => {
+  let percentage: string;
+
+  if (priceChangePercentage) {
+    priceChangePercentage.forEach(item => {
+      if (item.currency === currency.toLowerCase()) {
+        percentage = item.percentage[0] === '-' 
+          ? item.percentage.substring(1) : item.percentage;
+      }
+    });
+  }
+
+  return percentage;
 }

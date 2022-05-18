@@ -200,3 +200,33 @@ export const balanceTotal = {
   ethereum: network,
   polygon: network,
 }
+
+export const marketCapArray = [
+  {
+      "currency": "aed",
+      "volume": "56289965"
+  },
+  {
+      "currency": "ars",
+      "volume": "1782413391"
+  },
+  {
+      "currency": "aud",
+      "volume": "21608021"
+  },
+]
+
+export const volume = [
+  {
+      "currency": "aed",
+      "volume": "151580"
+  },
+  {
+      "currency": "ars",
+      "volume": "4799662"
+  },
+  {
+      "currency": "aud",
+      "volume": "58132"
+  },
+]
