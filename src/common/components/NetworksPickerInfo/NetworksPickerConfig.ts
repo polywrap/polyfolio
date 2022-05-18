@@ -6,7 +6,6 @@ const menuItems: NetworksPickerItem[] = _map(networks, network => {
   return {
     ...network,
     checked: true,
-    icon: '',
     id: network.chainId
   }
 });

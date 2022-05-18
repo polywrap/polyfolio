@@ -1,10 +1,7 @@
-export const uri = 'ens/rinkeby/mock.defiwrapper.eth';
+export const uri = 'ens/rinkeby/coingecko.defiwrapper.eth';
 export const query = `
-query GetTransactions($account: String!, $currency: String!) {
-  getTransactions(
-    accountAddress: $account
-    vsCurrency: $currency
-  )
+query TokenInfo($id: String!, $contract_address: String!){
+  tokenInfo(id: $id, contract_address: $contract_address)
 }
 `;
 export const envsUri = {

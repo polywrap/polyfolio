@@ -8,15 +8,16 @@ import MenuArrow from 'common/components/MenuArrow/MenuArrow';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import PricesValue from '../../PricesValue/PricesValue';
 import classNames from 'classnames';
-import useSearch from 'common/hooks/useSearch/useSearch';
-import useAuth from 'common/hooks/useAuth/useAuth';
 import { networkToChainId } from 'utils/constants';
 import RoutePath from 'common/modules/routing/routing.enums';
 import replaceRouteParameters from 'utils/replaceRouteParameters';
+import { useRecoilValue } from 'recoil';
+import { searchPersistState } from 'common/modules/atoms/searchState';
+import { userPersistState } from 'common/modules/atoms/userAddress';
 
 function ProtocolsItem(menuItem) {
   const navigate = useNavigate();
-  const {user} = useAuth();
+  const user = useRecoilValue(userPersistState);
   const {
     secondaryTitleDollar,
     secondaryTitlePercent,
@@ -29,7 +30,7 @@ function ProtocolsItem(menuItem) {
     icon,
     symbol,
   } = menuItem;
-  const {search} = useSearch();
+  const search = useRecoilValue(searchPersistState);
   const path = symbol && !search 
     ? replaceRouteParameters(link, {chainId: networkToChainId[network], user, protocol: symbol})
     : search 

@@ -1,15 +1,17 @@
 import {NetworksItem} from './Networks.types';
 import iconsObj from 'assets/icons/iconsObj';
 import RoutePath from 'common/modules/routing/routing.enums';
-import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 import {rmCommasFromNum} from 'utils/helpers';
 import _ from 'lodash';
 import {ejectAssetsFromProtocol, getAssetsValueSum} from 'utils/dataFormatting';
 import {useNetworks} from 'common/networks/Networks.context';
+import getFormattedData from 'utils/getFormattedData';
+import { useRecoilValue } from 'recoil';
+import balanceState from 'common/modules/atoms/balanceState';
 
 const useNetwork = () => {
-  const formatData = useGetData();
-  const preparedData = formatData();
+  const balance = useRecoilValue(balanceState);
+  const preparedData = getFormattedData(balance);
   const {network} = useNetworks();
   const menuItems: NetworksItem[] = [];
   

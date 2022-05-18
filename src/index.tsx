@@ -34,7 +34,45 @@ const plugins = [
       },
     }),
   },
-]
+];
+
+const mainEnv = {
+  uri: "w3://ipfs/QmRicDYDFBHeyNhgyMqf19xt3T67WMALfxiAGj4M7FhGFf",
+  common: {
+    connection: {
+      node: null,
+      networkNameOrChainId: "1",
+    },
+  },
+  query: {},
+  mutation: {},
+};
+const covalentEnv = {
+  uri: "w3://ens/rinkeby/covalent.account.resolvers.defiwrapper.eth",
+  query: {
+    apiKey: "ckey_910089969da7451cadf38655ede",
+    chainId: 1,
+  },
+  common: {},
+  mutation: {},
+};
+const tokenEnv = {
+  uri: "w3://ens/rinkeby/ethereum.token.resolvers.defiwrapper.eth",
+  query: {
+    connection: {
+      networkNameOrChainId: "MAINNET",
+    },
+  },
+  common: {},
+  mutation: {},
+};
+
+const redirect = {
+  to: "w3://ens/rinkeby/ethereum.token.resolvers.defiwrapper.eth",
+  from: "w3://ens/ethereum.token-resolvers.defiwrapper.eth",
+};
+
+const envs = [mainEnv, covalentEnv, tokenEnv];
 
 ReactDOM.render(
   <React.StrictMode>
@@ -46,7 +84,7 @@ ReactDOM.render(
               <CurrencyContext>
                 <BrowserRouter>
                   <WalletContext>
-                    <Web3ApiProvider plugins={plugins}>
+                    <Web3ApiProvider envs={envs} redirects={[redirect]} plugins={plugins}>
                       <App />
                     </Web3ApiProvider>
                   </WalletContext>
