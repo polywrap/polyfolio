@@ -7,8 +7,3 @@ query GetTransactions($account: String!, $currency: String!) {
   )
 }
 `;
-export const envsUri = {
-  uri_1: 'ens/rinkeby/ethereum.token.resolvers.defiwrapper.eth',
-  uri_2: 'w3://ens/rinkeby/covalent.account.resolvers.defiwrapper.eth',
-};
-export const apiKey = 'ckey_910089969da7451cadf38655ede';

@@ -4,7 +4,7 @@ import {useWeb3ApiClient} from '@web3api/react';
 import {useCallback, useEffect} from 'react';
 import transactionState from 'common/modules/atoms/transactionState';
 import {useCurrency} from 'common/currency/Currency.context';
-import {uri, query, apiKey, envsUri} from './useTransaction.config'; 
+import {uri, query} from './useTransaction.config'; 
 import {userPersistState} from 'common/modules/atoms/userAddress';
 import { getCONFIG } from 'utils/constants';
 
