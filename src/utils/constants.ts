@@ -29,3 +29,35 @@ export const networkToChainId = {
   ethereum: 1,
   polygon: 137,
 };
+
+export const getCONFIG = (chainId = 1) => {
+  return {
+    envs: [
+      {
+        uri: "ens/rinkeby/ethereum.token.resolvers.defiwrapper.eth",
+        commons: {},
+        query: {
+          connection: {
+            networkNameOrChainId: "MAINNET",
+          },
+        },
+        mutation: {}
+      },
+      {
+        uri: "w3://ens/rinkeby/covalent.account.resolvers.defiwrapper.eth",
+        query: {
+          apiKey: "ckey_910089969da7451cadf38655ede",
+          chainId,
+        },
+        common: {},
+        mutation: {},
+      }
+    ],
+    redirects: [
+      {
+        to: "w3://ens/rinkeby/ethereum.token.resolvers.defiwrapper.eth",
+        from: "w3://ens/ethereum.token-resolvers.defiwrapper.eth",
+      }
+    ]
+  }
+}

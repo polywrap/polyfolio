@@ -5,6 +5,7 @@ import balanceState from 'common/modules/atoms/balanceState';
 import {insertChainIdToProtocol} from 'utils/dataFormatting';
 import {uri, query} from './useBalance.config';
 import {useNetworks} from 'common/networks/Networks.context';
+import {getCONFIG} from 'utils/constants';
 
 export default function useBalance(address: string) {
   const client = useWeb3ApiClient();
@@ -22,6 +23,7 @@ export default function useBalance(address: string) {
         noTruncate: false,
         underlyingPrice: false,
       },
+      /* config: getCONFIG(chainId), */
     });
     
     if (response && !errors?.length) {
