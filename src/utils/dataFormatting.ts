@@ -74,19 +74,13 @@ export const getEventType = (eventName: string, userAddress?: string, params?) =
   return 'send'
 }
 
-export const getEventIcon = (eventName: string, userAddress?: string, params?) => {
+export const getEventIcon = (eventName: string) => {
   if (eventName) {
     switch (eventName) {
       case 'Approval': return iconsObj.approvalTransaction;
-      case 'Transfer':
-        let icon = '';
-        params.forEach(param => {
-          if (param.name === 'from' && param.value === userAddress) icon = iconsObj.sendTransaction;
-          else if (param.name === 'to' && param.value === userAddress) icon = iconsObj.receiveTransaction;
-          else icon = iconsObj.sendTransaction;
-        })
-  
-        return icon
+      case 'Send': return iconsObj.sendTransaction;
+      case 'Receive': return iconsObj.receiveTransaction;
+      case 'Exchange': return iconsObj.exchangeTransaction;
     }
   }
 
@@ -112,8 +106,8 @@ export const findTokenName = (assets, tokenAddress: string) => {
   let name = '???';
 
   assets.forEach(asset => {
-    if (asset.balance.token.token.address === tokenAddress) {
-      name = asset.balance.token.token.symbol;
+    if (asset.token.token.address === tokenAddress) {
+      name = asset.token.token.symbol;
     }
   })
 
@@ -125,20 +119,22 @@ export const getTokenAmount = (value: string, assets, tokenSymbol: string) => {
   let result: BN;
 
   assets.forEach(asset => {
-    if (asset.balance.token.token.symbol === tokenSymbol) {
-      result = bigValue.div(asset.balance.token.token.decimals);
+    if (asset.token.token.symbol === tokenSymbol) {
+      const decimal = new BN(asset.token.token.decimals);
+      const ten = new BN(10);
+      result = bigValue.div(ten.pow(decimal));
     }
   })
 
-  return result ? result.toFixed() : '???';
+  return result ? result.toNumber() : '???';
 }
 
 export const getTokenPrice = (assets, tokenSymbol: string) => {
   let price = 0;
 
   assets.forEach(asset => {
-    if (asset.balance.token.token.symbol === tokenSymbol) {
-      price = asset.balance.token.values[0].price;
+    if (asset.token.token.symbol === tokenSymbol) {
+      price = asset.token.values[0].price;
     }
   })
 

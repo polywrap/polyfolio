@@ -67,7 +67,7 @@ function App() {
           <Route
             path={RoutePath.Asset}
             element={
-              <ProtectedRoute user={user}>
+              <ProtectedRoute user={user ?? search}>
                 <AssetPage />
               </ProtectedRoute>
             }
@@ -75,7 +75,7 @@ function App() {
           <Route
             path={RoutePath.Dashboard}
             element={
-              <ProtectedRoute user={user}>
+              <ProtectedRoute user={user ?? search}>
                 <Portfolio />
               </ProtectedRoute>
             }
@@ -83,7 +83,7 @@ function App() {
           <Route
             path={RoutePath.DashboardTransactions}
             element={
-              <ProtectedRoute user={user}>
+              <ProtectedRoute user={user ?? search}>
                 <Transactions />
               </ProtectedRoute>
             }
@@ -91,7 +91,7 @@ function App() {
           <Route
             path={RoutePath.Network}
             element={
-              <ProtectedRoute user={user}>
+              <ProtectedRoute user={user ?? search}>
                 <NetworkPage />
               </ProtectedRoute>
             }
@@ -99,7 +99,7 @@ function App() {
           <Route
             path={RoutePath.Protocol}
             element={
-              <ProtectedRoute user={user}>
+              <ProtectedRoute user={user ?? search}>
                 <ProtocolPage />
               </ProtectedRoute>
             }

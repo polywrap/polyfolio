@@ -47,7 +47,7 @@ export default function useTransactions() {
           ],
         },
       });
-  
+
       if (response && !errors?.length) {
         const transactions = response?.getTransactions;
         

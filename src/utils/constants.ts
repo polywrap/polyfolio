@@ -1,4 +1,7 @@
-import iconsObj from "assets/icons/iconsObj";
+import iconsObj from 'assets/icons/iconsObj';
+
+export const linkToAccountOnEtherscan = 'https://rinkeby.etherscan.io/address/';
+export const startOfEthereumAddress = '0x';
 
 export const networks = [
   {
