@@ -21,7 +21,6 @@ const useAssets = (dataRange?: DataRangeSelectorItem) => {
   const balance = useRecoilValue(balanceState);
   const preparedData = getFormattedData(balance, chainIdToNetwork[page]);
   
-
   const menuItems: AssetsItem[] = [];
   
   const allProtocols = preparedData ? preparedData['allProtocols'] : null;

@@ -1,27 +1,38 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import classNames from 'classnames';
 
 import styles from './HeaderDashboard.module.scss';
 
-import { dropdownItems } from './HederDashboardDropdown/HederDashboardDropdown.config';
+import {dropdownItems} from './HederDashboardDropdown/HederDashboardDropdown.config';
 import useTheme from 'common/hooks/useTheme/useTheme';
-import { content } from './HeaderDashboard.config';
+import {content} from './HeaderDashboard.config';
 import Dropdown from '../Dropdown/Dropdown';
-import { filteredDropdown } from 'utils/helpers';
+import {filteredDropdown} from 'utils/helpers';
 import numberFormatter from 'utils/numberFormatter';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import Skeleton from '../Skeleton/Skeleton';
 import getFormattedData from 'utils/getFormattedData';
-import { useRecoilValue } from 'recoil';
+import {useRecoilValue} from 'recoil';
 import balanceState from 'common/modules/atoms/balanceState';
+import {useLocation} from 'react-router-dom';
+import {userPersistState} from 'common/modules/atoms/userAddress';
+import YounderProfile from '../YounderProfile/YounderProfile';
 
 function HeaderDashboard() {
+  const user = useRecoilValue(userPersistState);
+  const {pathname} = useLocation();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [currency, setCurrency] = useState(dropdownItems[0]);
   const theme = useTheme();
   const translation = useTranslation();
   const balance = useRecoilValue(balanceState);
   const preparedData = getFormattedData(balance);
+
+  const younderAddress = useMemo(() => {
+    const splitedUrl = pathname.split('/');
+
+    return splitedUrl[2] === user ? '' : splitedUrl[2]; 
+  }, [pathname, user])
 
   const onChangeCurrency = (item) => {
     setCurrency(item);
@@ -30,7 +41,18 @@ function HeaderDashboard() {
 
   return (
     <div className={classNames(styles.headerDashboardContainer, styles[theme])}>
-      <h1 className={styles.title}>{translation.Dashboard.title}</h1>
+      {
+        younderAddress 
+          ? (
+            <YounderProfile
+              ens={younderAddress}
+              address={younderAddress}
+              style={styles.younder}
+            />
+          ) : (
+            <h1 className={styles.title}>{translation.Dashboard.title}</h1>
+          )
+      }
       <div className={styles.contentContainer}>
         <div>
           <span className={styles.secondaryTitle}>{translation.Dashboard.secondaryTitle}</span>

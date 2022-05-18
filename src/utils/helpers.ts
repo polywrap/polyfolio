@@ -30,6 +30,12 @@ export const shortenedAddress = (address: string, size = 4) => {
   return '???'
 }
 
+export const detectAssetOrProtocolPage = (pathname: string) =>  {
+  if (pathname && pathname.includes('protocol')) return 'protocol';
+  else if (pathname && pathname.includes('assets')) return 'asset';
+  else 'default';
+}
+
 export const fromBnToNumber = (numberInString: string, decimal: number | string) => {
   const value = new BN(numberInString);
   const divider = new BN(Math.pow(10, Number(decimal)).toString());

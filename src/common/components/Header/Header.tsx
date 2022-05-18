@@ -36,7 +36,7 @@ function Header({
   const {setSearch} = useSearch();
   const navigate = useNavigate();
   const translation = useTranslation();
-  const [value, setValue] = useState<string>();
+  const [value, setValue] = useState<string>('');
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState<boolean>(false);
   const [isOpenMobileSearch, setIsOpenMobileSearch] = useState<boolean>(false);
   const menuRef = useRef<HTMLDivElement>(null);
