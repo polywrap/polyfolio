@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import styles from './PricesValue.module.scss';
 import numberFormatter from 'utils/numberFormatter';
+import Skeleton from '../Skeleton/Skeleton';
 
 function PricesValue({
   secondaryPricePercentTitle,
@@ -19,14 +20,29 @@ function PricesValue({
             [styles.minusValuePrice]: valueIsMinus,
           })}
         >
-          ${numberFormatter({value: pricePercentDollar, size: 2})}
+          {
+            pricePercentDollar ? (
+              (valueIsMinus ? '-' + '$' + numberFormatter({value: pricePercentDollar, size: 2})
+              .substring(1)
+              : '+' + '$' + numberFormatter({value: pricePercentDollar, size: 2}))
+            ) : (
+              <Skeleton width={54} height={19} />
+            )
+          }
         </div>
         <div
           className={classNames(styles.secondaryPricePercentTitle, {
             [styles.minusValue]: valueIsMinus,
           })}
         >
-          +{numberFormatter({value: secondaryPricePercentTitle, size: 2})}%
+          {
+            secondaryPricePercentTitle ? (
+              (valueIsMinus ? '' : '+')
+              +numberFormatter({value: secondaryPricePercentTitle, size: 2}) + '%'
+            ) : (
+              <Skeleton width={54} height={19} />
+            )
+          }
         </div>
       </div>
     </div>

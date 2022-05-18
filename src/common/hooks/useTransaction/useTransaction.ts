@@ -1,30 +1,28 @@
-import {useRecoilState} from 'recoil';
+import {useRecoilState, useRecoilValue} from 'recoil';
 
 import {useWeb3ApiClient} from '@web3api/react';
-import useAuth from '../useAuth/useAuth';
-import {useCallback} from 'react';
+import {useCallback, useEffect} from 'react';
 import transactionState from 'common/modules/atoms/transactionState';
-import { useCurrency} from 'common/currency/Currency.context';
-import {uri, query, redirects, envsUri, apiKey} from './useTransaction.config';
+import {useCurrency} from 'common/currency/Currency.context';
+import {uri, query, apiKey, envsUri} from './useTransaction.config'; 
+import {userPersistState} from 'common/modules/atoms/userAddress';
 
 
 export default function useTransactions() {
-  const {user} = useAuth();
-  const {currency} = useCurrency();
   const client = useWeb3ApiClient();
+  const user = useRecoilValue(userPersistState);
+  const {currency} = useCurrency();
 
-  const [, setTransaction] = useRecoilState(transactionState);
+  const [transactions, setTransaction] = useRecoilState(transactionState);
 
-  const getTransactions = useCallback(async (otherAddress?: string) => {
-    const account = otherAddress ?? user;
-    
-    if (account) {
+  const getTransactions = useCallback(async () => {
+    if (user) {
       const {data: response, errors} = await client.query({
         uri,
         query,
         variables: {
-          account,
-          currency,
+          account: user,
+          currency: currency,
         },
         config: {
           envs: [
@@ -47,14 +45,12 @@ export default function useTransactions() {
               mutation: {},
             }
           ],
-          redirects,
         },
       });
 
       if (response && !errors?.length) {
         const transactions = response?.getTransactions;
-        console.log(transactions)
-
+        
         setTransaction(transactions);
       } else {
         // ADD ERROR HANDLER
@@ -65,5 +61,9 @@ export default function useTransactions() {
     }
   }, [client, currency, setTransaction, user]);
 
-  return getTransactions;
+  useEffect(() => {
+    getTransactions()
+  }, [getTransactions])
+
+  return transactions;
 }

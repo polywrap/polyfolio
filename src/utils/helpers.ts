@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import BN from 'bn.js';
 
 export const filteredDropdown = (array, currentId) => {
   return array?.filter((e) => e?.id !== currentId);
@@ -33,4 +34,12 @@ export const detectAssetOrProtocolPage = (pathname: string) =>  {
   if (pathname && pathname.includes('protocol')) return 'protocol';
   else if (pathname && pathname.includes('assets')) return 'asset';
   else 'default';
+}
+
+export const fromBnToNumber = (numberInString: string, decimal: number | string) => {
+  const value = new BN(numberInString);
+  const divider = new BN(Math.pow(10, Number(decimal)).toString());
+  const result = value.div(divider);
+
+  return result.toNumber();
 }

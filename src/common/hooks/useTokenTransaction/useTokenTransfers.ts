@@ -1,15 +1,15 @@
-import {useRecoilState} from 'recoil';
+import {useRecoilState, useRecoilValue} from 'recoil';
 
 import {useWeb3ApiClient} from '@web3api/react';
-import useAuth from '../useAuth/useAuth';
 import {useCallback} from 'react';
 import tokenTransferState from 'common/modules/atoms/tokenTransferState';
 import {useCurrency} from 'common/currency/Currency.context';
-import {uri, query, redirects, envsUri, apiKey} from './useTokenTransfers.config'; 
+import {uri, query, envsUri, apiKey} from './useTokenTransfers.config'; 
+import { userPersistState } from 'common/modules/atoms/userAddress';
 
 
 export default function useTokenTransfers() {
-  const {user} = useAuth();
+  const user = useRecoilValue(userPersistState);
   const {currency} = useCurrency();
   const client = useWeb3ApiClient();
 
@@ -48,7 +48,6 @@ export default function useTokenTransfers() {
             mutation: {},
           },
         ],
-        redirects,
       },
     })
 

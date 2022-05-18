@@ -10,21 +10,23 @@ import Dropdown from '../Dropdown/Dropdown';
 import {filteredDropdown} from 'utils/helpers';
 import numberFormatter from 'utils/numberFormatter';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
-import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 import Skeleton from '../Skeleton/Skeleton';
+import getFormattedData from 'utils/getFormattedData';
+import {useRecoilValue} from 'recoil';
+import balanceState from 'common/modules/atoms/balanceState';
 import {useLocation} from 'react-router-dom';
+import {userPersistState} from 'common/modules/atoms/userAddress';
 import YounderProfile from '../YounderProfile/YounderProfile';
-import useAuth from 'common/hooks/useAuth/useAuth';
 
 function HeaderDashboard() {
-  const {user} = useAuth();
+  const user = useRecoilValue(userPersistState);
   const {pathname} = useLocation();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [currency, setCurrency] = useState(dropdownItems[0]);
   const theme = useTheme();
   const translation = useTranslation();
-  const formatedData = useGetData();
-  const preparedData = formatedData();
+  const balance = useRecoilValue(balanceState);
+  const preparedData = getFormattedData(balance);
 
   const younderAddress = useMemo(() => {
     const splitedUrl = pathname.split('/');

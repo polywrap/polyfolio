@@ -1,39 +1,39 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 import moment from 'moment';
 import iconsObj from 'assets/icons/iconsObj';
-import useAuth from 'common/hooks/useAuth/useAuth';
+import {useLocation, useParams} from 'react-router-dom';
 import transactionState from 'common/modules/atoms/transactionState';
 import {useRecoilValue} from 'recoil';
 import {ejectAssetsFromProtocol, getTransactionAddress} from 'utils/dataFormatting';
 import {shortenedAddress, detectAssetOrProtocolPage} from 'utils/helpers';
 import {ITransaction} from './AssetTransactions.type';
-import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
-import {formatDataAccordingToEvent} from 'utils/formatDataAccordingToEvent';
-import {useLocation, useParams} from 'react-router-dom';
-import useSearch from 'common/hooks/useSearch/useSearch';
-import lodash from 'lodash';
-import useAssets from '../AssetsTable/AssetsTableItem/AssetsTableItem.config';
-import {networkToChainId} from 'utils/constants';
+import balanceState from 'common/modules/atoms/balanceState';
+import getFormattedData from 'utils/getFormattedData';
+import {userPersistState} from 'common/modules/atoms/userAddress';
 import {useCallback, useEffect, useState} from 'react';
-import { useWeb3ApiClient } from '@web3api/react';
-import { useCurrency } from 'common/currency/Currency.context';
-import {uri, query, redirects, envsUri, apiKey} from 'common/hooks/useTokenTransaction/useTokenTransfers.config'; 
+import {query, uri} from 'common/hooks/useAssetMetadata/useAssetMetadata.config';
+import {useCurrency} from 'common/currency/Currency.context';
+import {useWeb3ApiClient} from '@web3api/react';
+import lodash from 'lodash';
+import {formatDataAccordingToEvent} from 'utils/formatDataAccordingToEvent';
+import {searchPersistState} from 'common/modules/atoms/searchState';
+//import useAssets from '../AssetsTable/AssetsTableItem/AssetsTableItem.config';
 
 const useTransactions = () => {
-  const {pathname} = useLocation();
-  const {asset, protocol} = useParams();
-  const pageType = detectAssetOrProtocolPage(pathname);
   const client = useWeb3ApiClient();
-  const {user} = useAuth();
+  const {pathname} = useLocation();
+  const {/* asset, */ protocol} = useParams();
+  const pageType = detectAssetOrProtocolPage(pathname);
   const {currency} = useCurrency();
-  const {search} = useSearch();
-  const formatData = useGetData();
-  const preparedData = formatData();
   const state = useRecoilValue(transactionState);
-  //const transfersState = useRecoilValue(tokenTransferState);
-  const assetItems = useAssets();
+  const balance = useRecoilValue(balanceState);
+  const preparedData = getFormattedData(balance);
+  const user = useRecoilValue(userPersistState);
+  const search = useRecoilValue(searchPersistState);
   const allProtocols = preparedData['allProtocols'];
-  const assetInfo = lodash.find(assetItems, {symbol: asset})
+  //const assetItems = useAssets();
+  //const assetInfo = lodash.find(assetItems, {symbol: asset})
   const [data, setData] = useState<ITransaction[]>([]);
   let assetsFromProtocol;
 
@@ -151,7 +151,7 @@ const useTransactions = () => {
         });
       }
     }
-  }, [pageType, user, search])
+  }, [pageType, user, search, getTokenTransfers, protocol, state?.transactions, preparedData, data])
 
   
   console.log(data);

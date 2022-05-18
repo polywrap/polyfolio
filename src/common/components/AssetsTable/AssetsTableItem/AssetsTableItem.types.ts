@@ -4,13 +4,14 @@ export interface AssetsItem {
   pricePercentDollar: string;
   secondaryTitle: string;
   valueIsMinus?: boolean;
-  iconInfoPage?: string;
+  iconInfoPage: string;
   valueTitle: string;
   priceTitle: string;
   percent: string;
   title: string;
-  icon?: string;
+  icon: string;
   link: string;
+  address: string;
   symbol: string;
   protocol: string;
   network: string;

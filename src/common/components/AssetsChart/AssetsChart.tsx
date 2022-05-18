@@ -1,34 +1,58 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styles from './AssetsChart.module.scss';
 import Charts from '../Charts/Сharts';
 import classNames from 'classnames';
 import useTheme from 'common/hooks/useTheme/useTheme';
-import {item} from './AssetsChart.config';
+import useAssetChartConfig from './AssetsChart.config';
 import numberFormatter from 'utils/numberFormatter';
 import {value} from './mocValue';
 import _map from 'lodash/map';
 import DataRangeSelector from '../DateRangeSelector/DateRangeSelector';
+import Skeleton from '../Skeleton/Skeleton';
 
-function AssetsCharts() {
-  const [isOpen, setIsOpen] = useState(true);
-  const [dataRange, setDataRange] = useState({});
+function AssetsCharts({changeDataRange, setIsOpen, isOpen, dataRange}) {
   const theme = useTheme();
-
-  const changeDataRange = (e) => {
-    setDataRange(e);
-    setIsOpen(!isOpen);
-  };
+  const item = useAssetChartConfig(dataRange);
 
   return (
     <div className={classNames(styles.assetsChartsContainer, styles[theme])}>
       <div className={styles.headerTable}>
-        <div className={styles.title}>${numberFormatter({value: item.title, size: 4})}</div>
+        <div className={styles.title}>
+          {
+            item.title ? (
+              '$' + numberFormatter({value: item.title, size: 2})
+            ) : (
+              <Skeleton width={160} height={54} />
+            )
+          }
+        </div>
         <div className={styles.secondaryContainer}>
-          <div className={styles.secondaryTittlePercent}>
-            +{numberFormatter({value: item.secondaryTitlePercent, size: 2})}%
+          <div className={classNames(styles.secondaryTittlePercent, styles[item.style])}>
+            {
+              item.secondaryTitlePercent ? (
+                (item.style !== 'loss' ? '+'
+                + numberFormatter({value: item.secondaryTitlePercent, size: 2}) :
+                '-' + numberFormatter({value: item.secondaryTitlePercent, size: 2})
+                  .substring(1))
+                + '%'
+              ) : (
+                <Skeleton width={60} height={19} />
+              )
+            }
           </div>
-          <div className={styles.secondaryTittleDollar}>
-            +${numberFormatter({value: item.secondaryTitleValue, size: 2})}
+          <div className={classNames(styles.secondaryTittleDollar, styles[item.style])}>
+            {
+              item.secondaryTitleValue ? (
+                (item.style !== 'loss' ? '+'
+                  + '$' + numberFormatter({value: item.secondaryTitleValue, size: 2}) : 
+                  '-' + '$' + numberFormatter({value: item.secondaryTitleValue, size: 2})
+                  .substring(1)
+                )
+                
+              ) : (
+                <Skeleton width={60} height={19} />
+              )
+            }
           </div>
           <DataRangeSelector
             setDataRange={changeDataRange}

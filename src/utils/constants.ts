@@ -1,3 +1,5 @@
+import iconsObj from 'assets/icons/iconsObj';
+
 export const linkToAccountOnEtherscan = 'https://rinkeby.etherscan.io/address/';
 export const startOfEthereumAddress = '0x';
 
@@ -7,12 +9,14 @@ export const networks = [
     jsonRPC: 'http://infura.io/...',
     chainId: 1,
     title: 'Ethereum',
+    icon: iconsObj.ethereum
   },
   {
     name: 'polygon',
     jsonRPC: 'http://infura.io/...',
     chainId: 137,
     title: 'Polygon',
+    icon: iconsObj.polygon
   }
 ];
 

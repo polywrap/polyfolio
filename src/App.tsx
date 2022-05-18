@@ -4,7 +4,6 @@ import MetaMaskOnboarding from '@metamask/onboarding';
 
 import styles from './App.module.scss';
 
-import useAuth from 'common/hooks/useAuth/useAuth';
 import useWallet from 'common/hooks/useWallet/useWallet';
 import LandingPage from 'pages/LandingPage/LandingPage';
 import RoutePath from 'common/modules/routing/routing.enums';
@@ -18,32 +17,18 @@ import NetworkPage from 'pages/DashboardPage/NetworkPage/NetworksPage';
 import ProtocolPage from 'pages/DashboardPage/ProtocolPage/ProtocolPage';
 import useBalance from 'common/hooks/useBalance/useBalance';
 import useTransactions from 'common/hooks/useTransaction/useTransaction';
-import balanceState from 'common/modules/atoms/balanceState';
 import {useRecoilValue} from 'recoil';
-import useSearch from 'common/hooks/useSearch/useSearch';
 import replaceRouteParameters from 'utils/replaceRouteParameters';
+import {searchPersistState} from 'common/modules/atoms/searchState';
+import {userPersistState} from 'common/modules/atoms/userAddress';
 
 function App() {
   useRouteChange();
-  const {user} = useAuth();
-  const {search} = useSearch();
+  const user = useRecoilValue(userPersistState);
+  const search = useRecoilValue(searchPersistState);
   const {check} = useWallet();
-  const {getBalance} = useBalance();
-  const getTransactions = useTransactions();
-  const balance = useRecoilValue(balanceState);
-
-  useEffect(function fetchBalance () {
-    if (user && !search) {
-      getBalance();
-    } else if (search) {
-      getBalance(search)
-    }
-  }, [getBalance, user, search])
-
-  useEffect(function fetchTransaction () {
-    if (balance && !search) getTransactions();
-    else if (balance && search) getTransactions(search);
-  }, [getTransactions, balance, search])
+  useBalance(search ?? user);
+  useTransactions();
 
   useEffect(() => {
     if (MetaMaskOnboarding.isMetaMaskInstalled()) {

@@ -8,9 +8,10 @@ import useTranslation from 'common/hooks/useTranslation/useTranslation';
 
 import { NavLink } from 'react-router-dom';
 import Icon from '../Icon/Icon';
-import useSearch from 'common/hooks/useSearch/useSearch';
 import RoutePath from 'common/modules/routing/routing.enums';
 import replaceRouteParameters from 'utils/replaceRouteParameters';
+import { useRecoilValue } from 'recoil';
+import { searchPersistState } from 'common/modules/atoms/searchState';
 
 interface IHeaderPage {
   icon: string;
@@ -24,7 +25,7 @@ function HeaderPage({
   secondaryTitle,
 }: IHeaderPage) {
   const theme = useTheme();
-  const {search} = useSearch();
+  const search = useRecoilValue(searchPersistState);
   const translation = useTranslation();
 
   const to = search ? replaceRouteParameters(RoutePath.Dashboard, {search}) : RoutePath.BaseRoute;

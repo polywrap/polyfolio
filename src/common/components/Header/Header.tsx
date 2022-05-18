@@ -8,7 +8,6 @@ import iconsObj from 'assets/icons/iconsObj';
 import Logo from 'common/components/Logo/Logo';
 import Icon from 'common/components/Icon/Icon';
 import Input from 'common/components/Input/Input';
-import useAuth from 'common/hooks/useAuth/useAuth';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import MaskIcon from 'common/components/MaskIcon/MaskIcon';
 import HeaderInfo from 'common/components/HeaderInfo/HeaderInfo';
@@ -22,6 +21,8 @@ import RoutePath from 'common/modules/routing/routing.enums';
 import {useNavigate} from 'react-router-dom';
 import useSearch from 'common/hooks/useSearch/useSearch';
 import replaceRouteParameters from 'utils/replaceRouteParameters';
+import { userPersistState } from 'common/modules/atoms/userAddress';
+import { useRecoilValue } from 'recoil';
 
 function Header({
   className = '',
@@ -31,7 +32,7 @@ function Header({
   inputClassName?: string;
 }) {
   const theme = useTheme();
-  const {user} = useAuth();
+  const user = useRecoilValue(userPersistState);
   const {setSearch} = useSearch();
   const navigate = useNavigate();
   const translation = useTranslation();

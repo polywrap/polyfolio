@@ -1,18 +1,26 @@
-import iconsObj from 'assets/icons/iconsObj';
-import { v4 as uuidv4 } from 'uuid';
+/* eslint-disable react-hooks/rules-of-hooks */
+import {v4 as uuidv4} from 'uuid';
 import {rmCommasFromNum, getStringFromPath} from 'utils/helpers';
 import {AssetsItem} from './AssetsTableItem.types';
 import RoutePath from 'common/modules/routing/routing.enums';
-import useGetData from 'common/hooks/useActualFormattedData/useActualFormattedData';
 import {useLocation} from 'react-router-dom';
+import useAssetMetadata from 'common/hooks/useAssetMetadata/useAssetMetadata';
 import {detectProtocolAndChainIdForAsset} from 'utils/dataFormatting';
-import { chainIdToNetwork } from 'utils/constants';
+import {chainIdToNetwork, networkToChainId} from 'utils/constants';
+import {useCurrency} from 'common/currency/Currency.context';
+import {DataRangeSelectorItem} from 'common/components/DateRangeSelector/DataRangeSelector.types';
+import useAssetPageData from 'common/hooks/useAssetPageData/useAssetPageData';
+import { useRecoilValue } from 'recoil';
+import balanceState from 'common/modules/atoms/balanceState';
+import getFormattedData from 'utils/getFormattedData';
 
-const useAssets = () => {
+const useAssets = (dataRange?: DataRangeSelectorItem) => {
+  const {currency} = useCurrency();
   const {pathname} = useLocation();
   const page = getStringFromPath(pathname, 4);
-  const formatData = useGetData(chainIdToNetwork[page]);
-  const preparedData = formatData();
+  const balance = useRecoilValue(balanceState);
+  const preparedData = getFormattedData(balance, chainIdToNetwork[page]);
+  
 
   console.log('use assets render')
 
@@ -21,6 +29,7 @@ const useAssets = () => {
   const allProtocols = preparedData ? preparedData['allProtocols'] : null;
   const allAssets = preparedData ? preparedData['allAssets'] : null;
   const assetsSum = preparedData ? preparedData['allAssetsSum'] : null;
+  let assetPreparedData;
   
   if (allAssets) {
     for (let i = 0; i < allAssets.length; i++) {
@@ -28,25 +37,41 @@ const useAssets = () => {
       const valueTitle = (
         Number(rmCommasFromNum(allAssets[i].token.values[0].value))
         * Number(rmCommasFromNum(allAssets[i].token.values[0].price))
-      ).toString();
+        ).toString();
+        const priceTitle = rmCommasFromNum(allAssets[i].token.values[0].price);
+        
+        const symbol = allAssets[i].token.token.symbol;
+        const [network, protocol] = detectProtocolAndChainIdForAsset(allProtocols, symbol);
+        const assetMetaData = useAssetMetadata(
+          network,
+          networkToChainId[network],
+          allAssets[i].token.token.address
+        );
 
-      const symbol = allAssets[i].token.token.symbol;
-      const [network, protocol] = detectProtocolAndChainIdForAsset(allProtocols, symbol);
+        if (dataRange) {
+          assetPreparedData = useAssetPageData(
+            currency,
+            assetMetaData,
+            priceTitle,
+            dataRange,  
+          );
+        }
 
       menuItems.push({
-        secondaryPricePercentTitle: '???',
+        secondaryPricePercentTitle: assetPreparedData?.percentage ?? '',
         link: `${RoutePath.Asset}`,
         secondaryTitle: allAssets[i].token.token.name,
         valueSecondaryTitle: rmCommasFromNum(allAssets[i].token.values[0].value),
-        pricePercentDollar: '???',
-        iconInfoPage: iconsObj.usdt,
-        icon: iconsObj.assetsUsdt,
+        pricePercentDollar: assetPreparedData?.pricePercentDollar ?? '',
+        iconInfoPage: assetMetaData?.image.large,
+        icon: assetMetaData?.image.small,
         valueTitle,
-        valueIsMinus: false,
-        priceTitle: rmCommasFromNum(allAssets[i].token.values[0].price),
+        valueIsMinus: assetPreparedData?.style === 'profit' ? false : true,
+        priceTitle,
         title: allAssets[i].token.token.symbol,
         percent: percent.toString(),
         symbol: symbol.toLowerCase(),
+        address: allAssets[i].token.token.address,
         network, 
         protocol,
         address: allAssets[i].token.token.address,
