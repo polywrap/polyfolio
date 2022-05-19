@@ -13,6 +13,25 @@
   flex-direction: column;
   margin-bottom: 35px;
 
+  .dropdownContainer {
+    width: 100%;
+    max-height: 51px;
+  }
+  .dropdownContainer {
+    max-width: 208px;
+    margin-bottom: 25.5px;
+    div {
+      button {
+        font-size: var(--font_size_btn);
+        font-weight: var(--font_weight_btn);
+      }
+    }
+
+    .dropdownIcon {
+      margin-right: 15px;
+    }
+  }
+
   .link {
     opacity: 0.75;
     &:not(:last-child) {

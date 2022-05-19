@@ -1,16 +1,19 @@
 export interface AssetsItem {
-  secondaryPricePercentTitle?: number;
-  valueSecondaryTitle?: number;
-  pricePercentDollar?: number;
-  claimableValue?: number;
-  secondaryTitle?: string;
+  secondaryPricePercentTitle: string;
+  valueSecondaryTitle: string;
+  pricePercentDollar: string;
+  secondaryTitle: string;
   valueIsMinus?: boolean;
-  iconInfoPage?: string;
-  valueTitle?: number;
-  priceTitle?: number;
-  percent?: number;
-  title?: string;
-  icon?: string;
-  link?: string;
-  id?: number;
+  iconInfoPage: string;
+  valueTitle: string;
+  priceTitle: string;
+  percent: string;
+  title: string;
+  icon: string;
+  link: string;
+  address: string;
+  symbol: string;
+  protocol: string;
+  network: string;
+  id: string;
 }

@@ -1,5 +1,6 @@
 import {IconsMapper} from './iconsObj.types';
 import filterIconSecondary from 'assets/icons/images/filterIconSecondary.svg';
+import addressStatusIcon from 'assets/icons/images/addressStatusIcon.svg';
 import menuArrowFilled from 'assets/icons/images/menu-arrow-filled.svg';
 import mobileMenu from 'assets/icons/images/mobile-menu.svg';
 import disconnect from 'assets/icons/images/disconnect.svg';
@@ -10,6 +11,7 @@ import logoLight from 'assets/icons/images/logo-light.svg';
 import menuArrow from 'assets/icons/images/menu-arrow.svg';
 import exportIcon from 'assets/icons/images/summarize.svg';
 import leftArrow from 'assets/icons/images/leftArrow.svg';
+import checkedIcon from 'assets/icons/images/checked.svg';
 import backArrow from 'assets/icons/images/backArrow.svg';
 import logoDark from 'assets/icons/images/logo-dark.svg';
 import settings from 'assets/icons/images/settings.svg';
@@ -72,6 +74,7 @@ import {
 const iconsObj: IconsMapper = {
   filterIconSecondary,
   approvalTransaction,
+  addressStatusIcon,
   sendTransaction,
   receiveTransaction,
   exchangeTransaction,
@@ -83,6 +86,7 @@ const iconsObj: IconsMapper = {
   protocolBtc,
   assetsToken,
   protocolEth,
+  checkedIcon,
   assetsMatic,
   exportIcon,
   assetsUsdt,

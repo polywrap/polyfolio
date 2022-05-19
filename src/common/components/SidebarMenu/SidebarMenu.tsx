@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import _map from 'lodash/map';
 import _reject from 'lodash/reject';
 import classNames from 'classnames';
@@ -12,13 +12,23 @@ import {sidebarMenuItems} from './SidebarMenu.config';
 import MaskIcon from 'common/components/MaskIcon/MaskIcon';
 import navigateToExternalLink from 'utils/navigateToExternalLink';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
-import useAuth from 'common/hooks/useAuth/useAuth';
 import RoutePath from 'common/modules/routing/routing.enums';
+import useSearch from 'common/hooks/useSearch/useSearch';
+import { userPersistState } from 'common/modules/atoms/userAddress';
+import { useRecoilValue } from 'recoil';
 
 function SidebarMenu() {
   const theme = useTheme();
-  const {user} = useAuth();
+  const user = useRecoilValue(userPersistState);
   const translation = useTranslation();
+  const {search, setSearch} = useSearch();
+
+  const handleClick = useCallback((event, link, isExternal) => {
+    if (search) {
+      setSearch(null);
+    }
+    navigateToExternalLink({event, link, isExternal});
+  }, [search, setSearch])
 
   const CustomLink = ({link, icon, isExternal, title}: SidebarMenuItem) => {
     const resolved = useResolvedPath(link);
@@ -27,9 +37,9 @@ function SidebarMenu() {
     return (
       <Link
         key={icon}
-        onClick={(event) => navigateToExternalLink({event, link, isExternal})}
+        onClick={(event) => handleClick(event, link, isExternal)}
         className={classNames(styles.link, {[styles.link_active]: !!isActive})}
-        to={link}
+        to={link.replace(':user', user)}
       >
         <MaskIcon size={'18px'} src={icon} className={styles.icon} />
         {translation.SidebarMenu[title]}

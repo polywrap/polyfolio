@@ -1,11 +1,12 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useMemo} from 'react';
 import classNames from 'classnames';
 import iconsObj from 'assets/icons/iconsObj';
 import Icon from 'common/components/Icon/Icon';
 import _map from 'lodash/map';
+import _sumBy from 'lodash/sumBy';
 import styles from './Protocols.module.scss';
 
-import {menuItems} from './ProtocolsItem/ProtocolTableItem.config';
+import useProtocols from './ProtocolsItem/ProtocolTableItem.config';
 import ProtocolTableItem from './ProtocolsItem/ProtocolTableItem';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
@@ -13,6 +14,8 @@ import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import HeaderTable from '../HeaderTable/HeaderTable';
 import {menuFields} from './FilterFieldsProtokols.config';
+import Skeleton from '../Skeleton/Skeleton';
+import { DataRangeSelectorItem } from '../DateRangeSelector/DataRangeSelector.types';
 
 function ProtocolsTable() {
   const [tableIsOpen, setTableIsOpen] = useState(false);
@@ -22,13 +25,25 @@ function ProtocolsTable() {
   const ref = useRef(null);
   const theme = useTheme();
   const translation = useTranslation();
+  const [dataRange, setDataRange] = useState<DataRangeSelectorItem>({});
+  const [dataRangeIsOpen, setDataRangeIsOpen] = useState(true);
+  const menuItems = useProtocols(dataRange);
+
+  const changeDataRange = (e) => {
+    setDataRange(e);
+    setDataRangeIsOpen(!dataRangeIsOpen);
+  };
 
   const onChange = (name, value) => {
     setFilter({...filters, protocols: {...filter.protocols, [name]: !value?.checked}});
   };
 
-  return (
-    <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>
+  const summaryValue = useMemo(() => {
+    return _sumBy(menuItems, (val) => Number(val.valueTitle))
+  }, [menuItems])
+
+  return menuItems.length > 0 ? (
+<div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>
       <HeaderTable
         onSaveFilter={() => {
           setFilters(filter);
@@ -41,7 +56,11 @@ function ProtocolsTable() {
         menuFields={menuFields}
         onChange={onChange}
         isOpen={isOpen}
-        sum={3837337.0}
+        sum={summaryValue.toString()}
+        changeDataRange={changeDataRange}
+        dataRange={dataRange}
+        dataRangeIsOpen={dataRangeIsOpen}
+        setDataRangeIsOpen={setDataRangeIsOpen}
       />
       <div className={classNames(styles.table_container, {[styles.hidden]: tableIsOpen})}>
         <div className={styles.title_container}>
@@ -68,6 +87,10 @@ function ProtocolsTable() {
           <ProtocolTableItem {...menuItem} key={menuItem.id} />
         ))}
       </div>
+    </div>
+  ) : (
+    <div style={{marginBottom: 48}}>
+      <Skeleton width={1256} height={435} />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import classNames from 'classnames';
 
 import styles from './Profile.module.scss';
@@ -15,14 +15,21 @@ import useOnClickOutside from 'common/hooks/useOnClickOutside/useOnClickOutside'
 import ProfileDropdownMenu from 'common/components/ProfileDropdownMenu/ProfileDropdownMenu';
 import Button from '../Button/Button';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
-
-const MOCK_VALUE = 13337337;
+import useWallet from 'common/hooks/useWallet/useWallet';
+import Skeleton from '../Skeleton/Skeleton';
+import getFormattedData from 'utils/getFormattedData';
+import { useRecoilValue } from 'recoil';
+import balanceState from 'common/modules/atoms/balanceState';
 
 function Profile() {
   const theme = useTheme();
   const ref = useRef(null);
   const translation = useTranslation();
-  const {user, logOut} = useAuth();
+  const { user, logOut } = useAuth();
+  const { connect } = useWallet();
+  const balance = useRecoilValue(balanceState);
+  const preparedData = getFormattedData(balance);
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   useOnClickOutside(ref.current, () => isOpen && setIsOpen(false));
@@ -47,13 +54,27 @@ function Profile() {
                 </TooltipTrigger>
               </div>
             </div>
-            <div className={styles.amount}>${numberFormatter({value: MOCK_VALUE, size: 2})}</div>
+            {
+              preparedData['allAssetsSum']
+                ? (
+                  <div className={styles.amount}>
+                    ${numberFormatter({
+                      value: preparedData['allAssetsSum'],
+                      size: 2
+                    })}
+                  </div>
+                )
+                : (
+                  <Skeleton width={127.7} height={32} />
+                )
+            }
+
           </div>
         </>
       ) : (
         <div className={styles.public_profile}>
           <div className={styles.title}>{translation.Profile.title}</div>
-          <Button title={translation.Profile.button} size={'small'} />
+          <Button title={translation.Profile.button} onClick={() => connect()} size={'small'} />
         </div>
       )}
     </div>

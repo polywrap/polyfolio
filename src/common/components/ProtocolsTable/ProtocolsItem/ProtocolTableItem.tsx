@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './ProtocolTableItem.module.scss';
-import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import Icon from 'common/components/Icon/Icon';
 import numberFormatter from 'utils/numberFormatter';
 import {useNavigate} from 'react-router-dom';
@@ -9,22 +8,34 @@ import MenuArrow from 'common/components/MenuArrow/MenuArrow';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import PricesValue from '../../PricesValue/PricesValue';
 import classNames from 'classnames';
+import { networkToChainId } from 'utils/constants';
+import RoutePath from 'common/modules/routing/routing.enums';
+import replaceRouteParameters from 'utils/replaceRouteParameters';
+import { useRecoilValue } from 'recoil';
+import { searchPersistState } from 'common/modules/atoms/searchState';
+import { userPersistState } from 'common/modules/atoms/userAddress';
 
 function ProtocolsItem(menuItem) {
   const navigate = useNavigate();
-  const translation = useTranslation();
+  const user = useRecoilValue(userPersistState);
   const {
     secondaryTitleDollar,
     secondaryTitlePercent,
     claimableValue,
     valueIsMinus,
     valueTitle,
+    network,
     title,
     link,
     icon,
-    id,
+    symbol,
   } = menuItem;
-  const path = id && link.replace(':id', `${id}`);
+  const search = useRecoilValue(searchPersistState);
+  const path = symbol && !search 
+    ? replaceRouteParameters(link, {chainId: networkToChainId[network], user, protocol: symbol})
+    : search 
+      ? replaceRouteParameters(link, {chainId: networkToChainId[network], search, protocol: symbol}) 
+      : RoutePath.NotFound;
 
   const {filters} = useFiltersTables();
 
@@ -34,7 +45,7 @@ function ProtocolsItem(menuItem) {
         <div className={styles.menu_item}>
           <div className={styles.title_container}>
             <Icon src={icon} className={styles.icon} />
-            <div className={styles.title}>{translation.Protocols[title]}</div>
+            <div className={styles.title}>{title}</div>
           </div>
           <PricesValue
             secondaryPricePercentTitle={secondaryTitlePercent}

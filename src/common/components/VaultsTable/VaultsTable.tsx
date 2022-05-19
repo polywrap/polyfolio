@@ -5,7 +5,7 @@ import Icon from 'common/components/Icon/Icon';
 import _map from 'lodash/map';
 import styles from './Vaults.module.scss';
 
-import {menuItems} from './VaultsTableItem/VaultsTableItem.config';
+import GetVaults from './VaultsTableItem/VaultsTableItem.config';
 import VaultsItem from './VaultsTableItem/VaultsTableItem';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import HeaderTable from '../HeaderTable/HeaderTable';
@@ -13,8 +13,16 @@ import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
 import {menuFields} from './FilterFieldsVaults.config';
+import {useLocation} from 'react-router-dom';
+import {getStringFromPath} from 'utils/helpers';
+import { DataRangeSelectorItem } from '../DateRangeSelector/DataRangeSelector.types';
+import balanceState from 'common/modules/atoms/balanceState';
+import { useRecoilValue } from 'recoil';
+import getFormattedData from 'utils/getFormattedData';
 
-function ProtocolsTable() {
+function VaultsTable() {
+  const {pathname} = useLocation();
+  const page = getStringFromPath(pathname, 1);
   const [tableIsOpen, setTableIsOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null);
@@ -22,6 +30,16 @@ function ProtocolsTable() {
   const translation = useTranslation();
   const {filters, setFilters} = useFiltersTables();
   const [filter, setFilter] = useState<Filters>(filters);
+  const [dataRange, setDataRange] = useState<DataRangeSelectorItem>({});
+  const [dataRangeIsOpen, setDataRangeIsOpen] = useState(true);
+  const menuItems = GetVaults();
+  const balance = useRecoilValue(balanceState);
+  const preparedData = getFormattedData(balance, page);
+
+  const changeDataRange = (e) => {
+    setDataRange(e);
+    setDataRangeIsOpen(!dataRangeIsOpen);
+  };
 
   const onChange = (name, value) => {
     setFilter({...filter, vaults: {...filter.vaults, [name]: !value?.checked}});
@@ -41,7 +59,11 @@ function ProtocolsTable() {
         menuFields={menuFields}
         onChange={onChange}
         isOpen={isOpen}
-        sum={9337337.0}
+        sum={preparedData['allAssetsSum']}
+        changeDataRange={changeDataRange}
+        dataRange={dataRange}
+        dataRangeIsOpen={dataRangeIsOpen}
+        setDataRangeIsOpen={setDataRangeIsOpen}
       />
       <div className={classNames(styles.table_container, {[styles.hidden]: tableIsOpen})}>
         <div className={styles.title_container}>
@@ -80,4 +102,4 @@ function ProtocolsTable() {
   );
 }
 
-export default ProtocolsTable;
+export default VaultsTable;

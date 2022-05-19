@@ -36,7 +36,7 @@
   .aggregate {
     height: 40px;
     width: 0.9px;
-    background-color: #74dd9f;
+    background-color: var(--color_green_bg);
   }
   .hidden {
     display: none !important;
@@ -101,6 +101,7 @@
     @include flex_grow();
     justify-content: flex-end;
     width: calc(100% / 4);
+    align-items: center;
     .valueTitle {
       text-align: end;
       font-size: var(--font_size);
@@ -110,6 +111,7 @@
       font-weight: var(--font_weight_normal);
       color: var(--color);
       opacity: 0.7;
+      justify-content: right;
     }
   }
   .arrowIcon {

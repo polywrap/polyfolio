@@ -8,6 +8,10 @@ import useTranslation from 'common/hooks/useTranslation/useTranslation';
 
 import { NavLink } from 'react-router-dom';
 import Icon from '../Icon/Icon';
+import RoutePath from 'common/modules/routing/routing.enums';
+import replaceRouteParameters from 'utils/replaceRouteParameters';
+import { useRecoilValue } from 'recoil';
+import { searchPersistState } from 'common/modules/atoms/searchState';
 
 interface IHeaderPage {
   icon: string;
@@ -20,13 +24,16 @@ function HeaderPage({
   title,
   secondaryTitle,
 }: IHeaderPage) {
-  const theme = useTheme()
-  const translation = useTranslation()
+  const theme = useTheme();
+  const search = useRecoilValue(searchPersistState);
+  const translation = useTranslation();
+
+  const to = search ? replaceRouteParameters(RoutePath.Dashboard, {search}) : RoutePath.BaseRoute;
 
   return (
     <div className={classNames(styles[theme])}>
       <div>
-        <NavLink className={styles.link} to='/dashboard/portfolio'>
+        <NavLink className={styles.link} to={to}>
           <div className={styles.arrow_container}>
             <Icon src={iconsObj.backArrow} className={styles.arrow} />
           </div>

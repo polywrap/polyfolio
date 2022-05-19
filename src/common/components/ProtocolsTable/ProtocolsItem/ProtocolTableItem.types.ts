@@ -1,11 +1,13 @@
 export interface ProtocolsItem {
-  secondaryTitlePercent?: number;
-  secondaryTitleDollar?: number;
-  claimableValue?: number;
+  secondaryTitlePercent: string;
+  secondaryTitleDollar: string;
+  claimableValue: string;
   valueIsMinus?: boolean;
-  valueTitle?: number;
-  title?: string;
+  valueTitle: string;
+  title: string;
   icon?: string;
   link?: string;
-  id?: number;
+  network: string;
+  symbol: string;
+  id: string;
 }

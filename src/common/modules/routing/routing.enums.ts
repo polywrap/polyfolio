@@ -1,6 +1,7 @@
 enum RoutePath {
   BaseRoute = '/',
 
+  NotFound = '/not-found',
   RequestFeatures = '/request-features',
   Docs = '/docs',
   Polywrap = '/polywrap',
@@ -11,11 +12,11 @@ enum RoutePath {
 
   RoadMap = '/roadmap',
   Support = '/support',
-  Asset = '/asset/:id',
-  Network = '/network/:id',
-  Protocol = '/protocol/:id',
-  Dashboard = '/dashboard/portfolio',
-  DashboardTransactions = '/dashboard/transactions',
+  Dashboard = '/account/:user',
+  DashboardTransactions = '/account/:user/txns',
+  Network = '/account/:user/network/:chainId',
+  Asset = '/account/:user/network/:chainId/assets/:asset',
+  Protocol = '/account/:user/network/:chainId/protocol/:protocol',
 }
 
 export default RoutePath;

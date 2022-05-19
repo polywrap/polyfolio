@@ -1,11 +1,9 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, {Fragment, useEffect} from 'react';
 import {Route, Routes, Navigate} from 'react-router-dom';
 import MetaMaskOnboarding from '@metamask/onboarding';
 
 import styles from './App.module.scss';
 
-import useAuth from 'common/hooks/useAuth/useAuth';
 import useWallet from 'common/hooks/useWallet/useWallet';
 import LandingPage from 'pages/LandingPage/LandingPage';
 import RoutePath from 'common/modules/routing/routing.enums';
@@ -14,24 +12,29 @@ import Portfolio from 'pages/DashboardPage/Portfolio/Portfolio';
 import Transactions from 'pages/DashboardPage/Transactions/Transactions';
 import SettingsPage from 'pages/SettingsPage/SettingsPage';
 import AssetPage from 'pages/DashboardPage/AssetPage/AssetPage';
-import WrapperInfoPage from 'pages/WrapperInfoPage/WrapperInfoPage';
-import NetworksInfo from 'pages/WrapperInfoPage/NetworksInfo/NetworksInfo';
-import ProtocolsInfo from 'pages/WrapperInfoPage/ProtocolsInfo/ProtocolsInfo';
+import PageUnderConstruction from 'pages/PageUnderConstruction/PageUnderConstruction';
+import NetworkPage from 'pages/DashboardPage/NetworkPage/NetworksPage';
+import ProtocolPage from 'pages/DashboardPage/ProtocolPage/ProtocolPage';
+import useBalance from 'common/hooks/useBalance/useBalance';
+import useTransactions from 'common/hooks/useTransaction/useTransaction';
+import {useRecoilValue} from 'recoil';
+import replaceRouteParameters from 'utils/replaceRouteParameters';
+import {searchPersistState} from 'common/modules/atoms/searchState';
+import {userPersistState} from 'common/modules/atoms/userAddress';
 
 function App() {
   useRouteChange();
-  const {user} = useAuth();
+  const user = useRecoilValue(userPersistState);
+  const search = useRecoilValue(searchPersistState);
   const {check} = useWallet();
+  useBalance(search ?? user);
+  useTransactions();
 
   useEffect(() => {
     if (MetaMaskOnboarding.isMetaMaskInstalled()) {
       window['ethereum'].on('accountsChanged', check);
-
-      return () => {
-        window['ethereum'].off('accountsChanged', check);
-      };
     }
-  }, []);
+  }, [check]);
 
   const ProtectedRoute = ({user, redirectPath = RoutePath.BaseRoute, children}) => {
     if (!user) {
@@ -43,7 +46,7 @@ function App() {
 
   const AuthorizedMainRoute = ({user, redirectPath = RoutePath.Dashboard, children}) => {
     if (user) {
-      return <Navigate to={redirectPath} replace />;
+      return <Navigate to={replaceRouteParameters(redirectPath, {user})} replace />;
     }
 
     return children;
@@ -61,11 +64,10 @@ function App() {
               </AuthorizedMainRoute>
             }
           />
-          <Route path={RoutePath.Docs} element={<LandingPage />} />
           <Route
             path={RoutePath.Asset}
             element={
-              <ProtectedRoute user={user}>
+              <ProtectedRoute user={user ?? search}>
                 <AssetPage />
               </ProtectedRoute>
             }
@@ -73,7 +75,7 @@ function App() {
           <Route
             path={RoutePath.Dashboard}
             element={
-              <ProtectedRoute user={user}>
+              <ProtectedRoute user={user ?? search}>
                 <Portfolio />
               </ProtectedRoute>
             }
@@ -81,7 +83,7 @@ function App() {
           <Route
             path={RoutePath.DashboardTransactions}
             element={
-              <ProtectedRoute user={user}>
+              <ProtectedRoute user={user ?? search}>
                 <Transactions />
               </ProtectedRoute>
             }
@@ -89,30 +91,34 @@ function App() {
           <Route
             path={RoutePath.Network}
             element={
-              <ProtectedRoute user={user}>
-                <WrapperInfoPage>
-                  <NetworksInfo />
-                </WrapperInfoPage>
+              <ProtectedRoute user={user ?? search}>
+                <NetworkPage />
               </ProtectedRoute>
             }
           />
           <Route
             path={RoutePath.Protocol}
             element={
-              <ProtectedRoute user={user}>
-                <WrapperInfoPage>
-                  <ProtocolsInfo />
-                </WrapperInfoPage>
+              <ProtectedRoute user={user ?? search}>
+                <ProtocolPage />
               </ProtectedRoute>
             }
           />
           <Route
             path={RoutePath.Settings}
-            element={
-              <ProtectedRoute user={user}>
-                <SettingsPage />
-              </ProtectedRoute>
-            }
+            element={<SettingsPage />}
+          />
+          <Route
+            path={RoutePath.Support}
+            element={<PageUnderConstruction />}
+          />
+          <Route
+            path={RoutePath.Polywrap}
+            element={<PageUnderConstruction />}
+          />
+          <Route
+            path={RoutePath.Docs}
+            element={<PageUnderConstruction />}
           />
           <Route path={'*'} element={<Navigate to={RoutePath.BaseRoute} />} />
         </Fragment>

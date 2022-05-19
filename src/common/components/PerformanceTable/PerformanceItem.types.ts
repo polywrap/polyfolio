@@ -1,5 +1,5 @@
 export interface PerformanceItem {
-  title?: number;
-  secondaryTitleValue?: number;
-  secondaryTitlePercent?: number;
+  title?: string;
+  secondaryTitleValue?: string;
+  secondaryTitlePercent?: string;
 }

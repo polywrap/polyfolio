@@ -2,19 +2,12 @@ export const colors = {
   // Green
   color_green: '#10C7A2',
   color_green_50: '#F6FFFC',
-  color_green_100: '#D1FBEB',
-  color_green_200: '#A9F5DB',
   color_green_300: '#70ECC9',
   color_green_400: '#35DCB3',
   color_green_500: '#10C7A2',
-  color_green_600: '#05AC85',
-  color_green_700: '#05906E',
-  color_green_800: '#077259',
-  color_green_900: '#065D4A',
   color_green_bg: '#74DD9F',
 
   // Emerald
-  // color_emerald: '#10C7A2',
   color_emerald_50: '#F7FFFB',
   color_emerald_100: '#D0FAE4',
   color_emerald_200: '#A7F3CF',
@@ -58,5 +51,10 @@ export const colors = {
   color_blue_gray_800: '#1E293B',
   color_blue_gray_900: '#0F1422',
   color_blue_gray_bg: '#1E2B45',
+
+  // Red
+  color_red: '#e53e3e',
+
+  
   color_white: '#FFFFFF',
 };

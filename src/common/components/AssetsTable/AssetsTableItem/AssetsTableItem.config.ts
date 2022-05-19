@@ -1,128 +1,82 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+import {v4 as uuidv4} from 'uuid';
+import {rmCommasFromNum, getStringFromPath} from 'utils/helpers';
 import {AssetsItem} from './AssetsTableItem.types';
-import iconsObj from 'assets/icons/iconsObj';
 import RoutePath from 'common/modules/routing/routing.enums';
+import {useLocation} from 'react-router-dom';
+import useAssetMetadata from 'common/hooks/useAssetMetadata/useAssetMetadata';
+import {detectProtocolAndChainIdForAsset} from 'utils/dataFormatting';
+import {chainIdToNetwork, networkToChainId} from 'utils/constants';
+import {useCurrency} from 'common/currency/Currency.context';
+import {DataRangeSelectorItem} from 'common/components/DateRangeSelector/DataRangeSelector.types';
+import useAssetPageData from 'common/hooks/useAssetPageData/useAssetPageData';
+import { useRecoilValue } from 'recoil';
+import balanceState from 'common/modules/atoms/balanceState';
+import getFormattedData from 'utils/getFormattedData';
 
-const menuItems: AssetsItem[] = [
-  {
-    secondaryPricePercentTitle: 15.32,
-    link: `${RoutePath.Asset}`,
-    secondaryTitle: 'usdtSecondary',
-    valueSecondaryTitle: 8310072.32,
-    pricePercentDollar: 163.63,
-    iconInfoPage: iconsObj.usdt,
-    icon: iconsObj.assetsUsdt,
-    valueTitle: 8310072.32,
-    valueIsMinus: false,
-    priceTitle: 1,
-    title: 'usdt',
-    percent: 49,
-    id: 1,
-  },
-  {
-    secondaryPricePercentTitle: 15.32,
-    link: `${RoutePath.Asset}`,
-    valueSecondaryTitle: 8310072.32,
-    secondaryTitle: 'btcSecondary',
-    iconInfoPage: iconsObj.bitcoin,
-    icon: iconsObj.assetsBitcoin,
-    pricePercentDollar: 163.63,
-    valueTitle: 1150066.5,
-    priceTitle: 48939.13,
-    valueIsMinus: false,
-    title: 'btc',
-    percent: 24,
-    id: 2,
-  },
-  {
-    valueSecondaryTitle: 8310072.32,
-    secondaryPricePercentTitle: 15.32,
-    link: `${RoutePath.Asset}`,
-    iconInfoPage: iconsObj.ethereum,
-    secondaryTitle: 'ethSecondary',
-    pricePercentDollar: 163.63,
-    icon: iconsObj.assetsEth,
-    valueTitle: 1150066.5,
-    valueIsMinus: true,
-    priceTitle: 4303.0,
-    title: 'eth',
-    percent: 23,
-    id: 3,
-  },
-  {
-    secondaryPricePercentTitle: 15.32,
-    link: `${RoutePath.Asset}`,
-    valueSecondaryTitle: 8310072.32,
-    secondaryTitle: 'ufoSecondary',
-    pricePercentDollar: 163.63,
-    iconInfoPage: iconsObj.ufo,
-    icon: iconsObj.assetsUfo,
-    valueIsMinus: false,
-    valueTitle: 1072.32,
-    priceTitle: 28,
-    title: 'ufo',
-    percent: 1,
-    id: 4,
-  },
-  {
-    secondaryPricePercentTitle: 15.32,
-    valueSecondaryTitle: 8310072.32,
-    link: `${RoutePath.Asset}`,
-    secondaryTitle: 'gelSecondary',
-    pricePercentDollar: 163.63,
-    iconInfoPage: iconsObj.gel,
-    icon: iconsObj.assetsGel,
-    valueIsMinus: false,
-    valueTitle: 1072.32,
-    priceTitle: 29.53,
-    title: 'gel',
-    percent: 1,
-    id: 5,
-  },
-  {
-    secondaryPricePercentTitle: 15.32,
-    link: `${RoutePath.Asset}`,
-    valueSecondaryTitle: 8310072.32,
-    secondaryTitle: 'cqtSecondary',
-    pricePercentDollar: 163.63,
-    iconInfoPage: iconsObj.cqt,
-    icon: iconsObj.assetsCqt,
-    valueTitle: 1072.32,
-    valueIsMinus: true,
-    priceTitle: 11.45,
-    title: 'cqt',
-    percent: 1,
-    id: 6,
-  },
-  {
-    secondaryPricePercentTitle: 15.32,
-    valueSecondaryTitle: 8310072.32,
-    secondaryTitle: 'ftmSecondary',
-    link: `${RoutePath.Asset}`,
-    pricePercentDollar: 163.63,
-    iconInfoPage: iconsObj.ftm,
-    icon: iconsObj.assetsFtm,
-    valueTitle: 1072.32,
-    valueIsMinus: false,
-    priceTitle: 53.89,
-    title: 'ftm',
-    percent: 1,
-    id: 7,
-  },
-  {
-    secondaryPricePercentTitle: 15.32,
-    secondaryTitle: 'maticSecondary',
-    valueSecondaryTitle: 8310072.32,
-    iconInfoPage: iconsObj.poligon,
-    link: `${RoutePath.Asset}`,
-    pricePercentDollar: 163.63,
-    icon: iconsObj.assetsMatic,
-    valueIsMinus: false,
-    valueTitle: 1072.32,
-    priceTitle: 73.89,
-    title: 'matic',
-    percent: 1,
-    id: 8,
-  },
-];
+const useAssets = (dataRange?: DataRangeSelectorItem) => {
+  const {currency} = useCurrency();
+  const {pathname} = useLocation();
+  const page = getStringFromPath(pathname, 4);
+  const balance = useRecoilValue(balanceState);
+  const preparedData = getFormattedData(balance, chainIdToNetwork[page]);
+  
+  const menuItems: AssetsItem[] = [];
+  
+  const allProtocols = preparedData ? preparedData['allProtocols'] : null;
+  const allAssets = preparedData ? preparedData['allAssets'] : null;
+  const assetsSum = preparedData ? preparedData['allAssetsSum'] : null;
+  let assetPreparedData;
+  
+  if (allAssets) {
+    for (let i = 0; i < allAssets.length; i++) {
+      const percent = Number(rmCommasFromNum(allAssets[i].token.values[0].value)) * 100 / assetsSum;
+      const valueTitle = (
+        Number(rmCommasFromNum(allAssets[i].token.values[0].value))
+        * Number(rmCommasFromNum(allAssets[i].token.values[0].price))
+        ).toString();
+        const priceTitle = rmCommasFromNum(allAssets[i].token.values[0].price);
+        
+        const symbol = allAssets[i].token.token.symbol;
+        const [network, protocol] = detectProtocolAndChainIdForAsset(allProtocols, symbol);
+        const assetMetaData = useAssetMetadata(
+          network,
+          networkToChainId[network],
+          allAssets[i].token.token.address
+        );
 
-export {menuItems};
+        if (dataRange) {
+          assetPreparedData = useAssetPageData(
+            currency,
+            assetMetaData,
+            priceTitle,
+            dataRange,  
+          );
+        }
+
+      menuItems.push({
+        secondaryPricePercentTitle: assetPreparedData?.percentage ?? '',
+        link: `${RoutePath.Asset}`,
+        secondaryTitle: allAssets[i].token.token.name,
+        valueSecondaryTitle: rmCommasFromNum(allAssets[i].token.values[0].value),
+        pricePercentDollar: assetPreparedData?.pricePercentDollar ?? '',
+        iconInfoPage: assetMetaData?.image.large,
+        icon: assetMetaData?.image.small,
+        valueTitle,
+        valueIsMinus: assetPreparedData?.style === 'profit' ? false : true,
+        priceTitle,
+        title: allAssets[i].token.token.symbol,
+        percent: percent.toString(),
+        symbol: symbol.toLowerCase(),
+        address: allAssets[i].token.token.address,
+        network, 
+        protocol,
+        id: uuidv4(),
+      });
+    }
+  }
+
+  return menuItems;
+}
+
+export default useAssets;

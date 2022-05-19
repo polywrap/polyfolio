@@ -1,6 +1,6 @@
 export interface HeaderInfoTypes {
-  title: number;
   id: number;
-  value: number;
-  percent?: number;
+  title: string;
+  value: string;
+  percent?: string;
 }

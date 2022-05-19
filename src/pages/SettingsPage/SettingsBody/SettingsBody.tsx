@@ -15,7 +15,7 @@ import LocalizationPicker from 'common/components/LocalizationPicker/Localizatio
 
 function SettingsBody() {
   const theme = useTheme()
-  const { user } = useAuth()
+  const {user} = useAuth()
   const translation = useTranslation()
 
   return (

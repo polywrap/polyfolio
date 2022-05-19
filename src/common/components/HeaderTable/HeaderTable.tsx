@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import React, {useState} from 'react';
+import React from 'react';
 import classNames from 'classnames';
 import Icon from 'common/components/Icon/Icon';
 import iconsObj from 'assets/icons/iconsObj';
@@ -23,6 +22,10 @@ function HeaderTable({
   filter,
   title,
   sum,
+  changeDataRange,
+  dataRange,
+  dataRangeIsOpen,
+  setDataRangeIsOpen,
 }: {
   filter;
   setTableIsOpen;
@@ -32,18 +35,14 @@ function HeaderTable({
   menuFields;
   title: string;
   setIsOpen;
-  sum: number;
+  sum: string;
+  changeDataRange;
+  dataRange;
+  dataRangeIsOpen: boolean;
+  setDataRangeIsOpen;
 }) {
-  const [isOpen, setIsOpen] = useState(true);
-  const [dataRange, setDataRange] = useState({});
   const translation = useTranslation();
-
   const theme = useTheme();
-
-  const changeDataRange = (e) => {
-    setDataRange(e);
-    setIsOpen(!isOpen);
-  };
 
   const Menu = () => {
     return (
@@ -95,14 +94,14 @@ function HeaderTable({
         <DataRangeSelector
           setDataRange={changeDataRange}
           className={styles.btn}
-          setIsOpen={setIsOpen}
+          setIsOpen={setDataRangeIsOpen}
           dataRange={dataRange}
-          isOpen={isOpen}
+          isOpen={dataRangeIsOpen}
           fontSize="14px"
         />
       </div>
       <div className={styles.filter_container}>
-        <h4>${numberFormatter({value: sum, size: 2})}</h4>
+        <h4>${numberFormatter({value: sum ?? '0', size: 2})}</h4>
         <TooltipTrigger isOpen={filterIsOpen} placement={'bottom-end'} popper={<Menu />}>
           <button onClick={() => setFilterIsOpen()}>
             <Icon src={iconsObj.filterIcon} className={styles.icon} />

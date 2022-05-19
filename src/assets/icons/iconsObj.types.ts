@@ -3,6 +3,7 @@ export interface IconsMapper extends Record<string, unknown> {
   exchangeTransaction: string;
   approvalTransaction: string;
   receiveTransaction: string;
+  addressStatusIcon: string;
   menuArrowFilled: string;
   protocolBardger: string;
   sendTransaction: string;
@@ -13,6 +14,7 @@ export interface IconsMapper extends Record<string, unknown> {
   protocolGel: string;
   protocolEth: string;
   protocolUfo: string;
+  checkedIcon: string;
   assetsUsdt: string;
   disconnect: string;
   mobileMenu: string;

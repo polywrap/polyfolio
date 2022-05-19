@@ -1,64 +1,41 @@
 import {NetworksItem} from './Networks.types';
 import iconsObj from 'assets/icons/iconsObj';
 import RoutePath from 'common/modules/routing/routing.enums';
+import {rmCommasFromNum} from 'utils/helpers';
+import _ from 'lodash';
+import {ejectAssetsFromProtocol, getAssetsValueSum} from 'utils/dataFormatting';
+import {useNetworks} from 'common/networks/Networks.context';
+import getFormattedData from 'utils/getFormattedData';
+import { useRecoilValue } from 'recoil';
+import balanceState from 'common/modules/atoms/balanceState';
 
-const menuItems: NetworksItem[] = [
-  {
-    title: 'eth',
-    secondaryTitle: 5323.39,
-    icon: iconsObj.ethereum,
-    link: RoutePath.Network,
-    id: 1,
-  },
-  {
-    title: 'polygon',
-    secondaryTitle: 5323.39,
-    icon: iconsObj.polygon,
-    link: RoutePath.Network,
-    id: 2,
-  },
-  {
-    title: 'avalanch',
-    secondaryTitle: 5323.39,
-    icon: iconsObj.avalanch,
-    link: RoutePath.Network,
-    id: 3,
-  },
-  {
-    title: 'eth',
-    secondaryTitle: 5323.39,
-    icon: iconsObj.ethereum,
-    link: RoutePath.Network,
-    id: 4,
-  },
-  {
-    title: 'polygon',
-    secondaryTitle: 5323.39,
-    icon: iconsObj.polygon,
-    link: RoutePath.Network,
-    id: 5,
-  },
-  {
-    title: 'avalanch',
-    secondaryTitle: 5323.39,
-    icon: iconsObj.avalanch,
-    link: RoutePath.Network,
-    id: 6,
-  },
-  {
-    title: 'polygon',
-    secondaryTitle: 5323.39,
-    icon: iconsObj.polygon,
-    link: RoutePath.Network,
-    id: 7,
-  },
-  {
-    title: 'avalanch',
-    secondaryTitle: 5323.39,
-    icon: iconsObj.avalanch,
-    link: RoutePath.Network,
-    id: 8,
-  },
-];
+const useNetwork = () => {
+  const balance = useRecoilValue(balanceState);
+  const preparedData = getFormattedData(balance);
+  const {network} = useNetworks();
+  const menuItems: NetworksItem[] = [];
+  
+  if (preparedData['balance']) {
+    network.forEach(item => {
+      let allAssets = [];
+      const name = item['name'];
+      _.forEach(preparedData['balance'][name]?.protocols, protocol => {
+        allAssets = _.flatten([...allAssets, ...ejectAssetsFromProtocol(protocol)]);
+      })
 
-export {menuItems};
+      const allAssetsSum = getAssetsValueSum(allAssets);
+
+      if (item.checked) menuItems.push({
+        title: item.title,
+        secondaryTitle: rmCommasFromNum(allAssetsSum.toString()),
+        icon: iconsObj[name] as string,
+        link: RoutePath.Network,
+        id: name.toLowerCase(),
+      })
+    })
+  }
+
+  return menuItems;
+}
+
+export default useNetwork;

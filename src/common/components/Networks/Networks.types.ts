@@ -1,7 +1,7 @@
 export interface NetworksItem {
-  title?: string;
-  secondaryTitle?: number;
+  title: string;
+  secondaryTitle: string;
   icon?: string;
-  link?: string;
-  id?: number;
+  link: string;
+  id: string;
 }
