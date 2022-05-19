@@ -1,37 +1,63 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import classNames from 'classnames';
 import styles from './AssetBreakDown.module.scss';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import numberFormatter from 'utils/numberFormatter';
-import { IAssetBreakDown } from './AssetBreakDown.types';
+import {mockData} from './AssetBreakDown.config';
+import AssetBreakDownItem from './AssetBreakDownItems/AssetBreakDownItems';
+import Icon from 'common/components/Icon/Icon';
+import { IAssetBreakDownItem } from './AssetBreakDown.types';
 
-export default function AssetBreakdown ({
-  title,
-  assets,
-}: IAssetBreakDown) {
+export default function AssetBreakdown () {
   const theme = useTheme();
+
+  const percentString = useMemo(() => {
+    let sum = 0;
+    const totalAssetPrice = [];
+    const totalAssetPercent = [];
+
+    mockData.assets.forEach((asset: IAssetBreakDownItem) => {
+      const price = Number(asset.price);
+      const value = Number(asset.value);
+      sum += price * value;
+      totalAssetPrice.push(price * value);
+    })
+
+    totalAssetPrice.forEach((price: number) => {
+      totalAssetPercent.push((100 * price) / sum);
+    })
+
+    const result = totalAssetPercent.map((percent: number) => Math.round(percent).toString() + '%').join(' / ');
+    
+    return result;
+  }, []);
 
   return (
     <div className={classNames(styles[theme], styles.AssetBreakDown)}>
-      <div className={styles.title}>
-        {title} Asset Breakdown
+      <div className={styles.mainTitle}>
+        {mockData.title} Asset Breakdown
       </div>
       <div className={styles.table}>
         <div className={styles.head}>
-          <div>icons</div>
-          <div>
-            <div>{title}</div>
-            <div></div>
+          <div className={styles.left}>
+            {
+              mockData.assets.map(icon => <Icon key={icon?.symbol} src={icon?.icon} className={styles.icon} />)
+            }
+            <div className={styles.text}>
+              <div className={styles.title}>{mockData.title}</div>
+              <div className={styles.secondaryValue}>{percentString}</div>
+            </div>
           </div>
-          <div>
-            <div>{numberFormatter({value: 500, size: 2})}</div>
-            <div>{numberFormatter({value: 500, size: 2})}</div>
+          <div className={styles.text}>
+            <div className={styles.title}>${numberFormatter({value: 500, size: 2})}</div>
+            <div className={classNames(styles.secondaryValue, styles.value)}>{numberFormatter({value: 500, size: 2})}</div>
           </div>
         </div>
         <div className={styles.body}>
-          <div></div>
-          <div></div>
+          {
+            mockData.assets.map(asset => <AssetBreakDownItem key={asset.symbol} {...asset} />)
+          }
         </div>
       </div>
     </div>
