@@ -23,7 +23,7 @@ export default function useTransactions() {
         query,
         variables: {
           account: user,
-          currency: currency,
+          vsCurrency: currency,
         },
         config: getCONFIG()
       });
