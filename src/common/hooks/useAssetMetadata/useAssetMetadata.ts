@@ -25,9 +25,9 @@ const useAssetMetadata = (id: string, chainId: number, tokenAddress: string) => 
       setAsset(assetData);
     } else {
       // ADD ERROR HANDLER
-      console.log('ERRORS-------');
+      /* console.log('useAssetMetadata ERRORS-------');
       console.log(errors);
-      console.log('-----ERRORS');
+      console.log('-----ERRORS'); */
     }
   }, [client, id, tokenAddress])
 
