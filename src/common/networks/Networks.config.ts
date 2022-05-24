@@ -1,4 +1,4 @@
-export const networks = [
+export default [
   {
     name: 'ethereum',
     jsonRPC: 'http://infura.io/...',

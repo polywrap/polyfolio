@@ -12,11 +12,11 @@ import balanceState from 'common/modules/atoms/balanceState';
 const useNetwork = () => {
   const balance = useRecoilValue(balanceState);
   const preparedData = getFormattedData(balance);
-  const {network} = useNetworks();
+  const {networks} = useNetworks();
   const menuItems: NetworksItem[] = [];
 
   if (preparedData['balance']) {
-    network.forEach((item) => {
+    networks.forEach((item) => {
       let allAssets = [];
       const name = item['name'];
       _.forEach(preparedData['balance'][name]?.protocols, (protocol) => {

@@ -9,7 +9,7 @@ import {useNetworks} from 'common/networks/Networks.context';
 
 export default function useBalance(address: string) {
   const client = useWeb3ApiClient();
-  const {network} = useNetworks();
+  const {networks} = useNetworks();
 
   const [balance, setBalance] = useRecoilState(balanceState);
 
@@ -33,31 +33,31 @@ export default function useBalance(address: string) {
     [address, client],
   );
 
-  const getBalance = useCallback(async () => {
-    if (address) {
-      let temporaryBalance = {};
+  const getBalances = useCallback(async () => {
+    let temporaryBalance = {};
 
-      for (let i = 0; i < network.length; i++) {
-        if (network[i].checked) {
-          const name = network[i].name;
-          const chainId = network[i].chainId;
+    for (let i = 0; i < networks.length; i++) {
+      console.log(networks[i]);
 
-          const response = await balanceRequest(chainId);
-          temporaryBalance = {...temporaryBalance, [name]: response};
-        }
+      if (networks[i].checked) {
+        const name = networks[i].name;
+        const chainId = networks[i].chainId;
+
+        const response = await balanceRequest(chainId);
+        temporaryBalance = {...temporaryBalance, [name]: response};
       }
-
-      insertChainIdToProtocol(temporaryBalance);
-
-      setBalance(temporaryBalance);
     }
-  }, [address, balanceRequest, network, setBalance]);
+
+    insertChainIdToProtocol(temporaryBalance);
+
+    setBalance(temporaryBalance);
+  }, [address, balanceRequest]);
 
   useEffect(() => {
     if (address) {
-      getBalance();
+      getBalances();
     }
-  }, [address, getBalance]);
+  }, [address]);
 
   return balance;
 }

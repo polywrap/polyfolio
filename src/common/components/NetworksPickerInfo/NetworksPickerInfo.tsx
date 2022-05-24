@@ -5,16 +5,16 @@ import classNames from 'classnames';
 import styles from './NetworksPickerInfo.module.scss';
 
 import useTheme from 'common/hooks/useTheme/useTheme';
-import {INetworks} from 'common/networks/Networks.types';
+import {INetwork} from 'common/networks/Networks.types';
 import Icon from 'common/components/Icon/Icon';
 import {useNetworks} from 'common/networks/Networks.context';
 import iconsObj from 'assets/icons/iconsObj';
 
-function NetworksPickerInfo({onClick}: {onClick: Dispatch<INetworks>}) {
+function NetworksPickerInfo({onClick}: {onClick: Dispatch<INetwork>}) {
   const theme = useTheme();
-  const {network} = useNetworks();
+  const {networks} = useNetworks();
 
-  const MenuItem = (menuItem: INetworks) => {
+  const MenuItem = (menuItem: INetwork) => {
     return (
       <label className={styles.menu_item} onClick={() => onClick(menuItem)}>
         <div className={styles.menu_item}>
@@ -39,7 +39,7 @@ function NetworksPickerInfo({onClick}: {onClick: Dispatch<INetworks>}) {
 
   return (
     <div className={classNames(styles[theme], styles.common_header_gas_info_menu)}>
-      {_map(network, (networkItem) => (
+      {_map(networks, (networkItem) => (
         <MenuItem {...networkItem} key={networkItem.chainId} />
       ))}
     </div>

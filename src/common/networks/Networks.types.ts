@@ -1,6 +1,6 @@
 import {Dispatch, SetStateAction} from 'react';
 
-export interface INetworks {
+export interface INetwork {
   name: string;
   jsonRPC: string;
   chainId: number;
@@ -9,6 +9,6 @@ export interface INetworks {
 }
 
 export interface NetworksContextProps {
-  network: INetworks[];
-  setNetwork: Dispatch<SetStateAction<INetworks[]>>;
+  networks: INetwork[];
+  setNetworks: Dispatch<SetStateAction<INetwork[]>>;
 }
