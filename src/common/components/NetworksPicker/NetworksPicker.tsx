@@ -10,7 +10,6 @@ import TooltipTrigger from 'common/components/TooltipTrigger/TooltipTrigger';
 import {useNetworks} from 'common/networks/Networks.context';
 import useOnClickOutside from 'common/hooks/useOnClickOutside/useOnClickOutside';
 import SUPPORTED_NETWORKS from './NetworksPicker.config';
-import {INetwork} from 'common/networks/Networks.types';
 import Icon from 'common/components/Icon/Icon';
 import iconsObj from 'assets/icons/iconsObj';
 

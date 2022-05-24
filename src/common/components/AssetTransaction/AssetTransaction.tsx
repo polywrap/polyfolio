@@ -9,13 +9,13 @@ import useTransactions from 'common/hooks/useTransaction/useTransaction';
 
 function AssetTransaction() {
   const theme = useTheme();
-  const transactions = useTransactions()
+  const transactions = useTransactions();
 
   return (
     <div className={classNames(style[theme], style.transaction)}>
       <div className={style.title}>Transaction</div>
       <TableHeader />
-      <TableBlock data={transactions || []} />
+      <TableBlock data={transactions?.transactions} />
     </div>
   );
 }

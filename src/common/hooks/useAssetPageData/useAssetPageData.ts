@@ -13,6 +13,12 @@ function getAssetPageData(
   price?: string,
   dataRange?: DataRangeSelectorItem,
 ) {
+  /*   console.log('__________________________________________')
+  console.log('currency', currency)
+  console.log('assetMetaData', assetMetaData)
+  console.log('price', price)
+  console.log('price', price) */
+
   let percentage: string, style: string;
   let pricePercentDollar: string;
   const marketCap = getMarketCap(currency, assetMetaData?.market_data.market_cap);

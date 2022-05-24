@@ -16,7 +16,7 @@ import PageUnderConstruction from 'pages/PageUnderConstruction/PageUnderConstruc
 import NetworkPage from 'pages/DashboardPage/NetworkPage/NetworksPage';
 import ProtocolPage from 'pages/DashboardPage/ProtocolPage/ProtocolPage';
 import useBalance from 'common/hooks/useBalance/useBalance';
-import useTransactions from 'common/hooks/useTransaction/useTransaction';
+//import useTransactions from 'common/hooks/useTransaction/useTransaction';
 import {useRecoilValue} from 'recoil';
 import replaceRouteParameters from 'utils/replaceRouteParameters';
 import {searchPersistState} from 'common/modules/atoms/searchState';

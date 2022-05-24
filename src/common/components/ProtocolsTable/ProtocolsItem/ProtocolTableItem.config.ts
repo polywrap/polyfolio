@@ -4,7 +4,6 @@ import {v4 as uuidv4} from 'uuid';
 import iconsObj from 'assets/icons/iconsObj';
 import RoutePath from 'common/modules/routing/routing.enums';
 import {getStringFromPath} from 'utils/helpers';
-import _ from 'lodash';
 import {useLocation} from 'react-router-dom';
 import {chainIdToNetwork} from 'utils/constants';
 import {DataRangeSelectorItem} from 'common/components/DateRangeSelector/DataRangeSelector.types';
@@ -39,6 +38,8 @@ export const useProtocols = (dataRange?: DataRangeSelectorItem) => {
 
   useEffect(() => {
     const go = async () => {
+      setState((state) => ({...state, loading: true}));
+
       const preparedData = getFormattedData(balance, chainIdToNetwork[page]);
       const allProtocols: IProtocol[] = preparedData['allProtocols'];
 
@@ -47,7 +48,7 @@ export const useProtocols = (dataRange?: DataRangeSelectorItem) => {
       const menuItems = [];
 
       if (allProtocols) {
-        for await (const protocol of allProtocols) {
+        for (const protocol of allProtocols) {
           // console.log(`-----Start processing Protocol ${protocol.protocol.name}`);
 
           const valueTitle = sumProtocolAssetsBalances(protocol);
@@ -58,15 +59,17 @@ export const useProtocols = (dataRange?: DataRangeSelectorItem) => {
 
           const components = getComponentsFromProtocol(protocol);
 
-          for await (const component of components) {
-            console.log(`__________________________________________`);
+          for (const component of components) {
+            // TODO change to Promise.all to have secondaryTitlePercent synched
+            //console.log(`__________________________________________`);
 
             const assetMetaData = await getAssetMetadata(client, {
               id: chainIdToNetwork[network],
               tokenAddress: component.token.token.address,
+              tokenName: component.token.token.name,
             });
 
-            if (assetMetaData) {
+            if (assetMetaData !== null && assetMetaData !== undefined) {
               //console.log(`-Asset meta for ${chainIdToNetwork[network]}, ${component.token.token.name}`,assetMetaData);
 
               if (dataRange) {
@@ -77,13 +80,12 @@ export const useProtocols = (dataRange?: DataRangeSelectorItem) => {
                   dataRange,
                 );
                 secondaryTitlePercent += Number(assetPreparedData?.percentage ?? 0);
-                secondaryTitleDollar += Number(assetPreparedData?.pricePercentDollar);
+                secondaryTitleDollar += Number(assetPreparedData?.pricePercentDollar ?? 0);
               }
             }
           }
-          const isNegativeValue = secondaryTitleDollar < 0;
 
-          console.log(protocol.protocol.id);
+          const isNegativeValue = secondaryTitleDollar < 0;
 
           const result = {
             icon: iconsObj[protocol.protocol.id],
@@ -102,6 +104,7 @@ export const useProtocols = (dataRange?: DataRangeSelectorItem) => {
           //console.log(`Finished processing Protocol ${protocol.protocol.name}`,`\nResult:`, result);
         }
       }
+
       setState({data: menuItems, loading: false, error: ''});
     };
 
@@ -113,31 +116,4 @@ export const useProtocols = (dataRange?: DataRangeSelectorItem) => {
   return state;
 };
 
-export const getProtocols = (dataRange?: DataRangeSelectorItem) => {};
 export default useProtocols;
-
-/* 
-const getTitlePercent = async (components: IBalance[]) => {
-  const client = '';
-  const network = '';
-  for await (const component of components) {
-    console.log(`Component ${component.token.token.name}`);
-    const assetAddress = component['token']?.token.address;
-    const priceTitle = component['token'].values[0]?.price; // need to change for equality with currency
-
-    const assetMetaData = await getAssetMetadata(client, {
-      id: chainIdToNetwork[network],
-      tokenAddress: assetAddress,
-    });
-    console.log(`asset meta for ${chainIdToNetwork[network]}, ${assetAddress}`, assetMetaData);
-
-    if (assetMetaData) {
-      if (dataRange) {
-        const assetPreparedData = getAssetPageData(currency, assetMetaData, priceTitle, dataRange);
-        secondaryTitlePercent += Number(assetPreparedData?.percentage ?? 0);
-        secondaryTitleDollar += Number(assetPreparedData?.pricePercentDollar);
-      }
-    }
-  }
-};
- */

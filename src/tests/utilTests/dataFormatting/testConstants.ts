@@ -113,7 +113,7 @@ export const balance_alt = {
   isDebt: false,
 };
 
-export const asset  = {
+export const asset = {
   apr: null,
   apy: '8.67',
   balance,

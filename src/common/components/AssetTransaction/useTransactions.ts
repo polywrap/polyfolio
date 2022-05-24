@@ -46,7 +46,7 @@ const useTransactions = () => {
       const fetchTokenTransfers = async (assetsArray, chainId, search: string) => {
         const result = [];
 
-        for await (const asset of assetsArray) {
+        for (const asset of assetsArray) {
           const {data: response, errors} = await getTokenTransfers(
             client,
             {
@@ -110,7 +110,7 @@ const useTransactions = () => {
           break;
 
         default: {
-          console.log('state.transactions', state?.transactions)
+          console.log('state.transactions', state?.transactions);
           //console.log('useTransactions DEFAULT');
           state?.transactions.forEach((transaction) => {
             const eventData = formatDataAccordingToEvent(

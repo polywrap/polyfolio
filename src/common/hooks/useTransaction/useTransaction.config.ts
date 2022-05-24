@@ -11,7 +11,7 @@ export const getTransactions = (
   variables: Variables,
   options = {chainId: 1},
 ) => {
-  const {account, currency} = variables; 
+  const {account, currency} = variables;
 
   return client.query({
     uri: ENS_URI.MOCK,

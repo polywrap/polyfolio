@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import iconsObj from 'assets/icons/iconsObj';
 import Icon from 'common/components/Icon/Icon';
 import _map from 'lodash/map';
-import _sumBy from 'lodash/sumBy';
 import styles from './Protocols.module.scss';
 
 import useProtocols from './ProtocolsItem/ProtocolTableItem.config';
@@ -16,6 +15,8 @@ import HeaderTable from '../HeaderTable/HeaderTable';
 import {menuFields} from './FilterFieldsProtokols.config';
 import Skeleton from '../Skeleton/Skeleton';
 import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.types';
+import {useRecoilValue} from 'recoil';
+import balanceState from 'common/modules/atoms/balanceState';
 
 function ProtocolsTable() {
   const [tableIsOpen, setTableIsOpen] = useState(false);
@@ -25,10 +26,11 @@ function ProtocolsTable() {
   const ref = useRef(null);
   const theme = useTheme();
   const translation = useTranslation();
-  const [dataRange, setDataRange] = useState<DataRangeSelectorItem>({});
-  const [dataRangeIsOpen, setDataRangeIsOpen] = useState(true);
+  const [dataRange, setDataRange] = useState<DataRangeSelectorItem>({title: '2', id: 2});
+  const [dataRangeIsOpen, setDataRangeIsOpen] = useState(false);
+  const balance = useRecoilValue(balanceState);
 
-  const {data: menuItems, loading, error} = useProtocols(dataRange);
+  const {data: menuItems, loading} = useProtocols(dataRange);
 
   const changeDataRange = (e) => {
     setDataRange(e);
@@ -44,56 +46,59 @@ function ProtocolsTable() {
     [menuItems],
   );
 
-  return menuItems.length > 0 ? (
-    <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>
-      <HeaderTable
-        onSaveFilter={() => {
-          setFilters(filter);
-          setIsOpen(!isOpen);
-        }}
-        setTableIsOpen={() => setTableIsOpen(!tableIsOpen)}
-        title={translation.Table.protocols}
-        setIsOpen={() => setIsOpen(!isOpen)}
-        filter={filter.protocols}
-        menuFields={menuFields}
-        onChange={onChange}
-        isOpen={isOpen}
-        sum={summaryValue.toString()}
-        changeDataRange={changeDataRange}
-        dataRange={dataRange}
-        dataRangeIsOpen={dataRangeIsOpen}
-        setDataRangeIsOpen={setDataRangeIsOpen}
-      />
-      <div className={classNames(styles.table_container, {[styles.hidden]: tableIsOpen})}>
-        <div className={styles.title_container}>
-          <div className={classNames(styles.title, styles.protocol)}>
-            {translation.Table.protocols}
-          </div>
-          <div
-            className={classNames(styles.title, styles.value, {
-              [styles.hidden]: filters.protocols.value,
-            })}
-          >
-            <Icon className={styles.title_icon} src={iconsObj.sort_frame} sizes="24px" />
-            {translation.Table.value}
-          </div>
-          <div
-            className={classNames(styles.title, styles.claimable, {
-              [styles.hidden]: filters.protocols.claimable,
-            })}
-          >
-            {translation.Table.claimable}
-          </div>
-        </div>
-        {_map(menuItems, (menuItem) => (
-          <ProtocolTableItem {...menuItem} key={menuItem.id} />
-        ))}
+  return (
+    balance &&
+    (loading ? (
+      <div style={{marginBottom: 48}}>
+        <Skeleton width={1256} height={435} />
       </div>
-    </div>
-  ) : (
-    <div style={{marginBottom: 48}}>
-      <Skeleton width={1256} height={435} />
-    </div>
+    ) : (
+      <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>
+        <HeaderTable
+          onSaveFilter={() => {
+            setFilters(filter);
+            setIsOpen(!isOpen);
+          }}
+          setTableIsOpen={() => setTableIsOpen(!tableIsOpen)}
+          title={translation.Table.protocols}
+          setIsOpen={() => setIsOpen(!isOpen)}
+          filter={filter.protocols}
+          menuFields={menuFields}
+          onChange={onChange}
+          isOpen={isOpen}
+          sum={summaryValue.toString()}
+          changeDataRange={changeDataRange}
+          dataRange={dataRange}
+          dataRangeIsOpen={dataRangeIsOpen}
+          setDataRangeIsOpen={setDataRangeIsOpen}
+        />
+        <div className={classNames(styles.table_container, {[styles.hidden]: tableIsOpen})}>
+          <div className={styles.title_container}>
+            <div className={classNames(styles.title, styles.protocol)}>
+              {translation.Table.protocols}
+            </div>
+            <div
+              className={classNames(styles.title, styles.value, {
+                [styles.hidden]: filters.protocols.value,
+              })}
+            >
+              <Icon className={styles.title_icon} src={iconsObj.sort_frame} sizes="24px" />
+              {translation.Table.value}
+            </div>
+            <div
+              className={classNames(styles.title, styles.claimable, {
+                [styles.hidden]: filters.protocols.claimable,
+              })}
+            >
+              {translation.Table.claimable}
+            </div>
+          </div>
+          {_map(menuItems, (menuItem) => (
+            <ProtocolTableItem {...menuItem} key={menuItem.id} />
+          ))}
+        </div>
+      </div>
+    ))
   );
 }
 

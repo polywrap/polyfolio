@@ -10,7 +10,7 @@ function Table({data}) {
 
   return (
     <div className={classNames(style[theme], style.table)}>
-      {data.map((row) => (
+      {data?.map((row) => (
         <TableRow
           key={row.id}
           type={row.type}

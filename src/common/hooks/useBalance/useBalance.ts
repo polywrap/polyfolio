@@ -15,7 +15,7 @@ export default function useBalance(address: string) {
   const getBalances = useCallback(async (accountAddress: string) => {
     let temporaryBalance = {};
 
-    for await (const network of networks) {
+    for (const network of networks) {
       if (network.checked) {
         const {name, chainId} = network;
 

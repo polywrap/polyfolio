@@ -51,7 +51,7 @@ import {
   protocolEth,
   protocolUfo,
   sushibar_v1,
-  uniswap_v2
+  uniswap_v2,
 } from 'assets/icons/images/protocolsTable';
 
 import {
@@ -142,7 +142,7 @@ const iconsObj: IconsMapper = {
   usd,
   gel,
   uniswap_v2,
-  sushibar_v1
+  sushibar_v1,
 };
 
 export default iconsObj;
