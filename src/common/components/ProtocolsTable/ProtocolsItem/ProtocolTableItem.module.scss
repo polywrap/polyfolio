@@ -25,9 +25,21 @@
   .hidden {
     display: none !important;
   }
-  .icon {
+  .icon_container {
+    position: relative;
     width: 40px;
     height: 40px;
+  }
+  .icon {
+    height: 100%;
+    width: auto;
+  }
+  .networkIcon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 16px;
+    height: 16px;
   }
   .title {
     font-family: var(--font_family);

@@ -161,19 +161,6 @@ export const getClaimableValue = (protocols, address: string) => {
   return value;
 };
 
-export const getClaimableValueFromCurrProtocol = (asset) => {
-  let value = 0;
-  _forEach(asset.balance.components, (component) => {
-    _forEach(asset.claimableTokens, (claimableToken) => {
-      if (component.token.token.address === claimableToken.token.address) {
-        value = value + Number(claimableToken.values[0].value);
-      }
-    });
-  });
-
-  return value;
-};
-
 export const getMarketCap = (currency: string, marketCap) => {
   let result: string;
 

@@ -1,3 +1,5 @@
+import {Asset} from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.types';
+
 export const claimableTokens = [
   {
     token: {
@@ -111,12 +113,12 @@ export const balance_alt = {
   isDebt: false,
 };
 
-export const asset = {
+export const asset  = {
   apr: null,
   apy: '8.67',
   balance,
   claimableTokens,
-};
+} as Asset;
 
 export const asset_alt = {
   apr: null,

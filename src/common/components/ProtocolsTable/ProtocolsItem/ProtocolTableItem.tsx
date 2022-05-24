@@ -3,7 +3,7 @@ import styles from './ProtocolTableItem.module.scss';
 import Icon from 'common/components/Icon/Icon';
 import numberFormatter from 'utils/numberFormatter';
 import {useNavigate} from 'react-router-dom';
-
+import iconsObj from 'assets/icons/iconsObj';
 import MenuArrow from 'common/components/MenuArrow/MenuArrow';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import PricesValue from '../../PricesValue/PricesValue';
@@ -45,7 +45,10 @@ function ProtocolsItem(menuItem) {
       <button className={styles.button} onClick={() => navigate(path)}>
         <div className={styles.menu_item}>
           <div className={styles.title_container}>
-            <Icon src={icon} className={styles.icon} />
+            <div className={styles.icon_container}>
+              <Icon src={icon} className={styles.icon} />
+              <img src={iconsObj[network] as string} className={styles.networkIcon} />
+            </div>
             <div className={styles.title}>{title}</div>
           </div>
           <PricesValue

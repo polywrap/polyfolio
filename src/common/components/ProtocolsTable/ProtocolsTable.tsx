@@ -27,7 +27,8 @@ function ProtocolsTable() {
   const translation = useTranslation();
   const [dataRange, setDataRange] = useState<DataRangeSelectorItem>({});
   const [dataRangeIsOpen, setDataRangeIsOpen] = useState(true);
-  const menuItems = useProtocols(dataRange);
+
+  const {data: menuItems, loading, error} = useProtocols(dataRange);
 
   const changeDataRange = (e) => {
     setDataRange(e);
@@ -38,9 +39,10 @@ function ProtocolsTable() {
     setFilter({...filters, protocols: {...filter.protocols, [name]: !value?.checked}});
   };
 
-  const summaryValue = useMemo(() => {
-    return _sumBy(menuItems, (val) => Number(val.valueTitle));
-  }, [menuItems]);
+  const summaryValue = useMemo(
+    () => menuItems.reduce((prev, current) => prev + Number(current.valueTitle), 0),
+    [menuItems],
+  );
 
   return menuItems.length > 0 ? (
     <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>

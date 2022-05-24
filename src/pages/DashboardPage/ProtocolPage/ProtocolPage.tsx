@@ -4,7 +4,7 @@ import HeaderPageInfo from 'common/components/HeaderPageInfo/HeaderPageInfo';
 import {useParams} from 'react-router-dom';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import _find from 'lodash/find';
-import GetProtocols from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.config';
+import useProtocols from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.config';
 import VaultsTable from 'common/components/VaultsTable/VaultsTable';
 import AssetTransaction from 'common/components/AssetTransaction/AssetTransaction';
 import DashboardPage from '../DashboardPage';
@@ -12,7 +12,7 @@ import DashboardPage from '../DashboardPage';
 function ProtocolPage() {
   const translation = useTranslation();
   const {protocol} = useParams();
-  const menuItems = GetProtocols();
+  const {data: menuItems} = useProtocols();
   const current = _find(menuItems, {symbol: protocol});
 
   return (

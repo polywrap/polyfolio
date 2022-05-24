@@ -7,7 +7,7 @@ import {
   getVolume,
 } from 'utils/dataFormatting';
 
-function useAssetPageData(
+function getAssetPageData(
   currency: string,
   assetMetaData,
   price?: string,
@@ -86,4 +86,4 @@ function useAssetPageData(
   }
 }
 
-export default useAssetPageData;
+export default getAssetPageData;

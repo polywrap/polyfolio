@@ -1,88 +1,143 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import {ProtocolsItem} from './ProtocolTableItem.types';
+import {IProtocol, ProtocolsItem} from './ProtocolTableItem.types';
 import {v4 as uuidv4} from 'uuid';
 import iconsObj from 'assets/icons/iconsObj';
 import RoutePath from 'common/modules/routing/routing.enums';
-import {getStringFromPath, rmCommasFromNum} from 'utils/helpers';
+import {getStringFromPath} from 'utils/helpers';
 import _ from 'lodash';
 import {useLocation} from 'react-router-dom';
-import {chainIdToNetwork, networkToChainId} from 'utils/constants';
-import {getClaimableValueFromCurrProtocol} from 'utils/dataFormatting';
+import {chainIdToNetwork} from 'utils/constants';
 import {DataRangeSelectorItem} from 'common/components/DateRangeSelector/DataRangeSelector.types';
-import useAssetMetadata from 'common/hooks/useAssetMetadata/useAssetMetadata';
-import useAssetPageData from 'common/hooks/useAssetPageData/useAssetPageData';
+import {getAssetMetadata} from 'common/hooks/useAssetMetadata/useAssetMetadata';
 import {useCurrency} from 'common/currency/Currency.context';
 import getFormattedData from 'utils/getFormattedData';
 import {useRecoilValue} from 'recoil';
 import balanceState from 'common/modules/atoms/balanceState';
+import {useEffect, useState} from 'react';
+import {
+  sumProtocolAssetsBalances,
+  sumClaimableValues,
+  getComponentsFromProtocol,
+} from './ProtocolTableItem.utis';
+import {useWeb3ApiClient} from '@web3api/react';
+import getAssetPageData from 'common/hooks/useAssetPageData/useAssetPageData';
+
+interface State {
+  data: ProtocolsItem[];
+  loading: boolean;
+  error: string;
+}
 
 export const useProtocols = (dataRange?: DataRangeSelectorItem) => {
   const {pathname} = useLocation();
   const page = getStringFromPath(pathname, 4);
   const {currency} = useCurrency();
+  const client = useWeb3ApiClient();
   const balance = useRecoilValue(balanceState);
-  const preparedData = getFormattedData(balance, chainIdToNetwork[page]);
-  const menuItems: ProtocolsItem[] = [];
-  const allProtocols = preparedData['allProtocols'];
 
-  if (allProtocols) {
-    for (let i = 0; i < allProtocols.length; i++) {
-      let valueTitle = 0;
-      let claimableValue = 0;
-      let secondaryTitlePercent = 0;
-      let secondaryTitleDollar = 0;
-      let valueIsMinus = false;
-      _.forEach(allProtocols[i].assets, (asset) => {
-        valueTitle += _.sumBy(asset['balance'].components, (assetItem) =>
-          Number(rmCommasFromNum(assetItem['token'].values[0].value)),
-        );
-        claimableValue += getClaimableValueFromCurrProtocol(asset);
-      });
+  const [state, setState] = useState<State>({data: [], loading: false, error: ''});
 
-      const network = allProtocols[i].protocol.chainId;
+  useEffect(() => {
+    const go = async () => {
+      const preparedData = getFormattedData(balance, chainIdToNetwork[page]);
+      const allProtocols: IProtocol[] = preparedData['allProtocols'];
 
-      _.forEach(allProtocols[i]?.assets, (asset) => {
-        _.forEach(asset['balance']?.components, (component) => {
-          const assetAddress = component['token']?.token.address;
-          const priceTitle = component['token'].values[0]?.price; // need to change for equality with currency
-          const assetMetaData = useAssetMetadata(
-            chainIdToNetwork[network],
-            networkToChainId[network],
-            assetAddress,
-          );
+      // console.log('-------------ALL PROTOCOLS', allProtocols);
 
-          if (dataRange) {
-            const assetPreparedData = useAssetPageData(
-              currency,
-              assetMetaData,
-              priceTitle,
-              dataRange,
-            );
-            secondaryTitlePercent += Number(assetPreparedData?.percentage ?? 0);
-            secondaryTitleDollar += Number(assetPreparedData?.pricePercentDollar);
+      const menuItems = [];
+
+      if (allProtocols) {
+        for await (const protocol of allProtocols) {
+          // console.log(`-----Start processing Protocol ${protocol.protocol.name}`);
+
+          const valueTitle = sumProtocolAssetsBalances(protocol);
+          const claimableValue = sumClaimableValues(protocol);
+          let secondaryTitlePercent = 0;
+          let secondaryTitleDollar = 0;
+          const network = protocol.protocol.chainId;
+
+          const components = getComponentsFromProtocol(protocol);
+
+          for await (const component of components) {
+            console.log(`__________________________________________`);
+
+            const assetMetaData = await getAssetMetadata(client, {
+              id: chainIdToNetwork[network],
+              tokenAddress: component.token.token.address,
+            });
+
+            if (assetMetaData) {
+              //console.log(`-Asset meta for ${chainIdToNetwork[network]}, ${component.token.token.name}`,assetMetaData);
+
+              if (dataRange) {
+                const assetPreparedData = getAssetPageData(
+                  currency,
+                  assetMetaData,
+                  component.token.values[0].price, // const priceTitle = component['token'].values[0]?.price; // TODO need to change for equality with currency
+                  dataRange,
+                );
+                secondaryTitlePercent += Number(assetPreparedData?.percentage ?? 0);
+                secondaryTitleDollar += Number(assetPreparedData?.pricePercentDollar);
+              }
+            }
           }
-        });
-      });
+          const isNegativeValue = secondaryTitleDollar < 0;
 
-      valueIsMinus = secondaryTitleDollar < 0 ? true : false;
+          console.log(protocol.protocol.id);
 
-      menuItems.push({
-        icon: iconsObj.protocolBardger,
-        link: `${RoutePath.Protocol}`,
-        secondaryTitleDollar: secondaryTitleDollar.toString(),
-        secondaryTitlePercent: secondaryTitlePercent.toString(),
-        claimableValue: claimableValue.toString(),
-        valueTitle: valueTitle.toString(),
-        valueIsMinus,
-        title: preparedData['allProtocols'][i].protocol.name,
-        network: chainIdToNetwork[network],
-        symbol: preparedData['allProtocols'][i].protocol.id,
-        id: uuidv4(),
-      });
+          const result = {
+            icon: iconsObj[protocol.protocol.id],
+            link: `${RoutePath.Protocol}`,
+            secondaryTitleDollar: secondaryTitleDollar.toString(),
+            secondaryTitlePercent: secondaryTitlePercent.toString(),
+            claimableValue: claimableValue.toString(),
+            valueTitle: valueTitle.toString(),
+            isNegativeValue,
+            title: protocol.protocol.name,
+            network: chainIdToNetwork[network],
+            symbol: protocol.protocol.id,
+            id: uuidv4(),
+          };
+          menuItems.push(result);
+          //console.log(`Finished processing Protocol ${protocol.protocol.name}`,`\nResult:`, result);
+        }
+      }
+      setState({data: menuItems, loading: false, error: ''});
+    };
+
+    if (balance) {
+      go();
     }
-  }
+  }, [balance]);
 
-  return menuItems;
+  return state;
 };
 
+export const getProtocols = (dataRange?: DataRangeSelectorItem) => {};
 export default useProtocols;
+
+/* 
+const getTitlePercent = async (components: IBalance[]) => {
+  const client = '';
+  const network = '';
+  for await (const component of components) {
+    console.log(`Component ${component.token.token.name}`);
+    const assetAddress = component['token']?.token.address;
+    const priceTitle = component['token'].values[0]?.price; // need to change for equality with currency
+
+    const assetMetaData = await getAssetMetadata(client, {
+      id: chainIdToNetwork[network],
+      tokenAddress: assetAddress,
+    });
+    console.log(`asset meta for ${chainIdToNetwork[network]}, ${assetAddress}`, assetMetaData);
+
+    if (assetMetaData) {
+      if (dataRange) {
+        const assetPreparedData = getAssetPageData(currency, assetMetaData, priceTitle, dataRange);
+        secondaryTitlePercent += Number(assetPreparedData?.percentage ?? 0);
+        secondaryTitleDollar += Number(assetPreparedData?.pricePercentDollar);
+      }
+    }
+  }
+};
+ */

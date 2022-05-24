@@ -1,3 +1,4 @@
+import {getClaimableValueFromCurrProtocol} from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.utis';
 import * as dataFormatting from 'utils/dataFormatting';
 import {network, protocols, components, asset, marketCapArray, volume} from './testConstants';
 
@@ -26,7 +27,7 @@ test('Get Claimable Value', () => {
 });
 
 test('Get Claimable Value For Curr Protocol', () => {
-  const result = dataFormatting.getClaimableValueFromCurrProtocol(asset);
+  const result = getClaimableValueFromCurrProtocol(asset);
   expect(result).toBe<number>(199);
 });
 

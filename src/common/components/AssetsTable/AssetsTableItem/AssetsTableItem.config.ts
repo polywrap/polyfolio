@@ -47,7 +47,12 @@ const useAssets = (dataRange?: DataRangeSelectorItem) => {
       );
 
       if (dataRange) {
-        assetPreparedData = useAssetPageData(currency, assetMetaData, priceTitle, dataRange);
+        assetPreparedData = useAssetPageData(
+          currency,
+          assetMetaData,
+          priceTitle.toString(),
+          dataRange,
+        );
       }
 
       menuItems.push({
@@ -60,7 +65,7 @@ const useAssets = (dataRange?: DataRangeSelectorItem) => {
         icon: assetMetaData?.image.small,
         valueTitle,
         valueIsMinus: assetPreparedData?.style === 'profit' ? false : true,
-        priceTitle,
+        priceTitle: priceTitle.toString(),
         title: allAssets[i].token.token.symbol,
         percent: percent.toString(),
         symbol: symbol.toLowerCase(),
