@@ -110,7 +110,8 @@ const useTransactions = () => {
           break;
 
         default: {
-          console.log('useTransactions DEFAULT');
+          console.log('state.transactions', state?.transactions)
+          //console.log('useTransactions DEFAULT');
           state?.transactions.forEach((transaction) => {
             const eventData = formatDataAccordingToEvent(
               transaction,

@@ -28,5 +28,18 @@ export const getAccountBalance = (
       )
     }`,
     variables: {...defaultVars, ...variables},
+    config: {
+      envs: [
+        {
+          uri: ENS_URI.ACCOUNT.COVALENT,
+          query: {
+            apiKey: 'ckey_910089969da7451cadf38655ede',
+            chainId: options.chainId,
+          },
+          common: {},
+          mutation: {},
+        },
+      ],
+    },
   });
 };

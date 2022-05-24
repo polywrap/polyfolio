@@ -11,8 +11,7 @@ export const getTransactions = (
   variables: Variables,
   options = {chainId: 1},
 ) => {
-  const {account, currency} = variables; //account '0x0aCE0B7Ec36E23FaFfe917d86F401B5E4CE6D51f'
-  console.log('getTransactions');
+  const {account, currency} = variables; 
 
   return client.query({
     uri: ENS_URI.MOCK,

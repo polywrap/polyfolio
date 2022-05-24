@@ -28,7 +28,7 @@ function App() {
   const search = useRecoilValue(searchPersistState);
   const {check} = useWallet();
   useBalance(search ?? user);
-  useTransactions(); //TODO Why do we use it here ?
+  //useTransactions(); //TODO Why do we use it here ?
 
   useEffect(() => {
     if (MetaMaskOnboarding.isMetaMaskInstalled()) {
