@@ -1,6 +1,5 @@
 import {Web3ApiClient} from '@web3api/client-js';
-
-export const uri = 'ens/rinkeby/mock.defiwrapper.eth';
+import ENS_URI from 'utils/web3apiConfig/ensUri';
 
 interface Variables {
   account: string;
@@ -16,7 +15,7 @@ export const getTransactions = (
   console.log('getTransactions');
 
   return client.query({
-    uri: uri,
+    uri: ENS_URI.MOCK,
     query: `query {
       getTransactions(
         accountAddress: $accountAddress

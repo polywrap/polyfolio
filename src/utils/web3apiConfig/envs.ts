@@ -37,7 +37,7 @@ const tokenEnv: Env = {
 };
 
 const mockEnv: Env = {
-  uri: 'w3://ens/rinkeby/mock.defiwrapper.eth',
+  uri: ENS_URI.MOCK,
   query: {
     //apiKey: 'ckey_910089969da7451cadf38655ede',
     //chainId: 1,

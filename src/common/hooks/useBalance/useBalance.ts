@@ -3,7 +3,7 @@ import {useRecoilState} from 'recoil';
 import {useWeb3ApiClient} from '@web3api/react';
 import balanceState from 'common/modules/atoms/balanceState';
 import {insertChainIdToProtocol} from 'utils/dataFormatting';
-import {uri, query} from './useBalance.config';
+import {getAccountBalance} from './getAccountBalance';
 import {useNetworks} from 'common/networks/Networks.context';
 //import {getCONFIG} from 'utils/constants';
 
@@ -14,18 +14,12 @@ export default function useBalance(address: string) {
   const [balance, setBalance] = useRecoilState(balanceState);
 
   const balanceRequest = useCallback(
-    async (/* chainId */) => {
-      const {data: response, errors} = await client.query({
-        uri,
-        query,
-        variables: {
-          accountAddress: address,
-          vsCurrencies: [],
-          noTruncate: false,
-          underlyingPrice: false,
-        },
-        /* config: getCONFIG(chainId), */
-      });
+    async (chainId?: number) => {
+      const {data: response, errors} = await getAccountBalance(
+        client,
+        {accountAddress: address},
+        {chainId},
+      );
 
       if (response && !errors?.length) {
         return response?.getAccountBalance;
@@ -46,9 +40,9 @@ export default function useBalance(address: string) {
       for (let i = 0; i < network.length; i++) {
         if (network[i].checked) {
           const name = network[i].name;
-          /* const chainId = network[i].chainId.toString(); */
+          const chainId = network[i].chainId;
 
-          const response = await balanceRequest(/* chainId */);
+          const response = await balanceRequest(chainId);
           temporaryBalance = {...temporaryBalance, [name]: response};
         }
       }

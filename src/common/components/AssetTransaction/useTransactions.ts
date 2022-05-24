@@ -12,7 +12,7 @@ import balanceState from 'common/modules/atoms/balanceState';
 import getFormattedData from 'utils/getFormattedData';
 import {userPersistState} from 'common/modules/atoms/userAddress';
 import {useEffect, useState} from 'react';
-import {query, uri} from './getTokenTransfers.config';
+import {getTokenTransfers} from './getTokenTransfers.config';
 import {useCurrency} from 'common/currency/Currency.context';
 import {useWeb3ApiClient} from '@web3api/react';
 import lodash from 'lodash';
@@ -39,45 +39,6 @@ const useTransactions = () => {
   const [data, setData] = useState<ITransaction[]>([]);
   let assetsFromProtocol;
 
-  const getTokenTransfers = async (token: string, chainId: number, search: string) => {
-    const account = search ?? user;
-    //tokenInfo
-    const {data: response, errors} = await client.query({
-      uri,
-      query,
-      variables: {
-        accountAddress: account,
-        tokenAddress: token,
-        vsCurrency: currency,
-      },
-      config: {
-        envs: [
-          {
-            uri: 'ipfs/QmdhnYXgxjavFDD9kUJE5BA3UeWGDeMhwwYQoJ1CM4ScTp',
-
-            query: {
-              connection: {
-                networkNameOrChainId: 1,
-              },
-            },
-          },
-        ],
-      },
-    });
-    console.log('RESP', response);
-
-    if (response && !errors?.length) {
-      const tokenTransfers = response?.getTokenTransfers;
-
-      return tokenTransfers;
-    } else {
-      // ADD ERROR HANDLER
-      console.log('getTokenTransfers ERRORS-------');
-      console.log(errors);
-      console.log('-----ERRORS');
-    }
-  };
-
   useEffect(
     () => {
       console.log('USE EFFECT');
@@ -86,12 +47,27 @@ const useTransactions = () => {
         const result = [];
 
         for await (const asset of assetsArray) {
-          const res = await getTokenTransfers(asset?.token.token.address, chainId, search);
+          const {data: response, errors} = await getTokenTransfers(
+            client,
+            {
+              accountAddress: search ?? user,
+              tokenAddress: asset?.token.token.address,
+              currency: currency,
+            },
+            {chainId},
+          );
 
-          if (res) result.push(res);
+          if (response && !errors?.length) {
+            const tokenTransfers = response?.getTokenTransfers;
+
+            if (tokenTransfers) result.push(tokenTransfers);
+          } else {
+            // ADD ERROR HANDLER
+            console.log('getTokenTransfers ERRORS-------');
+            console.log(errors);
+            console.log('-----ERRORS');
+          }
         }
-
-        console.log('result', result);
 
         return result;
       };
