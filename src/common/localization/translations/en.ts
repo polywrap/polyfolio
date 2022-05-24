@@ -27,7 +27,8 @@ export default {
     title: 'Sorry!',
     titleDescription: 'The Page is not accessible!',
     subtitle: 'Polyfolio staff are doing our best to resolve this issue.',
-    subtitleAdditional: 'Please contact us to get more detail information or wait for resolve. Thank you for understanding!',
+    subtitleAdditional:
+      'Please contact us to get more detail information or wait for resolve. Thank you for understanding!',
   },
   FooterLinks: {
     polywrap: 'Polywrap',

@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useMemo } from 'react';
+import React, {useState, useRef, useCallback, useMemo} from 'react';
 import classNames from 'classnames';
 
 import styles from './NetworksPicker.module.scss';
@@ -22,23 +22,28 @@ function NetworksPicker({className = ''}: {className?: string}) {
 
   useOnClickOutside(ref.current, () => setIsOpen(false));
 
-  const handleNetworkChange = useCallback((menu_item) => {
-    setNetwork(network.map(networkItem =>
-      networkItem.name === menu_item.name
-        ? {...networkItem, checked: !networkItem.checked}
-        : networkItem
-    ))
-  }, [network, setNetwork])
+  const handleNetworkChange = useCallback(
+    (menu_item) => {
+      setNetwork(
+        network.map((networkItem) =>
+          networkItem.name === menu_item.name
+            ? {...networkItem, checked: !networkItem.checked}
+            : networkItem,
+        ),
+      );
+    },
+    [network, setNetwork],
+  );
 
   const name = useMemo(() => {
     let status: string;
 
     if (network) {
-      network.forEach((netItem: INetworks) => netItem.checked ? status = netItem.name : '')
+      network.forEach((netItem: INetworks) => (netItem.checked ? (status = netItem.name) : ''));
     }
 
     return status;
-  }, [network])
+  }, [network]);
 
   return (
     <div ref={ref} className={classNames(styles[theme], styles.NetworksPicker, className)}>
@@ -54,7 +59,11 @@ function NetworksPicker({className = ''}: {className?: string}) {
         >
           <Icon src={iconsObj.ethereum} className={styles.icon} />
           <span className={styles.currency}>{networks[name].name}</span>
-          <MenuArrow startPosition={!isOpen ? 'right' : 'left'} className={styles.menu_arrow} filled />
+          <MenuArrow
+            startPosition={!isOpen ? 'right' : 'left'}
+            className={styles.menu_arrow}
+            filled
+          />
         </div>
       </TooltipTrigger>
     </div>

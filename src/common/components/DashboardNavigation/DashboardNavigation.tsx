@@ -7,9 +7,9 @@ import RoutePath from 'common/modules/routing/routing.enums';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import {Tab} from './DashboardNavigation.config';
 import replaceRouteParameters from 'utils/replaceRouteParameters';
-import { useRecoilValue } from 'recoil';
-import { searchPersistState } from 'common/modules/atoms/searchState';
-import { userPersistState } from 'common/modules/atoms/userAddress';
+import {useRecoilValue} from 'recoil';
+import {searchPersistState} from 'common/modules/atoms/searchState';
+import {userPersistState} from 'common/modules/atoms/userAddress';
 
 function DashboardNavigation() {
   const user = useRecoilValue(userPersistState);
@@ -20,11 +20,13 @@ function DashboardNavigation() {
   const search = useRecoilValue(searchPersistState);
   const theme = useTheme();
 
-  const linkToDashboard = search ? replaceRouteParameters(RoutePath.Dashboard, {search})
+  const linkToDashboard = search
+    ? replaceRouteParameters(RoutePath.Dashboard, {search})
     : replaceRouteParameters(RoutePath.Dashboard, {user});
 
-  const linkToTransactions = search ? replaceRouteParameters(RoutePath.DashboardTransactions, {search})
-  : replaceRouteParameters(RoutePath.DashboardTransactions, {user});
+  const linkToTransactions = search
+    ? replaceRouteParameters(RoutePath.DashboardTransactions, {search})
+    : replaceRouteParameters(RoutePath.DashboardTransactions, {user});
 
   useEffect(() => {
     if (pathname === linkToDashboard) {

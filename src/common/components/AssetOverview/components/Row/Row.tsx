@@ -5,21 +5,16 @@ import classNames from 'classnames';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import RowItem from '../RowItem/RowItem';
 
-function Row ({ items }) {
-  const theme = useTheme()
+function Row({items}) {
+  const theme = useTheme();
 
   return (
     <div className={classNames(style[theme], style.row)}>
-      { items.map(item => (
-        <RowItem
-         key={item.id}
-         label={item.label}
-         content={item.content}
-         type={item.type}
-        />
+      {items.map((item) => (
+        <RowItem key={item.id} label={item.label} content={item.content} type={item.type} />
       ))}
     </div>
-  )
+  );
 }
 
-export default Row
+export default Row;

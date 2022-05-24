@@ -11,18 +11,15 @@ import {ITransaction} from './AssetTransactions.type';
 import balanceState from 'common/modules/atoms/balanceState';
 import getFormattedData from 'utils/getFormattedData';
 import {userPersistState} from 'common/modules/atoms/userAddress';
-import {useCallback, useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {query, uri} from './getTokenTransfers.config';
 import {useCurrency} from 'common/currency/Currency.context';
 import {useWeb3ApiClient} from '@web3api/react';
 import lodash from 'lodash';
 import {formatDataAccordingToEvent} from 'utils/formatDataAccordingToEvent';
 import {searchPersistState} from 'common/modules/atoms/searchState';
-import {networkToChainId} from 'utils/constants';
 import useAssets from '../AssetsTable/AssetsTableItem/AssetsTableItem.config';
-import IPFS_URI from 'utils/web3apiConfig/ipfsUri';
-import ENS_URI from 'utils/web3apiConfig/ensUri';
-import {getTokenComponent} from './getTokenComponents.config';
+
 //import {asset} from 'tests/utilTests/dataFormatting/testConstants';
 
 const useTransactions = () => {
@@ -122,12 +119,11 @@ const useTransactions = () => {
           console.log('case asset');
 
           if ('address' in assetInfo && 'protocol' in assetInfo) {
-            const {address, protocol} = assetInfo;
-            /*     getTokenComponent(client, {tokenAddress: address, protocolId: protocol}).then((res) => {
+            /*const {address, protocol} = assetInfo;
+                 getTokenComponent(client, {tokenAddress: address, protocolId: protocol}).then((res) => {
               console.log('getTokenComponent', res);
             }); */
-
-/*             getTokenComponent(client, {
+            /*             getTokenComponent(client, {
               tokenAddress: '0xAE461cA67B15dc8dc81CE7615e0320dA1A9aB8D5',
               protocolId: 'uniswap_v2',
             }).then((res) => {

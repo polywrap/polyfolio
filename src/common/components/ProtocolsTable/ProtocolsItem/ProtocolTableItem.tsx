@@ -8,12 +8,12 @@ import MenuArrow from 'common/components/MenuArrow/MenuArrow';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import PricesValue from '../../PricesValue/PricesValue';
 import classNames from 'classnames';
-import { networkToChainId } from 'utils/constants';
+import {networkToChainId} from 'utils/constants';
 import RoutePath from 'common/modules/routing/routing.enums';
 import replaceRouteParameters from 'utils/replaceRouteParameters';
-import { useRecoilValue } from 'recoil';
-import { searchPersistState } from 'common/modules/atoms/searchState';
-import { userPersistState } from 'common/modules/atoms/userAddress';
+import {useRecoilValue} from 'recoil';
+import {searchPersistState} from 'common/modules/atoms/searchState';
+import {userPersistState} from 'common/modules/atoms/userAddress';
 
 function ProtocolsItem(menuItem) {
   const navigate = useNavigate();
@@ -31,10 +31,11 @@ function ProtocolsItem(menuItem) {
     symbol,
   } = menuItem;
   const search = useRecoilValue(searchPersistState);
-  const path = symbol && !search 
-    ? replaceRouteParameters(link, {chainId: networkToChainId[network], user, protocol: symbol})
-    : search 
-      ? replaceRouteParameters(link, {chainId: networkToChainId[network], search, protocol: symbol}) 
+  const path =
+    symbol && !search
+      ? replaceRouteParameters(link, {chainId: networkToChainId[network], user, protocol: symbol})
+      : search
+      ? replaceRouteParameters(link, {chainId: networkToChainId[network], search, protocol: symbol})
       : RoutePath.NotFound;
 
   const {filters} = useFiltersTables();

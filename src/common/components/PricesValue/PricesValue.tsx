@@ -20,29 +20,28 @@ function PricesValue({
             [styles.minusValuePrice]: valueIsMinus,
           })}
         >
-          {
-            pricePercentDollar ? (
-              (valueIsMinus ? '-' + '$' + numberFormatter({value: pricePercentDollar, size: 2})
-              .substring(1)
-              : '+' + '$' + numberFormatter({value: pricePercentDollar, size: 2}))
+          {pricePercentDollar ? (
+            valueIsMinus ? (
+              '-' + '$' + numberFormatter({value: pricePercentDollar, size: 2}).substring(1)
             ) : (
-              <Skeleton width={54} height={19} />
+              '+' + '$' + numberFormatter({value: pricePercentDollar, size: 2})
             )
-          }
+          ) : (
+            <Skeleton width={54} height={19} />
+          )}
         </div>
         <div
           className={classNames(styles.secondaryPricePercentTitle, {
             [styles.minusValue]: valueIsMinus,
           })}
         >
-          {
-            secondaryPricePercentTitle ? (
-              (valueIsMinus ? '' : '+')
-              +numberFormatter({value: secondaryPricePercentTitle, size: 2}) + '%'
-            ) : (
-              <Skeleton width={54} height={19} />
-            )
-          }
+          {secondaryPricePercentTitle ? (
+            (valueIsMinus ? '' : '+') +
+            numberFormatter({value: secondaryPricePercentTitle, size: 2}) +
+            '%'
+          ) : (
+            <Skeleton width={54} height={19} />
+          )}
         </div>
       </div>
     </div>

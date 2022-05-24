@@ -12,12 +12,12 @@ import useTheme from 'common/hooks/useTheme/useTheme';
 import Icon from 'common/components/Icon/Icon';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import Skeleton from '../Skeleton/Skeleton';
-import { networkToChainId } from 'utils/constants';
+import {networkToChainId} from 'utils/constants';
 import RoutePath from 'common/modules/routing/routing.enums';
 import replaceRouteParameters from 'utils/replaceRouteParameters';
-import { useRecoilValue } from 'recoil';
-import { searchPersistState } from 'common/modules/atoms/searchState';
-import { userPersistState } from 'common/modules/atoms/userAddress';
+import {useRecoilValue} from 'recoil';
+import {searchPersistState} from 'common/modules/atoms/searchState';
+import {userPersistState} from 'common/modules/atoms/userAddress';
 
 function Networks() {
   const ref = useRef(null);
@@ -29,11 +29,12 @@ function Networks() {
 
   const MenuItem = (menuItem: NetworksItem) => {
     const search = useRecoilValue(searchPersistState);
-    const path = menuItem.id && !search ?
-      replaceRouteParameters(menuItem.link, {chainId: networkToChainId[menuItem.id], user})
-    : search ? 
-      replaceRouteParameters(menuItem.link, {chainId: networkToChainId[menuItem.id], search})
-    : RoutePath.NotFound;
+    const path =
+      menuItem.id && !search
+        ? replaceRouteParameters(menuItem.link, {chainId: networkToChainId[menuItem.id], user})
+        : search
+        ? replaceRouteParameters(menuItem.link, {chainId: networkToChainId[menuItem.id], search})
+        : RoutePath.NotFound;
 
     return (
       <div className={styles.menu_item} onClick={() => navigate(path)}>

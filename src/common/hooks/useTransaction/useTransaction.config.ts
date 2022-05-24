@@ -12,8 +12,8 @@ export const getTransactions = (
   variables: Variables,
   options = {chainId: 1},
 ) => {
-  const {account, currency} = variables;
-console.log('getTransactions')
+  const {account, currency} = variables; //account '0x0aCE0B7Ec36E23FaFfe917d86F401B5E4CE6D51f'
+  console.log('getTransactions');
 
   return client.query({
     uri: uri,
@@ -23,7 +23,7 @@ console.log('getTransactions')
         vsCurrency: $vsCurrency
       )
   }`,
-    variables: {accountAddress: '0x0aCE0B7Ec36E23FaFfe917d86F401B5E4CE6D51f', vsCurrency: currency},
+    variables: {accountAddress: account, vsCurrency: currency},
     config: {
       envs: [
         {

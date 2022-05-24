@@ -39,7 +39,7 @@ function Input({
         onChange={(event) => onChange(event.target.value ?? '')}
       />
       {!!icon && (
-        <button type='submit' className={styles.icon_wrapper} onClick={onClick}>
+        <button type="submit" className={styles.icon_wrapper} onClick={onClick}>
           <MaskIcon src={icon} size={'12px'} />
         </button>
       )}

@@ -1,9 +1,6 @@
 import {useWeb3ApiClient} from '@web3api/react';
 import {useCallback, useEffect, useState} from 'react';
-import {
-  uri,
-  query,
-} from './useAssetMetadata.config';
+import {uri, query} from './useAssetMetadata.config';
 
 const useAssetMetadata = (id: string, chainId: number, tokenAddress: string) => {
   const client = useWeb3ApiClient();
@@ -17,7 +14,7 @@ const useAssetMetadata = (id: string, chainId: number, tokenAddress: string) => 
         id,
         contract_address: tokenAddress,
       },
-    })
+    });
 
     if (response && !errors?.length) {
       const assetData = response?.tokenInfo;
@@ -29,13 +26,13 @@ const useAssetMetadata = (id: string, chainId: number, tokenAddress: string) => 
       console.log(errors);
       console.log('-----ERRORS'); */
     }
-  }, [client, id, tokenAddress])
+  }, [client, id, tokenAddress]);
 
   useEffect(() => {
-    getAssetMetadata()
-  }, [getAssetMetadata, id, chainId, tokenAddress])
+    getAssetMetadata();
+  }, [getAssetMetadata, id, chainId, tokenAddress]);
 
   return asset;
-}
+};
 
 export default useAssetMetadata;

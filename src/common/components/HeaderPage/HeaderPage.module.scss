@@ -24,7 +24,7 @@
 .title {
   @include flex_centered_vert;
   margin-bottom: 32px;
-  
+
   .img {
     width: 40px;
     height: 40px;
@@ -34,7 +34,7 @@
   .text {
     font-size: 48px;
     font-weight: var(--font_weight_bolder);
-  
+
     span {
       font-size: 24px;
       font-weight: 400;

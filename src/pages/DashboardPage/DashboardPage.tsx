@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, {ReactNode} from 'react';
 
 import styles from './DashboardPage.module.scss';
 
@@ -9,7 +9,7 @@ import Footer from 'common/components/Footer/Footer';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import Sidebar from 'common/components/Sidebar/Sidebar';
 
-function DashboardPage({ children }: { children: ReactNode }) {
+function DashboardPage({children}: {children: ReactNode}) {
   const theme = useTheme();
 
   return (

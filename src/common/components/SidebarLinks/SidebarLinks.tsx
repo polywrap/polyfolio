@@ -19,12 +19,15 @@ function SidebarLinks() {
   const translation = useTranslation();
   const {search, setSearch} = useSearch();
 
-  const handleClick = useCallback((event, link, isExternal) => {
-    if (search) {
-      setSearch(null);
-    }
-    navigateToExternalLink({event, link, isExternal});
-  }, [search, setSearch])
+  const handleClick = useCallback(
+    (event, link, isExternal) => {
+      if (search) {
+        setSearch(null);
+      }
+      navigateToExternalLink({event, link, isExternal});
+    },
+    [search, setSearch],
+  );
 
   return (
     <div className={classNames(styles.common_sidebar_links, styles[theme])}>

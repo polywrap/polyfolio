@@ -1,17 +1,17 @@
-import React from 'react'
+import React from 'react';
 
-import classNames from 'classnames'
+import classNames from 'classnames';
 import iconsObj from 'assets/icons/iconsObj';
 import styles from './HeaderPage.module.scss';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import Icon from '../Icon/Icon';
 import RoutePath from 'common/modules/routing/routing.enums';
 import replaceRouteParameters from 'utils/replaceRouteParameters';
-import { useRecoilValue } from 'recoil';
-import { searchPersistState } from 'common/modules/atoms/searchState';
+import {useRecoilValue} from 'recoil';
+import {searchPersistState} from 'common/modules/atoms/searchState';
 
 interface IHeaderPage {
   icon: string;
@@ -19,11 +19,7 @@ interface IHeaderPage {
   secondaryTitle?: string;
 }
 
-function HeaderPage({
-  icon,
-  title,
-  secondaryTitle,
-}: IHeaderPage) {
+function HeaderPage({icon, title, secondaryTitle}: IHeaderPage) {
   const theme = useTheme();
   const search = useRecoilValue(searchPersistState);
   const translation = useTranslation();
@@ -48,7 +44,7 @@ function HeaderPage({
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default HeaderPage;

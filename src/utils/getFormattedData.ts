@@ -1,7 +1,7 @@
-import allNetworksDataFormatting from "./allNetworksDataFormatting";
-import networkDataFormatting from "./networkDataFormatting";
+import allNetworksDataFormatting from './allNetworksDataFormatting';
+import networkDataFormatting from './networkDataFormatting';
 
-export default function getFormattedData (balance, name?: string) {
+export default function getFormattedData(balance, name?: string) {
   let preparedData = {};
 
   if (balance) {

@@ -6,7 +6,7 @@ import _ from 'lodash';
 import {ejectAssetsFromProtocol, getAssetsValueSum} from 'utils/dataFormatting';
 import {useNetworks} from 'common/networks/Networks.context';
 import getFormattedData from 'utils/getFormattedData';
-import { useRecoilValue } from 'recoil';
+import {useRecoilValue} from 'recoil';
 import balanceState from 'common/modules/atoms/balanceState';
 
 const useNetwork = () => {
@@ -14,28 +14,29 @@ const useNetwork = () => {
   const preparedData = getFormattedData(balance);
   const {network} = useNetworks();
   const menuItems: NetworksItem[] = [];
-  
+
   if (preparedData['balance']) {
-    network.forEach(item => {
+    network.forEach((item) => {
       let allAssets = [];
       const name = item['name'];
-      _.forEach(preparedData['balance'][name]?.protocols, protocol => {
+      _.forEach(preparedData['balance'][name]?.protocols, (protocol) => {
         allAssets = _.flatten([...allAssets, ...ejectAssetsFromProtocol(protocol)]);
-      })
+      });
 
       const allAssetsSum = getAssetsValueSum(allAssets);
 
-      if (item.checked) menuItems.push({
-        title: item.title,
-        secondaryTitle: rmCommasFromNum(allAssetsSum.toString()),
-        icon: iconsObj[name] as string,
-        link: RoutePath.Network,
-        id: name.toLowerCase(),
-      })
-    })
+      if (item.checked)
+        menuItems.push({
+          title: item.title,
+          secondaryTitle: rmCommasFromNum(allAssetsSum.toString()),
+          icon: iconsObj[name] as string,
+          link: RoutePath.Network,
+          id: name.toLowerCase(),
+        });
+    });
   }
 
   return menuItems;
-}
+};
 
 export default useNetwork;

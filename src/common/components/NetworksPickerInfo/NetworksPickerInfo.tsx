@@ -1,4 +1,4 @@
-import React, { Dispatch } from 'react';
+import React, {Dispatch} from 'react';
 import _map from 'lodash/map';
 import classNames from 'classnames';
 
@@ -7,10 +7,10 @@ import styles from './NetworksPickerInfo.module.scss';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import {INetworks} from 'common/networks/Networks.types';
 import Icon from 'common/components/Icon/Icon';
-import { useNetworks } from 'common/networks/Networks.context';
+import {useNetworks} from 'common/networks/Networks.context';
 import iconsObj from 'assets/icons/iconsObj';
 
-function NetworksPickerInfo({ onClick }: { onClick: Dispatch<INetworks> }) {
+function NetworksPickerInfo({onClick}: {onClick: Dispatch<INetworks>}) {
   const theme = useTheme();
   const {network} = useNetworks();
 
@@ -21,22 +21,18 @@ function NetworksPickerInfo({ onClick }: { onClick: Dispatch<INetworks> }) {
           <div className={styles.icon}>
             <Icon src={iconsObj.ethereum} className={styles.iconSelected} />
           </div>
-          <div className={styles.secondaryTitle}>
-            {menuItem.title}
-          </div>
-          {
-            menuItem.checked ? (
-              <div className={styles.iconCurrency}>
-                <Icon src={iconsObj.checkedIcon} className={styles.iconSelected} />
-              </div>
-            ) : (
-              <div className={styles.iconCurrency}>
-                <div className={styles.checkbox} />
-              </div>
-            )
-          }
+          <div className={styles.secondaryTitle}>{menuItem.title}</div>
+          {menuItem.checked ? (
+            <div className={styles.iconCurrency}>
+              <Icon src={iconsObj.checkedIcon} className={styles.iconSelected} />
+            </div>
+          ) : (
+            <div className={styles.iconCurrency}>
+              <div className={styles.checkbox} />
+            </div>
+          )}
         </div>
-        <input type='checkbox' id={menuItem.name}/>
+        <input type="checkbox" id={menuItem.name} />
       </label>
     );
   };

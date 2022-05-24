@@ -13,39 +13,41 @@ export default function useBalance(address: string) {
 
   const [balance, setBalance] = useRecoilState(balanceState);
 
-  const balanceRequest = useCallback(async (/* chainId */) => {
-    const {data: response, errors} = await client.query({
-      uri,
-      query,
-      variables: {
-        accountAddress: address,
-        vsCurrencies: [],
-        noTruncate: false,
-        underlyingPrice: false,
-      },
-      /* config: getCONFIG(chainId), */
-    });
-    
-    if (response && !errors?.length) {
-      return response?.getAccountBalance
-    }
-    else {
-      // ADD ERROR HANDLER
-      console.log('ERRORS-------');
-      console.log(errors);
-      console.log('-----ERRORS');
-    }
-  }, [address, client])
+  const balanceRequest = useCallback(
+    async (/* chainId */) => {
+      const {data: response, errors} = await client.query({
+        uri,
+        query,
+        variables: {
+          accountAddress: address,
+          vsCurrencies: [],
+          noTruncate: false,
+          underlyingPrice: false,
+        },
+        /* config: getCONFIG(chainId), */
+      });
+
+      if (response && !errors?.length) {
+        return response?.getAccountBalance;
+      } else {
+        // ADD ERROR HANDLER
+        console.log('ERRORS-------');
+        console.log(errors);
+        console.log('-----ERRORS');
+      }
+    },
+    [address, client],
+  );
 
   const getBalance = useCallback(async () => {
     if (address) {
-      let temporaryBalance = {}
+      let temporaryBalance = {};
 
       for (let i = 0; i < network.length; i++) {
         if (network[i].checked) {
           const name = network[i].name;
           /* const chainId = network[i].chainId.toString(); */
-          
+
           const response = await balanceRequest(/* chainId */);
           temporaryBalance = {...temporaryBalance, [name]: response};
         }
@@ -61,7 +63,7 @@ export default function useBalance(address: string) {
     if (address) {
       getBalance();
     }
-  }, [address, getBalance])
+  }, [address, getBalance]);
 
   return balance;
 }

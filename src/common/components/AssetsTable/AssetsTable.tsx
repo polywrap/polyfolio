@@ -16,10 +16,10 @@ import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
 import {useLocation} from 'react-router-dom';
 import {getStringFromPath} from 'utils/helpers';
 import Skeleton from '../Skeleton/Skeleton';
-import { chainIdToNetwork } from 'utils/constants';
-import { DataRangeSelectorItem } from '../DateRangeSelector/DataRangeSelector.types';
+import {chainIdToNetwork} from 'utils/constants';
+import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.types';
 import getFormattedData from 'utils/getFormattedData';
-import { useRecoilValue } from 'recoil';
+import {useRecoilValue} from 'recoil';
 import balanceState from 'common/modules/atoms/balanceState';
 
 function AssetsTable() {
@@ -44,66 +44,65 @@ function AssetsTable() {
   };
 
   const onChange = (name, value) => {
-    setFilter({ ...filters, assets: { ...filter.assets, [name]: !value?.checked } });
+    setFilter({...filters, assets: {...filter.assets, [name]: !value?.checked}});
   };
 
-  return preparedData['balance']
-      ? (
-        <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>
-          <HeaderTable
-            setTableIsOpen={() => setTableIsOpen(!tableIsOpen)}
-            onSaveFilter={() => {
-              setFilters(filter);
-              setIsOpen(!isOpen);
-            }}
-            setIsOpen={() => setIsOpen(!isOpen)}
-            title={translation.Table.assets}
-            menuFields={menuFields}
-            filter={filter.assets}
-            onChange={onChange}
-            isOpen={isOpen}
-            sum={preparedData['allAssetsSum']}
-            changeDataRange={changeDataRange}
-            dataRange={dataRange}
-            dataRangeIsOpen={dataRangeIsOpen}
-            setDataRangeIsOpen={setDataRangeIsOpen}
-          />
-          <div className={classNames(styles.table_container, { [styles.hidden]: tableIsOpen })}>
-            <div className={styles.title_container}>
-              <div className={classNames(styles.title, styles.assets)}>{translation.Table.assets}</div>
-              <div
-                className={classNames(styles.title, styles.allocation, {
-                  [styles.hidden]: filters.assets.allocation,
-                })}
-              >
-                {translation.Table.allocation}
-              </div>
-              <div
-                className={classNames(styles.title, styles.price, {
-                  [styles.hidden]: filters.assets.price,
-                })}
-              >
-                {translation.Table.price}
-              </div>
-              <div
-                className={classNames(styles.title, styles.value, {
-                  [styles.hidden]: filters.assets.value,
-                })}
-              >
-                <Icon className={styles.title_icon} src={iconsObj.sort_frame} sizes="24px" />
-                Value
-              </div>
-            </div>
-            {_map(assets, (asset) => (
-              <AssetsTableItem {...asset} key={asset.id} />
-            ))}
+  return preparedData['balance'] ? (
+    <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>
+      <HeaderTable
+        setTableIsOpen={() => setTableIsOpen(!tableIsOpen)}
+        onSaveFilter={() => {
+          setFilters(filter);
+          setIsOpen(!isOpen);
+        }}
+        setIsOpen={() => setIsOpen(!isOpen)}
+        title={translation.Table.assets}
+        menuFields={menuFields}
+        filter={filter.assets}
+        onChange={onChange}
+        isOpen={isOpen}
+        sum={preparedData['allAssetsSum']}
+        changeDataRange={changeDataRange}
+        dataRange={dataRange}
+        dataRangeIsOpen={dataRangeIsOpen}
+        setDataRangeIsOpen={setDataRangeIsOpen}
+      />
+      <div className={classNames(styles.table_container, {[styles.hidden]: tableIsOpen})}>
+        <div className={styles.title_container}>
+          <div className={classNames(styles.title, styles.assets)}>{translation.Table.assets}</div>
+          <div
+            className={classNames(styles.title, styles.allocation, {
+              [styles.hidden]: filters.assets.allocation,
+            })}
+          >
+            {translation.Table.allocation}
+          </div>
+          <div
+            className={classNames(styles.title, styles.price, {
+              [styles.hidden]: filters.assets.price,
+            })}
+          >
+            {translation.Table.price}
+          </div>
+          <div
+            className={classNames(styles.title, styles.value, {
+              [styles.hidden]: filters.assets.value,
+            })}
+          >
+            <Icon className={styles.title_icon} src={iconsObj.sort_frame} sizes="24px" />
+            Value
           </div>
         </div>
-      ) : (
-        <div style={{margin: '48px 0'}}>
-          <Skeleton width={1256} height={923} />
-        </div>
-      )
+        {_map(assets, (asset) => (
+          <AssetsTableItem {...asset} key={asset.id} />
+        ))}
+      </div>
+    </div>
+  ) : (
+    <div style={{margin: '48px 0'}}>
+      <Skeleton width={1256} height={923} />
+    </div>
+  );
 }
 
 export default AssetsTable;

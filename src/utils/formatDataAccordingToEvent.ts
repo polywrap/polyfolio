@@ -1,5 +1,11 @@
 import _forEach from 'lodash/forEach';
-import {findTokenName, getEventIcon, getEventType, getTokenAmount, getTokenPrice} from './dataFormatting';
+import {
+  findTokenName,
+  getEventIcon,
+  getEventType,
+  getTokenAmount,
+  getTokenPrice,
+} from './dataFormatting';
 
 export const formatDataAccordingToEvent = (transaction, user: string, assets) => {
   let eventData = null;
@@ -8,7 +14,7 @@ export const formatDataAccordingToEvent = (transaction, user: string, assets) =>
   let tokenTicker: string;
   let tokenAmount: string;
   let tokenPrice: number | string;
-  
+
   if (transaction) {
     if (transaction.logs.length > 0) {
       _forEach(transaction.logs, (log) => {
@@ -28,7 +34,7 @@ export const formatDataAccordingToEvent = (transaction, user: string, assets) =>
               tokenTicker,
               tokenAmount,
               tokenPrice,
-            }
+            };
             break;
           case 'Transfer':
             eventName = getEventType(eventName, user, eventParams);
@@ -43,7 +49,7 @@ export const formatDataAccordingToEvent = (transaction, user: string, assets) =>
               tokenTicker,
               tokenAmount,
               tokenPrice,
-            }
+            };
             break;
           case 'Swap':
             eventName = getEventType(eventName, user, eventParams);
@@ -59,7 +65,7 @@ export const formatDataAccordingToEvent = (transaction, user: string, assets) =>
               tokenTicker,
               tokenAmount,
               tokenPrice,
-            }
+            };
             break;
           case 'Withdrawal':
             icon = '???';
@@ -73,7 +79,7 @@ export const formatDataAccordingToEvent = (transaction, user: string, assets) =>
               tokenTicker,
               tokenAmount,
               tokenPrice,
-            }
+            };
             break;
           case 'Sync':
             icon = '???';
@@ -87,7 +93,7 @@ export const formatDataAccordingToEvent = (transaction, user: string, assets) =>
               tokenTicker,
               tokenAmount,
               tokenPrice,
-            }
+            };
             break;
           case 'StateSynced':
             icon = '???';
@@ -101,7 +107,7 @@ export const formatDataAccordingToEvent = (transaction, user: string, assets) =>
               tokenTicker,
               tokenAmount,
               tokenPrice,
-            }
+            };
             break;
           case 'NewDepositBlock':
             icon = '???';
@@ -115,7 +121,7 @@ export const formatDataAccordingToEvent = (transaction, user: string, assets) =>
               tokenTicker,
               tokenAmount,
               tokenPrice,
-            }
+            };
             break;
           case 'Deposit':
             icon = '???';
@@ -129,13 +135,14 @@ export const formatDataAccordingToEvent = (transaction, user: string, assets) =>
               tokenTicker,
               tokenAmount,
               tokenPrice,
-            }
+            };
             break;
-          default: eventData = null;
+          default:
+            eventData = null;
         }
-      })
+      });
     }
   }
 
   return eventData;
-}
+};

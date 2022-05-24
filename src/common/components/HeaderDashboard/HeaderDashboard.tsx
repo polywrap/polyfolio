@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, {useMemo, useState} from 'react';
 import classNames from 'classnames';
 
 import styles from './HeaderDashboard.module.scss';
@@ -31,8 +31,8 @@ function HeaderDashboard() {
   const younderAddress = useMemo(() => {
     const splitedUrl = pathname.split('/');
 
-    return splitedUrl[2] === user ? '' : splitedUrl[2]; 
-  }, [pathname, user])
+    return splitedUrl[2] === user ? '' : splitedUrl[2];
+  }, [pathname, user]);
 
   const onChangeCurrency = (item) => {
     setCurrency(item);
@@ -41,52 +41,34 @@ function HeaderDashboard() {
 
   return (
     <div className={classNames(styles.headerDashboardContainer, styles[theme])}>
-      {
-        younderAddress 
-          ? (
-            <YounderProfile
-              ens={younderAddress}
-              address={younderAddress}
-              style={styles.younder}
-            />
-          ) : (
-            <h1 className={styles.title}>{translation.Dashboard.title}</h1>
-          )
-      }
+      {younderAddress ? (
+        <YounderProfile ens={younderAddress} address={younderAddress} style={styles.younder} />
+      ) : (
+        <h1 className={styles.title}>{translation.Dashboard.title}</h1>
+      )}
       <div className={styles.contentContainer}>
         <div>
           <span className={styles.secondaryTitle}>{translation.Dashboard.secondaryTitle}</span>
-          {
-            preparedData['allAssetsSum']
-              ? (
-                <h2>${numberFormatter({ value: preparedData['allAssetsSum'], size: 2 })}</h2>
-              )
-              : <Skeleton width={215} height={54} />
-          }
+          {preparedData['allAssetsSum'] ? (
+            <h2>${numberFormatter({value: preparedData['allAssetsSum'], size: 2})}</h2>
+          ) : (
+            <Skeleton width={215} height={54} />
+          )}
           <div className={styles.secondaryValue}>
-            {
-              content.percent
-                ? (
-                  <div className={styles.value}>
-                    +{numberFormatter({ value: content.percent, size: 2 })}%
-                  </div>
-                )
-                : (
-                  <Skeleton width={40.5} height={19} />
-                )
-            }
-            {
-              content.value
-                ? (
-                  <div className={classNames(styles.value, styles.percent)}>
-                    +${numberFormatter({ value: content.value, size: 2 })}
-                  </div>
-                )
-                : (
-                  <Skeleton width={35.6} height={19} />
-                )
-            }
-
+            {content.percent ? (
+              <div className={styles.value}>
+                +{numberFormatter({value: content.percent, size: 2})}%
+              </div>
+            ) : (
+              <Skeleton width={40.5} height={19} />
+            )}
+            {content.value ? (
+              <div className={classNames(styles.value, styles.percent)}>
+                +${numberFormatter({value: content.value, size: 2})}
+              </div>
+            ) : (
+              <Skeleton width={35.6} height={19} />
+            )}
           </div>
         </div>
         <div className={styles.dropdownContainer}>

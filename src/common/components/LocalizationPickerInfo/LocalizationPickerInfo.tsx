@@ -20,9 +20,7 @@ function LocalizationPickerInfo({onClick}: {onClick: Dispatch<LocalizationPicker
       <div className={styles.menu_item} onClick={() => onClick(menuItem)}>
         <div className={styles.menu_item}>
           <div className={styles.title}>{menuItem.title.toUpperCase()}</div>
-          <div className={styles.secondaryTitle}>
-            {menuItem.secondaryTitle}
-          </div>
+          <div className={styles.secondaryTitle}>{menuItem.secondaryTitle}</div>
           {language === menuItem.title && (
             <div className={styles.iconCurrency}>
               <Icon src={iconsObj.selected} className={styles.iconSelected} />

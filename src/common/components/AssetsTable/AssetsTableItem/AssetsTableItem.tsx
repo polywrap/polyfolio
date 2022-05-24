@@ -16,9 +16,9 @@ import {networkToChainId} from 'utils/constants';
 import RoutePath from 'common/modules/routing/routing.enums';
 import replaceRouteParameters from 'utils/replaceRouteParameters';
 import Skeleton from 'common/components/Skeleton/Skeleton';
-import { searchPersistState } from 'common/modules/atoms/searchState';
-import { useRecoilValue } from 'recoil';
-import { userPersistState } from 'common/modules/atoms/userAddress';
+import {searchPersistState} from 'common/modules/atoms/searchState';
+import {useRecoilValue} from 'recoil';
+import {userPersistState} from 'common/modules/atoms/userAddress';
 
 function AssetsItem(menuItem) {
   const {filters} = useFiltersTables();
@@ -41,24 +41,23 @@ function AssetsItem(menuItem) {
     symbol,
   } = menuItem;
   const search = useRecoilValue(searchPersistState);
-  const path = symbol && !search 
-    ? replaceRouteParameters(link, {chainId: networkToChainId[network], asset: symbol, user})
-    : search 
-      ? replaceRouteParameters(link, {chainId: networkToChainId[network], asset: symbol, search}) 
+  const path =
+    symbol && !search
+      ? replaceRouteParameters(link, {chainId: networkToChainId[network], asset: symbol, user})
+      : search
+      ? replaceRouteParameters(link, {chainId: networkToChainId[network], asset: symbol, search})
       : RoutePath.NotFound;
-  
+
   return (
     <>
       <button className={styles.buttonNavigate} onClick={() => navigate(path)}>
         <div className={styles.menu_item}>
           <div className={styles.title_container}>
-            {
-              icon ? (
-                <Icon src={icon} className={styles.icon} />
-              ) : (
-                <Skeleton width={40} height={40} />
-              )
-            }
+            {icon ? (
+              <Icon src={icon} className={styles.icon} />
+            ) : (
+              <Skeleton width={40} height={40} />
+            )}
             <div>
               <div className={styles.title}>{title}</div>
               <div className={styles.titleSecondary}>{secondaryTitle}</div>

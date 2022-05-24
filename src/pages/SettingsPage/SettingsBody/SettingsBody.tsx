@@ -14,9 +14,9 @@ import CurrencyPicker from 'common/components/CurrencyPicker/CurrencyPicker';
 import LocalizationPicker from 'common/components/LocalizationPicker/LocalizationPicker';
 
 function SettingsBody() {
-  const theme = useTheme()
-  const {user} = useAuth()
-  const translation = useTranslation()
+  const theme = useTheme();
+  const {user} = useAuth();
+  const translation = useTranslation();
 
   return (
     <div className={classNames(style[theme])}>
@@ -36,19 +36,25 @@ function SettingsBody() {
       <div className={style.settings_prop}>
         <div className={style.row}>
           <div className={style.left}>{translation.Settings.theme}</div>
-          <div className={style.right}><ThemeSwitcher /></div>
+          <div className={style.right}>
+            <ThemeSwitcher />
+          </div>
         </div>
         <div className={style.row}>
           <div className={style.left}>{translation.Settings.baseCurrency}</div>
-          <div className={style.right}><CurrencyPicker /></div>
+          <div className={style.right}>
+            <CurrencyPicker />
+          </div>
         </div>
         <div className={style.row}>
           <div className={style.left}>{translation.Settings.language}</div>
-          <div className={style.right}><LocalizationPicker /></div>
+          <div className={style.right}>
+            <LocalizationPicker />
+          </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default SettingsBody
+export default SettingsBody;

@@ -4,10 +4,10 @@ import {
   getMarketCap,
   getPriceChangeCurrency,
   getPriceChangePercentage,
-  getVolume
+  getVolume,
 } from 'utils/dataFormatting';
 
-function useAssetPageData (
+function useAssetPageData(
   currency: string,
   assetMetaData,
   price?: string,
@@ -21,28 +21,28 @@ function useAssetPageData (
   switch (dataRange.title) {
     case 'd':
       [percentage, style] = getPriceChangePercentage(
-        assetMetaData?.market_data.price_change_percentage_24h
+        assetMetaData?.market_data.price_change_percentage_24h,
       );
       pricePercentDollar = percentage
         ? ((Number(percentage) * Number(price)) / 100).toString()
         : '';
 
-    return {
-      marketCap,
-      volume,
-      percentage,
-      style,
-      pricePercentDollar,
-    }
+      return {
+        marketCap,
+        volume,
+        percentage,
+        style,
+        pricePercentDollar,
+      };
     case 'h':
       pricePercentDollar = getPriceChangeCurrency(
         currency,
-        assetMetaData?.market_data.price_change_percentage_1h_in_currency
+        assetMetaData?.market_data.price_change_percentage_1h_in_currency,
       );
-      style = pricePercentDollar ? pricePercentDollar[0] === '-' ? 'loss' : 'profit' : '';
+      style = pricePercentDollar ? (pricePercentDollar[0] === '-' ? 'loss' : 'profit') : '';
       percentage = pricePercentDollar
-      ? ((Number(pricePercentDollar) * Number(price)) / 100).toString()
-      : '';
+        ? ((Number(pricePercentDollar) * Number(price)) / 100).toString()
+        : '';
 
       return {
         marketCap,
@@ -50,14 +50,14 @@ function useAssetPageData (
         percentage,
         style,
         pricePercentDollar,
-      }
+      };
     case 'w':
       [percentage, style] = getPriceChangePercentage(
-        assetMetaData?.market_data.price_change_percentage_7d
+        assetMetaData?.market_data.price_change_percentage_7d,
       );
       pricePercentDollar = percentage
-      ? ((Number(percentage) * Number(price)) / 100).toString()
-      : '';
+        ? ((Number(percentage) * Number(price)) / 100).toString()
+        : '';
 
       return {
         marketCap,
@@ -65,14 +65,14 @@ function useAssetPageData (
         percentage,
         style,
         pricePercentDollar,
-      }
+      };
     case 'm':
       [percentage, style] = getPriceChangePercentage(
-        assetMetaData?.market_data.price_change_percentage_30d
+        assetMetaData?.market_data.price_change_percentage_30d,
       );
       pricePercentDollar = percentage
-      ? ((Number(percentage) * Number(price)) / 100).toString()
-      : '';
+        ? ((Number(percentage) * Number(price)) / 100).toString()
+        : '';
 
       return {
         marketCap,
@@ -80,9 +80,9 @@ function useAssetPageData (
         percentage,
         style,
         pricePercentDollar,
-      }
+      };
     default:
-    break;
+      break;
   }
 }
 

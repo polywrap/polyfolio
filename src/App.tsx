@@ -104,22 +104,10 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path={RoutePath.Settings}
-            element={<SettingsPage />}
-          />
-          <Route
-            path={RoutePath.Support}
-            element={<PageUnderConstruction />}
-          />
-          <Route
-            path={RoutePath.Polywrap}
-            element={<PageUnderConstruction />}
-          />
-          <Route
-            path={RoutePath.Docs}
-            element={<PageUnderConstruction />}
-          />
+          <Route path={RoutePath.Settings} element={<SettingsPage />} />
+          <Route path={RoutePath.Support} element={<PageUnderConstruction />} />
+          <Route path={RoutePath.Polywrap} element={<PageUnderConstruction />} />
+          <Route path={RoutePath.Docs} element={<PageUnderConstruction />} />
           <Route path={'*'} element={<Navigate to={RoutePath.BaseRoute} />} />
         </Fragment>
       </Routes>

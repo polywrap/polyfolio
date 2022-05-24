@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, {useState, useRef} from 'react';
 import classNames from 'classnames';
 
 import styles from './Profile.module.scss';
@@ -18,15 +18,15 @@ import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useWallet from 'common/hooks/useWallet/useWallet';
 import Skeleton from '../Skeleton/Skeleton';
 import getFormattedData from 'utils/getFormattedData';
-import { useRecoilValue } from 'recoil';
+import {useRecoilValue} from 'recoil';
 import balanceState from 'common/modules/atoms/balanceState';
 
 function Profile() {
   const theme = useTheme();
   const ref = useRef(null);
   const translation = useTranslation();
-  const { user, logOut } = useAuth();
-  const { connect } = useWallet();
+  const {user, logOut} = useAuth();
+  const {connect} = useWallet();
   const balance = useRecoilValue(balanceState);
   const preparedData = getFormattedData(balance);
 
@@ -54,21 +54,17 @@ function Profile() {
                 </TooltipTrigger>
               </div>
             </div>
-            {
-              preparedData['allAssetsSum']
-                ? (
-                  <div className={styles.amount}>
-                    ${numberFormatter({
-                      value: preparedData['allAssetsSum'],
-                      size: 2
-                    })}
-                  </div>
-                )
-                : (
-                  <Skeleton width={127.7} height={32} />
-                )
-            }
-
+            {preparedData['allAssetsSum'] ? (
+              <div className={styles.amount}>
+                $
+                {numberFormatter({
+                  value: preparedData['allAssetsSum'],
+                  size: 2,
+                })}
+              </div>
+            ) : (
+              <Skeleton width={127.7} height={32} />
+            )}
           </div>
         </>
       ) : (

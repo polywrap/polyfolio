@@ -28,7 +28,7 @@ function SettingsPage() {
         </main>
       </div>
     </div>
-  )
+  );
 }
 
-export default SettingsPage
+export default SettingsPage;

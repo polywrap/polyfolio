@@ -12,5 +12,5 @@ export const networks = [
     chainId: 137,
     title: 'Polygon',
     checked: true,
-  }
+  },
 ];

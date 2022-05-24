@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import Networks from 'common/components/Networks/Networks';
 import ProtocolsTable from 'common/components/ProtocolsTable/ProtocolsTable';
 import AssetsTable from 'common/components/AssetsTable/AssetsTable';

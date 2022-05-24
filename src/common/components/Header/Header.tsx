@@ -21,8 +21,8 @@ import RoutePath from 'common/modules/routing/routing.enums';
 import {useNavigate} from 'react-router-dom';
 import useSearch from 'common/hooks/useSearch/useSearch';
 import replaceRouteParameters from 'utils/replaceRouteParameters';
-import { userPersistState } from 'common/modules/atoms/userAddress';
-import { useRecoilValue } from 'recoil';
+import {userPersistState} from 'common/modules/atoms/userAddress';
+import {useRecoilValue} from 'recoil';
 
 function Header({
   className = '',
@@ -43,14 +43,17 @@ function Header({
   const searchRef = useRef<HTMLDivElement>(null);
   const {width} = useResizeObserver(menuRef);
 
-  const handleChange = useCallback((val: string) => {
-    setValue(val);
-  }, [setValue])
-  
+  const handleChange = useCallback(
+    (val: string) => {
+      setValue(val);
+    },
+    [setValue],
+  );
+
   const handleClick = useCallback(() => {
-    setSearch(value)
+    setSearch(value);
     navigate(replaceRouteParameters(RoutePath.Dashboard, {user: value}));
-  }, [navigate, setSearch, value])
+  }, [navigate, setSearch, value]);
 
   return (
     <div className={styles.wrapper}>

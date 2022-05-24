@@ -1,4 +1,4 @@
-import {atom} from "recoil";
+import {atom} from 'recoil';
 
 const USER_STATE_KEY = 'polyfolio_search_state';
 

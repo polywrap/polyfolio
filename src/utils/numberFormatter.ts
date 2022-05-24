@@ -1,5 +1,5 @@
-export default function numberFormatter({value, size}: {value: string | number, size: number}) {
+export default function numberFormatter({value, size}: {value: string | number; size: number}) {
   if (value && value != '???')
     return Number(value).toLocaleString('en-US', {minimumFractionDigits: size});
-  else return '???' // temporary
+  else return '???'; // temporary
 }

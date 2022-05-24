@@ -11,10 +11,10 @@ interface IReplaceOptions {
 const replaceRouteParameters = (route: string, replaceOptions: IReplaceOptions) => {
   let resultPath: string = route;
   const keysList = Object.keys(replaceOptions);
-  const collision = 
+  const collision =
     (keysList.includes('search') === true && keysList.includes('user') === true) ?? false;
-  
-  _forEach(keysList, key => {
+
+  _forEach(keysList, (key) => {
     if (collision) {
       if (key === 'search') resultPath = resultPath.replace(':user', replaceOptions[key]);
       else if (key !== 'user') resultPath = resultPath.replace(`:${[key]}`, replaceOptions[key]);
@@ -25,6 +25,6 @@ const replaceRouteParameters = (route: string, replaceOptions: IReplaceOptions) 
   });
 
   return resultPath;
-}
+};
 
 export default replaceRouteParameters;

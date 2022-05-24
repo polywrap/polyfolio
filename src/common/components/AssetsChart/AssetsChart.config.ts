@@ -16,7 +16,7 @@ const useAssetChartConfig = (dataRange: DataRangeSelectorItem) => {
   const assetMetaData = useAssetMetadata(
     assetData?.network,
     networkToChainId[assetData?.network],
-    assetData?.address
+    assetData?.address,
   );
 
   const assetPreparedData = useAssetPageData(
@@ -31,7 +31,7 @@ const useAssetChartConfig = (dataRange: DataRangeSelectorItem) => {
     secondaryTitleValue: assetPreparedData?.pricePercentDollar,
     secondaryTitlePercent: assetPreparedData?.percentage,
     style: assetPreparedData?.style,
-  }
-}
+  };
+};
 
 export default useAssetChartConfig;

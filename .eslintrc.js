@@ -24,7 +24,7 @@ module.exports = {
     // e.g. "@typescript-eslint/explicit-function-return-type": "off",
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'react-hooks/rules-of-hooks': 'error',
-    'react-hooks/exhaustive-deps': 'warn',
+    'react-hooks/exhaustive-deps': 'off',
     'ban-ts-ignore': 0,
     'react/prop-types': 'off',
     'react/display-name': 'off',

@@ -15,9 +15,9 @@ import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
 import {menuFields} from './FilterFieldsVaults.config';
 import {useLocation} from 'react-router-dom';
 import {getStringFromPath} from 'utils/helpers';
-import { DataRangeSelectorItem } from '../DateRangeSelector/DataRangeSelector.types';
+import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.types';
 import balanceState from 'common/modules/atoms/balanceState';
-import { useRecoilValue } from 'recoil';
+import {useRecoilValue} from 'recoil';
 import getFormattedData from 'utils/getFormattedData';
 
 function VaultsTable() {

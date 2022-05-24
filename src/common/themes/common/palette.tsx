@@ -55,6 +55,5 @@ export const colors = {
   // Red
   color_red: '#e53e3e',
 
-  
   color_white: '#FFFFFF',
 };

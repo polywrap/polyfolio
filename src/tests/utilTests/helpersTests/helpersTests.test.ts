@@ -8,4 +8,4 @@ test('Test converting from BN with defined decimal', () => {
   expect(result).toBe(1000);
   expect(resultAlt).toBe(1000);
   expect(result_alt).toBe(1000);
-})
+});

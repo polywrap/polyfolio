@@ -1,10 +1,10 @@
-import {QueryApiOptions, Web3ApiClient} from '@web3api/client-js';
+import {Web3ApiClient} from '@web3api/client-js';
 import ENS_URI from 'utils/web3apiConfig/ensUri';
 import IPFS_URI from 'utils/web3apiConfig/ipfsUri';
 
 interface Variables extends Record<string, unknown> {
   tokenAddress: string; //0xAE461cA67B15dc8dc81CE7615e0320dA1A9aB8D5 fro uniswap_v2
-  protocolId: string;  // uniswap_v2
+  protocolId: string; // uniswap_v2
 }
 interface Options {
   chainId: '1' | string;

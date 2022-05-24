@@ -11,8 +11,8 @@ import RoutePath from 'common/modules/routing/routing.enums';
 import _find from 'lodash/find';
 import replaceRouteParameters from 'utils/replaceRouteParameters';
 import Skeleton from 'common/components/Skeleton/Skeleton';
-import { useRecoilValue } from 'recoil';
-import { searchPersistState } from 'common/modules/atoms/searchState';
+import {useRecoilValue} from 'recoil';
+import {searchPersistState} from 'common/modules/atoms/searchState';
 
 function HeaderCurrencyPage() {
   const theme = useTheme();
@@ -32,13 +32,11 @@ function HeaderCurrencyPage() {
         <div className={styles.btnText}>{translation.Buttons.backDashboard}</div>
       </button>
       <div className={styles.titleContainer}>
-        {
-          currency?.iconInfoPage ? (
-            <Icon src={currency?.iconInfoPage} className={styles.icon} />
-          ) : (
-            <Skeleton width={40} height={40} /> 
-          )
-        }
+        {currency?.iconInfoPage ? (
+          <Icon src={currency?.iconInfoPage} className={styles.icon} />
+        ) : (
+          <Skeleton width={40} height={40} />
+        )}
         <h1 className={styles.title}>{currency?.secondaryTitle}</h1>
         <h4 className={styles.secondaryTitle}>{currency?.title}</h4>
       </div>
