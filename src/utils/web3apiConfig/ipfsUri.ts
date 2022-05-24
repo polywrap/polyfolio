@@ -10,6 +10,7 @@ const IPFS_URI = {
   ACCOUNT: {
     COVALENT: 'w3://ipfs/QmdxqSZm1cuGXcJASYdBfvFSeZpvQqBUseiKLMe3EL3jSq',
   },
+  MOCK: 'ipfs/bafybeicovepnprojcw7fr76vtvfe44gpuvrj7jvqqsm7wlw7gfjuyi4u6i',
 };
 
 export default IPFS_URI;
