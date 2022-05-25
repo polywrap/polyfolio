@@ -30,7 +30,7 @@ export interface TransactionsList extends Record<string, unknown> {
   nextUpdateAt?: string;
 }
 
-interface Transaction {
+export interface Transaction {
   hash: string;
   from: string;
   to: string;

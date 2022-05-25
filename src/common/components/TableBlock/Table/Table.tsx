@@ -3,25 +3,24 @@ import React from 'react';
 import classNames from 'classnames';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import style from './Table.module.scss';
-import TableRow from './TableRow/TableRow';
+import Skeleton from 'common/components/Skeleton/Skeleton';
 
-function Table({data}) {
+interface TableProps<T> {
+  header?: React.ReactNode;
+  loading?: boolean;
+  items: T[];
+  itemRender: (item: T, index?: number) => React.ReactNode;
+}
+
+const Table = <TData,>({items, itemRender, header, loading = false}: TableProps<TData>) => {
   const theme = useTheme();
 
   return (
     <div className={classNames(style[theme], style.table)}>
-      {data?.map((row) => (
-        <TableRow
-          key={row.id}
-          type={row.type}
-          icon={row.icon}
-          time={row.time}
-          tokens={row.token}
-          subjectOfAction={row.subjectOfAction}
-        />
-      ))}
+      {header}
+      {loading ? <Skeleton width={'100%'} height={550}/> : items?.map((item, index) => itemRender(item, index))}
     </div>
   );
-}
+};
 
 export default Table;
