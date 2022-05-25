@@ -26,7 +26,7 @@ export default function useTransactions({page, perPage = 10, config = {chainId: 
 
   useEffect(() => {
     if (search || user) {
-      console.log('useTransaction effect', search || user, page, perPage, currency);
+      console.log(`getTransactions for '${search || user}', page ${page}, perPage: ${perPage}, currency:${currency}`);
 
       const variables: Variables = {
         account: search ?? user,
