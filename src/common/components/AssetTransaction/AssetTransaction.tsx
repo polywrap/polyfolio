@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import classNames from 'classnames';
 import style from './AssetTransaction.module.scss';
@@ -9,13 +9,15 @@ import useTransactions from 'common/hooks/useTransaction/useTransaction';
 
 function AssetTransaction() {
   const theme = useTheme();
-  const transactions = useTransactions();
+  const [page, setPage] = useState<number>(1);
+
+  const {data, loading, errors} = useTransactions({page, config: {chainId: 1}});
 
   return (
     <div className={classNames(style[theme], style.transaction)}>
       <div className={style.title}>Transaction</div>
-      <TableHeader />
-      <TableBlock data={transactions?.transactions} />
+      <TableHeader page={page} setPage={setPage} total={'?'} />
+      <TableBlock data={data?.getTransactions?.transactions} />
     </div>
   );
 }

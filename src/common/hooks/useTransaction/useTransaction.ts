@@ -1,42 +1,54 @@
-import {useRecoilState, useRecoilValue} from 'recoil';
-import {useWeb3ApiClient} from '@web3api/react';
+import {useRecoilValue} from 'recoil';
+import {useWeb3ApiQuery} from '@web3api/react';
 import {useEffect} from 'react';
-import transactionState from 'common/modules/atoms/transactionState';
 import {useCurrency} from 'common/currency/Currency.context';
 import {userPersistState} from 'common/modules/atoms/userAddress';
-import {getTransactions} from './useTransaction.config';
+import {query, uri, getConfig} from './useTransaction.config';
 import {searchPersistState} from 'common/modules/atoms/searchState';
+import {TransactionsList, Variables} from './useTransactions.types';
 
-export default function useTransactions() {
-  const client = useWeb3ApiClient();
+interface Props {
+  page?: number;
+  perPage?: number;
+  config?: {
+    chainId?: number;
+  };
+}
+
+export default function useTransactions({page, perPage = 10, config = {chainId: 1}}: Props) {
   const user = useRecoilValue(userPersistState);
   const search = useRecoilValue(searchPersistState);
-
   const {currency} = useCurrency();
 
-  const [transactions, setTransaction] = useRecoilState(transactionState);
+  const {data, loading, errors, execute} = useWeb3ApiQuery<{getTransactions: TransactionsList}>(
+    getConfig({chainId: config.chainId, currency: currency}),
+  );
 
   useEffect(() => {
-    console.log(`getTransactions '${currency}' for: ${search ?? user}`);
+    if (search || user) {
+      console.log('useTransaction effect', search || user, page, perPage, currency);
 
-    if (user) {
-      getTransactions(client, {
+      const variables: Variables = {
         account: search ?? user,
-        currency: currency,
-      }).then(({data, errors}) => {
-        if (data && !errors?.length) {
-          const transactions = data?.getTransactions;
-          console.log('getTransactions', transactions);
-          setTransaction(transactions);
-        } else {
-          // ADD ERROR HANDLER
-          console.log('getTransactions ERRORS-------');
-          console.log(errors);
-          console.log('-----ERRORS');
-        }
-      });
-    }
-  }, [client, currency, user, search]);
+        options: {
+          pagination: {
+            page: page,
+            perPage: perPage,
+          },
+          blockRange: null,
+        },
+      };
 
-  return transactions;
+      execute(variables);
+    }
+  }, [page, perPage, search, user, currency]);
+
+  useEffect(() => {
+    if (errors) {
+      //Handle error here or outside
+      console.log('useTransaction Errors', errors);
+    }
+  }, [errors]);
+
+  return {data, loading, errors};
 }

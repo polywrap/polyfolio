@@ -24,7 +24,7 @@ function TableRow({type, icon, time, tokens, subjectOfAction}) {
 
   return (
     <div className={classNames(style[theme], style.row)}>
-      <div className={classNames(style.row_unit, style.flex_unit)}>
+{/*       <div className={classNames(style.row_unit, style.flex_unit)}>
         <div className={style.img_container}>
           <Icon src={icon} className={classNames(style.icon)} />
         </div>
@@ -34,7 +34,7 @@ function TableRow({type, icon, time, tokens, subjectOfAction}) {
         </div>
       </div>
       <div className={classNames(style.token_info)}>
-        {tokens.map((token) => (
+        {tokens?.map((token) => (
           <div key={token.id} className={classNames(style.flex_unit, style.token)}>
             <div className={style.img_container}>
               <Icon src={token.icon} className={classNames(style.icon)} />
@@ -57,7 +57,7 @@ function TableRow({type, icon, time, tokens, subjectOfAction}) {
         <div>
           <HiglightedAddress icon={subjectOfAction.icon} address={subjectOfAction.address} />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }
