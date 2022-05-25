@@ -7,7 +7,7 @@ import balanceState from 'common/modules/atoms/balanceState';
 import {useRecoilValue} from 'recoil';
 import getFormattedData from 'utils/getFormattedData';
 
-export const GetVaults = () => {
+export const useValuts = () => {
   const {pathname} = useLocation();
   const page = getStringFromPath(pathname, 1);
   const balance = useRecoilValue(balanceState);
@@ -17,7 +17,7 @@ export const GetVaults = () => {
     return {
       secondaryPricePercentTitle: '???',
       secondaryTitle: rmCommasFromNum(asset.token.values[0].value),
-      pricePercentDollar: '???',
+      pricePercentDollar: asset.token.values[0]?.price,
       icon: iconsObj.assetsUsdt,
       valueTitle: getClaimableValue(preparedData['allProtocols'], asset.token.token.address),
       valueIsMinus: false,
@@ -30,4 +30,4 @@ export const GetVaults = () => {
   });
 };
 
-export default GetVaults;
+export default useValuts;

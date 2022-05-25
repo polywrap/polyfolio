@@ -13,6 +13,7 @@
   --red_color: #e53e3e;
   --bg_red_color: rgba(229, 62, 62, 0.2);
   --border: 1px solid rgba(70, 85, 104, 0.5);
+  cursor: pointer;
   @include flex_grow();
   justify-content: space-between;
   position: relative;

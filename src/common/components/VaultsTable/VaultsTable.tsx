@@ -5,7 +5,7 @@ import Icon from 'common/components/Icon/Icon';
 import _map from 'lodash/map';
 import styles from './Vaults.module.scss';
 
-import GetVaults from './VaultsTableItem/VaultsTableItem.config';
+import useValuts from './VaultsTableItem/VaultsTableItem.config';
 import VaultsItem from './VaultsTableItem/VaultsTableItem';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import HeaderTable from '../HeaderTable/HeaderTable';
@@ -20,6 +20,8 @@ import balanceState from 'common/modules/atoms/balanceState';
 import {useRecoilValue} from 'recoil';
 import getFormattedData from 'utils/getFormattedData';
 
+import AssetBreakdown from 'common/components/AssetBreakDown/AssetBreakDown';
+
 function VaultsTable() {
   const {pathname} = useLocation();
   const page = getStringFromPath(pathname, 1);
@@ -32,9 +34,19 @@ function VaultsTable() {
   const [filter, setFilter] = useState<Filters>(filters);
   const [dataRange, setDataRange] = useState<DataRangeSelectorItem>({});
   const [dataRangeIsOpen, setDataRangeIsOpen] = useState(true);
-  const menuItems = GetVaults();
+  const menuItems = useValuts();
   const balance = useRecoilValue(balanceState);
   const preparedData = getFormattedData(balance, page);
+
+  const [selectedAsset, setSelectedAsset] = useState(null);
+
+  const handleOpenModal = (menuItem) => {
+    setSelectedAsset(menuItem);
+  };
+
+  const handleOnCloseModal = () => {
+    setSelectedAsset(undefined);
+  };
 
   const changeDataRange = (e) => {
     setDataRange(e);
@@ -95,9 +107,16 @@ function VaultsTable() {
           </div>
         </div>
         {_map(menuItems, (menuItem) => {
-          return <VaultsItem {...menuItem} key={menuItem.id} />;
+          return (
+            <VaultsItem
+              key={menuItem.id}
+              menuItem={menuItem}
+              onClick={() => handleOpenModal(menuItem)}
+            />
+          );
         })}
       </div>
+      <AssetBreakdown asset={selectedAsset} onCloseModal={handleOnCloseModal} />
     </div>
   );
 }

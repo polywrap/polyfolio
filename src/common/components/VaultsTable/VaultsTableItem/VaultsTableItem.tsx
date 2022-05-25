@@ -9,7 +9,7 @@ import {fillArray} from 'utils/helpers';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import classNames from 'classnames';
 
-function VaultsItem(menuItem) {
+function VaultsItem({menuItem, onClick}) {
   const {
     secondaryPricePercentTitle,
     pricePercentDollar,
@@ -23,9 +23,12 @@ function VaultsItem(menuItem) {
   } = menuItem;
   const {filters} = useFiltersTables();
 
+
+
+
   return (
     <>
-      <button className={styles.buttonNavigate}>
+      <button className={styles.buttonNavigate} onClick={onClick}>
         <div className={styles.menu_item}>
           <div className={styles.title_container}>
             <Icon src={icon} className={styles.icon} />
