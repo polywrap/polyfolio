@@ -18,6 +18,7 @@ export interface IconsMapper extends Record<string, unknown> {
   assetsUsdt: string;
   disconnect: string;
   mobileMenu: string;
+  manyAssets: string;
   filterIcon: string;
   rightArrow: string;
   sort_frame: string;
