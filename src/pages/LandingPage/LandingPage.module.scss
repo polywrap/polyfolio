@@ -9,7 +9,7 @@
 }
 
 .landing_page {
-  --title_color: var(--color_green_500);
+  --title_color: var(--color_green_bg);
 
   .header {
     &.header_content {
@@ -36,7 +36,10 @@
     }
 
     .title {
+      font-weight: var(--font_weight_bolder);
+      font-size: 64px;
       @include laptop() {
+        font-size: var(--h1_font_size);
         text-align: center;
       }
 

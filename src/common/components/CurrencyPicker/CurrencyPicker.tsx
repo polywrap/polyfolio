@@ -38,7 +38,7 @@ function CurrencyPicker({className = ''}: {className?: string}) {
         <div
           ref={ref}
           onClick={() => setIsOpen(!isOpen)}
-          className={classNames(styles.common_currency_picker, styles[theme], className)}
+          className={classNames(styles.common_currency_picker, styles[theme])}
         >
           <span className={styles.currency}>{currency}</span>
           <MenuArrow startPosition={!isOpen ? 'down' : 'up'} />

@@ -27,7 +27,8 @@ export default {
     title: 'Sorry!',
     titleDescription: 'The Page is not accessible!',
     subtitle: 'Polyfolio staff are doing our best to resolve this issue.',
-    subtitleAdditional: 'Please contact us to get more detail information or wait for resolve. Thank you for understanding!',
+    subtitleAdditional:
+      'Please contact us to get more detail information or wait for resolve. Thank you for understanding!',
   },
   FooterLinks: {
     polywrap: 'Polywrap',
@@ -107,7 +108,7 @@ export default {
   },
   Dashboard: {
     portfolio: 'Portfolio',
-    transactions: 'Transaction',
+    transactions: 'Transactions',
     title: 'Dashboard',
     secondaryTitle: 'Net Worth',
   },
@@ -151,7 +152,7 @@ export default {
     claimable: 'Claimable',
   },
   Table: {
-    assets: 'Assets',
+    assets: 'Asset',
     protocols: 'Protocols',
     allocation: 'Allocation',
     networks: 'Networks',

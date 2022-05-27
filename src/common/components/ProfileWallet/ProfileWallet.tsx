@@ -11,7 +11,7 @@ function ProfileWallet({address, size}: {address: string; size: number}) {
 
   return (
     <div className={classNames(styles.common_profile_wallet, styles[theme])}>
-      <span>{_slice(address, 0, size)}</span>
+      <span>{_slice(address, 0, size + 1)}</span>
       {'...'}
       <span>{_slice(address, -size)}</span>
     </div>

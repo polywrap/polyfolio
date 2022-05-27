@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import styles from './DataRangeSelector.module.scss';
 import {menuItems} from './DataRangeSelector.config';
 import classNames from 'classnames';
@@ -10,13 +10,16 @@ import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import TooltipTrigger from 'common/components/TooltipTrigger/TooltipTrigger';
 import Icon from 'common/components/Icon/Icon';
 import iconsObj from 'assets/icons/iconsObj';
+import useOnClickOutside from 'common/hooks/useOnClickOutside/useOnClickOutside';
 
 function DataRangeSelector({fontSize, className, isOpen, dataRange, setDataRange, setIsOpen}) {
   const translation = useTranslation();
   const theme = useTheme();
+  const ref = useRef(null);
   useEffect(() => {
     setDataRange(menuItems[3]);
   }, []);
+  useOnClickOutside(ref.current, () => setIsOpen(false));
 
   const MenuItem = (menuItem) => {
     return (
@@ -47,7 +50,7 @@ function DataRangeSelector({fontSize, className, isOpen, dataRange, setDataRange
   };
 
   return (
-    <div className={styles[theme]}>
+    <div className={styles[theme]} ref={ref}>
       <TooltipTrigger isOpen={isOpen} placement={'bottom-end'} popper={<Menu />}>
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -55,7 +58,7 @@ function DataRangeSelector({fontSize, className, isOpen, dataRange, setDataRange
           className={classNames(styles.btn, className)}
         >
           {translation.DataRangeSelector[dataRange?.title]}
-          <MenuArrow className={styles.arrow} filled startPosition={'up'} />
+          <MenuArrow className={styles.arrow} filled startPosition={!isOpen ? 'up' : 'right'} />
         </button>
       </TooltipTrigger>
     </div>
