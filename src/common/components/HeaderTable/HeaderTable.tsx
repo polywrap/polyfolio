@@ -90,7 +90,7 @@ function HeaderTable({
   return (
     <div className={classNames(styles[theme], styles.headerTableContainer)}>
       <div className={styles.title_container}>
-        <h3>{title}</h3>
+        <h3 className={styles.main_title}>{title}</h3>
         <DataRangeSelector
           setDataRange={changeDataRange}
           className={styles.btn}
@@ -103,16 +103,16 @@ function HeaderTable({
       <div className={styles.filter_container}>
         <h4>${numberFormatter({value: sum ?? '0', size: 2})}</h4>
         <TooltipTrigger isOpen={filterIsOpen} placement={'bottom-end'} popper={<Menu />}>
-          <button onClick={() => setFilterIsOpen()}>
+          <div className={styles.filter_item} onClick={() => setFilterIsOpen()}>
             <Icon src={iconsObj.filterIcon} className={styles.icon} />
-          </button>
+          </div>
         </TooltipTrigger>
-        <button onClick={() => setTableIsOpen()}>
+        <div className={styles.filter_item} onClick={() => setTableIsOpen()}>
           <Icon
             src={iconsObj.filterIconSecondary}
             className={classNames(styles.icon, styles.iconFilter)}
           />
-        </button>
+        </div>
       </div>
     </div>
   );

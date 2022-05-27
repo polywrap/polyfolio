@@ -15,7 +15,7 @@ import useTheme from 'common/hooks/useTheme/useTheme';
 import HeaderTable from '../HeaderTable/HeaderTable';
 import {menuFields} from './FilterFieldsProtokols.config';
 import Skeleton from '../Skeleton/Skeleton';
-import { DataRangeSelectorItem } from '../DateRangeSelector/DataRangeSelector.types';
+import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.types';
 
 function ProtocolsTable() {
   const [tableIsOpen, setTableIsOpen] = useState(false);
@@ -39,11 +39,11 @@ function ProtocolsTable() {
   };
 
   const summaryValue = useMemo(() => {
-    return _sumBy(menuItems, (val) => Number(val.valueTitle))
-  }, [menuItems])
+    return _sumBy(menuItems, (val) => Number(val.valueTitle));
+  }, [menuItems]);
 
   return menuItems.length > 0 ? (
-<div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>
+    <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>
       <HeaderTable
         onSaveFilter={() => {
           setFilters(filter);
@@ -90,7 +90,7 @@ function ProtocolsTable() {
     </div>
   ) : (
     <div style={{marginBottom: 48}}>
-      <Skeleton width={1256} height={435} />
+      <Skeleton width={100} height={435} />
     </div>
   );
 }

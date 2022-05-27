@@ -1,6 +1,7 @@
 export default {
   typography: {
     font_family: 'Nunito, sans-serif',
+    font_family_raleway: 'Raleway, sans-serif',
     font_family_secondary: 'Avenir',
 
     hx_font_weight: '900',
