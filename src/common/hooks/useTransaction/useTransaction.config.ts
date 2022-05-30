@@ -25,7 +25,7 @@ export const getConfig = ({
     config: {
       envs: [
         {
-          uri: IPFS_URI.SDK.MOCK,
+          uri: IPFS_URI.ACCOUNT.MOCK,
           common: {
             apiKey: 'ckey_910089969da7451cadf38655ede',
             chainId: chainId,
