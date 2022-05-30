@@ -16,9 +16,10 @@ import {getTokenTransfers} from './getTokenTransfers.config';
 import {useCurrency} from 'common/currency/Currency.context';
 import {useWeb3ApiClient} from '@web3api/react';
 import lodash from 'lodash';
-import {formatDataAccordingToEvent} from 'utils/formatDataAccordingToEvent';
 import {searchPersistState} from 'common/modules/atoms/searchState';
 import useAssets from '../AssetsTable/AssetsTableItem/AssetsTableItem.config';
+import { toTransactionView } from './transformers';
+
 
 //import {asset} from 'tests/utilTests/dataFormatting/testConstants';
 
@@ -113,13 +114,13 @@ const useTransactions = () => {
           console.log('state.transactions', state?.transactions);
           //console.log('useTransactions DEFAULT');
           state?.transactions.forEach((transaction) => {
-            const eventData = formatDataAccordingToEvent(
+            const eventData = toTransactionView(
               transaction,
               user,
               preparedData['allAssets'],
             );
 
-            if (eventData) {
+           /*  if (eventData) {
               const {eventName, icon, tokenTicker, tokenAmount, tokenPrice} = eventData;
 
               if (eventName) {
@@ -146,7 +147,7 @@ const useTransactions = () => {
                   },
                 });
               }
-            }
+            } */
           });
         }
       }

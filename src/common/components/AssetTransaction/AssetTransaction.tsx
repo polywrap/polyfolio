@@ -9,35 +9,10 @@ import useTransactions from 'common/hooks/useTransaction/useTransaction';
 import Table from '../TableBlock/Table/Table';
 import TransactionItem from './TransactionItem';
 import {Transaction} from 'common/hooks/useTransaction/useTransactions.types';
-import {formatDataAccordingToEvent} from 'utils/formatDataAccordingToEvent';
+import {toTransactionView} from './transformers';
 import getFormattedData from 'utils/getFormattedData';
 import {useRecoilValue} from 'recoil';
 import balanceState from 'common/modules/atoms/balanceState';
-
-const filterTransactions = (
-  transactions: Transaction[],
-): [Transaction[], Transaction[], Transaction[]] => {
-  const unsuccessfull: Transaction[] = [];
-  const noLogs: Transaction[] = [];
-
-  const filtered = transactions.filter((tx) => {
-    if (!tx.successful) {
-      unsuccessfull.push(tx);
-
-      return false;
-    }
-
-    if (!tx.logs.length) {
-      noLogs.push(tx);
-
-      return false;
-    }
-
-    return true;
-  });
-
-  return [filtered, noLogs, unsuccessfull];
-};
 
 function AssetTransaction() {
   const theme = useTheme();
@@ -50,25 +25,16 @@ function AssetTransaction() {
 
   const getValidTransactions = (transactions: Transaction[]) => {
     if (!transactions) return [];
-    /*     
-    console.log('filtered', filtered.length, filtered);
-
-    const participantIn = filtered.map((tx) =>
-      tx.logs.find((log) =>
-        log?.event.params.some((param) => param.value === data.getTransactions.account),
-      ),
-    );
-
-    console.log('participantIn', participantIn); */
 
     const preparedData = getFormattedData(balance);
 
-    const [filtered] = filterTransactions(transactions);
+    const filtered = transactions.filter((tx) => tx.successful);
 
-    const formatted = filtered.map((tx) =>
-      formatDataAccordingToEvent(tx, data.getTransactions.account, preparedData['allAssets']),
-    );
-    console.log(formatted);
+    const formatted = filtered
+      .map((tx) => toTransactionView(tx, data.getTransactions.account, preparedData['allAssets']))
+      .filter(Boolean);
+
+    return formatted;
   };
 
   const items = getValidTransactions(data?.getTransactions?.transactions);

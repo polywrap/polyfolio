@@ -6,48 +6,29 @@ import style from './AssetItem.module.scss';
 import Icon from 'common/components/Icon/Icon';
 import HiglightedAddress from 'common/components/HiglihtedAddress/HiglightedAddress';
 import {capitalize} from 'lodash';
-import {Transaction} from 'common/hooks/useTransaction/useTransactions.types';
 
 import iconsObj from 'assets/icons/iconsObj';
 
+export interface TransactionView {
+  icon: string;
+  type: string;
+  time: string;
+  tokens: string[];
+  //receiver: string;
+  way: string;
+  subject: {icon: string; address: string};
+}
 export interface TransactionProps {
-  item: Transaction;
+  item: TransactionView;
+  key?: string | number;
 }
 
-const toEvent = (transaction: Transaction) => {
-  return {
-    icon: '',
-    type: '',
-    time: new Date(transaction.timestamp).toLocaleTimeString(),
-    tokens: [''],
-    receiver: '',
-    way: '',
-    subject: {
-      icon: iconsObj.profile,
-      address: transaction.to,
-    },
-  };
-};
-
-function TransactionItem({item}: TransactionProps) {
+function TransactionItem({key, item}: TransactionProps) {
   const theme = useTheme();
-  const {icon, type, time, tokens, receiver, way, subject} = toEvent(item);
-
-  console.log(item);
-
-  const mapTypeToWay = (type: string) => {
-    const types = {
-      approval: 'Via',
-      send: 'To',
-      receive: 'From',
-      exchange: 'Via',
-    };
-
-    return types[type];
-  };
+  const {icon, type, time, tokens, way, subject} = item;
 
   return (
-    <div className={classNames(style[theme], style.row)}>
+    <div key={key} className={classNames(style[theme], style.row)}>
       <div className={classNames(style.row_unit, style.flex_unit)}>
         <div className={style.img_container}>
           <Icon src={icon} className={classNames(style.icon)} />
@@ -77,7 +58,7 @@ function TransactionItem({item}: TransactionProps) {
         ))} */}
       </div>
       <div>
-        <div className={style.label}>{mapTypeToWay(type)}</div>
+        <div className={style.label}>{type}</div>
         <div>
           <HiglightedAddress icon={subject?.icon} address={subject?.address} />
         </div>

@@ -58,7 +58,7 @@ interface GasInfo {
   quote?: string; //# Gas price in quote currency (BigDecimal)
 }
 
-interface EventLog {
+export interface EventLog {
   contractAddress: string;
   logOffset: number;
   topics: string[];
@@ -66,7 +66,7 @@ interface EventLog {
   event?: Event;
 }
 
-interface Event {
+export interface Event {
   name: string;
   signature: string;
   params: EventParam[];
