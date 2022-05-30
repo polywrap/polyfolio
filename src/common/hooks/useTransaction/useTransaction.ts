@@ -34,6 +34,7 @@ export default function useTransactions({page, perPage = 10, config = {chainId: 
 
       const variables: Variables = {
         account: search ?? user,
+        currency: currency,
         options: {
           pagination: {
             page: page,

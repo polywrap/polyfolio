@@ -9,8 +9,11 @@ const IPFS_URI = {
   },
   ACCOUNT: {
     COVALENT: 'w3://ipfs/QmdxqSZm1cuGXcJASYdBfvFSeZpvQqBUseiKLMe3EL3jSq',
+    MOCK: 'w3://ipfs/QmdkRohQ2DJvRnJvGXc6SN6qwdnGFUA3ceGtMvGy1eEdjz',
   },
-  MOCK: 'ipfs/bafybeicovepnprojcw7fr76vtvfe44gpuvrj7jvqqsm7wlw7gfjuyi4u6i',
+  SDK: {
+    MOCK: 'w3://ipfs/Qmb2t14VWW3ry2ZUWU8C6rtju8n4k2PuEcCK1yWNVaf5HW',
+  },
 };
 
 export default IPFS_URI;

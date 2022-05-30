@@ -1,5 +1,6 @@
 import {Web3ApiClient} from '@web3api/client-js';
 import ENS_URI from 'utils/web3apiConfig/ensUri';
+import IPFS_URI from 'utils/web3apiConfig/ipfsUri';
 
 export const getTokenTransfers = (
   client: Web3ApiClient,
@@ -9,7 +10,7 @@ export const getTokenTransfers = (
   const {accountAddress, tokenAddress, currency} = variables;
 
   return client.query({
-    uri: ENS_URI.MOCK,
+    uri: IPFS_URI.SDK.MOCK,
     query: `query {
       getTokenTransfers(
         accountAddress: $accountAddress

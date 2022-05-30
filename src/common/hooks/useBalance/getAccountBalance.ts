@@ -1,5 +1,6 @@
 import {Web3ApiClient} from '@web3api/client-js';
 import ENS_URI from 'utils/web3apiConfig/ensUri';
+import IPFS_URI from 'utils/web3apiConfig/ipfsUri';
 
 const defaultVars = {
   vsCurrencies: [],
@@ -18,7 +19,7 @@ export const getAccountBalance = (
   options = {chainId: 1}, //eslint-disable-line
 ) => {
   return client.query({
-    uri: ENS_URI.MOCK,
+    uri: IPFS_URI.SDK.MOCK,
     query: `query {
       getAccountBalance(
           accountAddress: $accountAddress
