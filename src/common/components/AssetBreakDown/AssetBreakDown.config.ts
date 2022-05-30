@@ -1,5 +1,5 @@
-import {IAssetBreakDown} from "./AssetBreakDown.types";
-import iconsObj from "assets/icons/iconsObj";
+import {IAssetBreakDown} from './AssetBreakDown.types';
+import iconsObj from 'assets/icons/iconsObj';
 
 export const mockData: IAssetBreakDown = {
   title: '3pool',
@@ -22,5 +22,5 @@ export const mockData: IAssetBreakDown = {
       price: '1',
       value: '166.68',
     },
-  ]
-}
+  ],
+};

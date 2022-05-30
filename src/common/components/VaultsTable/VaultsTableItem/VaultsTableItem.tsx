@@ -23,9 +23,6 @@ function VaultsItem({menuItem, onClick}) {
   } = menuItem;
   const {filters} = useFiltersTables();
 
-
-
-
   return (
     <>
       <button className={styles.buttonNavigate} onClick={onClick}>

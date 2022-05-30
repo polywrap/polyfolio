@@ -1,6 +1,6 @@
 export interface IAssetBreakDown {
   title: string;
-  assets: IAssetBreakDownItem[]
+  assets: IAssetBreakDownItem[];
 }
 
 export interface IAssetBreakDownItem {

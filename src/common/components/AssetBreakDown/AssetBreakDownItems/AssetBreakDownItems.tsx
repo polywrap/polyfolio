@@ -1,22 +1,17 @@
-import React, { useMemo } from "react";
+import React, {useMemo} from 'react';
 
-import classNames from "classnames";
-import Icon from "common/components/Icon/Icon";
+import classNames from 'classnames';
+import Icon from 'common/components/Icon/Icon';
 import styles from './AssetBreakDownItems.module.scss';
-import useTheme from "common/hooks/useTheme/useTheme";
-import {IAssetBreakDownItem} from "../AssetBreakDown.types";
-import numberFormatter from "utils/numberFormatter";
+import useTheme from 'common/hooks/useTheme/useTheme';
+import {IAssetBreakDownItem} from '../AssetBreakDown.types';
+import numberFormatter from 'utils/numberFormatter';
 
-export default function AssetBreakDownItem ({
-  icon,
-  symbol,
-  price,
-  value,
-}: IAssetBreakDownItem) {
+export default function AssetBreakDownItem({icon, symbol, price, value}: IAssetBreakDownItem) {
   const theme = useTheme();
 
-  const valuePrice = useMemo(() => Number(price) * Number(value), [price, value])
-  
+  const valuePrice = useMemo(() => Number(price) * Number(value), [price, value]);
+
   return (
     <div className={classNames(styles[theme], styles.AssetBreakDownItem)}>
       <div className={styles.left}>
@@ -31,5 +26,5 @@ export default function AssetBreakDownItem ({
         <div>{numberFormatter({value, size: 2})}</div>
       </div>
     </div>
-  )
+  );
 }

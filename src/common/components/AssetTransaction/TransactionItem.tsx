@@ -5,7 +5,6 @@ import useTheme from 'common/hooks/useTheme/useTheme';
 import style from './AssetItem.module.scss';
 import Icon from 'common/components/Icon/Icon';
 import HiglightedAddress from 'common/components/HiglihtedAddress/HiglightedAddress';
-import numberFormatter from 'utils/numberFormatter';
 import {capitalize} from 'lodash';
 import {Transaction} from 'common/hooks/useTransaction/useTransactions.types';
 
@@ -34,7 +33,7 @@ function TransactionItem({item}: TransactionProps) {
   const theme = useTheme();
   const {icon, type, time, tokens, receiver, way, subject} = toEvent(item);
 
-  console.log(item)
+  console.log(item);
 
   const mapTypeToWay = (type: string) => {
     const types = {

@@ -11,7 +11,13 @@ export const query = `query {
   )
 }`;
 
-export const getConfig = ({chainId, currency}: {chainId: number; currency: string}): UseWeb3ApiQueryProps => {
+export const getConfig = ({
+  chainId,
+  currency,
+}: {
+  chainId: number;
+  currency: string;
+}): UseWeb3ApiQueryProps => {
   return {
     uri: uri,
     query: query,

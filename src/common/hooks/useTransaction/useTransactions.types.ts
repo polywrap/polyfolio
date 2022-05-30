@@ -34,7 +34,7 @@ export interface Transaction {
   hash: string;
   from: string;
   to: string;
-  successful: Boolean;
+  successful: boolean;
   value: string;
   quote?: string;
   gasInfo: GasInfo;

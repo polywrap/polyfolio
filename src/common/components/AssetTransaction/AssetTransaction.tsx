@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import style from './AssetTransaction.module.scss';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import TableHeader from '../TableHeader/TableHeader';
-import TableBlock from '../TableBlock/TableBlock.legacy';
 import useTransactions from 'common/hooks/useTransaction/useTransaction';
 
 import Table from '../TableBlock/Table/Table';
@@ -45,9 +44,9 @@ function AssetTransaction() {
   const [page, setPage] = useState<number>(1);
   const balance = useRecoilValue(balanceState);
 
-  const {data, loading, errors} = useTransactions({page, perPage: 100, config: {chainId: 1}});
+  const {data, loading} = useTransactions({page, perPage: 100, config: {chainId: 1}});
 
-  data?.getTransactions && console.log(data?.getTransactions?.transactions.length);
+  //data?.getTransactions && console.log(data?.getTransactions?.transactions.length);
 
   const getValidTransactions = (transactions: Transaction[]) => {
     if (!transactions) return [];

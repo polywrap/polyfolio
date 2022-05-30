@@ -18,7 +18,11 @@ const Table = <TData,>({items, itemRender, header, loading = false}: TableProps<
   return (
     <div className={classNames(style[theme], style.table)}>
       {header}
-      {loading ? <Skeleton width={'100%'} height={550}/> : items?.map((item, index) => itemRender(item, index))}
+      {loading ? (
+        <Skeleton width={'100%'} height={550} />
+      ) : (
+        items?.map((item, index) => itemRender(item, index))
+      )}
     </div>
   );
 };
