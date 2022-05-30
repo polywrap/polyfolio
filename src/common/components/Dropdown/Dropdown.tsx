@@ -21,7 +21,7 @@ const DropdownItem = (dropdownItem: DropdownItemConfig) => {
   );
 };
 
-function Dropdown({array, current, isOpen, setIsOpen, onСhangeСurrency, className}) {
+function Dropdown({array, current, isOpen, setIsOpen, onChangeCurrency, className}) {
   return (
     <>
       <div className={`${styles.menu_item_dropdown} ${styles.dropdown}`}>
@@ -40,7 +40,7 @@ function Dropdown({array, current, isOpen, setIsOpen, onСhangeСurrency, classN
           {_map(array, (dropdownItem) => (
             <button
               className={styles.menu_item_dropdown}
-              onClick={() => onСhangeСurrency(dropdownItem)}
+              onClick={() => onChangeCurrency(dropdownItem)}
               type="button"
               key={dropdownItem.id}
             >

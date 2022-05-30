@@ -27,9 +27,9 @@ function SettingsBody() {
           <Icon src={iconsObj.profile} className={style.profile_icon} />
           <div className={style.address_container}>
             <div className={style.main_addr}>
-              <ProfileWallet address={user} size={6} />
+              <ProfileWallet address={user} size={4} />
             </div>
-            <ProfileWallet address={user} size={6} />
+            <ProfileWallet address={user} size={4} />
           </div>
         </div>
       </div>

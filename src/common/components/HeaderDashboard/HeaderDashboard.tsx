@@ -92,7 +92,7 @@ function HeaderDashboard() {
         <div className={styles.dropdownContainer}>
           <Dropdown
             array={filteredDropdown(dropdownItems, currency?.id)}
-            onСhangeСurrency={onChangeCurrency}
+            onChangeCurrency={onChangeCurrency}
             className={styles.dropdownIcon}
             setIsOpen={setIsOpen}
             current={currency}
