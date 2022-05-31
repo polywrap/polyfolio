@@ -13,27 +13,14 @@ const useAssetMetadata = (id: string, chainId: number, tokenAddress: string): To
 
   const updateAssetMetadata = useCallback(async () => {
     if (!cachedAssetMetadata) {
-      console.log('No cache for', id, tokenAddress);
-      const {data: response, errors} = await client.query<{tokenInfo: TokenInfo}>({
-        uri,
-        query,
-        variables: {
-          id,
-          contract_address: tokenAddress,
-        },
-      });
+      //console.log('No cache for', id, tokenAddress);
+      const tokenInfo = await getAssetMetadata(client, {id, tokenAddress, tokenName: ''});
 
-      if (response && !errors?.length) {
-        const assetData = response?.tokenInfo;
-        setCachedAssetMetadata(assetData);
-      } else {
-        // ADD ERROR HANDLER
-        /* console.log('useAssetMetadata ERRORS-------');
-      console.log(errors);
-      console.log('-----ERRORS'); */
+      if (tokenInfo) {
+        setCachedAssetMetadata(tokenInfo);
       }
     }
-  }, [client, id, tokenAddress]);
+  }, [client, id, chainId, tokenAddress]);
 
   useEffect(() => {
     updateAssetMetadata();
@@ -43,7 +30,7 @@ const useAssetMetadata = (id: string, chainId: number, tokenAddress: string): To
 };
 
 export const getAssetMetadata = async (client: Web3ApiClient, {id, tokenAddress, tokenName}) => {
-  const {data, errors} = await client.query({
+  const {data, errors} = await client.query<{tokenInfo: TokenInfo}>({
     uri,
     query,
     variables: {
@@ -53,12 +40,12 @@ export const getAssetMetadata = async (client: Web3ApiClient, {id, tokenAddress,
   });
 
   if (errors) {
-    /*    console.log(
+    console.log(
       `ERROR getAssetMetadata ${
         tokenName ? 'for ' + tokenName : ''
       } at network: ${id}, ${tokenAddress}`,
       errors,
-    ); */
+    );
   }
 
   return data?.tokenInfo;
