@@ -2,6 +2,7 @@
 import iconsObj from 'assets/icons/iconsObj';
 import {TransactionView} from 'common/components/AssetTransaction/TransactionItem';
 import {Event, EventLog, Transaction} from 'common/hooks/useTransaction/useTransactions.types';
+import {getAssetMetadata} from 'common/hooks/useAssetMetadata/useAssetMetadata';
 import _forEach from 'lodash/forEach';
 import {
   findTokenName,
@@ -10,6 +11,7 @@ import {
   getTokenAmount,
   getTokenPrice,
 } from '../../../utils/dataFormatting';
+import { Web3ApiClient } from '@web3api/client-js';
 
 
 const mapTypeToWay = (type: string) => {
@@ -23,11 +25,12 @@ const mapTypeToWay = (type: string) => {
   return types[type];
 };
 
-export const toTransactionView = (
+export const toTransactionView = async (
   transaction: Transaction,
   user: string,
   assets,
-): TransactionView => {
+  client: Web3ApiClient,
+): Promise<TransactionView> => {
   //console.log('Transaction:', transaction);
 
   if (!transaction.logs.length) {
@@ -51,7 +54,9 @@ export const toTransactionView = (
       return undefined;
     }
 
-    return getTransactionViewByLog(userParticipatesIn, transaction, user, assets);
+    const result = await getTransactionViewByLog(userParticipatesIn, transaction, user, assets, client);
+
+    return result;
   }
 };
 
@@ -66,13 +71,14 @@ type SupportedEvent =
   | 'NewDepositBlock'
   | 'Deposit';
 
-function getTransactionViewByLog(
+async function getTransactionViewByLog (
   log: EventLog,
   transaction: Transaction,
   user: string,
   assets: [],
-): TransactionView {
-  const {event} = log;
+  client: Web3ApiClient,
+): Promise<TransactionView> {
+  const {event, contractAddress} = log;
 
   const eventName: SupportedEvent = <SupportedEvent>event.name;
   const eventParams = event.params;
@@ -89,7 +95,7 @@ function getTransactionViewByLog(
     },
   };
 
-  const tokenTicker: string = findTokenName(assets, log.contractAddress);
+  const tokenTicker: string = findTokenName(assets, contractAddress);
   const tokenPrice: number | string = getTokenPrice(assets, tokenTicker);
   let tokenAmount = ''; // getTokenAmount(eventParams[1].value, assets, tokenTicker);
 
@@ -105,6 +111,7 @@ function getTransactionViewByLog(
 
     case 'Approval':
       tokenAmount = getTokenAmount(eventParams[2].value, assets, tokenTicker);
+      const tokenData = await getAssetMetadata(client, {id: 'ethereum', tokenAddress: contractAddress})
       break;
     case 'Deposit':
       tokenAmount = getTokenAmount(eventParams[1].value, assets, tokenTicker);

@@ -110,11 +110,13 @@ export const getTransactionAddress = (event: string, from: string, to: string) =
 export const findTokenName = (assets, tokenAddress: string) => {
   let name = '???';
 
-  assets.forEach((asset) => {
-    if (asset.token.token.address === tokenAddress) {
-      name = asset.token.token.symbol;
-    }
-  });
+  if (assets) {
+    assets.forEach((asset) => {
+      if (asset.token.token.address === tokenAddress) {
+        name = asset.token.token.symbol;
+      }
+    });
+  }
 
   return name;
 };

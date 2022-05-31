@@ -36,7 +36,7 @@ const useAssetMetadata = (id: string, chainId: number, tokenAddress: string) => 
   return asset;
 };
 
-export const getAssetMetadata = async (client: Web3ApiClient, {id, tokenAddress, tokenName}) => {
+export const getAssetMetadata = async (client: Web3ApiClient, {id, tokenAddress, tokenName = ''}) => {
   const {data, errors} = await client.query({
     uri,
     query,
@@ -54,7 +54,7 @@ export const getAssetMetadata = async (client: Web3ApiClient, {id, tokenAddress,
       errors,
     ); */
   }
-
+  
   return data?.tokenInfo;
 };
 

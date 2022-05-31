@@ -1,3 +1,5 @@
+/* eslint-disable max-params */
+import { Web3ApiClient } from '@web3api/client-js';
 import {Transaction} from 'common/hooks/useTransaction/useTransactions.types';
 import {TransactionView} from './TransactionItem';
 import {toTransactionView} from './transformers';
@@ -35,13 +37,16 @@ export const getViewsByDate = (
   transactionsByDateMap: Record<DateString, Transaction[]>,
   account: string,
   assets: [],
+  client: Web3ApiClient,
 ): Record<string, TransactionView[]> => {
   const txViewsByDate = {};
-  Object.keys(transactionsByDateMap).forEach((key) => {
-    txViewsByDate[key] = transactionsByDateMap[key]
-      .map((tx: Transaction) => toTransactionView(tx, account, assets))
-      .filter(Boolean);
+  Object.keys(transactionsByDateMap).forEach(async (key) => {
+    txViewsByDate[key] = await Promise.all(transactionsByDateMap[key]
+    .map(async (tx: Transaction) => await toTransactionView(tx, account, assets, client)))
+      // .filter(Boolean);
   });
+
+  console.log('txViewsByDate', txViewsByDate)
 
   return txViewsByDate;
 };

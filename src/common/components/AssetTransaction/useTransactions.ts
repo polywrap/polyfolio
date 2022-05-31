@@ -118,6 +118,7 @@ const useTransactions = () => {
               transaction,
               user,
               preparedData['allAssets'],
+              client,
             );
 
            /*  if (eventData) {

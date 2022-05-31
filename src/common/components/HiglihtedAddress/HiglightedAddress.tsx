@@ -12,7 +12,7 @@ function HiglightedAddress({icon, address}: {icon: string; address: string}) {
     <div className={classNames(style[theme], style.body)}>
       <Icon src={icon} className={style.profile} />
       <span className={style.address}>
-        {address.substring(0, 5).concat('...', address.substring(address.length - 4))}
+        {address?.substring(0, 5).concat('...', address?.substring(address?.length - 4))}
       </span>
     </div>
   );
