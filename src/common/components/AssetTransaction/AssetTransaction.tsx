@@ -9,10 +9,11 @@ import useTransactions from 'common/hooks/useTransaction/useTransaction';
 import Table from '../TableBlock/Table/Table';
 import TransactionItem from './TransactionItem';
 import {Transaction} from 'common/hooks/useTransaction/useTransactions.types';
-import {toTransactionView} from './transformers';
+
 import getFormattedData from 'utils/getFormattedData';
 import {useRecoilValue} from 'recoil';
 import balanceState from 'common/modules/atoms/balanceState';
+import {getTitleDate, getViewsByDate, reduceByDays} from './AssetTransaction.utils';
 
 function AssetTransaction() {
   const theme = useTheme();
@@ -21,34 +22,33 @@ function AssetTransaction() {
 
   const {data, loading} = useTransactions({page, perPage: 100, config: {chainId: 1}});
 
-  //data?.getTransactions && console.log(data?.getTransactions?.transactions.length);
-
-  const getValidTransactions = (transactions: Transaction[]) => {
-    if (!transactions) return [];
+  const getTransactionViews = (transactions: Transaction[]) => {
+    if (!transactions) return {};
 
     const preparedData = getFormattedData(balance);
 
-    const filtered = transactions.filter((tx) => tx.successful);
+    const successfullTransactions = transactions.filter((tx) => tx.successful);
 
-    const formatted = filtered
-      .map((tx) => toTransactionView(tx, data.getTransactions.account, preparedData['allAssets']))
-      .filter(Boolean);
+    const txByDate = reduceByDays(successfullTransactions);
 
-    return formatted;
+    return getViewsByDate(txByDate, data.getTransactions.account, preparedData['allAssets']);
   };
 
-  const items = getValidTransactions(data?.getTransactions?.transactions);
+  const viewsByDate = getTransactionViews(data?.getTransactions?.transactions);
 
   return (
     <div className={classNames(style[theme], style.transaction)}>
       <div className={style.title}>Transaction</div>
       <TableHeader page={page} setPage={setPage} total={'?'} />
-      <Table
-        loading={loading}
-        header={<div className={style.tableTitle}>December 1, 2021</div>}
-        items={items}
-        itemRender={(item, index) => <TransactionItem key={index} item={item} />}
-      />
+      {Object.keys(viewsByDate).map((key) => (
+        <Table
+          key={key}
+          loading={loading}
+          header={<div className={style.tableTitle}>{getTitleDate(key)}</div>}
+          items={viewsByDate[key]}
+          itemRender={(item, index) => <TransactionItem key={index} item={item} />}
+        />
+      ))}
     </div>
   );
 }

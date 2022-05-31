@@ -11,6 +11,7 @@ import {
   getTokenPrice,
 } from '../../../utils/dataFormatting';
 
+
 const mapTypeToWay = (type: string) => {
   const types = {
     approval: 'Via',
@@ -27,14 +28,14 @@ export const toTransactionView = (
   user: string,
   assets,
 ): TransactionView => {
-  console.log('Transaction:', transaction);
+  //console.log('Transaction:', transaction);
 
   if (!transaction.logs.length) {
     // Event is Transfer if no logs
     return {
       icon: getEventIcon('Transfer'),
       subject: {address: transaction.to, icon: iconsObj.profile},
-      time: new Date(transaction.timestamp).toLocaleTimeString(),
+      time: new Date(transaction.timestamp).toDateString(),
       tokens: [''],
       type: 'Transfer',
       way: mapTypeToWay('send'),
