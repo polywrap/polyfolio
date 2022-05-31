@@ -14,6 +14,7 @@ import getFormattedData from 'utils/getFormattedData';
 import {useRecoilValue} from 'recoil';
 import balanceState from 'common/modules/atoms/balanceState';
 import {getTitleDate, getViewsByDate, reduceByDays} from './AssetTransaction.utils';
+import Skeleton from '../Skeleton/Skeleton';
 
 function AssetTransaction() {
   const theme = useTheme();
@@ -40,15 +41,18 @@ function AssetTransaction() {
     <div className={classNames(style[theme], style.transaction)}>
       <div className={style.title}>Transaction</div>
       <TableHeader page={page} setPage={setPage} total={'?'} />
-      {Object.keys(viewsByDate).map((key) => (
-        <Table
-          key={key}
-          loading={loading}
-          header={<div className={style.tableTitle}>{getTitleDate(key)}</div>}
-          items={viewsByDate[key]}
-          itemRender={(item, index) => <TransactionItem key={index} item={item} />}
-        />
-      ))}
+      {loading ? (
+        <Skeleton height={'600px'} width={'100%'} />
+      ) : (
+        Object.keys(viewsByDate).map((key) => (
+          <Table
+            key={key}
+            header={<div className={style.tableTitle}>{getTitleDate(key)}</div>}
+            items={viewsByDate[key]}
+            itemRender={(item, index) => <TransactionItem key={index} item={item} />}
+          />
+        ))
+      )}
     </div>
   );
 }
