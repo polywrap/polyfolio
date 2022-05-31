@@ -9,6 +9,12 @@ import {capitalize} from 'lodash';
 
 import iconsObj from 'assets/icons/iconsObj';
 
+interface TokenView {
+  symbol: string;
+  value?: string;
+  price?: string;
+  icon: string;
+}
 export interface TransactionView {
   icon: string;
   type: string;
