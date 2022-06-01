@@ -33,7 +33,7 @@ const TokenView = ({token}: {token: TokenViewProps}) => {
               {numberFormatter({value: token?.tokenAmount, size: 2})} {token?.tokenTicker}
             </>
           ) : (
-            'No asset'
+            tokenMetadata?.name
           )}
         </div>
         <div className={style.common}>

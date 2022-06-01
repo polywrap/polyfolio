@@ -70,6 +70,8 @@ function getTransactionViewByLog(
       const transferType = getTransferType(transferEvent, user) as SupportedEvent;
       const {value} = transferEvent.params;
 
+      console.log('log', log.contractAddress);
+
       return {
         ...transactionViewDefaults,
         type: transferType,
@@ -81,7 +83,7 @@ function getTransactionViewByLog(
             id: 'ethereum',
             tokenAddress: log.contractAddress,
             tokenPrice: asset && getTokenPrice(asset),
-            tokenAmount: asset && getTokenAmount(value, asset),
+            tokenAmount: asset ? getTokenAmount(value, asset) : value,
           },
         ],
       } as TransactionView;
