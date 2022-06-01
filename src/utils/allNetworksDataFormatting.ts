@@ -1,6 +1,6 @@
 import {ejectAssetsFromProtocol, getAssetsValueSum} from './dataFormatting';
 
-interface AccountBalance {
+export interface AccountBalance {
   account: string;
   chainId: string;
   values: Value[];

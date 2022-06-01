@@ -7,11 +7,6 @@ test('Test Asset Sum', () => {
   expect(result).toBe(5757.06);
 });
 
-test('Eject Protocol From Networks', () => {
-  const result = dataFormatting.ejectProtocolsFromNetwork(network);
-  expect(result).toStrictEqual(protocols);
-});
-
 test('Get Claimable Value', () => {
   const result = dataFormatting.getClaimableValue(
     protocols,
