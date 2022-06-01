@@ -13,6 +13,7 @@ import NetworksContextProvider from 'common/networks/Networks.context';
 import LocalizationContext from 'common/localization/Localization.context';
 import FiltersContextProvider from 'common/hooks/useFiltersTables/Filters.context';
 import clientConfig from './utils/web3apiConfig';
+import CacheProvider from 'common/context/cacheContext';
 
 console.warn = () => {};
 
@@ -23,23 +24,25 @@ if (process.env.NODE_ENV !== 'development') {
 ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>
-      <ThemeContext>
-        <LocalizationContext>
-          <NetworksContextProvider>
-            <FiltersContextProvider>
-              <CurrencyContext>
-                <BrowserRouter>
-                  <WalletContext>
-                    <Web3ApiProvider {...clientConfig}>
-                      <App />
-                    </Web3ApiProvider>
-                  </WalletContext>
-                </BrowserRouter>
-              </CurrencyContext>
-            </FiltersContextProvider>
-          </NetworksContextProvider>
-        </LocalizationContext>
-      </ThemeContext>
+      <CacheProvider>
+        <ThemeContext>
+          <LocalizationContext>
+            <NetworksContextProvider>
+              <FiltersContextProvider>
+                <CurrencyContext>
+                  <BrowserRouter>
+                    <WalletContext>
+                      <Web3ApiProvider {...clientConfig}>
+                        <App />
+                      </Web3ApiProvider>
+                    </WalletContext>
+                  </BrowserRouter>
+                </CurrencyContext>
+              </FiltersContextProvider>
+            </NetworksContextProvider>
+          </LocalizationContext>
+        </ThemeContext>
+      </CacheProvider>
     </RecoilRoot>
   </React.StrictMode>,
   document.getElementById('root'),
