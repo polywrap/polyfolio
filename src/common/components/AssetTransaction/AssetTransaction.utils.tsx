@@ -1,5 +1,5 @@
 import {Transaction} from 'common/hooks/useTransaction/useTransactions.types';
-import {TransactionView} from './TransactionItem';
+import {TransactionView} from './AssetTransactionItem/AssetTransactionItem';
 import {toTransactionView} from './transformers';
 
 export type DateString = string;

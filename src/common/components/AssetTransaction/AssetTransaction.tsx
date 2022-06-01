@@ -7,7 +7,7 @@ import TableHeader from '../TableHeader/TableHeader';
 import useTransactions from 'common/hooks/useTransaction/useTransaction';
 
 import Table from '../TableBlock/Table/Table';
-import TransactionItem from './TransactionItem';
+import TransactionItem from './AssetTransactionItem/AssetTransactionItem';
 import {Transaction} from 'common/hooks/useTransaction/useTransactions.types';
 
 import getFormattedData from 'utils/getFormattedData';

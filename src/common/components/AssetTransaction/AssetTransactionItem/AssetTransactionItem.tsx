@@ -2,64 +2,27 @@ import React from 'react';
 
 import classNames from 'classnames';
 import useTheme from 'common/hooks/useTheme/useTheme';
-import style from './AssetItem.module.scss';
+import style from './AssetTransactionItem.module.scss';
 import Icon from 'common/components/Icon/Icon';
 import HiglightedAddress from 'common/components/HiglihtedAddress/HiglightedAddress';
 import {capitalize} from 'lodash';
 
-import useAssetMetadata from 'common/hooks/useAssetMetadata/useAssetMetadata';
-import numberFormatter from 'utils/numberFormatter';
+import {TokenViewProps} from 'common/components/AssetTransaction/AssetTransactionItem/TokenView';
+import TokenView from 'common/components/AssetTransaction/AssetTransactionItem/TokenView';
 
-export interface TokenView {
-  id: string;
-  tokenAddress: string;
-  tokenTicker?: string;
-  tokenAmount?: string;
-  tokenPrice?: string;
-}
 export interface TransactionView {
   icon: string;
   type: string;
   time: string;
-  tokens: TokenView[];
-  //receiver: string;
+  tokens: TokenViewProps[];
   way: string;
   subject: {icon: string; value: string};
 }
+
 export interface TransactionProps {
   item: TransactionView;
   key?: string | number;
 }
-
-const TokenView = ({token}: {token: TokenView}) => {
-  const tokenMetadata = useAssetMetadata(token.id, 1, token.tokenAddress);
-
-  return (
-    <div key={token.id} className={classNames(style.flex_unit, style.token)}>
-      <div className={style.img_container}>
-        <Icon
-          src={tokenMetadata?.image.small}
-          className={classNames(style.icon)}
-          alt={tokenMetadata?.id}
-        />
-      </div>
-      <div className={style.text}>
-        <div className={style.strong}>
-          {token?.tokenAmount ? (
-            <>
-              {numberFormatter({value: token?.tokenAmount, size: 2})} {token?.tokenTicker}
-            </>
-          ) : (
-            token.tokenAddress
-          )}
-        </div>
-        <div className={style.common}>
-          {token.tokenPrice ? '$' + numberFormatter({value: token.tokenPrice, size: 1}) : ''}
-        </div>
-      </div>
-    </div>
-  );
-};
 
 function TransactionItem({key, item}: TransactionProps) {
   const theme = useTheme();

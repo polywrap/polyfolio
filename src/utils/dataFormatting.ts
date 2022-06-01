@@ -117,7 +117,7 @@ export const getTokenAmount = (value: string, asset: IBalance) => {
   const ten = new BN(10);
   const result = new BN(value).div(ten.pow(decimal));
 
-  return result.toNumber();
+  return result.toString();
 };
 
 export const getTokenPrice = (asset: IBalance) => {
