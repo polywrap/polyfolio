@@ -34,7 +34,7 @@ function NetworksPicker({className = ''}: {className?: string}) {
     [networks, setNetworks],
   );
 
-  const name = useMemo(() => networks.find((n) => n.checked)?.name || '', [networks]);
+  const name = useMemo(() => networks?.find((n) => n.checked)?.name || '', [networks]);
 
   return (
     <div ref={ref} className={classNames(styles[theme], styles.NetworksPicker, className)}>

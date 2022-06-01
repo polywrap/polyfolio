@@ -1,7 +1,7 @@
 /* eslint max-params: "off" */
 import iconsObj from 'assets/icons/iconsObj';
 import {TokenView, TransactionView} from 'common/components/AssetTransaction/TransactionItem';
-import {Event, EventLog, Transaction} from 'common/hooks/useTransaction/useTransactions.types';
+import {/*Event,*/ EventLog, Transaction} from 'common/hooks/useTransaction/useTransactions.types';
 import {getAssetMetadata} from 'common/hooks/useAssetMetadata/useAssetMetadata';
 import {
   findTokenName,
@@ -107,6 +107,8 @@ async function getTransactionViewByLog(
   let anySearchedValue;
   let token: TokenView;
   let tokenData: IAssetMetaData;
+
+  // to do: pass the chainId value for asset meta data query
 
   switch (eventName) {
     case 'Transfer':
