@@ -6,7 +6,7 @@ import {NetworksContextProps, INetwork} from './Networks.types';
 
 const NETWORKS_STATE_KEY = 'polyfolio_network_state';
 
-const NetworksContext = createContext<NetworksContextProps>(null);
+const NetworksContext = createContext<NetworksContextProps>({networks: null, setNetworks: null});
 export const useNetworks = () => useContext(NetworksContext);
 
 export default function NetworksContextProvider({children}) {
