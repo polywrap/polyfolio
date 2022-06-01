@@ -3,7 +3,7 @@ import {useWeb3ApiQuery} from '@web3api/react';
 import {useEffect} from 'react';
 import {useCurrency} from 'common/currency/Currency.context';
 import {userPersistState} from 'common/modules/atoms/userAddress';
-import {query, uri, getConfig} from './useTransaction.config';
+import {getConfig} from './useTransaction.config';
 import {searchPersistState} from 'common/modules/atoms/searchState';
 import {TransactionsList, Variables} from './useTransactions.types';
 

@@ -1,9 +1,4 @@
-import _ from 'lodash';
-import {
-  ejectAssetsFromProtocol,
-  ejectProtocolsFromNetwork,
-  getAssetsValueSum,
-} from './dataFormatting';
+import {ejectAssetsFromProtocol, getAssetsValueSum} from './dataFormatting';
 
 interface AccountBalance {
   account: string;

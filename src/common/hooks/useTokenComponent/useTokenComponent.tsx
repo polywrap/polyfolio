@@ -1,6 +1,5 @@
 import {useWeb3ApiClient} from '@web3api/react';
 import {getTokenComponent} from 'common/hooks/useTokenComponent/getTokenComponents.config';
-import {IBalance} from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.types';
 import {useCache} from 'common/context/cacheContext';
 import {useCallback, useEffect} from 'react';
 

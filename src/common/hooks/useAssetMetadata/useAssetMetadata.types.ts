@@ -1,3 +1,4 @@
+/* eslint @typescript-eslint/no-explicit-any: "off" */
 export interface TokenInfo {
   id: AssetPlatformID;
   symbol: AssetPlatformID;

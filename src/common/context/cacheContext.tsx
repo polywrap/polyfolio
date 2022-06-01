@@ -1,4 +1,4 @@
-import React, {createContext, useCallback, useContext, useEffect, useState} from 'react';
+import React, {createContext, useContext, useState} from 'react';
 
 interface CacheContextProps {
   getCacheByKey: (key: string) => unknown;
