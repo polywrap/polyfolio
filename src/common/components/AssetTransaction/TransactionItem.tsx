@@ -8,8 +8,9 @@ import HiglightedAddress from 'common/components/HiglihtedAddress/HiglightedAddr
 import {capitalize} from 'lodash';
 
 import iconsObj from 'assets/icons/iconsObj';
+import numberFormatter from 'utils/numberFormatter';
 
-interface TokenView {
+export interface TokenView {
   symbol: string;
   value?: string;
   price?: string;
@@ -19,7 +20,7 @@ export interface TransactionView {
   icon: string;
   type: string;
   time: string;
-  tokens: string[];
+  tokens: TokenView[];
   //receiver: string;
   way: string;
   subject: {icon: string; address: string};
@@ -45,26 +46,26 @@ function TransactionItem({key, item}: TransactionProps) {
         </div>
       </div>
       <div className={classNames(style.token_info)}>
-        {/*         {tokens?.map((token) => (
-          <div key={token.id} className={classNames(style.flex_unit, style.token)}>
+        {tokens?.map((token) => (
+          <div key={token.symbol} className={classNames(style.flex_unit, style.token)}>
             <div className={style.img_container}>
               <Icon src={token.icon} className={classNames(style.icon)} />
             </div>
             <div className={style.text}>
               <div className={style.strong}>
-                {numberFormatter({value: token.token_amount, size: 2})} {token.token_ticker}
+                {numberFormatter({value: token.value, size: 2})} {token.symbol}
               </div>
               <div className={style.common}>
-                {token.dollar_amount
-                  ? '$' + numberFormatter({value: token.dollar_amount, size: 1})
+                {token.price
+                  ? '$' + numberFormatter({value: token.price, size: 1})
                   : ''}
               </div>
             </div>
           </div>
-        ))} */}
+        ))}
       </div>
       <div>
-        <div className={style.label}>{type}</div>
+        <div className={style.label}>{way}</div>
         <div>
           <HiglightedAddress icon={subject?.icon} address={subject?.address} />
         </div>

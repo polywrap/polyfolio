@@ -61,3 +61,10 @@ export const getCONFIG = (chainId = 1) => {
     ],
   };
 };
+
+export enum EventTypes {
+  APPROVAL = 'approval',
+  SEND = 'send',
+  RECEIVE = 'receive',
+  TRANSFER = 'transfer',
+}

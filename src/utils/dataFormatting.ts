@@ -5,7 +5,7 @@ import _round from 'lodash/round';
 import BN from 'bn.js';
 import {rmCommasFromNum} from './helpers';
 import iconsObj from 'assets/icons/iconsObj';
-import {chainIdToNetwork} from 'utils/constants';
+import {chainIdToNetwork, EventTypes} from 'utils/constants';
 
 export const insertChainIdToProtocol = (balance) => {
   _map(balance, (network) => {
@@ -60,13 +60,13 @@ export const detectProtocolAndChainIdForAsset = (allProtocols, tokenSymbol) => {
 export const getEventType = (eventName: string, userAddress?: string, params?) => {
   switch (eventName) {
     case 'Approval':
-      return 'approval';
+      return EventTypes.APPROVAL;
     case 'Transfer':
       let type = '';
       params.forEach((param) => {
-        if (param.name === 'from' && param.value === userAddress) type = 'send';
-        else if (param.name === 'to' && param.value === userAddress) type = 'receive';
-        else type = 'send'; //temporary
+        if (param.name === 'from' && param.value === userAddress) type = EventTypes.SEND;
+        else if (param.name === 'to' && param.value === userAddress) type = EventTypes.RECEIVE;
+        else type = EventTypes.RECEIVE; //temporary
       });
 
       return type;

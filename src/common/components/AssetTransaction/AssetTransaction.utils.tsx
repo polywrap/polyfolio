@@ -43,10 +43,8 @@ export const getViewsByDate = (
   Object.keys(transactionsByDateMap).forEach(async (key) => {
     txViewsByDate[key] = await Promise.all(transactionsByDateMap[key]
     .map(async (tx: Transaction) => await toTransactionView(tx, account, assets, client)))
-      // .filter(Boolean);
+    txViewsByDate[key] = txViewsByDate[key].filter(Boolean);
   });
-
-  console.log('txViewsByDate', txViewsByDate)
 
   return txViewsByDate;
 };
