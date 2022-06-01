@@ -1,21 +1,22 @@
 import {Web3ApiClient} from '@web3api/client-js';
 import ENS_URI from 'utils/web3apiConfig/ensUri';
 import IPFS_URI from 'utils/web3apiConfig/ipfsUri';
+import {TokenComponent} from './useTokenComponent';
 
 interface Variables extends Record<string, unknown> {
   tokenAddress: string; //0xAE461cA67B15dc8dc81CE7615e0320dA1A9aB8D5 fro uniswap_v2
-  protocolId: string; // uniswap_v2
+  protocolId?: string; // uniswap_v2
 }
 interface Options {
   chainId: '1' | string;
 }
 
-export const getTokenComponent = (
+export const getTokenComponent = async (
   client: Web3ApiClient,
   variables: Variables,
   options: Options = {chainId: '1'},
-) => {
-  return client.query({
+): Promise<TokenComponent> => {
+  const {data, errors} = await client.query<{getTokenComponents: TokenComponent}>({
     uri: ENS_URI.ASSET.UNISWAP,
     query: `query {
     getTokenComponents(
@@ -47,4 +48,14 @@ export const getTokenComponent = (
       ],
     },
   });
+  data && console.log('tokenComponent', data);
+
+  if (errors) {
+    console.log(
+      `ERROR getTokenComponents for ${variables.tokenAddress} at protocolId: ${variables?.protocolId}`,
+      errors,
+    );
+  }
+
+  return data?.getTokenComponents;
 };

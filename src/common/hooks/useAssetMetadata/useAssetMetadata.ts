@@ -1,8 +1,7 @@
-import {Web3ApiClient} from '@web3api/client-js';
 import {useWeb3ApiClient} from '@web3api/react';
 import {useCache} from 'common/context/cacheContext';
-import {useCallback, useEffect, useState} from 'react';
-import {uri, query} from './useAssetMetadata.config';
+import {useCallback, useEffect} from 'react';
+import {getAssetMetadata} from './useAssetMetadata.config';
 import {TokenInfo} from './useAssetMetadata.types';
 
 const useAssetMetadata = (id: string, chainId: number, tokenAddress: string): TokenInfo => {
@@ -27,28 +26,6 @@ const useAssetMetadata = (id: string, chainId: number, tokenAddress: string): To
   }, [id, chainId, tokenAddress]);
 
   return cachedAssetMetadata;
-};
-
-export const getAssetMetadata = async (client: Web3ApiClient, {id, tokenAddress, tokenName}) => {
-  const {data, errors} = await client.query<{tokenInfo: TokenInfo}>({
-    uri,
-    query,
-    variables: {
-      id,
-      contract_address: tokenAddress,
-    },
-  });
-
-  if (errors) {
-    console.log(
-      `ERROR getAssetMetadata ${
-        tokenName ? 'for ' + tokenName : ''
-      } at network: ${id}, ${tokenAddress}`,
-      errors,
-    );
-  }
-
-  return data?.tokenInfo;
 };
 
 export default useAssetMetadata;

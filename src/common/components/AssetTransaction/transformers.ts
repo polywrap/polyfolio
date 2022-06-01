@@ -4,41 +4,103 @@ import {TransactionView} from 'common/components/AssetTransaction/TransactionIte
 import {Event, EventLog, Transaction} from 'common/hooks/useTransaction/useTransactions.types';
 import _forEach from 'lodash/forEach';
 import {
-  findTokenName,
+  getAssetByAddress,
   getEventIcon,
   getEventType,
   getTokenAmount,
   getTokenPrice,
 } from '../../../utils/dataFormatting';
-
+import {IBalance} from '../ProtocolsTable/ProtocolsItem/ProtocolTableItem.types';
 
 const mapTypeToWay = (type: string) => {
   const types = {
-    approval: 'Via',
-    send: 'To',
-    receive: 'From',
-    exchange: 'Via',
+    Approval: 'Via',
+    Send: 'To',
+    Receive: 'From',
+    Exchange: 'Via',
   };
 
   return types[type];
 };
 
+interface TransferParams {
+  from: string;
+  to: string;
+  value: string;
+}
+interface ApprovalParams {
+  owner: string;
+  spender: string;
+  value: string;
+}
+interface EventProcessed<TParams = unknown> extends Omit<Event, 'params'> {
+  params: TParams;
+}
+
+export const getTransferType = (
+  txLike: Transaction | EventProcessed<TransferParams>,
+  user: string,
+) => {
+  if ((<Transaction>txLike).blockHeight)
+    return getTransferTypeTransaction(<Transaction>txLike, user);
+  if ((<EventProcessed>txLike).params)
+    return getTransferTypeEvent(<EventProcessed<TransferParams>>txLike, user);
+};
+
+const getTransferTypeTransaction = (transaction: Transaction, user: string) => {
+  return transaction.to === user ? 'Receive' : 'Send';
+};
+
+const getTransferTypeEvent = (event: EventProcessed<TransferParams>, user: string) => {
+  return event.params.from === user ? 'Send' : 'Receive';
+};
+
+export const getTransferSubject = (
+  txLike: Transaction | EventProcessed<TransferParams>,
+  user: string,
+) => {
+  if ((<Transaction>txLike).blockHeight)
+    return getTransferSubjectTransaction(<Transaction>txLike, user);
+  if ((<EventProcessed>txLike).params)
+    return getTransferSubjectEvent(<EventProcessed<TransferParams>>txLike, user);
+};
+
+export const getApprovalSubject = (approvalEvent: EventProcessed<ApprovalParams>) => {
+  return {icon: iconsObj.profile, value: approvalEvent.params.owner};
+};
+
+const getTransferSubjectEvent = (event: EventProcessed<TransferParams>, user: string) => {
+  const {from, to} = event.params;
+
+  return {
+    icon: iconsObj.profile,
+    value: from === user ? to : from,
+  };
+};
+
+const getTransferSubjectTransaction = (transaction: Transaction, user: string) => {
+  return {
+    icon: iconsObj.profile,
+    value: transaction.from === user ? transaction.to : transaction.from,
+  };
+};
+
 export const toTransactionView = (
   transaction: Transaction,
   user: string,
-  assets,
+  assets: IBalance[],
 ): TransactionView => {
-  //console.log('Transaction:', transaction);
-
   if (!transaction.logs.length) {
     // Event is Transfer if no logs
+    const transferType = getTransferType(transaction, user);
+
     return {
-      icon: getEventIcon('Transfer'),
-      subject: {address: transaction.to, icon: iconsObj.profile},
+      icon: getEventIcon(transferType),
+      subject: getTransferSubject(transaction, user),
       time: new Date(transaction.timestamp).toDateString(),
-      tokens: [''],
-      type: 'Transfer',
-      way: mapTypeToWay('send'),
+      tokens: [{id: 'ethereum', tokenAddress: ''}], // TODO what kind of token in this type of transfers ?
+      type: transferType,
+      way: mapTypeToWay(transferType),
     } as TransactionView;
   } else {
     const userParticipatesIn = transaction.logs.find((log) =>
@@ -55,67 +117,96 @@ export const toTransactionView = (
   }
 };
 
-// TODO Switch to enum
-type SupportedEvent =
-  | 'Approval'
-  | 'Transfer'
-  | 'Swap'
-  | 'Withdrawal'
-  | 'Sync'
-  | 'StateSynced'
-  | 'NewDepositBlock'
-  | 'Deposit';
+enum SupportedEvent {
+  Transfer = 'Transfer',
+  Approval = 'Approval',
+}
+
+function extractEventParams<TParams = unknown>(event: Event): EventProcessed<TParams> {
+  const params = event.params.reduce(
+    (prev, current) => ({...prev, [current.name]: current.value}),
+    {},
+  );
+
+  return {...event, params: <TParams>params};
+}
+
+const getTransactionViewDefaults = (log: EventLog, transaction: Transaction): TransactionView => {
+  const eventType: SupportedEvent = SupportedEvent[log.event.name];
+
+  return {
+    type: eventType,
+    icon: getEventIcon(log.event.name),
+    time: new Date(transaction.timestamp).toLocaleTimeString(),
+    way: mapTypeToWay(eventType),
+    tokens: [{id: 'ethereum', tokenAddress: log.contractAddress}],
+    subject: {
+      value: '',
+      icon: '',
+    },
+  };
+};
 
 function getTransactionViewByLog(
   log: EventLog,
   transaction: Transaction,
   user: string,
-  assets: [],
+  assets: IBalance[],
 ): TransactionView {
-  const {event} = log;
+  const event = extractEventParams(log.event);
+  const eventType: SupportedEvent = SupportedEvent[log.event.name];
 
-  const eventName: SupportedEvent = <SupportedEvent>event.name;
-  const eventParams = event.params;
+  const transactionViewDefaults = getTransactionViewDefaults(log, transaction);
 
-  const transactionView = {
-    type: eventName,
-    icon: getEventIcon(log.event.name),
-    time: new Date(transaction.timestamp).toLocaleTimeString(),
-    way: mapTypeToWay(eventName),
-    tokens: [],
-    subject: {
-      address: '',
-      icon: '',
-    },
-  };
+  const asset = getAssetByAddress(assets, log.contractAddress);
 
-  const tokenTicker: string = findTokenName(assets, log.contractAddress);
-  const tokenPrice: number | string = getTokenPrice(assets, tokenTicker);
-  let tokenAmount = ''; // getTokenAmount(eventParams[1].value, assets, tokenTicker);
+  switch (eventType) {
+    case SupportedEvent.Transfer: {
+      const transferEvent = <EventProcessed<TransferParams>>event;
 
-  switch (eventName) {
-    case 'Transfer':
-      transactionView.type = getEventType(eventName, user, eventParams) as SupportedEvent;
-      tokenAmount = getTokenAmount(eventParams[2].value, assets, tokenTicker);
+      const transferType = getTransferType(transferEvent, user) as SupportedEvent;
+      const {value} = transferEvent.params;
+
+      console.log(log);
+
+      return {
+        ...transactionViewDefaults,
+        type: transferType,
+        icon: getEventIcon(transferType),
+        way: mapTypeToWay(transferType),
+        subject: getTransferSubject(transferEvent, user),
+        tokens: [
+          {
+            id: 'ethereum',
+            tokenAddress: log.contractAddress,
+            tokenPrice: asset && getTokenPrice(asset),
+            tokenAmount: asset && getTokenAmount(value, asset),
+          },
+        ],
+      } as TransactionView;
+    }
+
+    case SupportedEvent.Approval: {
+      const approvalEvent = <EventProcessed<ApprovalParams>>event;
+      const {value} = approvalEvent.params;
+
+      return {
+        ...transactionViewDefaults,
+        subject: getApprovalSubject(approvalEvent),
+        tokens: [
+          {
+            id: 'ethereum',
+            tokenAddress: log.contractAddress,
+            tokenAmount: asset && getTokenAmount(value, asset),
+            tokenPrice: asset && getTokenPrice(asset),
+          },
+        ],
+      };
       break;
-    case 'Swap':
-      transactionView.type = getEventType(eventName, user, eventParams) as SupportedEvent;
-      tokenAmount = getTokenAmount(eventParams[2].value, assets, tokenTicker);
-      break;
-
-    case 'Approval':
-      tokenAmount = getTokenAmount(eventParams[2].value, assets, tokenTicker);
-      break;
-    case 'Deposit':
-      tokenAmount = getTokenAmount(eventParams[1].value, assets, tokenTicker);
-      break;
-    case 'Withdrawal':
-    case 'Sync':
-    case 'StateSynced':
-    case 'NewDepositBlock':
+    }
     default:
       break;
   }
 
-  return transactionView;
+  return transactionViewDefaults;
 }

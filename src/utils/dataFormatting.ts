@@ -6,6 +6,7 @@ import BN from 'bn.js';
 import {rmCommasFromNum} from './helpers';
 import iconsObj from 'assets/icons/iconsObj';
 import {chainIdToNetwork} from 'utils/constants';
+import {IBalance} from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.types';
 
 export const insertChainIdToProtocol = (balance) => {
   _map(balance, (network) => {
@@ -107,43 +108,20 @@ export const getTransactionAddress = (event: string, from: string, to: string) =
   return '???';
 };
 
-export const findTokenName = (assets, tokenAddress: string) => {
-  let name = '???';
-
-  assets.forEach((asset) => {
-    if (asset.token.token.address === tokenAddress) {
-      name = asset.token.token.symbol;
-    }
-  });
-
-  return name;
+export const getAssetByAddress = (assets: IBalance[], contractAddress: string): IBalance => {
+  return assets.find(({token}) => token.token.address === contractAddress);
 };
 
-export const getTokenAmount = (value: string, assets, tokenSymbol: string) => {
-  const bigValue = new BN(value);
-  let result: BN;
+export const getTokenAmount = (value: string, asset: IBalance) => {
+  const decimal = new BN(asset.token.token.decimals);
+  const ten = new BN(10);
+  const result = new BN(value).div(ten.pow(decimal));
 
-  assets.forEach((asset) => {
-    if (asset.token.token.symbol === tokenSymbol) {
-      const decimal = new BN(asset.token.token.decimals);
-      const ten = new BN(10);
-      result = bigValue.div(ten.pow(decimal));
-    }
-  });
-
-  return result ? result.toNumber() : '???';
+  return result.toNumber();
 };
 
-export const getTokenPrice = (assets, tokenSymbol: string) => {
-  let price = 0;
-
-  assets.forEach((asset) => {
-    if (asset.token.token.symbol === tokenSymbol) {
-      price = asset.token.values[0].price;
-    }
-  });
-
-  return price === 0 ? '???' : price;
+export const getTokenPrice = (asset: IBalance) => {
+  return asset?.token.values[0].price;
 };
 
 export const getClaimableValue = (protocols, address: string) => {

@@ -7,7 +7,7 @@ import {getStringFromPath} from 'utils/helpers';
 import {useLocation} from 'react-router-dom';
 import {chainIdToNetwork} from 'utils/constants';
 import {DataRangeSelectorItem} from 'common/components/DateRangeSelector/DataRangeSelector.types';
-import {getAssetMetadata} from 'common/hooks/useAssetMetadata/useAssetMetadata';
+import {getAssetMetadata} from 'common/hooks/useAssetMetadata/useAssetMetadata.config';
 import {useCurrency} from 'common/currency/Currency.context';
 import getFormattedData from 'utils/getFormattedData';
 import {useRecoilValue} from 'recoil';

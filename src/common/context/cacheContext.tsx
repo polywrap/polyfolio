@@ -8,6 +8,7 @@ interface CacheContextProps {
 
 const CacheContext = createContext<CacheContextProps>(null);
 
+// TODO implement cache processing stete, e.g to prevent multiple requests for same cache key
 function CacheProvider({children}: {children: React.ReactNode}) {
   const [cache, setCache] = useState({});
 
