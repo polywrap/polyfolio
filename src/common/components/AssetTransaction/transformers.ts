@@ -2,12 +2,7 @@
 import iconsObj from 'assets/icons/iconsObj';
 import {TransactionView} from 'common/components/AssetTransaction/AssetTransactionItem/AssetTransactionItem';
 import {Event, EventLog, Transaction} from 'common/hooks/useTransaction/useTransactions.types';
-import {
-  getAssetByAddress,
-  getEventIcon,
-  getTokenAmount,
-  getTokenPrice,
-} from '../../../utils/dataFormatting';
+import {getAssetByAddress, getEventIcon} from '../../../utils/dataFormatting';
 import {IBalance} from '../ProtocolsTable/ProtocolsItem/ProtocolTableItem.types';
 import {
   ApprovalParams,
@@ -67,10 +62,10 @@ function getTransactionViewByLog(
     case SupportedEvent.Transfer: {
       const transferEvent = <EventProcessed<TransferParams>>event;
 
-      const transferType = getTransferType(transferEvent, user) as SupportedEvent;
+      const transferType = getTransferType(transferEvent, user);
       const {value} = transferEvent.params;
 
-      console.log('log', log.contractAddress);
+      console.log('transaction', transaction);
 
       return {
         ...transactionViewDefaults,
@@ -82,8 +77,10 @@ function getTransactionViewByLog(
           {
             id: 'ethereum',
             tokenAddress: log.contractAddress,
-            tokenPrice: asset && getTokenPrice(asset),
-            tokenAmount: asset ? getTokenAmount(value, asset) : value,
+            tokenValue: (transferType === 'Send' ? '-' : '').concat(transferEvent.params.value),
+            /*
+                  tokenPrice: asset && getTokenPrice(asset),
+            tokenAmount: asset ? getTokenAmount(value, asset) : value, */
           },
         ],
       } as TransactionView;
@@ -100,8 +97,8 @@ function getTransactionViewByLog(
           {
             id: 'ethereum',
             tokenAddress: log.contractAddress,
-            tokenAmount: asset && getTokenAmount(value, asset),
-            tokenPrice: asset && getTokenPrice(asset),
+            /* tokenAmount: asset && getTokenAmount(value, asset),
+            tokenPrice: asset && getTokenPrice(asset), */
           },
         ],
       };

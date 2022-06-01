@@ -12,7 +12,6 @@ const useAssetMetadata = (id: string, chainId: number, tokenAddress: string): To
 
   const updateAssetMetadata = useCallback(async () => {
     if (!cachedAssetMetadata) {
-      console.log('No cache for', id, tokenAddress);
       const tokenInfo = await getAssetMetadata(client, {id, tokenAddress, tokenName: ''});
 
       if (tokenInfo) {
@@ -24,8 +23,6 @@ const useAssetMetadata = (id: string, chainId: number, tokenAddress: string): To
   useEffect(() => {
     updateAssetMetadata();
   }, [id, chainId, tokenAddress]);
-
-  cachedAssetMetadata && console.log('From cache for', id, tokenAddress);
 
   return cachedAssetMetadata;
 };

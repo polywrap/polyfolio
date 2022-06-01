@@ -1,4 +1,5 @@
 import {Web3ApiClient} from '@web3api/client-js';
+import {AccountBalance} from 'utils/allNetworksDataFormatting';
 import ENS_URI from 'utils/web3apiConfig/ensUri';
 import IPFS_URI from 'utils/web3apiConfig/ipfsUri';
 
@@ -18,7 +19,7 @@ export const getAccountBalance = (
   },
   options = {chainId: 1}, //eslint-disable-line
 ) => {
-  return client.query({
+  return client.query<{getAccountBalance: AccountBalance}>({
     uri: IPFS_URI.SDK.MOCK,
     query: `query {
       getAccountBalance(
