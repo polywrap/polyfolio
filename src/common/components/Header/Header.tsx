@@ -90,7 +90,7 @@ function Header({
           </div>
 
           <div className={styles.mobile_search} style={{width: width}}>
-            <div ref={searchRef}>
+            <div ref={searchRef} style={{pointerEvents: isOpenMobileSearch ? 'none' : 'auto'}}>
               <MaskIcon
                 onClick={() => setIsOpenMobileSearch(!isOpenMobileSearch)}
                 size={'18px'}

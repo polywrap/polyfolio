@@ -44,7 +44,7 @@ function TableHeader({page, setPage, total}) {
         <div className={style.networks}>
           <Dropdown
             array={filteredDropdown(dropdownItems, currency?.id)}
-            onСhangeСurrency={onChangeCurrency}
+            onChangeCurrency={onChangeCurrency}
             className={style.dropdownIcon}
             setIsOpen={setIsOpen}
             current={currency}

@@ -65,7 +65,7 @@ function Networks() {
       </div>
     </div>
   ) : (
-    <Skeleton width={1256} height={300} />
+    <Skeleton width={100} height={300} />
   );
 }
 

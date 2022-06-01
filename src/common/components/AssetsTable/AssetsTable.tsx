@@ -100,7 +100,7 @@ function AssetsTable() {
     </div>
   ) : (
     <div style={{margin: '48px 0'}}>
-      <Skeleton width={1256} height={923} />
+      <Skeleton width={100} height={923} />
     </div>
   );
 }

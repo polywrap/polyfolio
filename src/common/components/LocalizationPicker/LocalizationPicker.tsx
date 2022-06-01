@@ -40,7 +40,7 @@ function LocalizationPicker({className = ''}: {className?: string}) {
           className={classNames(styles.common_currency_picker, styles[theme], className)}
         >
           <span className={styles.currency}>{languages[language].name}</span>
-          <MenuArrow startPosition={!isOpen ? 'down' : 'up'} />
+          <MenuArrow startPosition={!isOpen ? 'down' : 'up'} className={styles.arrow} />
         </div>
       </TooltipTrigger>
     </div>

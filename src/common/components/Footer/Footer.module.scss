@@ -30,12 +30,6 @@
     height: 1px;
   }
 
-  @mixin for-phone-only {
-    @media (max-width: 599px) {
-      @content;
-    }
-  }
-
   .footer {
     @include flex_centered_vert();
     justify-content: space-between;
@@ -47,6 +41,8 @@
 
     @include tablet() {
       padding: 0 16px;
+      flex-direction: column;
+      align-items: flex-start;
     }
 
     .logo {
@@ -75,6 +71,7 @@
       @include tablet() {
         flex: 1;
         order: 2;
+        margin-top: 16px;
       }
     }
   }

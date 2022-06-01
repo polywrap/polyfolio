@@ -6,7 +6,12 @@ import useTheme from 'common/hooks/useTheme/useTheme';
 function Skeleton({width, height}: {width: number | string; height: number | string}) {
   const theme = useTheme();
 
-  return <div className={classNames(styles[theme], styles.skeleton)} style={{width, height}} />;
+  return (
+    <div
+      className={classNames(styles[theme], styles.skeleton)}
+      style={{width: `${width}${width === 100 ? '%' : 'px'}`, height}}
+    />
+  );
 }
 
 export default Skeleton;

@@ -63,7 +63,7 @@ function Profile() {
                 })}
               </div>
             ) : (
-              <Skeleton width={127.7} height={32} />
+              <Skeleton width={100} height={22} />
             )}
           </div>
         </>

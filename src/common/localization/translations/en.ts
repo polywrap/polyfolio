@@ -108,7 +108,7 @@ export default {
   },
   Dashboard: {
     portfolio: 'Portfolio',
-    transactions: 'Transaction',
+    transactions: 'Transactions',
     title: 'Dashboard',
     secondaryTitle: 'Net Worth',
   },
@@ -152,7 +152,7 @@ export default {
     claimable: 'Claimable',
   },
   Table: {
-    assets: 'Assets',
+    assets: 'Asset',
     protocols: 'Protocols',
     allocation: 'Allocation',
     networks: 'Networks',

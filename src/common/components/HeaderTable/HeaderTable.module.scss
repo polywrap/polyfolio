@@ -92,6 +92,11 @@
   .title_container {
     display: flex;
     align-items: center;
+
+    .main_title {
+      color: var(--color_blue_gray_100);
+    }
+
     .btn {
       display: flex;
       font-size: var(--font_size_btn);
@@ -121,6 +126,9 @@
     .iconFilter {
       margin-left: 0;
       cursor: pointer;
+    }
+    .filter_item {
+      display: flex;
     }
   }
   @include mobile() {
