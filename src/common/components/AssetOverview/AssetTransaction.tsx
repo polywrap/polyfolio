@@ -1,7 +1,7 @@
 import React, {useState, useCallback} from 'react';
 
 import classNames from 'classnames';
-import style from 'common/components/AssetTransaction/AssetTransaction.module.scss';
+import style from 'common/components/UserTransaction/UserTransaction.module.scss';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import TableHeader from '../TableHeader/TableHeader';
 import useTransactions from 'common/hooks/useTransaction/useTransaction';
