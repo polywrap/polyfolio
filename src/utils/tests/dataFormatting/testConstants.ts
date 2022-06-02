@@ -1,4 +1,5 @@
-import {Asset} from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.types';
+import {Asset, Currency} from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.types';
+import {EventParam} from 'common/hooks/useTransaction/useTransactions.types';
 
 export const claimableTokens = [
   {
@@ -12,7 +13,7 @@ export const claimableTokens = [
     balance: '3.98',
     values: [
       {
-        currency: 'usd',
+        currency: Currency.Usd,
         price: '10',
         value: '39.8',
       },
@@ -29,7 +30,7 @@ export const claimableTokens = [
     balance: '3.98',
     values: [
       {
-        currency: 'usd',
+        currency: Currency.Usd,
         price: '50',
         value: '199',
       },
@@ -50,7 +51,7 @@ export const components = [
       balance: '56.775651421',
       values: [
         {
-          currency: 'usd',
+          currency: Currency.Usd,
           price: '50.70',
           value: '2,878.5255270447',
         },
@@ -71,7 +72,7 @@ export const components = [
       balance: '56.775651421',
       values: [
         {
-          currency: 'usd',
+          currency: Currency.Usd,
           price: '50.70',
           value: '2,878.5255270447',
         },
@@ -93,7 +94,7 @@ export const token = {
   balance: '12',
   values: [
     {
-      currency: 'usd',
+      currency: Currency.Usd,
       price: '188.8283946669',
       value: '10,720.855113993',
     },
@@ -132,7 +133,7 @@ export const assets_alt = [asset, asset_alt];
 
 export const values = [
   {
-    currency: 'usd',
+    currency: Currency.Usd,
     price: 'N/A',
     value: '10,920.855113993',
   },
@@ -140,7 +141,7 @@ export const values = [
 
 export const values_alt = [
   {
-    currency: 'usd',
+    currency: Currency.Usd,
     price: 'N/A',
     value: '44.28',
   },
@@ -184,7 +185,7 @@ export const network = {
   chainId: '1',
   values: [
     {
-      currency: 'usd',
+      currency: Currency.Usd,
       price: 'N/A',
       value: '10,765.135113993',
     },
@@ -226,3 +227,20 @@ export const volume = [
     volume: '58132',
   },
 ];
+
+export const params = [
+  {
+    decoded: true,
+    name: 'from',
+    indexed: true,
+    type: 'address',
+    value: '0x870E4F7C9687Fe15b4505315eB6ba10fe00A3dB8'
+  },
+  {
+    decoded: true,
+    name: 'to',
+    indexed: true,
+    type: 'address',
+    value: '0x0a965a4caf929338044c593d82d385c4c898d8c6'
+  }
+] as EventParam[]

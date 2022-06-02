@@ -7,6 +7,7 @@ import {rmCommasFromNum} from './helpers';
 import iconsObj from 'assets/icons/iconsObj';
 import {chainIdToNetwork} from 'utils/constants';
 import {IBalance} from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.types';
+import { EventParam } from 'common/hooks/useTransaction/useTransactions.types';
 
 export const insertChainIdToProtocol = (balance) => {
   _map(balance, (network) => {
@@ -56,7 +57,7 @@ export const detectProtocolAndChainIdForAsset = (allProtocols, tokenSymbol) => {
   return [chainId, protocolId];
 };
 
-export const getEventType = (eventName: string, userAddress?: string, params?) => {
+export const getEventType = (eventName: string, userAddress?: string, params?: EventParam[]) => {
   switch (eventName) {
     case 'Approval':
       return 'approval';
@@ -65,7 +66,7 @@ export const getEventType = (eventName: string, userAddress?: string, params?) =
       params.forEach((param) => {
         if (param.name === 'from' && param.value === userAddress) type = 'send';
         else if (param.name === 'to' && param.value === userAddress) type = 'receive';
-        else type = 'send'; //temporary
+        else type = 'unknown'; //temporary
       });
 
       return type;

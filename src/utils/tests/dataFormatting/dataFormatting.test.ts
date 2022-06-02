@@ -1,6 +1,6 @@
 import {getClaimableValueFromCurrProtocol} from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.utis';
 import * as dataFormatting from 'utils/dataFormatting';
-import {network, protocols, components, asset, marketCapArray, volume} from './testConstants';
+import {network, protocols, components, asset, marketCapArray, volume, params, balance} from './testConstants';
 
 test('Test Asset Sum', () => {
   const result = dataFormatting.getAssetsValueSum(components);
@@ -42,3 +42,21 @@ test('Get Volume', () => {
 
   expect(result).toBe('151580');
 });
+
+test('Detect chainId and protocol for asset', () => {
+  const result = dataFormatting.detectProtocolAndChainIdForAsset([...protocols], 'FWB');
+
+  expect(result).toEqual(['ethereum', 'sushibar_v1']);
+})
+
+test('getEventType', () => {
+  const result = dataFormatting.getEventType('transfer', '0x870E4F7C9687Fe15b4505315eB6ba10fe00A3dB8', params)
+
+  expect(result).toBe('send');
+})
+
+test('Testing get asset by address', () => {
+  const result = dataFormatting.getAssetByAddress([balance], '0x0a965a4caf929338044c593d82d385c4c898d8c6');
+
+  expect(result).toEqual(balance);
+})
