@@ -7,6 +7,8 @@ import useAssetMetadata from 'common/hooks/useAssetMetadata/useAssetMetadata';
 import numberFormatter from 'utils/numberFormatter';
 import {getTokenAmount} from 'utils/dataFormatting';
 import useToken from 'common/hooks/useToken/useToken';
+import {useCurrency} from 'common/currency/Currency.context';
+import {CurrencySymbol} from 'common/currency/Currency.types';
 
 export interface TokenViewProps {
   id: string;
@@ -17,10 +19,25 @@ export interface TokenViewProps {
 const TokenView = ({token}: {token: TokenViewProps}) => {
   const tokenMetadata = useAssetMetadata(token.id, 1, token.tokenAddress);
   const tokenInfo = useToken(token?.tokenAddress);
-
+  const {currency} = useCurrency();
   const tokenAmount: string = tokenInfo
     ? getTokenAmount(token?.tokenValue, tokenInfo.decimals)
     : '';
+
+  const tokenPrice = tokenMetadata?.market_data.current_price.find(
+    (p) => p.currency === currency.toLocaleLowerCase(),
+  );
+
+  const getTokenAmountInCurrency = () => {
+    if (token.tokenValue && tokenPrice) {
+      return Number(tokenAmount) * Number(tokenPrice.price);
+    }
+  };
+  const tokenAmountInCurrency = getTokenAmountInCurrency();
+
+  console.log(currency);
+
+  const currStr = CurrencySymbol[currency] || '';
 
   return (
     <div key={token.id} className={classNames(style.flex_unit, style.token)}>
@@ -45,7 +62,11 @@ const TokenView = ({token}: {token: TokenViewProps}) => {
               )}
             </div>
             <div className={style.common}>
-              {/* {token.tokenPrice ? '$' + numberFormatter({value: token.tokenPrice, size: 1}) : ''} */}
+              {tokenAmountInCurrency
+                ? (tokenAmountInCurrency.toString().startsWith('-') ? '-' : '+') +
+                  currStr +
+                  numberFormatter({value: tokenAmountInCurrency, size: 1}).replace('-', '')
+                : ''}
             </div>
           </div>
         </>
