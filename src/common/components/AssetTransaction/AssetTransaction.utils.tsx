@@ -34,12 +34,11 @@ const monthNames = [
 export const getViewsByDate = (
   transactionsByDateMap: Record<DateString, Transaction[]>,
   account: string,
-  assets: [],
 ): Record<string, TransactionView[]> => {
   const txViewsByDate = {};
   Object.keys(transactionsByDateMap).forEach((key) => {
     txViewsByDate[key] = transactionsByDateMap[key]
-      .map((tx: Transaction) => toTransactionView(tx, account, assets))
+      .map((tx: Transaction) => toTransactionView(tx, account))
       .filter(Boolean);
   });
 

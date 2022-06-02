@@ -6,6 +6,7 @@ import Icon from 'common/components/Icon/Icon';
 import useAssetMetadata from 'common/hooks/useAssetMetadata/useAssetMetadata';
 import numberFormatter from 'utils/numberFormatter';
 import {getTokenAmount} from 'utils/dataFormatting';
+import useToken from 'common/hooks/useToken/useToken';
 
 export interface TokenViewProps {
   id: string;
@@ -15,9 +16,11 @@ export interface TokenViewProps {
 
 const TokenView = ({token}: {token: TokenViewProps}) => {
   const tokenMetadata = useAssetMetadata(token.id, 1, token.tokenAddress);
+  const tokenInfo = useToken(token?.tokenAddress);
 
-  const DECIMALS = 6; // TODO Find decimals in tokenMetadata
-  const tokenAmount: string = getTokenAmount(token?.tokenValue, DECIMALS) || '';
+  const tokenAmount: string = tokenInfo
+    ? getTokenAmount(token?.tokenValue, tokenInfo.decimals)
+    : '';
 
   return (
     <div key={token.id} className={classNames(style.flex_unit, style.token)}>
@@ -35,11 +38,10 @@ const TokenView = ({token}: {token: TokenViewProps}) => {
               {token?.tokenValue ? (
                 <>
                   {tokenAmount.startsWith('-') ? '' : '+'}
-                  {numberFormatter({value: tokenAmount, size: 2})}{' '}
-                  {tokenMetadata?.symbol.toUpperCase()}
+                  {numberFormatter({value: tokenAmount, size: 2})} {tokenInfo?.symbol}
                 </>
               ) : (
-                tokenMetadata?.name
+                tokenInfo?.symbol
               )}
             </div>
             <div className={style.common}>

@@ -11,13 +11,11 @@ import {
   SupportedEvent,
 } from './AssetTransactions.types';
 
+const ERC20_ADDRESS = '0xc3761EB917CD790B30dAD99f6Cc5b4Ff93C4F9eA';
+
 /* ------------------ MAIN --------------------- */
 
-export function toTransactionView(
-  transaction: Transaction,
-  user: string,
-  assets: IBalance[],
-): TransactionView {
+export function toTransactionView(transaction: Transaction, user: string): TransactionView {
   if (!transaction.logs.length) {
     // Event is Transfer if no logs
     const transferType = getTransferType(transaction, user);
@@ -26,7 +24,7 @@ export function toTransactionView(
       icon: getEventIcon(transferType),
       subject: getTransferSubject(transaction, user),
       time: new Date(transaction.timestamp).toDateString(),
-      tokens: [{id: 'ethereum', tokenAddress: ''}], // TODO what kind of token in this type of transfers ?
+      tokens: [{id: 'ethereum', tokenAddress: ERC20_ADDRESS, tokenValue: transaction.value}],
       type: transferType,
       way: mapTypeToWay(transferType),
     } as TransactionView;
@@ -41,7 +39,7 @@ export function toTransactionView(
       return undefined;
     }
 
-    return getTransactionViewByLog(userParticipatesIn, transaction, user, assets);
+    return getTransactionViewByLog(userParticipatesIn, transaction, user);
   }
 }
 
@@ -49,23 +47,17 @@ function getTransactionViewByLog(
   log: EventLog,
   transaction: Transaction,
   user: string,
-  assets: IBalance[],
 ): TransactionView {
   const event = reduceEventParams(log.event);
   const eventType: SupportedEvent = SupportedEvent[log.event.name];
 
   const transactionViewDefaults = getTransactionViewDefaults(log, transaction);
 
-  const asset = getAssetByAddress(assets, log.contractAddress);
-
   switch (eventType) {
     case SupportedEvent.Transfer: {
       const transferEvent = <EventProcessed<TransferParams>>event;
 
       const transferType = getTransferType(transferEvent, user);
-      const {value} = transferEvent.params;
-
-      console.log('transaction', transaction);
 
       return {
         ...transactionViewDefaults,
