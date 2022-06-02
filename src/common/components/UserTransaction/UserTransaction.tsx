@@ -10,8 +10,9 @@ import Table from '../TableBlock/Table/Table';
 import TransactionItem from './UserTransactionItem/UserTransactionItem';
 import {Transaction} from 'common/hooks/useTransaction/useTransactions.types';
 
-import {getTitleDate, getViewsByDate, reduceByDays} from './UserTransaction.utils';
+import {getViewsByDate} from './UserTransaction.utils';
 import Skeleton from '../Skeleton/Skeleton';
+import {getTitleDate, reduceByDays} from '../shared/utils';
 
 function AssetTransaction() {
   const theme = useTheme();

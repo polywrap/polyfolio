@@ -10,6 +10,7 @@ import IPFS_URI from 'utils/web3apiConfig/ipfsUri';
 import useAssets from '../AssetsTable/AssetsTableItem/AssetsTableItem.config';
 import {Transaction, TransactionsList} from 'common/hooks/useTransaction/useTransactions.types';
 import {TokenToken} from 'utils/allNetworksDataFormatting';
+import ENS_URI from 'utils/web3apiConfig/ensUri';
 
 interface Props {
   page?: number;
@@ -19,7 +20,7 @@ interface Props {
   };
 }
 
-interface TransferTransfer {
+export interface TransferTransfer {
   from: string;
   quote: string;
   quoteRate: string;
@@ -28,15 +29,18 @@ interface TransferTransfer {
   value: string;
 }
 
-interface Transfer {
+export interface Transfer {
   transfers: TransferTransfer[];
   transaction: Transaction;
 }
 
-interface TokenTransfers extends Omit<TransactionsList, 'transactions'> {
+export interface TokenTransfers extends Omit<TransactionsList, 'transactions'> {
   token: TokenToken;
   transfers: Transfer[];
 }
+
+const DEBUG_ADDRESS =
+  '0x2d5863b006b1d03d1259c88d87a351ac78a6c6d0' || '0xdfd5293d8e347dfe59e90efd55b2956a1343963d';
 
 export default function useAssetTranscations({page, perPage = 10, config = {chainId: 1}}: Props) {
   const user = useRecoilValue(userPersistState);
@@ -46,23 +50,32 @@ export default function useAssetTranscations({page, perPage = 10, config = {chai
   const menuItems = useAssets();
 
   const {data, loading, errors, execute} = useWeb3ApiQuery<{getTokenTransfers: TokenTransfers}>({
-    uri: IPFS_URI.SDK.MOCK,
+    uri: ENS_URI.ACCOUNT.COVALENT, //IPFS_URI.SDK.MOCK,
     query: `query {
         getTokenTransfers(
           accountAddress: $accountAddress
           tokenAddress: $tokenAddress
-          vsCurrency: $currencies
+          options: $options
         )
       }`,
     config: {
       envs: [
         {
-          uri: IPFS_URI.ACCOUNT.MOCK,
+          uri: ENS_URI.ACCOUNT.COVALENT,
           common: {
             apiKey: 'ckey_910089969da7451cadf38655ede',
             chainId: config.chainId,
             vsCurrency: currency,
             format: 'JSON',
+          },
+        },
+        {
+          uri: 'ipfs/QmU33eyiAsdZaT3pXk2UVGXzYtbYx94RXBUCDzM6fMEBcW',
+          common: {
+            connection: {
+              node: null,
+              connectionOrChainId: '1',
+            },
           },
         },
       ],
@@ -73,24 +86,22 @@ export default function useAssetTranscations({page, perPage = 10, config = {chai
     if (search || user) {
       const assetData = _find(menuItems, {symbol: asset});
 
-      console.log(
-        `getTokenTransfers for user '${search || user}', token '${
-          assetData?.secondaryTitle
-        }', address:'${assetData.address}' page ${page}, perPage: ${perPage}, currency:${currency}`,
-      );
-
       const variables = {
-        accountAddress: search ?? user,
+        accountAddress: DEBUG_ADDRESS, //search ?? user , //TODO REMOVE DEBUG ADDRESS
         tokenAddress: assetData.address,
-        currencies: [currency],
+        //currencies: [currency],
         options: {
           pagination: {
             page: page,
-            perPage: perPage,
+            perPage: 3,
           },
           blockRange: null,
         },
       };
+
+      console.log(
+        `getTokenTransfers for user '${variables.accountAddress}', token '${assetData?.secondaryTitle}', address:'${variables.tokenAddress}' page ${variables.options.pagination.page}, perPage: ${variables.options.pagination.perPage}, currency:${currency}`,
+      );
 
       execute(variables);
     }

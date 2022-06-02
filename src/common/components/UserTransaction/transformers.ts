@@ -121,7 +121,7 @@ function getTransactionViewDefaults(log: EventLog, transaction: Transaction): Tr
   };
 }
 
-const mapTypeToWay = (type: string) => {
+export const mapTypeToWay = (type: string) => {
   const types = {
     Approval: 'Via',
     Send: 'To',
