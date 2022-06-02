@@ -1,28 +1,21 @@
 /* eslint max-params: "off" */
 import iconsObj from 'assets/icons/iconsObj';
-import {TransactionView} from 'common/components/AssetTransaction/AssetTransactionItem/AssetTransactionItem';
+import {TransactionView} from 'common/components/UserTransaction/UserTransactionItem/UserTransactionItem';
 import {Event, EventLog, Transaction} from 'common/hooks/useTransaction/useTransactions.types';
-import {
-  getAssetByAddress,
-  getEventIcon,
-  getTokenAmount,
-  getTokenPrice,
-} from '../../../utils/dataFormatting';
+import {getAssetByAddress, getEventIcon} from '../../../utils/dataFormatting';
 import {IBalance} from '../ProtocolsTable/ProtocolsItem/ProtocolTableItem.types';
 import {
   ApprovalParams,
   EventProcessed,
   TransferParams,
   SupportedEvent,
-} from './AssetTransactions.types';
+} from './UserTransaction.types';
+
+const ERC20_ADDRESS = '0xc3761EB917CD790B30dAD99f6Cc5b4Ff93C4F9eA';
 
 /* ------------------ MAIN --------------------- */
 
-export function toTransactionView(
-  transaction: Transaction,
-  user: string,
-  assets: IBalance[],
-): TransactionView {
+export function toTransactionView(transaction: Transaction, user: string): TransactionView {
   if (!transaction.logs.length) {
     // Event is Transfer if no logs
     const transferType = getTransferType(transaction, user);
@@ -31,7 +24,7 @@ export function toTransactionView(
       icon: getEventIcon(transferType),
       subject: getTransferSubject(transaction, user),
       time: new Date(transaction.timestamp).toDateString(),
-      tokens: [{id: 'ethereum', tokenAddress: ''}], // TODO what kind of token in this type of transfers ?
+      tokens: [{id: 'ethereum', tokenAddress: ERC20_ADDRESS, tokenValue: transaction.value}],
       type: transferType,
       way: mapTypeToWay(transferType),
     } as TransactionView;
@@ -46,7 +39,7 @@ export function toTransactionView(
       return undefined;
     }
 
-    return getTransactionViewByLog(userParticipatesIn, transaction, user, assets);
+    return getTransactionViewByLog(userParticipatesIn, transaction, user);
   }
 }
 
@@ -54,23 +47,17 @@ function getTransactionViewByLog(
   log: EventLog,
   transaction: Transaction,
   user: string,
-  assets: IBalance[],
 ): TransactionView {
   const event = reduceEventParams(log.event);
   const eventType: SupportedEvent = SupportedEvent[log.event.name];
 
   const transactionViewDefaults = getTransactionViewDefaults(log, transaction);
 
-  const asset = getAssetByAddress(assets, log.contractAddress);
-
   switch (eventType) {
     case SupportedEvent.Transfer: {
       const transferEvent = <EventProcessed<TransferParams>>event;
 
-      const transferType = getTransferType(transferEvent, user) as SupportedEvent;
-      const {value} = transferEvent.params;
-
-      console.log('log', log.contractAddress);
+      const transferType = getTransferType(transferEvent, user);
 
       return {
         ...transactionViewDefaults,
@@ -82,8 +69,10 @@ function getTransactionViewByLog(
           {
             id: 'ethereum',
             tokenAddress: log.contractAddress,
-            tokenPrice: asset && getTokenPrice(asset),
-            tokenAmount: asset ? getTokenAmount(value, asset) : value,
+            tokenValue: (transferType === 'Send' ? '-' : '').concat(transferEvent.params.value),
+            /*
+                  tokenPrice: asset && getTokenPrice(asset),
+            tokenAmount: asset ? getTokenAmount(value, asset) : value, */
           },
         ],
       } as TransactionView;
@@ -100,8 +89,8 @@ function getTransactionViewByLog(
           {
             id: 'ethereum',
             tokenAddress: log.contractAddress,
-            tokenAmount: asset && getTokenAmount(value, asset),
-            tokenPrice: asset && getTokenPrice(asset),
+            /* tokenAmount: asset && getTokenAmount(value, asset),
+            tokenPrice: asset && getTokenPrice(asset), */
           },
         ],
       };
@@ -132,7 +121,7 @@ function getTransactionViewDefaults(log: EventLog, transaction: Transaction): Tr
   };
 }
 
-const mapTypeToWay = (type: string) => {
+export const mapTypeToWay = (type: string) => {
   const types = {
     Approval: 'Via',
     Send: 'To',

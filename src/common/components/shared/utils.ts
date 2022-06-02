@@ -1,8 +1,5 @@
 import {Transaction} from 'common/hooks/useTransaction/useTransactions.types';
-import {TransactionView} from './AssetTransactionItem/AssetTransactionItem';
-import {toTransactionView} from './transformers';
-
-export type DateString = string;
+import {DateString} from '../UserTransaction/UserTransaction.utils';
 
 export const reduceByDays = (items: Transaction[]): Record<DateString, Transaction[]> => {
   return items.reduce((prev, currentTx) => {
@@ -30,21 +27,6 @@ const monthNames = [
   'November',
   'December',
 ];
-
-export const getViewsByDate = (
-  transactionsByDateMap: Record<DateString, Transaction[]>,
-  account: string,
-  assets: [],
-): Record<string, TransactionView[]> => {
-  const txViewsByDate = {};
-  Object.keys(transactionsByDateMap).forEach((key) => {
-    txViewsByDate[key] = transactionsByDateMap[key]
-      .map((tx: Transaction) => toTransactionView(tx, account, assets))
-      .filter(Boolean);
-  });
-
-  return txViewsByDate;
-};
 
 export const getTitleDate = (date: DateString) => {
   const [year, month, day] = date.split('-');

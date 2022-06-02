@@ -1,4 +1,4 @@
-import AssetTransaction from 'common/components/AssetTransaction/AssetTransaction';
+import UserTransaction from 'common/components/UserTransaction/UserTransaction';
 import React from 'react';
 import DashboardPage from '../DashboardPage';
 import DashboardNavigation from 'common/components/DashboardNavigation/DashboardNavigation';
@@ -9,7 +9,7 @@ function Transactions() {
     <DashboardPage>
       <HeaderDashboard />
       <DashboardNavigation />
-      <AssetTransaction />
+      <UserTransaction />
     </DashboardPage>
   );
 }

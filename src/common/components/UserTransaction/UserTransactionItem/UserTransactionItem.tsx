@@ -2,13 +2,12 @@ import React from 'react';
 
 import classNames from 'classnames';
 import useTheme from 'common/hooks/useTheme/useTheme';
-import style from './AssetTransactionItem.module.scss';
+import style from './UserTransactionItem.module.scss';
 import Icon from 'common/components/Icon/Icon';
 import HiglightedAddress from 'common/components/HiglihtedAddress/HiglightedAddress';
 import {capitalize} from 'lodash';
 
-import {TokenViewProps} from 'common/components/AssetTransaction/AssetTransactionItem/TokenView';
-import TokenView from 'common/components/AssetTransaction/AssetTransactionItem/TokenView';
+import TokenView, {TokenViewProps} from 'common/components/shared/TokenView';
 
 export interface TransactionView {
   icon: string;

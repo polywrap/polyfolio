@@ -2,6 +2,7 @@ import {Web3ApiClient} from '@web3api/client-js';
 import ENS_URI from 'utils/web3apiConfig/ensUri';
 import IPFS_URI from 'utils/web3apiConfig/ipfsUri';
 
+
 export const getTokenTransfers = (
   client: Web3ApiClient,
   variables: {accountAddress: string; tokenAddress: string; currency: string},

@@ -6,11 +6,6 @@ export interface AccountBalance {
   values: Value[];
   protocols: ProtocolElement[];
 }
-export interface ProtocolElement {
-  protocol: ProtocolProtocol;
-  values: Value[];
-  assets: Asset[];
-}
 
 export interface ProtocolElement {
   protocol: ProtocolProtocol;

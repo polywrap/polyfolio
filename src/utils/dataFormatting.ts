@@ -110,8 +110,8 @@ export const getAssetByAddress = (assets: IBalance[], contractAddress: string): 
   return assets.find(({token}) => token.token.address === contractAddress);
 };
 
-export const getTokenAmount = (value: string, asset: IBalance) => {
-  const decimal = new BN(asset.token.token.decimals);
+export const getTokenAmount = (value: string, decimals: number) => {
+  const decimal = new BN(decimals);
   const ten = new BN(10);
   const result = new BN(value).div(ten.pow(decimal));
 
