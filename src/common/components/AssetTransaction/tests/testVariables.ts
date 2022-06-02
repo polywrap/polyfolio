@@ -1,12 +1,13 @@
 import { Transaction, EventLog } from "common/hooks/useTransaction/useTransactions.types";
 import { Balance, Currency } from "common/hooks/useBalance/useBalance.types";
+import { TransactionView } from "../AssetTransactionItem/AssetTransactionItem";
 
 export const account = '0xa79e63e78eec28741e711f89a672a4c40876ebf3';
 
 export const transaction: Transaction = {
   hash: '0x9fd2eb7db94cf71ddc665b48dad42e1d00d90ace525fd6a0479f958cce8a729f',
   from: "0xa79e63e78eec28741e711f89a672a4c40876ebf3",
-  to: '',
+  to: '0x4869abed21ab40176a55e16d1fb46087067d628b',
   successful: true,
   value: '',
   quote: '0.0',
@@ -59,6 +60,8 @@ export const transaction: Transaction = {
   offset: 365,
 }
 
+export const date = '2021-12-23T16:29:44Z';
+
 export const allAssets: Balance[] = [
   {
     token: {
@@ -87,3 +90,22 @@ export const allAssets: Balance[] = [
     components: []
   },
 ]
+
+export const resultToTransactionView: TransactionView = {
+  icon: 'sendTransaction.svg',
+  subject: {
+    icon: 'profile.png',
+    value: '0x4869abed21ab40176a55e16d1fb46087067d628b',
+  },
+  time: '16:29',
+  tokens: [
+    {
+      id: 'ethereum',
+      tokenAddress: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
+      tokenAmount: '2489163093',
+      tokenPrice: undefined,
+    }
+  ],
+  type: 'Send',
+  way: 'To'
+}
