@@ -1,21 +1,15 @@
 import {
   __getApprovalSubjectForTest,
   __getTransferSubjectEventForTest,
-  __getTransferSubjectForTest,
-  __getTransferSubjectTransactionForTest,
   __getTransferTypeEventForTest,
-  __getTransferTypeForTest,
-  __getTransferTypeTransactionForTest,
   __reduceEventParamsForTest,
   mapTypeToWay,
 } from '../transformers';
 import {
   ApprovalParams,
   EventProcessed,
-  TransferParams,
-  SupportedEvent,
 } from '../UserTransaction.types';
-import {Event, EventLog, Transaction} from 'common/hooks/useTransaction/useTransactions.types';
+import {Event} from 'common/hooks/useTransaction/useTransactions.types';
 
 const inputData = {
   user: '0xa79e63e78eec28741e711f89a672a4c40876ebf3',
