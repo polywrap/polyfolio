@@ -1,4 +1,4 @@
-import {useWeb3ApiClient, useWeb3ApiQuery} from '@web3api/react';
+import {useWeb3ApiQuery} from '@web3api/react';
 import {useCurrency} from 'common/currency/Currency.context';
 import {searchPersistState} from 'common/modules/atoms/searchState';
 import {userPersistState} from 'common/modules/atoms/userAddress';
@@ -6,7 +6,6 @@ import {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import {useRecoilValue} from 'recoil';
 import _find from 'lodash/find';
-import IPFS_URI from 'utils/web3apiConfig/ipfsUri';
 import useAssets from '../AssetsTable/AssetsTableItem/AssetsTableItem.config';
 import {Transaction, TransactionsList} from 'common/hooks/useTransaction/useTransactions.types';
 import {TokenToken} from 'utils/allNetworksDataFormatting';
