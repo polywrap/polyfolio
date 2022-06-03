@@ -12,7 +12,7 @@ import navigateToExternalLink from 'utils/navigateToExternalLink';
 import MaskIcon from '../MaskIcon/MaskIcon';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useSearch from 'common/hooks/useSearch/useSearch';
-import NetworksPicker from '../NetworksPicker/NetworksPicker';
+// import NetworksPicker from '../NetworksPicker/NetworksPicker';
 
 function SidebarLinks() {
   const theme = useTheme();
