@@ -93,7 +93,7 @@ export default function useAssetTranscations({page, perPage = 10, config = {chai
         options: {
           pagination: {
             page: page,
-            perPage: 3,
+            perPage: 10,
           },
           blockRange: null,
         },
