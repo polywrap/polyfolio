@@ -2,8 +2,7 @@
 import iconsObj from 'assets/icons/iconsObj';
 import {TransactionView} from 'common/components/UserTransaction/UserTransactionItem/UserTransactionItem';
 import {Event, EventLog, Transaction} from 'common/hooks/useTransaction/useTransactions.types';
-import {getAssetByAddress, getEventIcon} from '../../../utils/dataFormatting';
-import {IBalance} from '../ProtocolsTable/ProtocolsItem/ProtocolTableItem.types';
+import {getEventIcon} from '../../../utils/dataFormatting';
 import {
   ApprovalParams,
   EventProcessed,
@@ -80,7 +79,6 @@ function getTransactionViewByLog(
 
     case SupportedEvent.Approval: {
       const approvalEvent = <EventProcessed<ApprovalParams>>event;
-      const {value} = approvalEvent.params;
 
       return {
         ...transactionViewDefaults,

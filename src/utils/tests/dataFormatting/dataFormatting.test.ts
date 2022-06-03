@@ -1,6 +1,6 @@
 import {getClaimableValueFromCurrProtocol} from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.utis';
 import * as dataFormatting from 'utils/dataFormatting';
-import {network, protocols, components, asset, marketCapArray, volume, params, balance} from './testConstants';
+import {protocols, components, asset, marketCapArray, volume, params, balance} from './testConstants';
 
 test('Asset Sum', () => {
   const result = dataFormatting.getAssetsValueSum(components);
