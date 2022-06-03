@@ -127,6 +127,7 @@ export default {
   },
   Tables: {
     vault: 'Vaults',
+    asset: 'Asset',
     protocol: 'Protocol',
     allocation: 'Allocation',
     value: 'Value',
@@ -157,6 +158,7 @@ export default {
     allocation: 'Allocation',
     networks: 'Networks',
     price: 'Price',
+    balance: 'Balance',
     value: 'Value',
     claimable: 'Claimable',
   },

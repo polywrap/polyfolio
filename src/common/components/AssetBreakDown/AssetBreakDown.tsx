@@ -1,42 +1,26 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import classNames from 'classnames';
 import styles from './AssetBreakDown.module.scss';
 import useTheme from 'common/hooks/useTheme/useTheme';
-import numberFormatter from 'utils/numberFormatter';
-import {mockData} from './AssetBreakDown.config';
+import {toFixed} from 'utils/numberFormatter';
 import AssetBreakDownItem from './AssetBreakDownItems/AssetBreakDownItems';
-import Icon from 'common/components/Icon/Icon';
-import {IAssetBreakDownItem} from './AssetBreakDown.types';
 import Modal from 'react-modal';
 
-export default function AssetBreakdown({asset, onCloseModal}) {
+import ComponentIcon from '../VaultsTable/VaultsTableItem/ComponentIcon';
+import {CurrencySymbol} from 'common/currency/Currency.types';
+import {AssetData} from '../VaultsTable/types';
+import {getPercentageStr} from '../VaultsTable/utils';
+
+interface Props {
+  asset: AssetData;
+  onCloseModal: () => void;
+}
+
+export default function AssetBreakdown({asset, onCloseModal}: Props) {
   const theme = useTheme();
 
   const [isOpen, setIsOpen] = useState(false);
-
-  const percentString = useMemo(() => {
-    let sum = 0;
-    const totalAssetPrice = [];
-    const totalAssetPercent = [];
-
-    mockData.assets.forEach((asset: IAssetBreakDownItem) => {
-      const price = Number(asset.price);
-      const value = Number(asset.value);
-      sum += price * value;
-      totalAssetPrice.push(price * value);
-    });
-
-    totalAssetPrice.forEach((price: number) => {
-      totalAssetPercent.push((100 * price) / sum);
-    });
-
-    const result = totalAssetPercent
-      .map((percent: number) => Math.round(percent).toString() + '%')
-      .join(' / ');
-
-    return result;
-  }, []);
 
   const handleCloseModal = () => {
     setIsOpen(false);
@@ -49,6 +33,8 @@ export default function AssetBreakdown({asset, onCloseModal}) {
     }
   }, [asset]);
 
+  const percentStr = getPercentageStr(asset);
+
   return (
     <Modal
       isOpen={isOpen}
@@ -58,28 +44,35 @@ export default function AssetBreakdown({asset, onCloseModal}) {
       overlayClassName={classNames(styles[theme], styles.Overlay)}
     >
       <div className={classNames(styles[theme], styles.AssetBreakDown)}>
-        <div className={styles.mainTitle}>{mockData.title} Asset Breakdown</div>
+        <div className={styles.mainTitle}>{asset.title} Asset Breakdown</div>
         <div className={styles.table}>
           <div className={styles.head}>
             <div className={styles.left}>
-              {mockData.assets.map((icon) => (
-                <Icon key={icon?.symbol} src={icon?.icon} className={styles.icon} />
-              ))}
+              <div className={styles.icons_container}>
+                {asset.components.map((component) => (
+                  <ComponentIcon
+                    key={component.address}
+                    tokenAddress={component.address}
+                    tokenNetwork={component.network}
+                    chainId={component.chainId}
+                  />
+                ))}
+              </div>
               <div className={styles.text}>
-                <div className={styles.title}>{mockData.title}</div>
-                <div className={styles.secondaryValue}>{percentString}</div>
+                <div className={styles.title}>{asset.title}</div>
+                <div className={styles.secondaryValue}>{percentStr}</div>
               </div>
             </div>
             <div className={styles.text}>
-              <div className={styles.title}>${numberFormatter({value: 500, size: 2})}</div>
-              <div className={classNames(styles.secondaryValue, styles.value)}>
-                {numberFormatter({value: 500, size: 2})}
+              <div className={styles.title}>
+                {CurrencySymbol[asset.value.currency]} {toFixed(asset.value.amount, 2)}
               </div>
+              <div className={classNames(styles.secondaryValue, styles.value)}>{asset.balance}</div>
             </div>
           </div>
           <div className={styles.body}>
-            {mockData.assets.map((asset) => (
-              <AssetBreakDownItem key={asset.symbol} {...asset} />
+            {asset.components.map((component) => (
+              <AssetBreakDownItem key={asset.symbol} {...component} />
             ))}
           </div>
         </div>

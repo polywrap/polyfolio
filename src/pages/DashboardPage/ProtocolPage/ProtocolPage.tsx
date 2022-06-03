@@ -6,7 +6,7 @@ import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import _find from 'lodash/find';
 import useProtocols from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.config';
 import VaultsTable from 'common/components/VaultsTable/VaultsTable';
-import AssetTransaction from 'common/components/UserTransaction/UserTransaction';
+//import AssetTransaction from 'common/components/UserTransaction/UserTransaction';
 import DashboardPage from '../DashboardPage';
 
 function ProtocolPage() {
@@ -23,7 +23,7 @@ function ProtocolPage() {
       />
       <HeaderPageInfo title={current?.valueTitle} />
       <VaultsTable />
-      <AssetTransaction />
+      {/* <AssetTransaction /> */}
     </DashboardPage>
   );
 }

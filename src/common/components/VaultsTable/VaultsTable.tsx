@@ -1,11 +1,10 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import classNames from 'classnames';
 import iconsObj from 'assets/icons/iconsObj';
 import Icon from 'common/components/Icon/Icon';
 import _map from 'lodash/map';
 import styles from './Vaults.module.scss';
 
-import useValuts from './VaultsTableItem/VaultsTableItem.config';
 import VaultsItem from './VaultsTableItem/VaultsTableItem';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import HeaderTable from '../HeaderTable/HeaderTable';
@@ -13,18 +12,36 @@ import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
 import {menuFields} from './FilterFieldsVaults.config';
-import {useLocation} from 'react-router-dom';
-import {getStringFromPath} from 'utils/helpers';
+import {useParams} from 'react-router-dom';
 import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.types';
 import balanceState from 'common/modules/atoms/balanceState';
 import {useRecoilValue} from 'recoil';
-import getFormattedData from 'utils/getFormattedData';
 
 import AssetBreakdown from 'common/components/AssetBreakDown/AssetBreakDown';
+import {AccountBalance} from 'utils/allNetworksDataFormatting';
+import {chainIdToNetwork} from 'utils/constants';
+import {toProtocolData} from './transformers';
+import {getAssetValueStr} from './utils';
+import {ProtocolData} from './types';
+
+const getProtocol = (
+  balance: Record<string, AccountBalance>,
+  chainId: string,
+  protocolId: string,
+) => {
+  if (balance) {
+    const network = chainIdToNetwork[chainId];
+    const protocolsAtChain = balance[network];
+
+    const protocolProtocol = protocolsAtChain.protocols.find(
+      ({protocol}) => protocol.id === protocolId,
+    );
+
+    return protocolProtocol;
+  }
+};
 
 function VaultsTable() {
-  const {pathname} = useLocation();
-  const page = getStringFromPath(pathname, 1);
   const [tableIsOpen, setTableIsOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null);
@@ -34,11 +51,25 @@ function VaultsTable() {
   const [filter, setFilter] = useState<Filters>(filters);
   const [dataRange, setDataRange] = useState<DataRangeSelectorItem>({});
   const [dataRangeIsOpen, setDataRangeIsOpen] = useState(true);
-  const menuItems = useValuts();
+
   const balance = useRecoilValue(balanceState);
-  const preparedData = getFormattedData(balance, page);
+
+  const {chainId, protocol: protocolId} = useParams();
+
+  const [protocolData, setProtocolData] = useState<ProtocolData>(undefined);
 
   const [selectedAsset, setSelectedAsset] = useState(null);
+
+  useEffect(() => {
+    if (balance) {
+      const protocol = getProtocol(balance, chainId, protocolId);
+
+      if (protocol) {
+        const transformed = toProtocolData(protocol);
+        setProtocolData(transformed);
+      }
+    }
+  }, [balance]);
 
   const handleOpenModal = (menuItem) => {
     setSelectedAsset(menuItem);
@@ -57,7 +88,9 @@ function VaultsTable() {
     setFilter({...filter, vaults: {...filter.vaults, [name]: !value?.checked}});
   };
 
-  return (
+  return !protocolData ? (
+    <div />
+  ) : (
     <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>
       <HeaderTable
         setTableIsOpen={() => setTableIsOpen(!tableIsOpen)}
@@ -71,7 +104,7 @@ function VaultsTable() {
         menuFields={menuFields}
         onChange={onChange}
         isOpen={isOpen}
-        sum={preparedData['allAssetsSum']}
+        sum={getAssetValueStr(protocolData.assetValue)}
         changeDataRange={changeDataRange}
         dataRange={dataRange}
         dataRangeIsOpen={dataRangeIsOpen}
@@ -81,21 +114,14 @@ function VaultsTable() {
         <div className={styles.title_container}>
           <div className={classNames(styles.title, styles.assets)}>
             <Icon className={styles.title_icon} src={iconsObj.sort_frame} sizes="24px" />
-            {translation.Tables.protocol}
-          </div>
-          <div
-            className={classNames(styles.title, styles.allocation, {
-              [styles.hidden]: filters.vaults.allocation,
-            })}
-          >
-            {translation.Tables.allocation}
+            {translation.Tables.asset}
           </div>
           <div
             className={classNames(styles.title, styles.price, {
               [styles.hidden]: filters.vaults.value,
             })}
           >
-            {translation.Table.value}
+            {translation.Table.balance}
           </div>
           <div
             className={classNames(styles.title, styles.value, {
@@ -103,20 +129,14 @@ function VaultsTable() {
             })}
           >
             <Icon className={styles.title_icon} src={iconsObj.sort_frame} sizes="24px" />
-            {translation.Tables.claimable}
+            {translation.Tables.value}
           </div>
         </div>
-        {_map(menuItems, (menuItem) => {
-          return (
-            <VaultsItem
-              key={menuItem.id}
-              menuItem={menuItem}
-              onClick={() => handleOpenModal(menuItem)}
-            />
-          );
-        })}
+        {protocolData.assets.map((asset) => (
+          <VaultsItem key={asset.title} asset={asset} onClick={() => handleOpenModal(asset)} />
+        ))}
       </div>
-      <AssetBreakdown asset={selectedAsset} onCloseModal={handleOnCloseModal} />
+      {selectedAsset && <AssetBreakdown asset={selectedAsset} onCloseModal={handleOnCloseModal} />}
     </div>
   );
 }
