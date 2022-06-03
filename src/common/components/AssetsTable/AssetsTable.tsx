@@ -56,7 +56,7 @@ function AssetsTable() {
           setIsOpen(!isOpen);
         }}
         setIsOpen={() => setIsOpen(!isOpen)}
-        title={translation.Table.assets}
+        title={translation.Table.title}
         menuFields={menuFields}
         filter={filter.assets}
         onChange={onChange}
@@ -69,7 +69,7 @@ function AssetsTable() {
       />
       <div className={classNames(styles.table_container, {[styles.hidden]: tableIsOpen})}>
         <div className={styles.title_container}>
-          <div className={classNames(styles.title, styles.assets)}>{translation.Table.assets}</div>
+          <div className={classNames(styles.title, styles.assets)}>{translation.Table.asset}</div>
           <div
             className={classNames(styles.title, styles.allocation, {
               [styles.hidden]: filters.assets.allocation,

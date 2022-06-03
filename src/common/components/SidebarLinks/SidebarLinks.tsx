@@ -28,9 +28,9 @@ function SidebarLinks() {
 
   return (
     <div className={classNames(styles.common_sidebar_links, styles[theme])}>
-      <div className={styles.dropdownContainer}>
+      {/* <div className={styles.dropdownContainer}>
         <NetworksPicker />
-      </div>
+      </div> */}
       {_map(sidebarLinks, ({link, icon, isExternal, title}: SidebarLink) => {
         return (
           <Link
