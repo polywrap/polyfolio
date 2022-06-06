@@ -1,16 +1,21 @@
 import iconsObj from 'assets/icons/iconsObj';
 import {getStringFromPath, rmCommasFromNum} from 'utils/helpers';
 import _ from 'lodash';
-import {useLocation} from 'react-router-dom';
+import {useLocation, useParams} from 'react-router-dom';
 import {getClaimableValue} from 'utils/dataFormatting';
 import balanceState from 'common/modules/atoms/balanceState';
 import {useRecoilValue} from 'recoil';
 import getFormattedData from 'utils/getFormattedData';
+import {useCallback, useEffect, useState} from 'react';
+import {chainIdToNetwork} from 'utils/constants';
+import {useProtocol} from './useProtocol';
+import {AccountBalance} from 'utils/allNetworksDataFormatting';
+
 
 export const useValuts = () => {
   const {pathname} = useLocation();
   const page = getStringFromPath(pathname, 1);
-  const balance = useRecoilValue(balanceState);
+  const balance = useRecoilValue<Record<string, AccountBalance>>(balanceState);
   const preparedData = getFormattedData(balance, page);
 
   return _.map(preparedData['allAssets'], (asset) => {

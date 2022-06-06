@@ -1,29 +1,38 @@
-import React, {useMemo} from 'react';
-
+import React from 'react';
 import classNames from 'classnames';
-import Icon from 'common/components/Icon/Icon';
 import styles from './AssetBreakDownItems.module.scss';
 import useTheme from 'common/hooks/useTheme/useTheme';
-import {IAssetBreakDownItem} from '../AssetBreakDown.types';
-import numberFormatter from 'utils/numberFormatter';
+import {toFixed} from 'utils/numberFormatter';
+import ComponentIcon from 'common/components/VaultsTable/VaultsTableItem/ComponentIcon';
+import {CurrencySymbol} from 'common/currency/Currency.types';
+import {AssetComponentData} from 'common/components/VaultsTable/types';
 
-export default function AssetBreakDownItem({icon, symbol, price, value}: IAssetBreakDownItem) {
+export default function AssetBreakDownItem({
+  network,
+  chainId,
+  address,
+  symbol,
+  balance,
+  value,
+}: AssetComponentData) {
   const theme = useTheme();
-
-  const valuePrice = useMemo(() => Number(price) * Number(value), [price, value]);
 
   return (
     <div className={classNames(styles[theme], styles.AssetBreakDownItem)}>
       <div className={styles.left}>
-        <Icon src={icon} className={styles.icon} />
+        <ComponentIcon tokenAddress={address} tokenNetwork={network} chainId={chainId} />
         <div className={styles.text}>
           <div className={styles.title}>{symbol}</div>
-          <div className={styles.secondaryValue}>${numberFormatter({value: price, size: 2})}</div>
+          <div className={styles.secondaryValue}>
+            {CurrencySymbol[value.currency]} {toFixed(value.price, 2)}
+          </div>
         </div>
       </div>
       <div className={styles.right}>
-        <div className={styles.title}>${numberFormatter({value: valuePrice, size: 2})}</div>
-        <div>{numberFormatter({value, size: 2})}</div>
+        <div className={styles.title}>
+          {CurrencySymbol[value.currency]} {toFixed(value.amount, 2)}
+        </div>
+        <div>{toFixed(balance, 2)}</div>
       </div>
     </div>
   );

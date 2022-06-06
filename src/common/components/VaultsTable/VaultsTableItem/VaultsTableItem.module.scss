@@ -71,10 +71,6 @@
     right: 20px;
   }
 
-  .icon {
-    width: 40px;
-    height: 40px;
-  }
   .title {
     font-family: var(--font_family);
     font-size: var(--font_size);
@@ -92,6 +88,34 @@
   .allocation_container {
     @include flex_centered_vert();
     width: calc(100% / 4);
+  }
+  .ghost_icon {
+    border: 1px solid #465568;
+    background-color:#222F49;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .icons_container {
+    display: flex;
+  }
+  .icon_wrap {
+   position: relative; 
+  }
+  .icon_wrap:not(:first-child) {
+    transform: translateX(-40%);
+  }
+  .icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  .networkIcon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 16px;
+    height: 16px;
   }
   .price_container {
     width: calc(100% / 4);

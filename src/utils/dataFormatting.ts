@@ -8,6 +8,7 @@ import iconsObj from 'assets/icons/iconsObj';
 import {chainIdToNetwork} from 'utils/constants';
 import {IBalance} from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.types';
 import { EventParam } from 'common/hooks/useTransaction/useTransactions.types';
+import {Asset, Balance} from './allNetworksDataFormatting';
 
 export const insertChainIdToProtocol = (balance) => {
   _map(balance, (network) => {
@@ -19,6 +20,23 @@ export const insertChainIdToProtocol = (balance) => {
       }
     });
   });
+};
+
+export const getAssetComponents = (asset: Asset): Balance[] => asset.balance.components;
+
+export const getAssetsComponents = (assets: Asset[]): Balance[] =>
+  assets.reduce((result, asset) => [...result, ...getAssetComponents(asset)], []);
+
+export const sumComponentsValues = (components: Balance[]) =>
+  components.reduce(
+    (result, component) => new BN(component.token.values[0].value).add(result),
+    new BN('0'),
+  );
+
+export const sumAssetsValues = (assets: Asset[]): BN => {
+  const components = getAssetsComponents(assets);
+
+  return sumComponentsValues(components);
 };
 
 export const getAssetsValueSum = (assets) => {
