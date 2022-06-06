@@ -65,6 +65,14 @@
   .title.protocol {
     @include flex_grow();
   }
+  .minimize_container {
+    display: flex;
+  }
+  .minimize {
+    cursor: pointer;
+    height: 24px;
+    width: 24px;
+  }
 }
 @include laptop() {
   .title.allocation {

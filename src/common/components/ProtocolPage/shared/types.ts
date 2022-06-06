@@ -30,5 +30,14 @@ export interface ProtocolData {
   assets: AssetData[];
   chainId: number;
   claimableValue: Value;
-  claimableRewards?: unknown[];
+  claimableRewards?: ClaimableData[];
+}
+
+export interface ClaimableData {
+  address: string;
+  name: string;
+  symbol: string;
+  value: string;
+  network: string;
+  chainId?: number;
 }

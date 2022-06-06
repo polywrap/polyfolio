@@ -1,6 +1,6 @@
 import {Asset, Balance, ProtocolElement, TokenElement} from 'utils/allNetworksDataFormatting';
 import {chainIdToNetwork} from 'utils/constants';
-import {AssetComponentData, AssetData, ProtocolData} from './types';
+import {AssetComponentData, AssetData, ClaimableData, ProtocolData} from './types';
 import {getClaimableTokens} from './utils';
 
 export const toComponentData = (
@@ -47,13 +47,16 @@ const toAssetData = (asset: Asset, ...networkInfo: NetworkInfo): AssetData => {
   };
 };
 
-const toClaimableToken = (token: TokenElement, ...networkInfo: NetworkInfo) => {
+const toClaimableToken = (token: TokenElement, ...networkInfo: NetworkInfo): ClaimableData => {
   const [network, chainId] = networkInfo;
 
   return {
     address: token.token.address,
     name: token.token.name,
     value: token.balance,
+    symbol: token.token.symbol,
+    network: network,
+    chainId: chainId,
   };
 };
 
@@ -62,15 +65,16 @@ export const toProtocolData = (protocol: ProtocolElement): ProtocolData => {
   const networkName = chainIdToNetwork[chainId];
 
   const claimableTokens = getClaimableTokens(protocol);
-  console.log('claimableTokens', claimableTokens);
 
   return {
     network: networkName,
     chainId: chainId,
     assets: protocol.assets.map((asset) => toAssetData(asset, networkName, chainId)),
     claimableValue: {
-      currency: claimableTokens[0].values[0].currency,
-      amount: claimableTokens[0].values[0].value,
+      currency: claimableTokens[0].values[0].currency.toUpperCase(),
+      amount: claimableTokens
+        .reduce((sum, token) => Number(sum) + Number(token.values[0].value), 0)
+        .toString(),
     },
     claimableRewards: claimableTokens.map((token) => toClaimableToken(token, networkName, chainId)),
     assetValue: {
