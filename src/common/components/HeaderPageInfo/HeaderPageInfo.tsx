@@ -15,11 +15,11 @@ function HeaderPageInfo({title}: {title: string}) {
   return (
     <div className={classNames(styles[theme], styles.headerPageInfoContainer)}>
       <span className={styles.secondaryTitle}>{translation.Dashboard.secondaryTitle}</span>
-      <h2>${numberFormatter({value: title || content.title, size: 2})}</h2>
+      <h2>${numberFormatter(title || content.title)}</h2>
       <div className={styles.secondaryValue}>
-        <div className={styles.value}>+{numberFormatter({value: content.percent, size: 2})}%</div>
+        <div className={styles.value}>+{numberFormatter(content.percent)}%</div>
         <div className={classNames(styles.value, styles.percent)}>
-          +${numberFormatter({value: content.value, size: 2})}
+          +${numberFormatter(content.value)}
         </div>
       </div>
     </div>

@@ -36,13 +36,13 @@ function PerformanceTable() {
         />
       </div>
       <div className={styles.dataContainer}>
-        <div className={styles.title}>${numberFormatter({value: item.title, size: 2})}</div>
+        <div className={styles.title}>${numberFormatter(item.title)}</div>
         <div className={styles.secondaryContainer}>
           <div className={styles.secondaryTittlePercent}>
-            +{numberFormatter({value: item.secondaryTitlePercent, size: 2})}%
+            +{numberFormatter(item.secondaryTitlePercent)}%
           </div>
           <div className={styles.secondaryTittleDollar}>
-            +${numberFormatter({value: item.secondaryTitleValue, size: 2})}
+            +${numberFormatter(item.secondaryTitleValue)}
           </div>
         </div>
       </div>

@@ -1,7 +1,17 @@
-export default function numberFormatter({value, size}: {value: string | number; size: number}) {
-  if (value && value != '???')
-    return Number(value).toLocaleString('en-US', {minimumFractionDigits: size});
-  else return '???'; // temporary
+interface INumberFormatterOptions {
+  minimumFractionDigits?: number;
+  maximumFractionDigits?: number;
+}
+
+export default function numberFormatter(value: string | number, options?: INumberFormatterOptions) {
+  if (value)
+    return Number(value).toLocaleString('en-US',
+      {
+        minimumFractionDigits: options?.minimumFractionDigits ?? 0,
+        maximumFractionDigits: options?.maximumFractionDigits ?? 2
+      }
+    );
+  else return '0';
 }
 
 export function toFixed(value: string | number, size: number): string {

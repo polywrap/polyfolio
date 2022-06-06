@@ -1,4 +1,3 @@
-import React from 'react';
 import {useEffect, useState} from 'react';
 
 import useAssetMetadata from 'common/hooks/useAssetMetadata/useAssetMetadata';
@@ -37,7 +36,7 @@ const getTokenAmountInCurrency = (amount: string, price: string, currencySymbol:
 
   const operator = isNegative ? '-' : '+';
 
-  return `${operator}${currencySymbol}${numberFormatter({value: value, size: 1})}`;
+  return `${operator}${currencySymbol}${numberFormatter(value)}`;
 };
 
 const getTokenAmountString = (amount: string, tokenSymbol: string) => {
@@ -48,7 +47,7 @@ const getTokenAmountString = (amount: string, tokenSymbol: string) => {
 
   const operator = isNegative ? '-' : '+';
 
-  return `${operator}${numberFormatter({value: tokenAmountStr, size: 2})} ${tokenSymbol}`;
+  return `${operator}${numberFormatter(tokenAmountStr)} ${tokenSymbol}`;
 };
 
 const useTokenView = (token: TokenViewProps) => {

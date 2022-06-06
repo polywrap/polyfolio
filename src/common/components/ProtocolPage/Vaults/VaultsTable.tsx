@@ -12,13 +12,12 @@ import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
 import {menuFields} from './FilterFieldsVaults.config';
-import {useParams} from 'react-router-dom';
 import {DataRangeSelectorItem} from '../../DateRangeSelector/DataRangeSelector.types';
 import balanceState from 'common/modules/atoms/balanceState';
 import {useRecoilValue} from 'recoil';
 
 import AssetBreakdown from 'common/components/ProtocolPage/AssetBreakDown/AssetBreakDown';
-import {AccountBalance} from 'utils/allNetworksDataFormatting';
+import AccountBalance from 'utils/allNetworksDataFormatting';
 import {chainIdToNetwork} from 'utils/constants';
 import {toProtocolData} from '../shared/transformers';
 import {getAssetValueStr} from '../shared/utils';
@@ -98,7 +97,6 @@ function VaultsTable({protocolData}: Props) {
               [styles.hidden]: filters.vaults.claimable,
             })}
           >
-            <Icon className={styles.title_icon} src={iconsObj.sort_frame} sizes="24px" />
             {translation.Tables.value}
           </div>
         </div>

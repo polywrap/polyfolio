@@ -66,7 +66,7 @@ function ProtocolsItem(menuItem) {
             })}
           >
             <div className={styles.secondaryTitle}>
-              ${numberFormatter({value: claimableValue, size: 2})}
+              ${numberFormatter(claimableValue)}
             </div>
             <MenuArrow className={styles.arrowIcon} startPosition="right" size="10px" />
           </div>

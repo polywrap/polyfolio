@@ -39,19 +39,13 @@ const useAssetOverviewData = (dataRange: DataRangeSelectorItem) => {
       {
         id: 1,
         label: `${shortenedAddress(user, 4)} Owns`,
-        content: `${numberFormatter({
-          value: assetData?.valueSecondaryTitle,
-          size: 2,
-        })} ${assetMetaData?.symbol.toUpperCase()}`,
+        content: `${numberFormatter(assetData?.valueSecondaryTitle)} ${assetMetaData?.symbol.toUpperCase()}`,
         type: 'main',
       },
       {
         id: 2,
         label: 'Valued at',
-        content: `$${numberFormatter({
-          value: valuedAt,
-          size: 2,
-        })}`,
+        content: `$${numberFormatter(valuedAt)}`,
         type: 'common',
       },
       {
@@ -59,10 +53,7 @@ const useAssetOverviewData = (dataRange: DataRangeSelectorItem) => {
         label: `Change (1${dataRange?.title?.toUpperCase()})`,
         content:
           (assetPreparedData?.style === 'profit' ? '+' : '') +
-          numberFormatter({
-            value: assetPreparedData?.percentage,
-            size: 2,
-          }) +
+          numberFormatter(assetPreparedData?.percentage) +
           '%',
         type: assetPreparedData?.style,
       },
@@ -73,10 +64,7 @@ const useAssetOverviewData = (dataRange: DataRangeSelectorItem) => {
         label: 'Market Cap',
         content:
           '$' +
-          numberFormatter({
-            value: assetPreparedData?.marketCap,
-            size: 2,
-          }),
+          numberFormatter(assetPreparedData?.marketCap),
         type: 'common',
       },
       {
@@ -84,10 +72,7 @@ const useAssetOverviewData = (dataRange: DataRangeSelectorItem) => {
         label: 'Circulating Supply',
         content:
           '$' +
-          numberFormatter({
-            value: assetMetaData?.market_data.circulating_supply,
-            size: 2,
-          }) +
+          numberFormatter(assetMetaData?.market_data.circulating_supply) +
           ` ${assetMetaData?.symbol.toUpperCase()}`,
         type: 'common',
       },
@@ -96,10 +81,7 @@ const useAssetOverviewData = (dataRange: DataRangeSelectorItem) => {
         label: `Volume (1${dataRange?.title?.toUpperCase()})`,
         content:
           '$' +
-          numberFormatter({
-            value: assetPreparedData?.volume,
-            size: 2,
-          }),
+          numberFormatter(assetPreparedData?.volume),
         type: 'common',
       },
     ],
