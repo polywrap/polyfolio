@@ -66,20 +66,27 @@ export const toProtocolData = (protocol: ProtocolElement): ProtocolData => {
 
   const claimableTokens = getClaimableTokens(protocol);
 
-  return {
+  const protocolData: ProtocolData = {
     network: networkName,
     chainId: chainId,
     assets: protocol.assets.map((asset) => toAssetData(asset, networkName, chainId)),
-    claimableValue: {
-      currency: claimableTokens[0].values[0].currency.toUpperCase(),
-      amount: claimableTokens
-        .reduce((sum, token) => Number(sum) + Number(token.values[0].value), 0)
-        .toString(),
-    },
-    claimableRewards: claimableTokens.map((token) => toClaimableToken(token, networkName, chainId)),
     assetValue: {
       currency: protocol.values[0].currency.toUpperCase(),
       amount: protocol.values[0].value,
     },
   };
+
+  if (claimableTokens.length) {
+    protocolData.claimableValue = {
+      currency: claimableTokens[0].values[0].currency.toUpperCase(),
+      amount: claimableTokens
+        .reduce((sum, token) => Number(sum) + Number(token.values[0].value), 0)
+        .toString(),
+    };
+    protocolData.claimableRewards = claimableTokens.map((token) =>
+      toClaimableToken(token, networkName, chainId),
+    );
+  }
+
+  return protocolData;
 };

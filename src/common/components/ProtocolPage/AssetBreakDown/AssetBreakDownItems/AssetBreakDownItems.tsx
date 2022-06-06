@@ -20,7 +20,7 @@ export default function AssetBreakDownItem({
   return (
     <div className={classNames(styles[theme], styles.AssetBreakDownItem)}>
       <div className={styles.left}>
-        <ComponentIcon tokenAddress={address} tokenNetwork={network} chainId={chainId} />
+        <ComponentIcon tokenAddress={address} tokenNetwork={network} chainId={chainId} size={32}/>
         <div className={styles.text}>
           <div className={styles.title}>{symbol}</div>
           <div className={styles.secondaryValue}>

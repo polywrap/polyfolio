@@ -37,7 +37,7 @@ function ClaimableTable({protocolData}: Props) {
   const theme = useTheme();
   const translation = useTranslation();
 
-  return !protocolData ? (
+  return !protocolData?.claimableRewards?.length ? (
     <div />
   ) : (
     <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>

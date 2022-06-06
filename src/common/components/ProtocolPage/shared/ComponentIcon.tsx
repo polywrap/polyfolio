@@ -10,6 +10,7 @@ type Props = {
   chainId?: number;
   tokenAddress: string;
   isLast?: boolean;
+  size?: number;
 };
 
 export default function ComponentIcon({
@@ -17,6 +18,7 @@ export default function ComponentIcon({
   chainId = 1,
   tokenAddress,
   isLast = false,
+  size = 40,
 }: Props) {
   const tokenMetadata = useAssetMetadata(tokenNetwork, chainId, tokenAddress);
   const icon = tokenMetadata?.image.small;
@@ -27,10 +29,10 @@ export default function ComponentIcon({
         <Icon
           src={icon}
           className={styles.icon}
-          style={{width: '40px', height: '40px', borderRadius: '50%'}}
+          style={{width: `${size}px`, height: `${size}px`, borderRadius: '50%'}}
         />
       ) : (
-        <Skeleton width={40} height={40} style={{borderRadius: '50%'}} />
+        <Skeleton width={size} height={size} style={{borderRadius: '50%'}} />
       )}
       {isLast ? <img src={iconsObj[tokenNetwork] as string} className={styles.networkIcon} /> : ''}
     </div>

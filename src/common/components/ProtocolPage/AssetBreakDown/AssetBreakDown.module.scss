@@ -32,7 +32,6 @@
   background-color: var(--bg_color);
   padding: 24px;
   border-radius: 16px;
-  width: clamp(300px, 400px, 700px);
 
   .mainTitle {
     font-family: var(--font_family);
@@ -58,6 +57,7 @@
     .head {
       display: flex;
       justify-content: space-between;
+      gap: 24px;
       padding: 8px 16px;
       border: var(--border);
       border-radius: 4px 4px 0 0;

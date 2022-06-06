@@ -101,6 +101,7 @@
   }
   .icon_wrap {
    position: relative; 
+   width: 40px;
   }
   .icon_wrap:not(:first-child) {
     transform: translateX(-40%);

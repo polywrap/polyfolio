@@ -64,7 +64,7 @@ function ProtocolPage() {
       />
       <HeaderPageInfo title={current?.valueTitle} />
       <VaultsTable protocolData={protocolData} />
-      <ClaimableTable protocolData={protocolData}/>
+      {protocolData?.claimableRewards && <ClaimableTable protocolData={protocolData} />}
       {/* <AssetTransaction /> */}
     </DashboardPage>
   );
