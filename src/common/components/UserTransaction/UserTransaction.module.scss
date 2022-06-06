@@ -43,4 +43,21 @@
     font-weight: 800;
     color: var(--color);
   }
+
+  .tableFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .container {
+      display: flex;
+      width: 100%;
+      margin-bottom: 42px;
+    }
+    .container:first-child {
+      justify-content: start;
+    }
+    .container:last-child {
+      justify-content: end;
+    }
+  }
 }
