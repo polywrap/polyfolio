@@ -13,6 +13,8 @@ import {Transaction} from 'common/hooks/useTransaction/useTransactions.types';
 import {getViewsByDate} from './UserTransaction.utils';
 import Skeleton from '../Skeleton/Skeleton';
 import {getTitleDate, reduceByDays} from '../shared/utils';
+import ButtonCsv from '../ButtonCsv/ButtonCsv';
+import TablePagination from '../TablePagination/TablePagination';
 
 function AssetTransaction() {
   const theme = useTheme();
@@ -34,7 +36,6 @@ function AssetTransaction() {
 
   return (
     <div className={classNames(style[theme], style.transaction)}>
-      <div className={style.title}>Transaction</div>
       <TableHeader page={page} setPage={setPage} total={'?'} />
       {loading ? (
         <Skeleton height={'600px'} width={'100%'} />
@@ -48,6 +49,14 @@ function AssetTransaction() {
           />
         ))
       )}
+      <div className={style.tableFooter}>
+        <div className={style.container}>
+          <ButtonCsv />
+        </div>
+        <div className={style.container}>
+          <TablePagination page={page} total={'?'} onPageChange={setPage} />
+        </div>
+      </div>
     </div>
   );
 }

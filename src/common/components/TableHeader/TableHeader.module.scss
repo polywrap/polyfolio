@@ -22,7 +22,7 @@
   .input_container {
     flex: 1;
     .input {
-      width: 40%;
+      width: 55%;
     }
     @media screen and (max-width: 1024px) {
       .input {
@@ -45,7 +45,7 @@
     font-weight: 800;
 
     .pagination {
-      padding: 16px;
+      padding: 16px 0 16px 16px;
       margin-left: 12.21px;
     }
 

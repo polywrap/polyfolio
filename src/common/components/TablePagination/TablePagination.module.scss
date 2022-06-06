@@ -1,6 +1,11 @@
 .pagination {
   display: flex;
 
+  span {
+    font-weight: var(--font_weight_bolder);
+    font-size: var(--font_size_normal);
+  }
+
   .arrow {
     width: 16px;
     height: 16px;
