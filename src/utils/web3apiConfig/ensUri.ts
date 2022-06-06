@@ -7,7 +7,7 @@ const ENS_URI = {
   },
   ACCOUNT: {
     COVALENT: 'w3://ens/rinkeby/covalent.account.resolvers.defiwrapper.eth',
-    MOCK: 'w3://ens/mock.account.resolvers.defiwrapper.eth',
+    MOCK: 'w3://ens/rinkeby/mock.account.resolvers.defiwrapper.eth',
   },
   MOCK: 'w3://ens/rinkeby/mock.defiwrapper.eth',
 };

@@ -50,18 +50,19 @@ export default function useAssetTranscations({page, perPage = 10, config = {chai
   const menuItems = useAssets();
 
   const {data, loading, errors, execute} = useWeb3ApiQuery<{getTokenTransfers: TokenTransfers}>({
-    uri: ENS_URI.ACCOUNT.COVALENT, //IPFS_URI.SDK.MOCK,
+    uri: ENS_URI.MOCK, //IPFS_URI.SDK.MOCK,
     query: `query {
         getTokenTransfers(
           accountAddress: $accountAddress
           tokenAddress: $tokenAddress
           options: $options
+          vsCurrency: $currencies
         )
       }`,
     config: {
-      envs: [
+/*       envs: [
         {
-          uri: ENS_URI.ACCOUNT.COVALENT,
+          uri: ENS_URI.MOCK,
           common: {
             apiKey: 'ckey_910089969da7451cadf38655ede',
             chainId: config.chainId,
@@ -78,9 +79,10 @@ export default function useAssetTranscations({page, perPage = 10, config = {chai
             },
           },
         },
-      ],
+      ], */
     },
   });
+  console.log('data', data);
 
   useEffect(() => {
     if (search || user) {
@@ -89,6 +91,7 @@ export default function useAssetTranscations({page, perPage = 10, config = {chai
       const variables = {
         accountAddress: DEBUG_ADDRESS, //search ?? user , //TODO REMOVE DEBUG ADDRESS
         tokenAddress: assetData.address,
+        currencies: [currency],
         //currencies: [currency],
         options: {
           pagination: {

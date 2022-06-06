@@ -1,16 +1,7 @@
 import {UseWeb3ApiQueryProps} from '@web3api/react/build/query';
-import IPFS_URI from 'utils/web3apiConfig/ipfsUri';
+import ENS_URI from 'utils/web3apiConfig/ensUri';
 
 // REF = https://github.com/defiwrapper/defiwrapper/blob/main/packages/defi-sdk/resolvers/account-resolvers/interface/query.graphql
-
-export const uri = IPFS_URI.SDK.MOCK;
-export const query = `query {
-  getTransactions(
-    accountAddress: $account
-    vsCurrency: $currency
-    options: $options
-  )
-}`;
 
 export const getConfig = ({
   chainId,
@@ -20,12 +11,18 @@ export const getConfig = ({
   currency: string;
 }): UseWeb3ApiQueryProps => {
   return {
-    uri: uri,
-    query: query,
-    config: {
+    uri: ENS_URI.MOCK,
+    query: `query {
+      getTransactions(
+        accountAddress: $account
+        vsCurrency: $currency
+        options: $options
+      )
+    }`,
+/*     config: {
       envs: [
         {
-          uri: IPFS_URI.ACCOUNT.MOCK,
+          uri: ENS_URI.MOCK,
           common: {
             apiKey: 'ckey_910089969da7451cadf38655ede',
             chainId: chainId,
@@ -34,6 +31,6 @@ export const getConfig = ({
           },
         },
       ],
-    },
+    }, */
   };
 };
