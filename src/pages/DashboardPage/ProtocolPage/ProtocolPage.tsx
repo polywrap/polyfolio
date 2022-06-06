@@ -14,6 +14,7 @@ import {toProtocolData} from 'common/components/ProtocolPage/shared/transformers
 import {chainIdToNetwork} from 'utils/constants';
 import {AccountBalance} from 'utils/allNetworksDataFormatting';
 import {ProtocolData} from 'common/components/ProtocolPage/shared/types';
+import ClaimableTable from 'common/components/ProtocolPage/Claimable/ClaimableTable';
 
 export const getProtocol = (
   balance: Record<string, AccountBalance>,
@@ -63,6 +64,7 @@ function ProtocolPage() {
       />
       <HeaderPageInfo title={current?.valueTitle} />
       <VaultsTable protocolData={protocolData} />
+      <ClaimableTable protocolData={protocolData}/>
       {/* <AssetTransaction /> */}
     </DashboardPage>
   );

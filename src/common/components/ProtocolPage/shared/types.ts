@@ -29,5 +29,6 @@ export interface ProtocolData {
   assetValue: Value;
   assets: AssetData[];
   chainId: number;
+  claimableValue: Value;
   claimableRewards?: unknown[];
 }
