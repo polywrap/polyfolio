@@ -37,7 +37,7 @@ const toAssetData = (asset: Asset, ...networkInfo: NetworkInfo): AssetData => {
 
   return {
     name: asset.balance.token.token.name,
-    title: getAssetTitle(components),
+    title: asset.balance.token.token.name,
     network: networkInfo[0],
     balance: asset.balance.token.balance,
     value: {
