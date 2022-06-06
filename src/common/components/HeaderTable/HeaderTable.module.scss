@@ -129,6 +129,7 @@
     }
     .filter_item {
       display: flex;
+      align-items: center;
     }
   }
   @include mobile() {

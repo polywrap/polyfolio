@@ -2,6 +2,7 @@ import {IconsMapper} from './iconsObj.types';
 import filterIconSecondary from 'assets/icons/images/filterIconSecondary.svg';
 import addressStatusIcon from 'assets/icons/images/addressStatusIcon.svg';
 import menuArrowFilled from 'assets/icons/images/menu-arrow-filled.svg';
+import sharp_arrow from 'assets/icons/images/sharp_shape_arrow.svg';
 import mobileMenu from 'assets/icons/images/mobile-menu.svg';
 import manyAssets from 'assets/icons/images/manyAssets.svg';
 import disconnect from 'assets/icons/images/disconnect.svg';
@@ -97,6 +98,7 @@ const iconsObj: IconsMapper = {
   filterIcon,
   disconnect,
   assetsUfo,
+  sharp_arrow,
   assetsFtm,
   assetsEth,
   assetsCqt,

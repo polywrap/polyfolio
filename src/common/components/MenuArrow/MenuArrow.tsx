@@ -23,7 +23,7 @@ function MenuArrow({
 
   return (
     <MaskIcon
-      src={filled ? iconsObj.menuArrowFilled : iconsObj.menuArrow}
+      src={filled ? iconsObj.sharp_arrow : iconsObj.menuArrow}
       size={size}
       className={classNames(
         styles.common_menu_arrow,
