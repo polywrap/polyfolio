@@ -4,7 +4,6 @@ import Icon from 'common/components/Icon/Icon';
 import iconsObj from 'assets/icons/iconsObj';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import styles from './HeaderTable.module.scss';
-import numberFormatter from 'utils/numberFormatter';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import DataRangeSelector from '../DateRangeSelector/DateRangeSelector';
 
