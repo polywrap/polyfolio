@@ -17,6 +17,9 @@ import Skeleton from '../Skeleton/Skeleton';
 import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.types';
 import {useRecoilValue} from 'recoil';
 import balanceState from 'common/modules/atoms/balanceState';
+import numberFormatter from 'utils/numberFormatter';
+import {Currency} from 'utils/allNetworksDataFormatting';
+import {CurrencySymbol} from 'common/currency/Currency.types';
 
 function ProtocolsTable() {
   const [tableIsOpen, setTableIsOpen] = useState(false);
@@ -41,10 +44,14 @@ function ProtocolsTable() {
     setFilter({...filters, protocols: {...filter.protocols, [name]: !value?.checked}});
   };
 
-  const summaryValue = useMemo(
-    () => menuItems.reduce((prev, current) => prev + Number(current.valueTitle), 0),
-    [menuItems],
-  );
+  const summaryValue = useMemo(() => {
+    const reduced = menuItems.reduce((prev, current) => prev + Number(current.valueTitle), 0);
+
+    return `${CurrencySymbol[Currency.Usd.toUpperCase()]} ${numberFormatter({
+      value: reduced.toString(),
+      size: 2,
+    })}`;
+  }, [menuItems]);
 
   return (
     balance &&
@@ -66,7 +73,7 @@ function ProtocolsTable() {
           menuFields={menuFields}
           onChange={onChange}
           isOpen={isOpen}
-          sum={summaryValue.toString()}
+          sum={summaryValue}
           changeDataRange={changeDataRange}
           dataRange={dataRange}
           dataRangeIsOpen={dataRangeIsOpen}

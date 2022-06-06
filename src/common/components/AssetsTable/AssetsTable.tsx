@@ -21,6 +21,8 @@ import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.type
 import getFormattedData from 'utils/getFormattedData';
 import {useRecoilValue} from 'recoil';
 import balanceState from 'common/modules/atoms/balanceState';
+import numberFormatter from 'utils/numberFormatter';
+import { Currency, CurrencySymbol } from 'common/currency/Currency.types';
 
 function AssetsTable() {
   const {pathname} = useLocation();
@@ -46,6 +48,7 @@ function AssetsTable() {
   const onChange = (name, value) => {
     setFilter({...filters, assets: {...filter.assets, [name]: !value?.checked}});
   };
+  const sum = `${CurrencySymbol[Currency.USD.toUpperCase()]} ${numberFormatter({value: preparedData['allAssetsSum'], size: 2})}`
 
   return preparedData['balance'] ? (
     <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>
@@ -61,7 +64,7 @@ function AssetsTable() {
         filter={filter.assets}
         onChange={onChange}
         isOpen={isOpen}
-        sum={preparedData['allAssetsSum']}
+        sum={sum}
         changeDataRange={changeDataRange}
         dataRange={dataRange}
         dataRangeIsOpen={dataRangeIsOpen}
