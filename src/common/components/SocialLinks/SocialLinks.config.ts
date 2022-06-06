@@ -4,8 +4,8 @@ import RoutePath from 'common/modules/routing/routing.enums';
 
 const socialLinks: SocialLink[] = [
   {
-    link: RoutePath.Discord,
-    icon: iconsObj.discord,
+    link: RoutePath.Twitter,
+    icon: iconsObj.twitter,
     isExternal: true,
   },
   {
@@ -14,8 +14,8 @@ const socialLinks: SocialLink[] = [
     isExternal: true,
   },
   {
-    link: RoutePath.Twitter,
-    icon: iconsObj.twitter,
+    link: RoutePath.Discord,
+    icon: iconsObj.discord,
     isExternal: true,
   },
 ];

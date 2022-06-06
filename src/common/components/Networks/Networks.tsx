@@ -49,7 +49,7 @@ function Networks() {
           </div>
         </div>
         <div>
-          <MenuArrow filled startPosition={'up'} />
+          <MenuArrow startPosition={'right'} />
         </div>
       </div>
     );

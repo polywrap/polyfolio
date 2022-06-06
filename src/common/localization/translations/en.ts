@@ -153,7 +153,8 @@ export default {
     claimable: 'Claimable',
   },
   Table: {
-    assets: 'Asset',
+    title: 'Assets',
+    asset: 'asset',
     protocols: 'Protocols',
     allocation: 'Allocation',
     networks: 'Networks',
