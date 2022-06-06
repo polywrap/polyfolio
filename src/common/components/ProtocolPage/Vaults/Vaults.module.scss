@@ -58,7 +58,8 @@
     text-align: end;
   }
   .title.value {
-    @include flex_grow();
+    width: calc(100% / 4 - 52px);
+    margin-right: 52px;
     justify-content: flex-end;
   }
   .title.protocol {
