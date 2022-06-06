@@ -7,10 +7,10 @@ import {toFixed} from 'utils/numberFormatter';
 import AssetBreakDownItem from './AssetBreakDownItems/AssetBreakDownItems';
 import Modal from 'react-modal';
 
-import ComponentIcon from '../VaultsTable/VaultsTableItem/ComponentIcon';
+import ComponentIcon from '../shared/ComponentIcon';
 import {CurrencySymbol} from 'common/currency/Currency.types';
-import {AssetData} from '../VaultsTable/types';
-import {getPercentageStr} from '../VaultsTable/utils';
+import { getPercentageStr } from '../shared/utils';
+import { AssetData } from '../shared/types';
 
 interface Props {
   asset: AssetData;

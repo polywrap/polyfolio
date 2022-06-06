@@ -4,8 +4,8 @@ import {toFixed} from 'utils/numberFormatter';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import classNames from 'classnames';
 import {CurrencySymbol} from 'common/currency/Currency.types';
-import {getAssetIcons} from '../utils';
-import {AssetData} from '../types';
+import { AssetData } from '../../shared/types';
+import { getAssetIcons } from '../../shared/utils';
 
 interface Props {
   asset: AssetData;

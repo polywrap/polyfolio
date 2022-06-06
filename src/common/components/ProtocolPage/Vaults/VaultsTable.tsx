@@ -7,41 +7,28 @@ import styles from './Vaults.module.scss';
 
 import VaultsItem from './VaultsTableItem/VaultsTableItem';
 import useTheme from 'common/hooks/useTheme/useTheme';
-import HeaderTable from '../HeaderTable/HeaderTable';
+import HeaderTable from '../../HeaderTable/HeaderTable';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
 import {menuFields} from './FilterFieldsVaults.config';
 import {useParams} from 'react-router-dom';
-import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.types';
+import {DataRangeSelectorItem} from '../../DateRangeSelector/DataRangeSelector.types';
 import balanceState from 'common/modules/atoms/balanceState';
 import {useRecoilValue} from 'recoil';
 
-import AssetBreakdown from 'common/components/AssetBreakDown/AssetBreakDown';
+import AssetBreakdown from 'common/components/ProtocolPage/AssetBreakDown/AssetBreakDown';
 import {AccountBalance} from 'utils/allNetworksDataFormatting';
 import {chainIdToNetwork} from 'utils/constants';
-import {toProtocolData} from './transformers';
-import {getAssetValueStr} from './utils';
-import {ProtocolData} from './types';
+import {toProtocolData} from '../shared/transformers';
+import {getAssetValueStr} from '../shared/utils';
+import {ProtocolData} from '../shared/types';
 
-const getProtocol = (
-  balance: Record<string, AccountBalance>,
-  chainId: string,
-  protocolId: string,
-) => {
-  if (balance) {
-    const network = chainIdToNetwork[chainId];
-    const protocolsAtChain = balance[network];
+interface Props {
+  protocolData: ProtocolData;
+}
 
-    const protocolProtocol = protocolsAtChain.protocols.find(
-      ({protocol}) => protocol.id === protocolId,
-    );
-
-    return protocolProtocol;
-  }
-};
-
-function VaultsTable() {
+function VaultsTable({protocolData}: Props) {
   const [tableIsOpen, setTableIsOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef(null);
@@ -52,24 +39,7 @@ function VaultsTable() {
   const [dataRange, setDataRange] = useState<DataRangeSelectorItem>({});
   const [dataRangeIsOpen, setDataRangeIsOpen] = useState(true);
 
-  const balance = useRecoilValue(balanceState);
-
-  const {chainId, protocol: protocolId} = useParams();
-
-  const [protocolData, setProtocolData] = useState<ProtocolData>(undefined);
-
   const [selectedAsset, setSelectedAsset] = useState(null);
-
-  useEffect(() => {
-    if (balance) {
-      const protocol = getProtocol(balance, chainId, protocolId);
-
-      if (protocol) {
-        const transformed = toProtocolData(protocol);
-        setProtocolData(transformed);
-      }
-    }
-  }, [balance]);
 
   const handleOpenModal = (menuItem) => {
     setSelectedAsset(menuItem);

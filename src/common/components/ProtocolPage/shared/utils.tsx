@@ -3,10 +3,11 @@ import iconsObj from 'assets/icons/iconsObj';
 import classNames from 'classnames';
 import {rmCommasFromNum} from 'utils/helpers';
 import {AssetComponentData, AssetData, Value} from './types';
-import ComponentIcon from './VaultsTableItem/ComponentIcon';
-import styles from './VaultsTableItem/VaultsTableItem.module.scss';
+import ComponentIcon from '../shared/ComponentIcon';
+import styles from '../Vaults/VaultsTableItem/VaultsTableItem.module.scss';
 import {CurrencySymbol} from 'common/currency/Currency.types';
 import {toFixed} from 'utils/numberFormatter';
+import {ProtocolElement, TokenElement} from 'utils/allNetworksDataFormatting';
 
 export const getPercentageStr = (asset: AssetData) => {
   const assetValue = Number(rmCommasFromNum(asset.value.amount.split('.')[0]));
@@ -76,4 +77,40 @@ export const getBalanceStr = (components: AssetComponentData[], title: string) =
     .toFixed(0);
 
   return `${balance.toString()} ${title}`;
+};
+
+const getClaimableTokensFromProtocol = (protocol: ProtocolElement): TokenElement[] =>
+  protocol.assets.reduce((rewards, asset) => [...rewards, ...asset.claimableTokens], []);
+
+const reduceClaimableTokens = (tokens: TokenElement[]): TokenElement[] => {
+  const unique = tokens.reduce((claimable, token) => {
+    const key = token.token.name;
+
+    if (claimable[key]) {
+      claimable[key] = {
+        ...claimable[key],
+        balance: (Number(claimable[key].balance) + Number(token.balance)).toString(),
+        values: [
+          {
+            ...claimable[key].values[0],
+            value: (
+              Number(claimable[key].values[0].value) + Number(token.values[0].value)
+            ).toString(),
+          },
+        ],
+      };
+    } else {
+      claimable[key] = token;
+    }
+
+    return claimable;
+  }, {});
+
+  return Object.values(unique);
+};
+
+export const getClaimableTokens = (protocol: ProtocolElement): TokenElement[] => {
+  const claimable = getClaimableTokensFromProtocol(protocol);
+
+  return reduceClaimableTokens(claimable);
 };
