@@ -5,7 +5,7 @@ import styles from './HeaderDashboard.module.scss';
 
 import {dropdownItems} from './HederDashboardDropdown/HederDashboardDropdown.config';
 import useTheme from 'common/hooks/useTheme/useTheme';
-import {content} from './HeaderDashboard.config';
+//import {content} from './HeaderDashboard.config';
 import Dropdown from '../Dropdown/Dropdown';
 import {filteredDropdown} from 'utils/helpers';
 import numberFormatter from 'utils/numberFormatter';
@@ -54,7 +54,7 @@ function HeaderDashboard() {
           ) : (
             <Skeleton width={215} height={54} />
           )}
-          <div className={styles.secondaryValue}>
+          {/* <div className={styles.secondaryValue}>
             {content.percent ? (
               <div className={styles.value}>
                 +{numberFormatter({value: content.percent, size: 2})}%
@@ -69,7 +69,7 @@ function HeaderDashboard() {
             ) : (
               <Skeleton width={35.6} height={19} />
             )}
-          </div>
+          </div> */}
         </div>
         <div className={styles.dropdownContainer}>
           <Dropdown

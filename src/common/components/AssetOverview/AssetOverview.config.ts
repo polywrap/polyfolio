@@ -10,9 +10,11 @@ import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.type
 import useAssetPageData from 'common/hooks/useAssetPageData/useAssetPageData';
 import {useRecoilValue} from 'recoil';
 import {userPersistState} from 'common/modules/atoms/userAddress';
+import {searchPersistState} from 'common/modules/atoms/searchState';
 
 const useAssetOverviewData = (dataRange: DataRangeSelectorItem) => {
   const user = useRecoilValue(userPersistState);
+  const search = useRecoilValue(searchPersistState);
   const {asset} = useParams();
   const {currency} = useCurrency();
   const menuItems = useAssets();
@@ -38,7 +40,7 @@ const useAssetOverviewData = (dataRange: DataRangeSelectorItem) => {
     row1Items: [
       {
         id: 1,
-        label: `${shortenedAddress(user, 4)} Owns`,
+        label: `${shortenedAddress(search ?? user, 4)} Owns`,
         content: `${numberFormatter({
           value: assetData?.valueSecondaryTitle,
           size: 2,
