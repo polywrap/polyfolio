@@ -16,6 +16,7 @@
   @include flex_centered_vert();
 
   .tooltip_container {
+    max-height: 425px;
     background-color: var(--tooltip_bg);
     border-radius: 16px;
     border: 1px solid var(--tooltip_border);

@@ -40,7 +40,7 @@ function SettingsBody() {
         </div>
         <div className={style.row}>
           <div className={style.left}>{translation.Settings.baseCurrency}</div>
-          <div className={style.right}><CurrencyPicker /></div>
+          <div className={style.right}><CurrencyPicker className={style.currency} /></div>
         </div>
         <div className={style.row}>
           <div className={style.left}>{translation.Settings.language}</div>
