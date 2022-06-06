@@ -56,7 +56,6 @@
   .title.price,
   .title.value {
     text-align: end;
-    padding-right: 52px;
   }
   .title.value {
     @include flex_grow();
