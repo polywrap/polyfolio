@@ -1,7 +1,19 @@
+const TerserPlugin = require('terser-webpack-plugin');
+
 module.exports = function override(config, env) {
   //do stuff with the webpack config...
-  const appConfig = {
+  return {
     ...config,
+    optimization: {
+      minimizer: [
+        new TerserPlugin({
+          terserOptions: {
+            keep_fnames: true,
+            keep_classnames: true
+          },
+        }),
+      ]
+    },
     stats: {warnings: false},
     ignoreWarnings: [/Failed to parse source map/],
     resolve: {
@@ -13,6 +25,4 @@ module.exports = function override(config, env) {
       },
     },
   };
-
-  return appConfig;
 };
