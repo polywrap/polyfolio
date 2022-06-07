@@ -50,10 +50,16 @@ const toAssetData = (asset: Asset, ...networkInfo: NetworkInfo): AssetData => {
 const toClaimableToken = (token: TokenElement, ...networkInfo: NetworkInfo): ClaimableData => {
   const [network, chainId] = networkInfo;
 
+  console.log('token', token);
+
   return {
     address: token.token.address,
     name: token.token.name,
-    value: token.balance,
+    value: {
+      amount: token.values[0].value,
+      currency: token.values[0].currency.toUpperCase(),
+    },
+    balance: token.balance,
     symbol: token.token.symbol,
     network: network,
     chainId: chainId,

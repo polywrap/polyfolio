@@ -1,4 +1,4 @@
-import numberFormatter from "utils/numberFormatter";
+import numberFormatter from 'utils/numberFormatter';
 
 describe('Number formatter', () => {
   test('Number formatter on different predicted inputs', () => {
@@ -57,7 +57,7 @@ describe('Number formatter', () => {
 
     expect(resultWithUndefinedValue).toBe('0');
     expect(resultWithNullValue).toBe('0');
-  })
+  });
 
   test('Number formatter on zero values', () => {
     const resultWithZeroValueAndNonZeroSize = numberFormatter(0);

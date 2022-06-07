@@ -5,6 +5,7 @@ import protocolEth from './protocolEth.svg';
 import protocolUfo from './protocolUfo.svg';
 import sushibar_v1 from './protocolSushibar.png';
 import uniswap_v2 from './protocolUniswap.png';
+import yearn_vault_v2 from './protocolYearn.png';
 
 export {
   protocolBardger,
@@ -14,4 +15,5 @@ export {
   protocolUfo,
   sushibar_v1,
   uniswap_v2,
+  yearn_vault_v2,
 };

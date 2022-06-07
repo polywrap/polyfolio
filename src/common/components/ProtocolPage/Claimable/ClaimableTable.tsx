@@ -59,10 +59,12 @@ function ClaimableTable({protocolData}: Props) {
             <Icon className={styles.title_icon} src={iconsObj.sort_frame} sizes="24px" />
             {translation.Tables.asset}
           </div>
-          {/*           <div className={classNames(styles.title, styles.price_container)}>
+          <div className={classNames(styles.title, styles.price)}>
             {translation.Table.claimable}
-          </div> */}
-          <div className={classNames(styles.title, styles.price)}>{translation.Table.claimable}</div>
+          </div>
+          <div className={classNames(styles.title, styles.price)}>
+            {translation.Table.value}
+          </div>
         </div>
         {protocolData.claimableRewards.map((claimable) => (
           <ClaimableItem key={claimable.name} item={claimable} />
