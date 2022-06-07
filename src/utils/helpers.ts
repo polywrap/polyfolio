@@ -19,13 +19,24 @@ export const fillArray = (n) => {
 };
 
 export const getStringFromPath = (path: string, index: number) => {
-  if (path) return path.split('/')[index ?? 1];
+  if (path) {
+    return index 
+      ? path.split('/').length > index 
+        && index >= 0 
+          ? path.split('/')[index] 
+          : path 
+      : path;
+  }
 };
 
 export const shortenedAddress = (address: string, size = 4) => {
   if (address && address != '???') {
-    return `${_.slice(address, 0, size).join('')}...${_.slice(address, -size).join('')}`;
-  }
+    if (size > 19) return address;
+    if (size > 0) {
+      return `${_.slice(address, 0, size).join('')}...${_.slice(address, -size).join('')}`;
+    }
+    else return '...';
+  } 
 
   return '???';
 };
@@ -33,7 +44,7 @@ export const shortenedAddress = (address: string, size = 4) => {
 export const detectAssetOrProtocolPage = (pathname: string) => {
   if (pathname && pathname.includes('protocol')) return 'protocol';
   else if (pathname && pathname.includes('assets')) return 'asset';
-  else 'default';
+  else return 'default';
 };
 
 export const fromBnToNumber = (numberInString: string, decimal: number | string) => {

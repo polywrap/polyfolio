@@ -72,7 +72,7 @@ export interface Event {
   params: EventParam[];
 }
 
-interface EventParam {
+export interface EventParam {
   name: string;
   type: string;
   indexed: boolean;
