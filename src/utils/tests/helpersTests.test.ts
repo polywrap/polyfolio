@@ -132,7 +132,7 @@ describe('Shortened function', () => {
     const resultWithLimitedSize = shortenedAddress('0xa79e63e78eec28741e711f89a672a4c40876ebf3', 19);
     const resultWithLimitedSize_alt = shortenedAddress('0xa79e63e78eec28741e711f89a672a4c40876ebf3', 20);
 
-    expect(resultWithZeroSize).toBe('...');
+    expect(resultWithZeroSize).toBe(undefined);
     expect(resultWithLimitedSize).toBe('0xa79e63e78eec28741...f89a672a4c40876ebf3');
     expect(resultWithLimitedSize_alt).toBe('0xa79e63e78eec28741e711f89a672a4c40876ebf3');
   });
@@ -145,7 +145,7 @@ describe('Shortened function', () => {
     expect(resultWithNull).toBe(undefined);
     expect(resultWithUndefined).toBe(undefined);
     expect(resultWithNullSize).toBe('0xa79e63e78eec28741e711f89a672a4c40876ebf3');
-    expect(resultWithUndefinedSize).toBe('0xa79e63e78eec28741e711f89a672a4c40876ebf3');
+    expect(resultWithUndefinedSize).toBe('0xa7...ebf3');
   })
 })
 

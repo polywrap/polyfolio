@@ -30,15 +30,12 @@ export const getStringFromPath = (path: string, index: number) => {
 };
 
 export const shortenedAddress = (address: string, size = 4) => {
-  if (address && address != '???') {
-    if (size > 19) return address;
-    if (size > 0) {
+  if (address && size !== 0) {
+    if (size && (size > 0 && size <= 19)) {
       return `${_.slice(address, 0, size).join('')}...${_.slice(address, -size).join('')}`;
     }
-    else return '...';
+    else return address;
   } 
-
-  return '???';
 };
 
 export const detectAssetOrProtocolPage = (pathname: string) => {
