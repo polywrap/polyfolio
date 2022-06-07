@@ -56,10 +56,10 @@
   .title.price,
   .title.value {
     text-align: end;
-    padding-right: 52px;
   }
   .title.value {
-    @include flex_grow();
+    width: calc(100% / 4 - 52px);
+    margin-right: 52px;
     justify-content: flex-end;
   }
   .title.protocol {

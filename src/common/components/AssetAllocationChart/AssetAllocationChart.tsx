@@ -27,7 +27,7 @@ function AssetAllocationChart() {
       <div className={styles.item} onClick={() => setCurrent(onClick(item?.id))}>
         <Icon src={item.icon} className={styles.icon} />
         <div className={styles.title}>{translation.Assets[item?.title]}</div>
-        <div className={styles.value}>{numberFormatter({value: item?.value, size: 2})}%</div>
+        <div className={styles.value}>{numberFormatter(item?.value)}%</div>
       </div>
     );
   };
@@ -57,7 +57,7 @@ function AssetAllocationChart() {
         <PieChartContainer innerRadius={32} outerRadius={72} item={Item} />
         <div className={styles.values}>
           <div className={styles.title}>{translate.Assets[current?.title]}</div>
-          <div className={styles.value}>{numberFormatter({value: current?.value, size: 2})}%</div>
+          <div className={styles.value}>{numberFormatter(current?.value)}%</div>
         </div>
         <div className={styles.divider} />
         <div className={styles.valuesContainer}>

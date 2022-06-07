@@ -80,7 +80,7 @@ function AssetsItem(menuItem) {
             })}
             <div className={styles.bg}>
               <span className={styles.badgeText}>
-                {numberFormatter({value: percent, size: 0})}%
+                {numberFormatter(percent, {minimumFractionDigits: 0})}%
               </span>
             </div>
           </div>
@@ -100,10 +100,10 @@ function AssetsItem(menuItem) {
           >
             <div>
               <div className={styles.valueTitle}>
-                ${numberFormatter({value: valueTitle, size: 2})}
+                ${numberFormatter(valueTitle)}
               </div>
               <div className={styles.valueSecondaryContainer}>
-                {numberFormatter({value: valueSecondaryTitle, size: 2})} {symbol.toUpperCase()}
+                {numberFormatter(valueSecondaryTitle)} {symbol.toUpperCase()}
                 <div style={{marginLeft: '5px'}}>{translation.Assets[title]}</div>
               </div>
             </div>

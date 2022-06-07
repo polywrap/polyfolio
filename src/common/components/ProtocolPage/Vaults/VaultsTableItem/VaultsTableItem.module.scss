@@ -118,14 +118,17 @@
     width: 16px;
     height: 16px;
   }
+  .value {
+    padding-right: 52px;
+  }
   .price_container {
     width: calc(100% / 4);
-    padding: 0 52px 0 0;
     text-align: end;
   }
   .value_container {
-    @include flex_grow();
+    display: flex;
     justify-content: flex-end;
+    align-items: center;
     width: calc(100% / 4);
     .valueTitle {
       text-align: end;

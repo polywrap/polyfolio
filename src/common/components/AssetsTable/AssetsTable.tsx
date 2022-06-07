@@ -48,7 +48,7 @@ function AssetsTable() {
   const onChange = (name, value) => {
     setFilter({...filters, assets: {...filter.assets, [name]: !value?.checked}});
   };
-  const sum = `${CurrencySymbol[Currency.USD.toUpperCase()]} ${numberFormatter({value: preparedData['allAssetsSum'], size: 2})}`
+  const sum = `${CurrencySymbol[Currency.USD.toUpperCase()]} ${numberFormatter(preparedData['allAssetsSum'])}`
 
   return preparedData['balance'] ? (
     <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>

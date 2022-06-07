@@ -47,17 +47,14 @@ function ProtocolsTable() {
   const summaryValue = useMemo(() => {
     const reduced = menuItems.reduce((prev, current) => prev + Number(current.valueTitle), 0);
 
-    return `${CurrencySymbol[Currency.Usd.toUpperCase()]} ${numberFormatter({
-      value: reduced.toString(),
-      size: 2,
-    })}`;
+    return `${CurrencySymbol[Currency.Usd.toUpperCase()]} ${numberFormatter(reduced.toString())}`;
   }, [menuItems]);
 
   return (
     balance &&
     (loading ? (
       <div style={{marginBottom: 48}}>
-        <Skeleton width={1256} height={435} />
+        <Skeleton width={100} height={435} />
       </div>
     ) : (
       <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>

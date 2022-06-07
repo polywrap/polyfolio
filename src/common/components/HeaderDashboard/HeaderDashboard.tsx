@@ -50,21 +50,21 @@ function HeaderDashboard() {
         <div>
           <span className={styles.secondaryTitle}>{translation.Dashboard.secondaryTitle}</span>
           {preparedData['allAssetsSum'] ? (
-            <h2>${numberFormatter({value: preparedData['allAssetsSum'], size: 2})}</h2>
+            <h2>${numberFormatter(preparedData['allAssetsSum'])}</h2>
           ) : (
             <Skeleton width={215} height={54} />
           )}
           {/* <div className={styles.secondaryValue}>
             {content.percent ? (
               <div className={styles.value}>
-                +{numberFormatter({value: content.percent, size: 2})}%
+                +{numberFormatter(content.percent)}%
               </div>
             ) : (
               <Skeleton width={40.5} height={19} />
             )}
             {content.value ? (
               <div className={classNames(styles.value, styles.percent)}>
-                +${numberFormatter({value: content.value, size: 2})}
+                +${numberFormatter(content.value)}
               </div>
             ) : (
               <Skeleton width={35.6} height={19} />
