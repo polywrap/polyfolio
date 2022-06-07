@@ -3,11 +3,14 @@ import {ethereumPlugin} from '@web3api/ethereum-plugin-js';
 
 const plugins: PluginRegistration<string>[] = [
   {
-    uri: 'ens/ethereum.web3api.eth',
+    uri: 'w3://ens/ethereum.web3api.eth',
     plugin: ethereumPlugin({
       networks: {
         mainnet: {
           provider: 'https://mainnet.infura.io/v3/b00b2c2cc09c487685e9fb061256d6a6',
+        },
+        rinkeby: {
+          provider: 'https://rinkeby.infura.io/v3/b00b2c2cc09c487685e9fb061256d6a6',
         },
       },
     }),

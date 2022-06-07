@@ -20,7 +20,7 @@ function AssetTransaction() {
   const theme = useTheme();
   const [page, setPage] = useState<number>(1);
 
-  const {data, loading} = useTransactions({page, perPage: 100, config: {chainId: 1}});
+  const {data, loading} = useTransactions({page, perPage: 10, config: {chainId: 1}});
 
   const getTransactionViews = (transactions: Transaction[]) => {
     if (!transactions) return {};

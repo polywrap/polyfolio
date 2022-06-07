@@ -49,7 +49,7 @@ export default function useAssetTranscations({page, perPage = 10, config = {chai
   const menuItems = useAssets();
 
   const {data, loading, errors, execute} = useWeb3ApiQuery<{getTokenTransfers: TokenTransfers}>({
-    uri: ENS_URI.MOCK, //IPFS_URI.SDK.MOCK,
+    uri: ENS_URI.MOCK,
     query: `query {
         getTokenTransfers(
           accountAddress: $accountAddress
@@ -59,9 +59,9 @@ export default function useAssetTranscations({page, perPage = 10, config = {chai
         )
       }`,
     config: {
-/*       envs: [
+      envs: [
         {
-          uri: ENS_URI.MOCK,
+          uri: ENS_URI.ACCOUNT.MOCK,
           common: {
             apiKey: 'ckey_910089969da7451cadf38655ede',
             chainId: config.chainId,
@@ -69,33 +69,23 @@ export default function useAssetTranscations({page, perPage = 10, config = {chai
             format: 'JSON',
           },
         },
-        {
-          uri: 'ipfs/QmU33eyiAsdZaT3pXk2UVGXzYtbYx94RXBUCDzM6fMEBcW',
-          common: {
-            connection: {
-              node: null,
-              connectionOrChainId: '1',
-            },
-          },
-        },
-      ], */
+      ],
     },
   });
-  console.log('data', data);
 
   useEffect(() => {
     if (search || user) {
       const assetData = _find(menuItems, {symbol: asset});
 
       const variables = {
-        accountAddress: DEBUG_ADDRESS, //search ?? user , //TODO REMOVE DEBUG ADDRESS
+        accountAddress: search ?? user,
         tokenAddress: assetData.address,
         currencies: [currency],
         //currencies: [currency],
         options: {
           pagination: {
             page: page,
-            perPage: 10,
+            perPage: perPage,
           },
           blockRange: null,
         },

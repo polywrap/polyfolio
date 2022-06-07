@@ -13,7 +13,11 @@ const REDIRECTS: UriRedirect[] = [
     from: ENS_URI.ASSET.UNISWAP,
     to: IPFS_URI.ASSET.UNISWAP,
   },
-/*   {
+  {
+    from: 'ens/mock.account.resolvers.defiwrapper.eth',
+    to: ENS_URI.ACCOUNT.MOCK,
+  },
+  /*   {
     from: ENS_URI.ACCOUNT.MOCK,
     to: IPFS_URI.ACCOUNT.MOCK,
   }, */

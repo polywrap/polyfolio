@@ -19,10 +19,10 @@ export const getConfig = ({
         options: $options
       )
     }`,
-/*     config: {
+    config: {
       envs: [
         {
-          uri: ENS_URI.MOCK,
+          uri: ENS_URI.ACCOUNT.MOCK,
           common: {
             apiKey: 'ckey_910089969da7451cadf38655ede',
             chainId: chainId,
@@ -31,6 +31,6 @@ export const getConfig = ({
           },
         },
       ],
-    }, */
+    },
   };
 };

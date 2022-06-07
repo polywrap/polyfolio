@@ -26,6 +26,7 @@ function AssetTransaction() {
     if (!data?.getTokenTransfers) return {};
     //console.log('transfers', data?.getTokenTransfers.transfers);
 
+    console.log('res', data.getTokenTransfers)
     const txByDate = reduceByDays(data.getTokenTransfers);
 
     return getViewsByDate(txByDate, search || user);
