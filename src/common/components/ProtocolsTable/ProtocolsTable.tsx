@@ -54,7 +54,7 @@ function ProtocolsTable() {
     balance &&
     (loading ? (
       <div style={{marginBottom: 48}}>
-        <Skeleton width={1256} height={435} />
+        <Skeleton width={100} height={435} />
       </div>
     ) : (
       <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>
