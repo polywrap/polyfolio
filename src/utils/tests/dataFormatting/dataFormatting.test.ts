@@ -1,6 +1,15 @@
 import {getClaimableValueFromCurrProtocol} from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.utis';
+import {Asset, Currency} from 'utils/allNetworksDataFormatting';
 import * as dataFormatting from 'utils/dataFormatting';
-import {protocols, components, asset, marketCapArray, volume, params, balance} from './testConstants';
+import {
+  protocols,
+  components,
+  asset,
+  marketCapArray,
+  volume,
+  params,
+  balance,
+} from './testConstants';
 
 test('Asset Sum', () => {
   const result = dataFormatting.getAssetsValueSum(components);
@@ -47,16 +56,77 @@ test('Detect chainId and protocol for asset', () => {
   const result = dataFormatting.detectProtocolAndChainIdForAsset([...protocols], 'FWB');
 
   expect(result).toEqual(['ethereum', 'sushibar_v1']);
-})
+});
 
 test('Get event type', () => {
-  const result = dataFormatting.getEventType('transfer', '0x870E4F7C9687Fe15b4505315eB6ba10fe00A3dB8', params)
+  const result = dataFormatting.getEventType(
+    'transfer',
+    '0x870E4F7C9687Fe15b4505315eB6ba10fe00A3dB8',
+    params,
+  );
 
   expect(result).toBe('send');
-})
+});
 
 test('Get asset by address', () => {
-  const result = dataFormatting.getAssetByAddress([balance], '0x0a965a4caf929338044c593d82d385c4c898d8c6');
+  const result = dataFormatting.getAssetByAddress(
+    [balance],
+    '0x0a965a4caf929338044c593d82d385c4c898d8c6',
+  );
 
   expect(result).toEqual(balance);
+});
+
+test('Insert Chain Id To Protocol', () => {
+  const result = {
+    ethereum: {
+      account: '0x870E4F7C9687Fe15b4505315eB6ba10fe00A3dB8',
+      chainId: '1',
+      values: [
+        {
+          currency: Currency.Usd,
+          price: 'N/A',
+          value: '10,765.135113993',
+        },
+      ],
+      protocols: [
+        {
+          protocol: {},
+        }
+      ],
+    },
+  };
+
+  dataFormatting.insertChainIdToProtocol(result);
+  
+  expect(result).toEqual({
+    ethereum: {
+      account: '0x870E4F7C9687Fe15b4505315eB6ba10fe00A3dB8',
+      chainId: '1',
+      values: [
+        {
+          currency: Currency.Usd,
+          price: 'N/A',
+          value: '10,765.135113993',
+        },
+      ],
+      protocols: [
+        {
+          protocol: {chainId: '1'},
+        }
+      ],
+    },
+  });
+});
+
+test('Get Asset Components', () => {
+  const result = dataFormatting.getAssetComponents(asset as Asset);
+
+  expect(result).toEqual(components);
+});
+
+test('Get Assets Components', () => {
+  const result =  dataFormatting.getAssetsComponents([asset, asset] as Asset[]);
+
+  expect(result).toEqual([... components, ...components])
 })
