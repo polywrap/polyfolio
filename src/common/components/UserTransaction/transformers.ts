@@ -2,8 +2,7 @@
 import iconsObj from 'assets/icons/iconsObj';
 import {TransactionView} from 'common/components/UserTransaction/UserTransactionItem/UserTransactionItem';
 import {Event, EventLog, Transaction} from 'common/hooks/useTransaction/useTransactions.types';
-import {getAssetByAddress, getEventIcon} from '../../../utils/dataFormatting';
-import {IBalance} from '../ProtocolsTable/ProtocolsItem/ProtocolTableItem.types';
+import {getEventIcon} from '../../../utils/dataFormatting';
 import {
   ApprovalParams,
   EventProcessed,
@@ -80,7 +79,6 @@ function getTransactionViewByLog(
 
     case SupportedEvent.Approval: {
       const approvalEvent = <EventProcessed<ApprovalParams>>event;
-      const {value} = approvalEvent.params;
 
       return {
         ...transactionViewDefaults,
@@ -107,6 +105,7 @@ function getTransactionViewByLog(
 
 function getTransactionViewDefaults(log: EventLog, transaction: Transaction): TransactionView {
   const eventType: SupportedEvent = SupportedEvent[log.event.name];
+  console.log('transaction', transaction)
 
   return {
     type: eventType,
@@ -190,3 +189,24 @@ function reduceEventParams<TParams = unknown>(event: Event): EventProcessed<TPar
 
   return {...event, params: <TParams>params};
 }
+
+// ======== Functions for testing ==========
+
+export const __reduceEventParamsForTest = (event: Event) => reduceEventParams(event);
+export const __getApprovalSubjectForTest = (event: EventProcessed<ApprovalParams>) => getApprovalSubject(event);
+export const __getTransferSubjectTransactionForTest = (transaction: Transaction, user: string) =>
+  getTransferSubjectTransaction(transaction, user);
+export const __getTransferSubjectEventForTest = (event: EventProcessed<TransferParams>, user: string) =>
+  getTransferSubjectEvent(event, user);
+export const __getTransferSubjectForTest = (txLike: Transaction | EventProcessed<TransferParams>, user: string) =>
+  getTransferSubject(txLike, user);
+
+export const __getTransferTypeEventForTest = (event: EventProcessed<TransferParams>, user: string) =>
+  getTransferTypeEvent(event, user);
+export const __getTransferTypeTransactionForTest = (transaction: Transaction, user: string) =>
+  getTransferTypeTransaction(transaction, user);
+export const __getTransferTypeForTest = (txLike: Transaction | EventProcessed<TransferParams>, user: string) =>
+  getTransferType(txLike, user);
+
+export const getTransactionViewDefaultsForTest = (log: EventLog, transaction: Transaction) =>
+  getTransactionViewDefaults(log, transaction);

@@ -1,4 +1,3 @@
-import React from 'react';
 import {useEffect, useState} from 'react';
 
 import useAssetMetadata from 'common/hooks/useAssetMetadata/useAssetMetadata';
@@ -102,3 +101,9 @@ const useTokenView = (token: TokenViewProps) => {
 };
 
 export default useTokenView;
+
+export const __getTokenAmountInCurrencyForTesting = (amount: string, price: string, currencySymbol: string) =>
+  getTokenAmountInCurrency(amount, price, currencySymbol);
+
+export const __getTokenAmountStringForTesting = (amount: string, currencySymbol: string) => 
+  getTokenAmountString(amount, currencySymbol);
