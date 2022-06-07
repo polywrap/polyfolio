@@ -37,7 +37,8 @@ export interface ClaimableData {
   address: string;
   name: string;
   symbol: string;
-  value: string;
+  balance: string;
+  value: Value;
   network: string;
   chainId?: number;
 }

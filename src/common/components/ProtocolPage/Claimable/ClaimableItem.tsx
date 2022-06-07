@@ -1,3 +1,4 @@
+import {CurrencySymbol} from 'common/currency/Currency.types';
 import React from 'react';
 import ComponentIcon from '../shared/ComponentIcon';
 import {ClaimableData} from '../shared/types';
@@ -8,7 +9,7 @@ type Props = {
 };
 
 export default function ClaimableItem({item}: Props) {
-  const {address, name, symbol, network, value, chainId} = item;
+  const {address, name, symbol, network, value, chainId, balance} = item;
 
   return (
     <div className={styles.buttonNavigate}>
@@ -21,15 +22,15 @@ export default function ClaimableItem({item}: Props) {
             <div className={styles.title}>{name}</div>
           </div>
         </div>
-        {/*         <div className={styles.price_container}>
+        <div className={styles.price_container}>
           <div className={styles.title}>
-            {value} {symbol}
+            {balance} {symbol}
           </div>
-        </div> */}
+        </div>
         <div className={styles.value_container}>
           <div className={styles.title}>
             <div className={styles.valueTitle}>
-              {value} {symbol}
+              {CurrencySymbol[value.currency]} {value.amount}
             </div>
           </div>
         </div>
