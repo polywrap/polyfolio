@@ -21,18 +21,22 @@ function SettingsBody() {
   return (
     <div className={classNames(style[theme])}>
       <div className={style.head_title}>{translation.SidebarMenu.settings}</div>
-      <div>
-        <div className={style.profile_sign}>{translation.Settings.profile}</div>
-        <div className={style.profile}>
-          <Icon src={iconsObj.profile} className={style.profile_icon} />
-          <div className={style.address_container}>
-            <div className={style.main_addr}>
+      {user ? (
+        <div>
+          <div className={style.profile_sign}>{translation.Settings.profile}</div>
+          <div className={style.profile}>
+            <Icon src={iconsObj.profile} className={style.profile_icon} />
+            <div className={style.address_container}>
+              <div className={style.main_addr}>
+                <ProfileWallet address={user} size={4} />
+              </div>
               <ProfileWallet address={user} size={4} />
             </div>
-            <ProfileWallet address={user} size={4} />
           </div>
         </div>
-      </div>
+      ) : (
+        ''
+      )}
       <div className={style.settings_prop}>
         <div className={style.row}>
           <div className={style.left}>{translation.Settings.theme}</div>
