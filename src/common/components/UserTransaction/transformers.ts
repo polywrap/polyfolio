@@ -208,5 +208,6 @@ export const __getTransferTypeTransactionForTest = (transaction: Transaction, us
 export const __getTransferTypeForTest = (txLike: Transaction | EventProcessed<TransferParams>, user: string) =>
   getTransferType(txLike, user);
 
-export const getTransactionViewDefaultsForTest = (log: EventLog, transaction: Transaction) =>
-  getTransactionViewDefaults(log, transaction);
+export const __getTransactionViewByLog = (log: EventLog, transaction: Transaction, user: string) => {
+  return getTransactionViewByLog(log, transaction, user);
+}
