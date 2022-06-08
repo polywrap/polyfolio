@@ -34,9 +34,7 @@ function TablePagination({page, total, onPageChange}) {
         onClick={() => onChange('prev')}
         className={classNames(style.arrow, style.left, page === 1 ? style.disabled : '')}
       />
-      <span>
-        {`Page ${page} ${total === 0 ? '' : 'of ' + total}`}
-      </span>
+      <span>{`Page ${page} ${total === 0 ? '' : 'of ' + total}`}</span>
       <MaskIcon
         src={iconsObj.rightArrow}
         onClick={() => onChange('next')}

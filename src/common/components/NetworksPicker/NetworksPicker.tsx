@@ -34,8 +34,8 @@ function NetworksPicker({className = ''}: {className?: string}) {
 
   const netChosenQuantity = useMemo(() => {
     let quantity = 0;
-    networks?.forEach((n) => n.checked ? quantity++ : {});
-    
+    networks?.forEach((n) => (n.checked ? quantity++ : {}));
+
     return quantity;
   }, [networks]);
 
@@ -51,7 +51,9 @@ function NetworksPicker({className = ''}: {className?: string}) {
           onClick={() => setIsOpen(!isOpen)}
           className={classNames(styles.common_currency_picker, styles[theme], className)}
         >
-          <span className={styles.currency}>Networks - {netChosenQuantity}/{Object.keys(SUPPORTED_NETWORKS).length}</span>
+          <span className={styles.currency}>
+            Networks - {netChosenQuantity}/{Object.keys(SUPPORTED_NETWORKS).length}
+          </span>
           <MenuArrow
             startPosition={!isOpen ? 'right' : 'down'}
             className={styles.menu_arrow}

@@ -109,9 +109,9 @@ function getTransactionViewByLog(
 
       return {
         ...transactionViewDefaults,
-        subject:{
-          value:log.contractAddress,
-          icon:iconsObj.crypto
+        subject: {
+          value: log.contractAddress,
+          icon: iconsObj.crypto,
         },
         tokens: [
           {
