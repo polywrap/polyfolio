@@ -1,41 +1,30 @@
 import {useWeb3ApiClient} from '@web3api/react';
-import {useCallback, useEffect, useState} from 'react';
-import {
-  uri,
-  query,
-} from './useAssetMetadata.config';
+import {useCache} from 'common/context/cacheContext';
+import {useCallback, useEffect} from 'react';
+import {getAssetMetadata} from './useAssetMetadata.config';
+import {TokenInfo} from './useAssetMetadata.types';
 
-const useAssetMetadata = (id: string, chainId: number, tokenAddress: string) => {
+const useAssetMetadata = (id: string, chainId: number, tokenAddress: string): TokenInfo => {
   const client = useWeb3ApiClient();
-  const [asset, setAsset] = useState(null);
+  const [cachedAssetMetadata, setCachedAssetMetadata] = useCache<TokenInfo>(
+    `tokenInfo(${id}, ${tokenAddress})`,
+  );
 
-  const getAssetMetadata = useCallback(async () => {
-    const {data: response, errors} = await client.query({
-      uri,
-      query,
-      variables: {
-        id,
-        contract_address: tokenAddress,
-      },
-    })
+  const updateAssetMetadata = useCallback(async () => {
+    if (!cachedAssetMetadata) {
+      const tokenInfo = await getAssetMetadata(client, {id, tokenAddress, tokenName: ''});
 
-    if (response && !errors?.length) {
-      const assetData = response?.tokenInfo;
-
-      setAsset(assetData);
-    } else {
-      // ADD ERROR HANDLER
-      console.log('ERRORS-------');
-      console.log(errors);
-      console.log('-----ERRORS');
+      if (tokenInfo) {
+        setCachedAssetMetadata(tokenInfo);
+      }
     }
-  }, [client, id, tokenAddress])
+  }, [client, id, chainId, tokenAddress]);
 
   useEffect(() => {
-    getAssetMetadata()
-  }, [getAssetMetadata, id, chainId, tokenAddress])
+    updateAssetMetadata();
+  }, [id, chainId, tokenAddress]);
 
-  return asset;
-}
+  return cachedAssetMetadata;
+};
 
 export default useAssetMetadata;

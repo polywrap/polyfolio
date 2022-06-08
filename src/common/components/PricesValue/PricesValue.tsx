@@ -13,36 +13,33 @@ function PricesValue({
 }) {
   return (
     <div className={className}>
-      <div className={styles.title}>${numberFormatter({value: priceTitle, size: 2})}</div>
+      <div className={styles.title}>${numberFormatter(priceTitle)}</div>
       <div className={styles.price_container_value}>
         <div
           className={classNames(styles.secondaryPriceTitle, {
             [styles.minusValuePrice]: valueIsMinus,
           })}
         >
-          {
-            pricePercentDollar ? (
-              (valueIsMinus ? '-' + '$' + numberFormatter({value: pricePercentDollar, size: 2})
-              .substring(1)
-              : '+' + '$' + numberFormatter({value: pricePercentDollar, size: 2}))
+          {pricePercentDollar ? (
+            valueIsMinus ? (
+              '-' + '$' + numberFormatter(pricePercentDollar).substring(1)
             ) : (
-              <Skeleton width={54} height={19} />
+              '+' + '$' + numberFormatter(pricePercentDollar)
             )
-          }
+          ) : (
+            <Skeleton width={54} height={19} />
+          )}
         </div>
         <div
           className={classNames(styles.secondaryPricePercentTitle, {
             [styles.minusValue]: valueIsMinus,
           })}
         >
-          {
-            secondaryPricePercentTitle ? (
-              (valueIsMinus ? '' : '+')
-              +numberFormatter({value: secondaryPricePercentTitle, size: 2}) + '%'
-            ) : (
-              <Skeleton width={54} height={19} />
-            )
-          }
+          {secondaryPricePercentTitle ? (
+            (valueIsMinus ? '' : '+') + numberFormatter(secondaryPricePercentTitle) + '%'
+          ) : (
+            <Skeleton width={54} height={19} />
+          )}
         </div>
       </div>
     </div>

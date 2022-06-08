@@ -18,41 +18,28 @@ function AssetsCharts({changeDataRange, setIsOpen, isOpen, dataRange}) {
     <div className={classNames(styles.assetsChartsContainer, styles[theme])}>
       <div className={styles.headerTable}>
         <div className={styles.title}>
-          {
-            item.title ? (
-              '$' + numberFormatter({value: item.title, size: 2})
-            ) : (
-              <Skeleton width={160} height={54} />
-            )
-          }
+          {item.title ? '$' + numberFormatter(item.title) : <Skeleton width={160} height={54} />}
         </div>
         <div className={styles.secondaryContainer}>
           <div className={classNames(styles.secondaryTittlePercent, styles[item.style])}>
-            {
-              item.secondaryTitlePercent ? (
-                (item.style !== 'loss' ? '+'
-                + numberFormatter({value: item.secondaryTitlePercent, size: 2}) :
-                '-' + numberFormatter({value: item.secondaryTitlePercent, size: 2})
-                  .substring(1))
-                + '%'
-              ) : (
-                <Skeleton width={60} height={19} />
-              )
-            }
+            {item.secondaryTitlePercent ? (
+              (item.style !== 'loss'
+                ? '+' + numberFormatter(item.title)
+                : '-' + numberFormatter(item.secondaryTitlePercent).substring(1)) + '%'
+            ) : (
+              <Skeleton width={60} height={19} />
+            )}
           </div>
           <div className={classNames(styles.secondaryTittleDollar, styles[item.style])}>
-            {
-              item.secondaryTitleValue ? (
-                (item.style !== 'loss' ? '+'
-                  + '$' + numberFormatter({value: item.secondaryTitleValue, size: 2}) : 
-                  '-' + '$' + numberFormatter({value: item.secondaryTitleValue, size: 2})
-                  .substring(1)
-                )
-                
+            {item.secondaryTitleValue ? (
+              item.style !== 'loss' ? (
+                '+' + '$' + numberFormatter(item.secondaryTitleValue)
               ) : (
-                <Skeleton width={60} height={19} />
+                '-' + '$' + numberFormatter(item.secondaryTitleValue).substring(1)
               )
-            }
+            ) : (
+              <Skeleton width={60} height={19} />
+            )}
           </div>
           <DataRangeSelector
             setDataRange={changeDataRange}
@@ -68,7 +55,7 @@ function AssetsCharts({changeDataRange, setIsOpen, isOpen, dataRange}) {
       <div className={styles.dataContainer}>
         {_map(value, (v) => (
           <div className={styles.dataStyle} key={v}>
-            ${numberFormatter({value: v, size: 4})}
+            ${numberFormatter(v, {maximumFractionDigits: 4})}
             <div className={styles.decor} />
           </div>
         ))}

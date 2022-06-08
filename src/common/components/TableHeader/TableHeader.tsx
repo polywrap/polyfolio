@@ -10,11 +10,10 @@ import TablePagination from '../TablePagination/TablePagination';
 import {filteredDropdown} from 'utils/helpers';
 import {dropdownItems} from './TableHeader.config';
 
-function TableHeader() {
-  const total = 2;
+function TableHeader({page, setPage, total}) {
   const theme = useTheme();
   const [value, setValue] = useState<string>();
-  const [page, setPage] = useState<number>(1);
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [currency, setCurrency] = useState(dropdownItems[0]);
 

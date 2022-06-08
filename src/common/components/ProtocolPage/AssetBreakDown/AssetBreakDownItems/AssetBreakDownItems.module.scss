@@ -1,0 +1,52 @@
+.dark {
+  --color: var(--color_white);
+  --bg_color: rgba(30, 43, 69, 0.67);
+}
+
+.light {
+  --color: var(--color_blue_gray);
+  --bg_color: rgba(255, 255, 255, 0.2);
+}
+
+.AssetBreakDownItem {
+  display: flex;
+  background-color: var(--bg_color);
+  max-width: 552px;
+  width: 100%;
+  justify-content: space-between;
+
+  .left,
+  .right {
+    padding: 8px 16px;
+
+    .secondaryValue {
+      font-weight: var(--font_weight_semi_bold);
+    }
+    .title {
+      font-weight: var(--font_weight_bolder);
+    }
+  }
+
+  .left {
+    display: flex;
+    align-items: center;
+
+    .icon_wrap {
+      min-width: 32px;
+    }
+    .icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    .text {
+      font-family: var(--font_family);
+      color: var(--color);
+      margin-left: 24px;
+    }
+  }
+
+  .right {
+    text-align: right;
+  }
+}

@@ -32,12 +32,8 @@ function HeaderGasInfoMenu() {
               </div>
             </div>
             <div className={styles.price_container}>
-              <div className={styles.title}>
-                ${numberFormatter({value: menuItem.price, size: 2})}
-              </div>
-              <div className={styles.time}>
-                {numberFormatter({value: menuItem.titlePrice, size: 0})}
-              </div>
+              <div className={styles.title}>${numberFormatter(menuItem.price)}</div>
+              <div className={styles.time}>{numberFormatter(menuItem.titlePrice)}</div>
             </div>
           </div>
         ) : (

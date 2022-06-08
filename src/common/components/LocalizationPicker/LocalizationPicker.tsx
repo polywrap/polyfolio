@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, {useState, useRef, useCallback} from 'react';
 import classNames from 'classnames';
 
 import styles from './LocalizationPicker.module.scss';
@@ -14,7 +14,7 @@ import {languages} from './LocalizationPicker.config';
 function LocalizationPicker({className = ''}: {className?: string}) {
   const ref = useRef(null);
   const theme = useTheme();
-  const {language, setLanguage} = useLanguageContext()
+  const {language, setLanguage} = useLanguageContext();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   useOnClickOutside(ref.current, () => setIsOpen(false));

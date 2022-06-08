@@ -4,7 +4,6 @@ import Icon from 'common/components/Icon/Icon';
 import iconsObj from 'assets/icons/iconsObj';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import styles from './HeaderTable.module.scss';
-import numberFormatter from 'utils/numberFormatter';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import DataRangeSelector from '../DateRangeSelector/DateRangeSelector';
 
@@ -101,7 +100,7 @@ function HeaderTable({
         />
       </div>
       <div className={styles.filter_container}>
-        <h4>${numberFormatter({value: sum ?? '0', size: 2})}</h4>
+        <h4>{sum}</h4>
         <TooltipTrigger isOpen={filterIsOpen} placement={'bottom-end'} popper={<Menu />}>
           <div className={styles.filter_item} onClick={() => setFilterIsOpen()}>
             <Icon src={iconsObj.filterIcon} className={styles.icon} />

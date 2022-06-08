@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, {useCallback} from 'react';
 import _map from 'lodash/map';
 import classNames from 'classnames';
 import {Link} from 'react-router-dom';
@@ -16,12 +16,15 @@ function SocialLinks() {
   const theme = useTheme();
   const {search, setSearch} = useSearch();
 
-  const handleClick = useCallback((event, link, isExternal) => {
-    if (search) {
-      setSearch(null);
-    }
-    navigateToExternalLink({event, link, isExternal});
-  }, [search, setSearch])
+  const handleClick = useCallback(
+    (event, link, isExternal) => {
+      if (search) {
+        setSearch(null);
+      }
+      navigateToExternalLink({event, link, isExternal});
+    },
+    [search, setSearch],
+  );
 
   return (
     <div className={classNames(styles.common_social_links, styles[theme])}>

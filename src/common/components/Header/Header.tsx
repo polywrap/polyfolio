@@ -33,10 +33,12 @@ function Header({
 }) {
   const theme = useTheme();
   const user = useRecoilValue(userPersistState);
-  const {setSearch} = useSearch();
+  const {search, setSearch} = useSearch();
   const navigate = useNavigate();
   const translation = useTranslation();
-  const [value, setValue] = useState<string>('');
+  const [value, setValue] = useState<string>(
+    search ?? '0xa79e63e78eec28741e711f89a672a4c40876ebf3',
+  ); //TODO MOCK ADDRESS WITH TRANSACTIONS
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState<boolean>(false);
   const [isOpenMobileSearch, setIsOpenMobileSearch] = useState<boolean>(false);
   const menuRef = useRef<HTMLDivElement>(null);

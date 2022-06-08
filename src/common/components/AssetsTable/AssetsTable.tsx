@@ -21,6 +21,8 @@ import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.type
 import getFormattedData from 'utils/getFormattedData';
 import {useRecoilValue} from 'recoil';
 import balanceState from 'common/modules/atoms/balanceState';
+import numberFormatter from 'utils/numberFormatter';
+import {Currency, CurrencySymbol} from 'common/currency/Currency.types';
 
 function AssetsTable() {
   const {pathname} = useLocation();
@@ -46,6 +48,9 @@ function AssetsTable() {
   const onChange = (name, value) => {
     setFilter({...filters, assets: {...filter.assets, [name]: !value?.checked}});
   };
+  const sum = `${CurrencySymbol[Currency.USD.toUpperCase()]} ${numberFormatter(
+    preparedData['allAssetsSum'],
+  )}`;
 
   return preparedData['balance'] ? (
     <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>
@@ -56,12 +61,12 @@ function AssetsTable() {
           setIsOpen(!isOpen);
         }}
         setIsOpen={() => setIsOpen(!isOpen)}
-        title={translation.Table.assets}
+        title={translation.Table.title}
         menuFields={menuFields}
         filter={filter.assets}
         onChange={onChange}
         isOpen={isOpen}
-        sum={preparedData['allAssetsSum']}
+        sum={sum}
         changeDataRange={changeDataRange}
         dataRange={dataRange}
         dataRangeIsOpen={dataRangeIsOpen}
@@ -69,7 +74,7 @@ function AssetsTable() {
       />
       <div className={classNames(styles.table_container, {[styles.hidden]: tableIsOpen})}>
         <div className={styles.title_container}>
-          <div className={classNames(styles.title, styles.assets)}>{translation.Table.assets}</div>
+          <div className={classNames(styles.title, styles.assets)}>{translation.Table.asset}</div>
           <div
             className={classNames(styles.title, styles.allocation, {
               [styles.hidden]: filters.assets.allocation,

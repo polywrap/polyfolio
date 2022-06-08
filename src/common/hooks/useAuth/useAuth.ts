@@ -1,4 +1,4 @@
-import { userPersistState } from 'common/modules/atoms/userAddress';
+import {userPersistState} from 'common/modules/atoms/userAddress';
 import RoutePath from 'common/modules/routing/routing.enums';
 import {useCallback} from 'react';
 import {useNavigate} from 'react-router-dom';
@@ -9,9 +9,12 @@ export default function useAuth() {
 
   const [user, setUser] = useRecoilState(userPersistState);
 
-  const logIn = useCallback((address) => {
-    setUser(address);
-  }, [setUser]);
+  const logIn = useCallback(
+    (address) => {
+      setUser(address);
+    },
+    [setUser],
+  );
 
   const logOut = useCallback(() => {
     setUser(null);

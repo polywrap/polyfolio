@@ -1,6 +1,6 @@
 @import 'common/themes/mixins';
 .dark {
-  --color: var(--color_blue_gray_50);
+  --color: var(--color_blue_gray_100);
   --border_color: unset;
 }
 
@@ -94,7 +94,7 @@
     align-items: center;
 
     .main_title {
-      color: var(--color_blue_gray_100);
+      color: var(--color);
     }
 
     .btn {
@@ -129,6 +129,7 @@
     }
     .filter_item {
       display: flex;
+      align-items: center;
     }
   }
   @include mobile() {

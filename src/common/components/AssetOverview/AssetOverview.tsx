@@ -3,12 +3,12 @@ import React from 'react';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import classNames from 'classnames';
 import style from './AssetOverview.module.scss';
-import useAssetOverviewData from './AssetOverview.config'
+import useAssetOverviewData from './AssetOverview.config';
 import {Row} from './components';
 import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.types';
 
 function AssetOverview({dataRange}: {dataRange: DataRangeSelectorItem}) {
-  const theme = useTheme()
+  const theme = useTheme();
   const dataOverview = useAssetOverviewData(dataRange);
 
   return (
@@ -19,7 +19,7 @@ function AssetOverview({dataRange}: {dataRange: DataRangeSelectorItem}) {
         <Row items={dataOverview.row2Items} />
       </div>
     </div>
-  )
+  );
 }
 
-export default AssetOverview
+export default AssetOverview;

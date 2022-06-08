@@ -7,7 +7,7 @@ export const filteredDropdown = (array, currentId) => {
 
 export const rmCommasFromNum = (num: string) => {
   if (!num) return null;
-  
+
   return num.includes(',') ? num.split(',').join('') : num;
 };
 
@@ -19,22 +19,28 @@ export const fillArray = (n) => {
 };
 
 export const getStringFromPath = (path: string, index: number) => {
-  if (path) return path.split('/')[index ?? 1];
-}
+  if (path) {
+    return index
+      ? path.split('/').length > index && index >= 0
+        ? path.split('/')[index]
+        : path
+      : path;
+  }
+};
 
 export const shortenedAddress = (address: string, size = 4) => {
-  if (address && address != '???') {
-    return `${_.slice(address, 0, size).join('')}...${_.slice(address, -size).join('')}`;
+  if (address && size !== 0) {
+    if (size && size > 0 && size <= 19) {
+      return `${_.slice(address, 0, size).join('')}...${_.slice(address, -size).join('')}`;
+    } else return address;
   }
+};
 
-  return '???'
-}
-
-export const detectAssetOrProtocolPage = (pathname: string) =>  {
+export const detectAssetOrProtocolPage = (pathname: string) => {
   if (pathname && pathname.includes('protocol')) return 'protocol';
   else if (pathname && pathname.includes('assets')) return 'asset';
-  else 'default';
-}
+  else return 'default';
+};
 
 export const fromBnToNumber = (numberInString: string, decimal: number | string) => {
   const value = new BN(numberInString);
@@ -42,4 +48,4 @@ export const fromBnToNumber = (numberInString: string, decimal: number | string)
   const result = value.div(divider);
 
   return result.toNumber();
-}
+};

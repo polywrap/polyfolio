@@ -2,6 +2,7 @@ import {IconsMapper} from './iconsObj.types';
 import filterIconSecondary from 'assets/icons/images/filterIconSecondary.svg';
 import addressStatusIcon from 'assets/icons/images/addressStatusIcon.svg';
 import menuArrowFilled from 'assets/icons/images/menu-arrow-filled.svg';
+import sharp_arrow from 'assets/icons/images/sharp_shape_arrow.svg';
 import mobileMenu from 'assets/icons/images/mobile-menu.svg';
 import manyAssets from 'assets/icons/images/manyAssets.svg';
 import disconnect from 'assets/icons/images/disconnect.svg';
@@ -51,6 +52,9 @@ import {
   protocolGel,
   protocolEth,
   protocolUfo,
+  sushibar_v1,
+  yearn_vault_v2,
+  uniswap_v2,
 } from 'assets/icons/images/protocolsTable';
 
 import {
@@ -97,6 +101,7 @@ const iconsObj: IconsMapper = {
   filterIcon,
   disconnect,
   assetsUfo,
+  sharp_arrow,
   assetsFtm,
   assetsEth,
   assetsCqt,
@@ -141,6 +146,9 @@ const iconsObj: IconsMapper = {
   sun,
   usd,
   gel,
+  uniswap_v2,
+  sushibar_v1,
+  yearn_vault_v2,
 };
 
 export default iconsObj;

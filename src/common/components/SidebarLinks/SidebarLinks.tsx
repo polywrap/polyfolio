@@ -12,25 +12,28 @@ import navigateToExternalLink from 'utils/navigateToExternalLink';
 import MaskIcon from '../MaskIcon/MaskIcon';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useSearch from 'common/hooks/useSearch/useSearch';
-import NetworksPicker from '../NetworksPicker/NetworksPicker';
+// import NetworksPicker from '../NetworksPicker/NetworksPicker';
 
 function SidebarLinks() {
   const theme = useTheme();
   const translation = useTranslation();
   const {search, setSearch} = useSearch();
 
-  const handleClick = useCallback((event, link, isExternal) => {
-    if (search) {
-      setSearch(null);
-    }
-    navigateToExternalLink({event, link, isExternal});
-  }, [search, setSearch])
+  const handleClick = useCallback(
+    (event, link, isExternal) => {
+      if (search) {
+        setSearch(null);
+      }
+      navigateToExternalLink({event, link, isExternal});
+    },
+    [search, setSearch],
+  );
 
   return (
     <div className={classNames(styles.common_sidebar_links, styles[theme])}>
-      <div className={styles.dropdownContainer}>
+      {/* <div className={styles.dropdownContainer}>
         <NetworksPicker />
-      </div>
+      </div> */}
       {_map(sidebarLinks, ({link, icon, isExternal, title}: SidebarLink) => {
         return (
           <Link

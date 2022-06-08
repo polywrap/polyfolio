@@ -55,13 +55,7 @@ function Profile() {
               </div>
             </div>
             {preparedData['allAssetsSum'] ? (
-              <div className={styles.amount}>
-                $
-                {numberFormatter({
-                  value: preparedData['allAssetsSum'],
-                  size: 2,
-                })}
-              </div>
+              <div className={styles.amount}>${numberFormatter(preparedData['allAssetsSum'])}</div>
             ) : (
               <Skeleton width={100} height={22} />
             )}

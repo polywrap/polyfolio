@@ -3,65 +3,52 @@ import {useRecoilState} from 'recoil';
 import {useWeb3ApiClient} from '@web3api/react';
 import balanceState from 'common/modules/atoms/balanceState';
 import {insertChainIdToProtocol} from 'utils/dataFormatting';
-import {uri, query} from './useBalance.config';
+import {getAccountBalance} from './getAccountBalance';
 import {useNetworks} from 'common/networks/Networks.context';
-//import {getCONFIG} from 'utils/constants';
 
 export default function useBalance(address: string) {
   const client = useWeb3ApiClient();
-  const {network} = useNetworks();
+  const {networks} = useNetworks();
 
   const [balance, setBalance] = useRecoilState(balanceState);
 
-  const balanceRequest = useCallback(async (/* chainId */) => {
-    const {data: response, errors} = await client.query({
-      uri,
-      query,
-      variables: {
-        accountAddress: address,
-        vsCurrencies: [],
-        noTruncate: false,
-        underlyingPrice: false,
-      },
-      /* config: getCONFIG(chainId), */
-    });
-    
-    if (response && !errors?.length) {
-      return response?.getAccountBalance
-    }
-    else {
-      // ADD ERROR HANDLER
-      console.log('ERRORS-------');
-      console.log(errors);
-      console.log('-----ERRORS');
-    }
-  }, [address, client])
+  const getBalances = useCallback(async (accountAddress: string) => {
+    let temporaryBalance = {};
 
-  const getBalance = useCallback(async () => {
-    if (address) {
-      let temporaryBalance = {}
+    for (const network of networks) {
+      if (network.checked) {
+        const {name, chainId} = network;
 
-      for (let i = 0; i < network.length; i++) {
-        if (network[i].checked) {
-          const name = network[i].name;
-          /* const chainId = network[i].chainId.toString(); */
-          
-          const response = await balanceRequest(/* chainId */);
-          temporaryBalance = {...temporaryBalance, [name]: response};
+        const {data: response, errors} = await getAccountBalance(
+          client,
+          {accountAddress},
+          {chainId},
+        );
+
+        if (response && !errors?.length) {
+          if (response.getAccountBalance) {
+            temporaryBalance = {...temporaryBalance, [name]: response?.getAccountBalance};
+          }
+        } else {
+          // ADD ERROR HANDLER
+          console.log(
+            `ERROR getBalance for address:${accountAddress} at chanId:${chainId}`,
+            errors,
+          );
         }
       }
-
-      insertChainIdToProtocol(temporaryBalance);
-
-      setBalance(temporaryBalance);
     }
-  }, [address, balanceRequest, network, setBalance]);
+
+    insertChainIdToProtocol(temporaryBalance);
+
+    setBalance(temporaryBalance);
+  }, []);
 
   useEffect(() => {
     if (address) {
-      getBalance();
+      getBalances(address);
     }
-  }, [address, getBalance])
+  }, [address]);
 
   return balance;
 }

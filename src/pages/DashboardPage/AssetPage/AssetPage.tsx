@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react';
 import DashboardPage from '../DashboardPage';
 import HeaderCurrencyPage from 'pages/HeaderCurrencyPage/HeaderCurrencyPage';
 import AssetsCharts from 'common/components/AssetsChart/AssetsChart';
-import AssetTransaction from 'common/components/AssetTransaction/AssetTransaction';
+import AssetTransaction from 'common/components/AssetOverview/AssetTransaction';
 import AssetOverview from 'common/components/AssetOverview/AssetOverview';
-import { DataRangeSelectorItem } from 'common/components/DateRangeSelector/DataRangeSelector.types';
+import {DataRangeSelectorItem} from 'common/components/DateRangeSelector/DataRangeSelector.types';
 
 function AssetPage() {
   const [dataRange, setDataRange] = useState<DataRangeSelectorItem>({});
@@ -15,13 +15,13 @@ function AssetPage() {
     setIsOpen(!isOpen);
   };
 
-  useEffect(() => {}, [dataRange.title])
+  useEffect(() => {}, [dataRange.title]);
 
   return (
     <DashboardPage>
       <HeaderCurrencyPage />
       <AssetsCharts
-        changeDataRange={changeDataRange} 
+        changeDataRange={changeDataRange}
         dataRange={dataRange}
         setIsOpen={setIsOpen}
         isOpen={isOpen}

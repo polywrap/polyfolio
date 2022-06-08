@@ -1,0 +1,89 @@
+@import 'common/themes/mixins';
+
+.dark {
+  --color: var(--color_blue_gray_50);
+  --border: 1px solid rgba(255, 255, 255, 0.13);
+}
+
+.light {
+  --color: var(--color_blue_gray);
+  --border: 1px solid var(--color_blue_gray_200);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  padding: 19px;
+
+  @include mobile() {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .row_unit {
+    flex: 1.5;
+  }
+
+  .flex_unit {
+    display: flex;
+    .text {
+      color: var(--color);
+      margin-left: 8px;
+
+      .strong {
+        font-size: 18px;
+        font-weight: 800;
+        line-height: 18px;
+      }
+
+      .common {
+        font-size: 14px;
+        font-weight: 800;
+      }
+    }
+    .text:first-child {
+      margin-left: 16px;
+    }
+
+    .icon {
+      max-width: 40px;
+      width: 100%;
+      max-height: 40px;
+      height: 100%;
+      border-radius: 50%;
+    }
+  }
+
+  .token_info {
+    display: flex;
+    flex-basis: 30%;
+    flex: 2;
+
+    .flex_unit {
+      .text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+    }
+
+    .token:not(:last-child) {
+      margin-right: 32px;
+    }
+
+    @include tablet() {
+      .token:not(:last-child) {
+        margin-right: 0;
+      }
+    }
+  }
+
+  .label {
+    font-weight: 700;
+    font-size: 14px;
+  }
+}
+
+.row:not(:last-child) {
+  border-bottom: var(--border);
+}

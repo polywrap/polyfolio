@@ -16,7 +16,7 @@ import PageUnderConstruction from 'pages/PageUnderConstruction/PageUnderConstruc
 import NetworkPage from 'pages/DashboardPage/NetworkPage/NetworksPage';
 import ProtocolPage from 'pages/DashboardPage/ProtocolPage/ProtocolPage';
 import useBalance from 'common/hooks/useBalance/useBalance';
-import useTransactions from 'common/hooks/useTransaction/useTransaction';
+//import useTransactions from 'common/hooks/useTransaction/useTransaction';
 import {useRecoilValue} from 'recoil';
 import replaceRouteParameters from 'utils/replaceRouteParameters';
 import {searchPersistState} from 'common/modules/atoms/searchState';
@@ -28,7 +28,7 @@ function App() {
   const search = useRecoilValue(searchPersistState);
   const {check} = useWallet();
   useBalance(search ?? user);
-  useTransactions();
+  //useTransactions(); //TODO Why do we use it here ?
 
   useEffect(() => {
     if (MetaMaskOnboarding.isMetaMaskInstalled()) {
@@ -104,22 +104,10 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
-            path={RoutePath.Settings}
-            element={<SettingsPage />}
-          />
-          <Route
-            path={RoutePath.Support}
-            element={<PageUnderConstruction />}
-          />
-          <Route
-            path={RoutePath.Polywrap}
-            element={<PageUnderConstruction />}
-          />
-          <Route
-            path={RoutePath.Docs}
-            element={<PageUnderConstruction />}
-          />
+          <Route path={RoutePath.Settings} element={<SettingsPage />} />
+          <Route path={RoutePath.Support} element={<PageUnderConstruction />} />
+          <Route path={RoutePath.Polywrap} element={<PageUnderConstruction />} />
+          <Route path={RoutePath.Docs} element={<PageUnderConstruction />} />
           <Route path={'*'} element={<Navigate to={RoutePath.BaseRoute} />} />
         </Fragment>
       </Routes>

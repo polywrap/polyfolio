@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, {useCallback} from 'react';
 import {Link} from 'react-router-dom';
 import classNames from 'classnames';
 
@@ -19,7 +19,7 @@ function Logo({className = ''}: {className?: string}) {
     if (search) {
       setSearch(null);
     }
-  }, [search, setSearch])
+  }, [search, setSearch]);
 
   return (
     <Link

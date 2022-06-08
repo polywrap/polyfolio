@@ -1,7 +1,7 @@
 export default {
   typography: {
-    font_family: 'Nunito, sans-serif',
-    font_family_raleway: 'Raleway, sans-serif',
+    font_family: 'Nunito',
+    font_family_raleway: 'Raleway',
     font_family_secondary: 'Avenir',
 
     hx_font_weight: '900',
@@ -9,6 +9,7 @@ export default {
     font_weight_normal: '400',
     font_weight_semi_bold: '500',
     font_weight_bolder: '800',
+    font_weight_strong: '700',
     font_weight_extra_bold: '900',
 
     font_size_big: '18px',

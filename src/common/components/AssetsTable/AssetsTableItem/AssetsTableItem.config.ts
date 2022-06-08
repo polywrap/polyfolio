@@ -10,7 +10,7 @@ import {chainIdToNetwork, networkToChainId} from 'utils/constants';
 import {useCurrency} from 'common/currency/Currency.context';
 import {DataRangeSelectorItem} from 'common/components/DateRangeSelector/DataRangeSelector.types';
 import useAssetPageData from 'common/hooks/useAssetPageData/useAssetPageData';
-import { useRecoilValue } from 'recoil';
+import {useRecoilValue} from 'recoil';
 import balanceState from 'common/modules/atoms/balanceState';
 import getFormattedData from 'utils/getFormattedData';
 
@@ -20,39 +20,40 @@ const useAssets = (dataRange?: DataRangeSelectorItem) => {
   const page = getStringFromPath(pathname, 4);
   const balance = useRecoilValue(balanceState);
   const preparedData = getFormattedData(balance, chainIdToNetwork[page]);
-  
+
   const menuItems: AssetsItem[] = [];
-  
+
   const allProtocols = preparedData ? preparedData['allProtocols'] : null;
   const allAssets = preparedData ? preparedData['allAssets'] : null;
   const assetsSum = preparedData ? preparedData['allAssetsSum'] : null;
   let assetPreparedData;
-  
+
   if (allAssets) {
     for (let i = 0; i < allAssets.length; i++) {
-      const percent = Number(rmCommasFromNum(allAssets[i].token.values[0].value)) * 100 / assetsSum;
+      const percent =
+        (Number(rmCommasFromNum(allAssets[i].token.values[0].value)) * 100) / assetsSum;
       const valueTitle = (
-        Number(rmCommasFromNum(allAssets[i].token.values[0].value))
-        * Number(rmCommasFromNum(allAssets[i].token.values[0].price))
-        ).toString();
-        const priceTitle = rmCommasFromNum(allAssets[i].token.values[0].price);
-        
-        const symbol = allAssets[i].token.token.symbol;
-        const [network, protocol] = detectProtocolAndChainIdForAsset(allProtocols, symbol);
-        const assetMetaData = useAssetMetadata(
-          network,
-          networkToChainId[network],
-          allAssets[i].token.token.address
-        );
+        Number(rmCommasFromNum(allAssets[i].token.values[0].value)) *
+        Number(rmCommasFromNum(allAssets[i].token.values[0].price))
+      ).toString();
+      const priceTitle = rmCommasFromNum(allAssets[i].token.values[0].price);
 
-        if (dataRange) {
-          assetPreparedData = useAssetPageData(
-            currency,
-            assetMetaData,
-            priceTitle,
-            dataRange,  
-          );
-        }
+      const symbol = allAssets[i].token.token.symbol;
+      const [network, protocol] = detectProtocolAndChainIdForAsset(allProtocols, symbol);
+      const assetMetaData = useAssetMetadata(
+        network,
+        networkToChainId[network],
+        allAssets[i].token.token.address,
+      );
+
+      if (dataRange) {
+        assetPreparedData = useAssetPageData(
+          currency,
+          assetMetaData,
+          priceTitle.toString(),
+          dataRange,
+        );
+      }
 
       menuItems.push({
         secondaryPricePercentTitle: assetPreparedData?.percentage ?? '',
@@ -64,12 +65,12 @@ const useAssets = (dataRange?: DataRangeSelectorItem) => {
         icon: assetMetaData?.image.small,
         valueTitle,
         valueIsMinus: assetPreparedData?.style === 'profit' ? false : true,
-        priceTitle,
+        priceTitle: priceTitle.toString(),
         title: allAssets[i].token.token.symbol,
         percent: percent.toString(),
         symbol: symbol.toLowerCase(),
         address: allAssets[i].token.token.address,
-        network, 
+        network,
         protocol,
         id: uuidv4(),
       });
@@ -77,6 +78,6 @@ const useAssets = (dataRange?: DataRangeSelectorItem) => {
   }
 
   return menuItems;
-}
+};
 
 export default useAssets;

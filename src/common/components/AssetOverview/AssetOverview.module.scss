@@ -16,19 +16,19 @@
   --font_size: 32px;
   --font_weight: 900;
   margin-top: 48px;
-  
+
   .title {
     font-size: var(--font_size);
     font-weight: var(--font_weight);
   }
-  
+
   .block {
     max-width: 1256px;
     padding: 50px 48px;
     margin-top: 20px;
-    
+
     border: var(--border);
     border-radius: 16px;
     box-shadow: var(--box_shadow);
-  }  
+  }
 }

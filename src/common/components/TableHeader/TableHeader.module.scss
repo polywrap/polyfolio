@@ -13,8 +13,8 @@
 .controlls {
   --font_size_btn: var(--font_size_normal);
   --font_weight_btn: 800;
-	display: flex;
-	justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
   width: 100%;
 
   margin-bottom: 32px;
@@ -22,7 +22,7 @@
   .input_container {
     flex: 1;
     .input {
-      width: 40%;
+      width: 55%;
     }
     @media screen and (max-width: 1024px) {
       .input {
@@ -37,18 +37,19 @@
     }
   }
 
-	.right {
-		display: flex;
+  .right {
+    display: flex;
 
-		font-size: 14px;
-		line-height: 19.1px;
-		font-weight: 800;
+    font-size: 14px;
+    line-height: 19.1px;
+    font-weight: 800;
 
     .pagination {
-      padding: 16px;
+      padding: 16px 0 16px 16px;
+      margin-left: 12.21px;
     }
 
-		.networks {
+    .networks {
       width: 164px;
       max-height: 51px;
     }
@@ -74,12 +75,12 @@
       }
     }
 
-    @include tablet () {
+    @include tablet() {
       justify-content: space-around;
     }
-	}
+  }
 
-  @include tablet () {
+  @include tablet() {
     flex-direction: column;
     gap: 20px;
   }
