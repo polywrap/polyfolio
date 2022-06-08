@@ -6,7 +6,7 @@ const menuFields: FilterFields[] = [
     id: 11,
   },
   {
-    title: 'protocols',
+    title: 'vaults',
     isRequired: true,
     id: 1,
   },
@@ -15,7 +15,7 @@ const menuFields: FilterFields[] = [
     id: 12,
   },
   {
-    title: 'allocation',
+    title: 'balance',
     id: 2,
   },
   {
@@ -29,14 +29,6 @@ const menuFields: FilterFields[] = [
   {
     isDivider: true,
     id: 13,
-  },
-  {
-    title: 'claimable',
-    id: 4,
-  },
-  {
-    isDivider: true,
-    id: 15,
   },
 ];
 

@@ -151,6 +151,8 @@ export default {
     protocols: 'Protocols',
     value: 'Value',
     claimable: 'Claimable',
+    vaults: 'Vaults',
+    balance: 'Balance',
   },
   Table: {
     title: 'Assets',
