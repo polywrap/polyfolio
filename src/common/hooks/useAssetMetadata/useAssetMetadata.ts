@@ -16,6 +16,8 @@ const useAssetMetadata = (id: string, chainId: number, tokenAddress: string): To
 
       if (tokenInfo) {
         setCachedAssetMetadata(tokenInfo);
+      } else {
+        setCachedAssetMetadata(null);
       }
     }
   }, [client, id, chainId, tokenAddress]);

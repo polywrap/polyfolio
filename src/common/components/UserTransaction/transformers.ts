@@ -1,20 +1,29 @@
 /* eslint max-params: "off" */
 import iconsObj from 'assets/icons/iconsObj';
-import {TransactionView} from 'common/components/UserTransaction/UserTransactionItem/UserTransactionItem';
+import {
+  Subject,
+  TransactionView,
+} from 'common/components/UserTransaction/UserTransactionItem/UserTransactionItem';
 import {Event, EventLog, Transaction} from 'common/hooks/useTransaction/useTransactions.types';
+import {chainIdToNetwork} from 'utils/constants';
 import {getEventIcon} from '../../../utils/dataFormatting';
 import {
   ApprovalParams,
   EventProcessed,
   TransferParams,
   SupportedEvent,
+  ExchangeParams,
 } from './UserTransaction.types';
 
 const ERC20_ADDRESS = '0xc3761EB917CD790B30dAD99f6Cc5b4Ff93C4F9eA';
 
 /* ------------------ MAIN --------------------- */
 
-export function toTransactionView(transaction: Transaction, user: string): TransactionView {
+export function toTransactionView(
+  transaction: Transaction,
+  user: string,
+  chainId = 1,
+): TransactionView {
   if (!transaction.logs.length) {
     // Event is Transfer if no logs
     const transferType = getTransferType(transaction, user);
@@ -23,7 +32,9 @@ export function toTransactionView(transaction: Transaction, user: string): Trans
       icon: getEventIcon(transferType),
       subject: getTransferSubject(transaction, user),
       time: new Date(transaction.timestamp).toDateString(),
-      tokens: [{id: 'ethereum', tokenAddress: ERC20_ADDRESS, tokenValue: transaction.value}],
+      tokens: [
+        {id: chainIdToNetwork[chainId], tokenAddress: ERC20_ADDRESS, tokenValue: transaction.value},
+      ],
       type: transferType,
       way: mapTypeToWay(transferType),
     } as TransactionView;
@@ -38,7 +49,7 @@ export function toTransactionView(transaction: Transaction, user: string): Trans
       return undefined;
     }
 
-    return getTransactionViewByLog(userParticipatesIn, transaction, user);
+    return getTransactionViewByLog(userParticipatesIn, transaction, user, chainId);
   }
 }
 
@@ -46,11 +57,12 @@ function getTransactionViewByLog(
   log: EventLog,
   transaction: Transaction,
   user: string,
+  chainId: number,
 ): TransactionView {
   const event = reduceEventParams(log.event);
   const eventType: SupportedEvent = SupportedEvent[log.event.name];
 
-  const transactionViewDefaults = getTransactionViewDefaults(log, transaction);
+  const transactionViewDefaults = getTransactionViewDefaults(log, transaction, user, chainId);
 
   switch (eventType) {
     case SupportedEvent.Transfer: {
@@ -66,12 +78,9 @@ function getTransactionViewByLog(
         subject: getTransferSubject(transferEvent, user),
         tokens: [
           {
-            id: 'ethereum',
+            id: chainIdToNetwork[chainId],
             tokenAddress: log.contractAddress,
             tokenValue: (transferType === 'Send' ? '-' : '').concat(transferEvent.params.value),
-            /*
-                  tokenPrice: asset && getTokenPrice(asset),
-            tokenAmount: asset ? getTokenAmount(value, asset) : value, */
           },
         ],
       } as TransactionView;
@@ -85,14 +94,38 @@ function getTransactionViewByLog(
         subject: getApprovalSubject(approvalEvent),
         tokens: [
           {
-            id: 'ethereum',
+            id: chainIdToNetwork[chainId],
             tokenAddress: log.contractAddress,
             /* tokenAmount: asset && getTokenAmount(value, asset),
             tokenPrice: asset && getTokenPrice(asset), */
           },
         ],
       };
-      break;
+    }
+
+    case SupportedEvent.Swap: {
+      const exchangeEvent = <EventProcessed<ExchangeParams>>event;
+      const {amount0In, amount0Out, amount1In, amount1Out} = exchangeEvent.params;
+
+      return {
+        ...transactionViewDefaults,
+        subject:{
+          value:log.contractAddress,
+          icon:iconsObj.crypto
+        },
+        tokens: [
+          {
+            id: chainIdToNetwork[chainId],
+            tokenAddress: log.contractAddress,
+            tokenValue: amount0In === '0' ? amount0Out : amount0In,
+          },
+          {
+            id: chainIdToNetwork[chainId],
+            tokenAddress: log.contractAddress,
+            tokenValue: amount1In === '0' ? amount1Out : amount1In,
+          },
+        ],
+      };
     }
     default:
       break;
@@ -103,22 +136,46 @@ function getTransactionViewByLog(
 
 /* ---  UTIL --- */
 
-function getTransactionViewDefaults(log: EventLog, transaction: Transaction): TransactionView {
-  const eventType: SupportedEvent = SupportedEvent[log.event.name];
-  console.log('transaction', transaction);
+function getTransactionViewDefaults(
+  log: EventLog,
+  transaction: Transaction,
+  user: string,
+  chainId: number,
+): TransactionView {
+  const eventType: SupportedEvent = SupportedEvent[log.event.name] || log.event.name;
 
   return {
     type: eventType,
     icon: getEventIcon(log.event.name),
     time: new Date(transaction.timestamp).toLocaleTimeString(),
-    way: mapTypeToWay(eventType),
-    tokens: [{id: 'ethereum', tokenAddress: log.contractAddress}],
-    subject: {
-      value: '',
-      icon: '',
-    },
+    way: mapTypeToWay(eventType) || getNotUserAddressParam(log, user)?.name,
+    tokens: [{id: chainIdToNetwork[chainId], tokenAddress: log.contractAddress}],
+    subject: getSubject(log, user),
   };
 }
+
+const getNotUserAddressParam = (log: EventLog, user: string) => {
+  const addresses = log.event?.params.filter((p) => p.type === 'address');
+
+  if (addresses.length) {
+    return addresses.find((a) => a.value !== user);
+  }
+
+  return undefined;
+};
+
+const getSubject = (log: EventLog, user: string): Subject => {
+  const notUser = getNotUserAddressParam(log, user);
+
+  if (notUser) {
+    return {
+      value: notUser.value,
+      icon: iconsObj.profile,
+    };
+  }
+
+  return undefined;
+};
 
 export const mapTypeToWay = (type: string) => {
   const types = {
@@ -222,5 +279,5 @@ export const __getTransactionViewByLog = (
   transaction: Transaction,
   user: string,
 ) => {
-  return getTransactionViewByLog(log, transaction, user);
+  return getTransactionViewByLog(log, transaction, user, 1);
 };

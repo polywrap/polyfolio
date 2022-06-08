@@ -6,7 +6,7 @@ import {useCallback, useEffect} from 'react';
 export interface TokenComponent {
   tokenAddress: string;
   rate: string;
-  components: TokenComponent;
+  components: TokenComponent[];
   unresolvedComponents: number;
 }
 

@@ -7,11 +7,12 @@ export type DateString = string;
 export const getViewsByDate = (
   transactionsByDateMap: Record<DateString, Transaction[]>,
   account: string,
+  chainId: number,
 ): Record<string, TransactionView[]> => {
   const txViewsByDate = {};
   Object.keys(transactionsByDateMap).forEach((key) => {
     txViewsByDate[key] = transactionsByDateMap[key]
-      .map((tx: Transaction) => toTransactionView(tx, account))
+      .map((tx: Transaction) => toTransactionView(tx, account, chainId))
       .filter(Boolean);
   });
 

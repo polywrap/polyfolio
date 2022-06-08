@@ -18,7 +18,7 @@ interface TokenInfo {
 interface TokenViewState {
   tokenInfo: TokenInfo;
   loading: boolean;
-  error: '';
+  error: string;
 }
 
 // tokenChange =
@@ -29,29 +29,25 @@ interface TokenViewState {
 //tokenAmountInCurrency ? (tokenAmountInCurrency.toString().startsWith('-') ? '-' : '+') + currStr + numberFormatter({value: tokenAmountInCurrency, size: 1}).replace('-', '') : ''
 
 const getTokenAmountInCurrency = (amount: string, price: string, currencySymbol: string) => {
-  if (Number(amount) && Number(price) && currencySymbol) {
-    let value = (Number(amount) * Number(price)).toString();
+  let value = (Number(amount) * Number(price)).toString();
 
-    const isNegative = value.startsWith('-');
-    if (isNegative) value = value.replace('-', '');
+  const isNegative = value.startsWith('-');
+  if (isNegative) value = value.replace('-', '');
 
-    const operator = isNegative ? '-' : '+';
+  const operator = isNegative ? '-' : '+';
 
-    return `${operator}${currencySymbol}${numberFormatter(value)}`;
-  }
+  return `${operator}${currencySymbol}${numberFormatter(value)}`;
 };
 
 const getTokenAmountString = (amount: string, tokenSymbol: string) => {
-  if (Number(amount) && tokenSymbol) {
-    let tokenAmountStr = amount;
+  let tokenAmountStr = amount;
 
-    const isNegative = tokenAmountStr?.startsWith('-');
-    if (isNegative) tokenAmountStr = tokenAmountStr.replace('-', '');
+  const isNegative = tokenAmountStr?.startsWith('-');
+  if (isNegative) tokenAmountStr = tokenAmountStr.replace('-', '');
 
-    const operator = isNegative ? '-' : '+';
+  const operator = isNegative ? '-' : '+';
 
-    return `${operator}${numberFormatter(tokenAmountStr)} ${tokenSymbol}`;
-  }
+  return `${operator}${numberFormatter(tokenAmountStr)} ${tokenSymbol}`;
 };
 
 const useTokenView = (token: TokenViewProps) => {
@@ -83,6 +79,10 @@ const useTokenView = (token: TokenViewProps) => {
           (p) => p.currency === currency.toLocaleLowerCase(),
         );
 
+        console.log(
+          `Token value calc - symbol:${tokenInfo.symbol} value:${token?.tokenValue}, decimals: ${tokenData.decimals}, result:${tokenAmount}`,
+        );
+
         if (tokenAmount && tokenPrice) {
           tokenInfo.currencyChange = getTokenAmountInCurrency(
             tokenAmount,
@@ -97,6 +97,12 @@ const useTokenView = (token: TokenViewProps) => {
         loading: false,
         tokenInfo: tokenInfo,
         error: null,
+      });
+    } else if (tokenMetadata === null || tokenData === null) {
+      setState({
+        loading: false,
+        tokenInfo: undefined,
+        error: 'Error',
       });
     }
   }, [tokenMetadata, tokenData]);

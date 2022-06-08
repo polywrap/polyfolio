@@ -244,7 +244,7 @@ test('Get Tx View By Log', () => {
 });
 
 test('To tx view', () => {
-  const result = toTransactionView(inputData.transaction, inputData.user);
+  const result = toTransactionView(inputData.transaction, inputData.user, 1);
 
   expect(result).toEqual({
     type: 'Approval',

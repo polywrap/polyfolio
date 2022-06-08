@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import classNames from 'classnames';
 import style from './UserTransaction.module.scss';
@@ -15,12 +15,16 @@ import Skeleton from '../Skeleton/Skeleton';
 import {getTitleDate, reduceByDays} from '../shared/utils';
 import ButtonCsv from '../ButtonCsv/ButtonCsv';
 import TablePagination from '../TablePagination/TablePagination';
+import {getTokenComponent} from 'common/hooks/useTokenComponent/getTokenComponents.config';
+import {useWeb3ApiClient} from '@web3api/react';
 
 function AssetTransaction() {
   const theme = useTheme();
   const [page, setPage] = useState<number>(1);
 
-  const {data, loading} = useTransactions({page, perPage: 10, config: {chainId: 1}});
+  const chainId = 1; // TODO: switch to dynamic after pageination confirmation
+
+  const {data, loading} = useTransactions({page, perPage: 10, config: {chainId: chainId}});
 
   const getTransactionViews = (transactions: Transaction[]) => {
     if (!transactions) return {};
@@ -29,7 +33,7 @@ function AssetTransaction() {
 
     const txByDate = reduceByDays(successfullTransactions);
 
-    return getViewsByDate(txByDate, data.getTransactions.account);
+    return getViewsByDate(txByDate, data.getTransactions.account, chainId);
   };
 
   const viewsByDate = getTransactionViews(data?.getTransactions?.transactions);

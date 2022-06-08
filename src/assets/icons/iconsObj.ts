@@ -25,6 +25,7 @@ import discord from 'assets/icons/images/discord.svg';
 import twitter from 'assets/icons/images/twitter.svg';
 import bitcoin from 'assets/icons/images/bitcoin.svg';
 import profile from 'assets/icons/images/profile.png';
+import crypto from 'assets/icons/images/crypto.png';
 import polygon from 'assets/icons/images/polygon.svg';
 import search from 'assets/icons/images/search.svg';
 import points from 'assets/icons/images/points.svg';
@@ -146,6 +147,7 @@ const iconsObj: IconsMapper = {
   sun,
   usd,
   gel,
+  crypto,
   uniswap_v2,
   sushibar_v1,
   yearn_vault_v2,
