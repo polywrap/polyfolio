@@ -31,12 +31,12 @@
 
     .currency {
       color: var(--color);
-      font-size: var(--font_size_medium);
+      font-size: var(--font_size_normal);
       font-weight: var(--font_weight_bolder);
     }
 
     .menu_arrow {
-      margin-left: 3.8em;
+      margin: 0 20px;
     }
   }
 }

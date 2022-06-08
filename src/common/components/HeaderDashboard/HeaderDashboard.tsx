@@ -17,6 +17,7 @@ import balanceState from 'common/modules/atoms/balanceState';
 import {useLocation} from 'react-router-dom';
 import {userPersistState} from 'common/modules/atoms/userAddress';
 import YounderProfile from '../YounderProfile/YounderProfile';
+import NetworksPicker from '../NetworksPicker/NetworksPicker';
 
 function HeaderDashboard() {
   const user = useRecoilValue(userPersistState);
@@ -72,14 +73,7 @@ function HeaderDashboard() {
           </div> */}
         </div>
         <div className={styles.dropdownContainer}>
-          <Dropdown
-            array={filteredDropdown(dropdownItems, currency?.id)}
-            onChangeCurrency={onChangeCurrency}
-            className={styles.dropdownIcon}
-            setIsOpen={setIsOpen}
-            current={currency}
-            isOpen={isOpen}
-          />
+          <NetworksPicker />
         </div>
       </div>
     </div>

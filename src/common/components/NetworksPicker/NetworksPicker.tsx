@@ -34,7 +34,12 @@ function NetworksPicker({className = ''}: {className?: string}) {
     [networks, setNetworks],
   );
 
-  const name = useMemo(() => networks?.find((n) => n.checked)?.name || '', [networks]);
+  const netChosenQuantity = useMemo(() => {
+    let quantity = 0;
+    networks?.forEach((n) => n.checked ? quantity++ : {});
+    
+    return quantity;
+  }, [networks]);
 
   return (
     <div ref={ref} className={classNames(styles[theme], styles.NetworksPicker, className)}>
@@ -48,10 +53,9 @@ function NetworksPicker({className = ''}: {className?: string}) {
           onClick={() => setIsOpen(!isOpen)}
           className={classNames(styles.common_currency_picker, styles[theme], className)}
         >
-          <Icon src={iconsObj.ethereum} className={styles.icon} />
-          <span className={styles.currency}>{SUPPORTED_NETWORKS[name]?.name}</span>
+          <span className={styles.currency}>Networks - {netChosenQuantity}/{Object.keys(SUPPORTED_NETWORKS).length}</span>
           <MenuArrow
-            startPosition={!isOpen ? 'right' : 'left'}
+            startPosition={!isOpen ? 'right' : 'down'}
             className={styles.menu_arrow}
             filled
           />
