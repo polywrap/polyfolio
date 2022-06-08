@@ -65,9 +65,7 @@ function ProtocolsItem(menuItem) {
               [styles.hidden]: filters.protocols.claimable,
             })}
           >
-            <div className={styles.secondaryTitle}>
-              ${numberFormatter(claimableValue)}
-            </div>
+            <div className={styles.secondaryTitle}>${numberFormatter(claimableValue)}</div>
             <MenuArrow className={styles.arrowIcon} startPosition="right" size="10px" />
           </div>
         </div>

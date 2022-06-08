@@ -31,12 +31,12 @@ interface TokenViewState {
 const getTokenAmountInCurrency = (amount: string, price: string, currencySymbol: string) => {
   if (Number(amount) && Number(price) && currencySymbol) {
     let value = (Number(amount) * Number(price)).toString();
-  
+
     const isNegative = value.startsWith('-');
     if (isNegative) value = value.replace('-', '');
-  
+
     const operator = isNegative ? '-' : '+';
-  
+
     return `${operator}${currencySymbol}${numberFormatter(value)}`;
   }
 };
@@ -44,12 +44,12 @@ const getTokenAmountInCurrency = (amount: string, price: string, currencySymbol:
 const getTokenAmountString = (amount: string, tokenSymbol: string) => {
   if (Number(amount) && tokenSymbol) {
     let tokenAmountStr = amount;
-  
+
     const isNegative = tokenAmountStr?.startsWith('-');
     if (isNegative) tokenAmountStr = tokenAmountStr.replace('-', '');
-  
+
     const operator = isNegative ? '-' : '+';
-  
+
     return `${operator}${numberFormatter(tokenAmountStr)} ${tokenSymbol}`;
   }
 };
@@ -106,8 +106,11 @@ const useTokenView = (token: TokenViewProps) => {
 
 export default useTokenView;
 
-export const __getTokenAmountInCurrencyForTesting = (amount: string, price: string, currencySymbol: string) =>
-  getTokenAmountInCurrency(amount, price, currencySymbol);
+export const __getTokenAmountInCurrencyForTesting = (
+  amount: string,
+  price: string,
+  currencySymbol: string,
+) => getTokenAmountInCurrency(amount, price, currencySymbol);
 
-export const __getTokenAmountStringForTesting = (amount: string, currencySymbol: string) => 
+export const __getTokenAmountStringForTesting = (amount: string, currencySymbol: string) =>
   getTokenAmountString(amount, currencySymbol);

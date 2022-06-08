@@ -43,9 +43,7 @@ function Networks() {
           <div>
             <div className={styles.title}>{menuItem.title}</div>
 
-            <div className={styles.secondaryTitle}>
-              ${numberFormatter(menuItem.secondaryTitle)}
-            </div>
+            <div className={styles.secondaryTitle}>${numberFormatter(menuItem.secondaryTitle)}</div>
           </div>
         </div>
         <div>

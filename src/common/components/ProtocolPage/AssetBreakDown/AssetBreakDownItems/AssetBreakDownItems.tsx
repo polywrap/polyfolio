@@ -5,7 +5,7 @@ import useTheme from 'common/hooks/useTheme/useTheme';
 import {toFixed} from 'utils/numberFormatter';
 import ComponentIcon from 'common/components/ProtocolPage/shared/ComponentIcon';
 import {CurrencySymbol} from 'common/currency/Currency.types';
-import { AssetComponentData } from 'common/components/ProtocolPage/shared/types';
+import {AssetComponentData} from 'common/components/ProtocolPage/shared/types';
 
 export default function AssetBreakDownItem({
   network,
@@ -20,7 +20,7 @@ export default function AssetBreakDownItem({
   return (
     <div className={classNames(styles[theme], styles.AssetBreakDownItem)}>
       <div className={styles.left}>
-        <ComponentIcon tokenAddress={address} tokenNetwork={network} chainId={chainId} size={32}/>
+        <ComponentIcon tokenAddress={address} tokenNetwork={network} chainId={chainId} size={32} />
         <div className={styles.text}>
           <div className={styles.title}>{symbol}</div>
           <div className={styles.secondaryValue}>

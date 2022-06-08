@@ -9,8 +9,8 @@ import Modal from 'react-modal';
 
 import ComponentIcon from '../shared/ComponentIcon';
 import {CurrencySymbol} from 'common/currency/Currency.types';
-import { getPercentageStr } from '../shared/utils';
-import { AssetData } from '../shared/types';
+import {getPercentageStr} from '../shared/utils';
+import {AssetData} from '../shared/types';
 
 interface Props {
   asset: AssetData;

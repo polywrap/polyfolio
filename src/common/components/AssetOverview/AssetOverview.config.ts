@@ -41,7 +41,9 @@ const useAssetOverviewData = (dataRange: DataRangeSelectorItem) => {
       {
         id: 1,
         label: `${shortenedAddress(search ?? user, 4)} Owns`,
-        content: `${numberFormatter(assetData?.valueSecondaryTitle)} ${assetMetaData?.symbol.toUpperCase()}`,
+        content: `${numberFormatter(
+          assetData?.valueSecondaryTitle,
+        )} ${assetMetaData?.symbol.toUpperCase()}`,
         type: 'main',
       },
       {
@@ -64,9 +66,7 @@ const useAssetOverviewData = (dataRange: DataRangeSelectorItem) => {
       {
         id: 1,
         label: 'Market Cap',
-        content:
-          '$' +
-          numberFormatter(assetPreparedData?.marketCap),
+        content: '$' + numberFormatter(assetPreparedData?.marketCap),
         type: 'common',
       },
       {
@@ -81,9 +81,7 @@ const useAssetOverviewData = (dataRange: DataRangeSelectorItem) => {
       {
         id: 3,
         label: `Volume (1${dataRange?.title?.toUpperCase()})`,
-        content:
-          '$' +
-          numberFormatter(assetPreparedData?.volume),
+        content: '$' + numberFormatter(assetPreparedData?.volume),
         type: 'common',
       },
     ],

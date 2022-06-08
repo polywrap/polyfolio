@@ -20,22 +20,20 @@ export const fillArray = (n) => {
 
 export const getStringFromPath = (path: string, index: number) => {
   if (path) {
-    return index 
-      ? path.split('/').length > index 
-        && index >= 0 
-          ? path.split('/')[index] 
-          : path 
+    return index
+      ? path.split('/').length > index && index >= 0
+        ? path.split('/')[index]
+        : path
       : path;
   }
 };
 
 export const shortenedAddress = (address: string, size = 4) => {
   if (address && size !== 0) {
-    if (size && (size > 0 && size <= 19)) {
+    if (size && size > 0 && size <= 19) {
       return `${_.slice(address, 0, size).join('')}...${_.slice(address, -size).join('')}`;
-    }
-    else return address;
-  } 
+    } else return address;
+  }
 };
 
 export const detectAssetOrProtocolPage = (pathname: string) => {

@@ -92,13 +92,13 @@ test('Insert Chain Id To Protocol', () => {
       protocols: [
         {
           protocol: {},
-        }
+        },
       ],
     },
   };
 
   dataFormatting.insertChainIdToProtocol(result);
-  
+
   expect(result).toEqual({
     ethereum: {
       account: '0x870E4F7C9687Fe15b4505315eB6ba10fe00A3dB8',
@@ -113,7 +113,7 @@ test('Insert Chain Id To Protocol', () => {
       protocols: [
         {
           protocol: {chainId: '1'},
-        }
+        },
       ],
     },
   });
@@ -126,7 +126,7 @@ test('Get Asset Components', () => {
 });
 
 test('Get Assets Components', () => {
-  const result =  dataFormatting.getAssetsComponents([asset, asset] as Asset[]);
+  const result = dataFormatting.getAssetsComponents([asset, asset] as Asset[]);
 
-  expect(result).toEqual([... components, ...components])
-})
+  expect(result).toEqual([...components, ...components]);
+});

@@ -91,7 +91,7 @@
   }
   .ghost_icon {
     border: 1px solid #465568;
-    background-color:#222F49;
+    background-color: #222f49;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -100,8 +100,8 @@
     display: flex;
   }
   .icon_wrap {
-   position: relative; 
-   width: 40px;
+    position: relative;
+    width: 40px;
   }
   .icon_wrap:not(:first-child) {
     transform: translateX(-40%);

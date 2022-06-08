@@ -7,7 +7,7 @@ import {rmCommasFromNum} from './helpers';
 import iconsObj from 'assets/icons/iconsObj';
 import {chainIdToNetwork} from 'utils/constants';
 import {IBalance} from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.types';
-import { EventParam } from 'common/hooks/useTransaction/useTransactions.types';
+import {EventParam} from 'common/hooks/useTransaction/useTransactions.types';
 import {Asset, Balance} from './allNetworksDataFormatting';
 
 export const insertChainIdToProtocol = (balance) => {

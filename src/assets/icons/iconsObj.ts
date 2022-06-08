@@ -148,7 +148,7 @@ const iconsObj: IconsMapper = {
   gel,
   uniswap_v2,
   sushibar_v1,
-  yearn_vault_v2
+  yearn_vault_v2,
 };
 
 export default iconsObj;

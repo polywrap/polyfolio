@@ -22,7 +22,7 @@ import getFormattedData from 'utils/getFormattedData';
 import {useRecoilValue} from 'recoil';
 import balanceState from 'common/modules/atoms/balanceState';
 import numberFormatter from 'utils/numberFormatter';
-import { Currency, CurrencySymbol } from 'common/currency/Currency.types';
+import {Currency, CurrencySymbol} from 'common/currency/Currency.types';
 
 function AssetsTable() {
   const {pathname} = useLocation();
@@ -48,7 +48,9 @@ function AssetsTable() {
   const onChange = (name, value) => {
     setFilter({...filters, assets: {...filter.assets, [name]: !value?.checked}});
   };
-  const sum = `${CurrencySymbol[Currency.USD.toUpperCase()]} ${numberFormatter(preparedData['allAssetsSum'])}`
+  const sum = `${CurrencySymbol[Currency.USD.toUpperCase()]} ${numberFormatter(
+    preparedData['allAssetsSum'],
+  )}`;
 
   return preparedData['balance'] ? (
     <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>

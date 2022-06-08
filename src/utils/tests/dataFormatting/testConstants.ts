@@ -1,4 +1,7 @@
-import {Asset, Currency} from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.types';
+import {
+  Asset,
+  Currency,
+} from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.types';
 import {EventParam} from 'common/hooks/useTransaction/useTransactions.types';
 
 export const claimableTokens = [
@@ -234,13 +237,13 @@ export const params = [
     name: 'from',
     indexed: true,
     type: 'address',
-    value: '0x870E4F7C9687Fe15b4505315eB6ba10fe00A3dB8'
+    value: '0x870E4F7C9687Fe15b4505315eB6ba10fe00A3dB8',
   },
   {
     decoded: true,
     name: 'to',
     indexed: true,
     type: 'address',
-    value: '0x0a965a4caf929338044c593d82d385c4c898d8c6'
-  }
-] as EventParam[]
+    value: '0x0a965a4caf929338044c593d82d385c4c898d8c6',
+  },
+] as EventParam[];

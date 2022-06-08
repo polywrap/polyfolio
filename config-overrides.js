@@ -9,10 +9,10 @@ module.exports = function override(config, env) {
         new TerserPlugin({
           terserOptions: {
             keep_fnames: true,
-            keep_classnames: true
+            keep_classnames: true,
           },
         }),
-      ]
+      ],
     },
     stats: {warnings: false},
     ignoreWarnings: [/Failed to parse source map/],

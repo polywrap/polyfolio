@@ -1,8 +1,7 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useRef, useState} from 'react';
 import classNames from 'classnames';
 import iconsObj from 'assets/icons/iconsObj';
 import Icon from 'common/components/Icon/Icon';
-import _map from 'lodash/map';
 import styles from './Vaults.module.scss';
 
 import VaultsItem from './VaultsTableItem/VaultsTableItem';
@@ -13,13 +12,8 @@ import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
 import {menuFields} from './FilterFieldsVaults.config';
 import {DataRangeSelectorItem} from '../../DateRangeSelector/DataRangeSelector.types';
-import balanceState from 'common/modules/atoms/balanceState';
-import {useRecoilValue} from 'recoil';
 
 import AssetBreakdown from 'common/components/ProtocolPage/AssetBreakDown/AssetBreakDown';
-import AccountBalance from 'utils/allNetworksDataFormatting';
-import {chainIdToNetwork} from 'utils/constants';
-import {toProtocolData} from '../shared/transformers';
 import {getAssetValueStr} from '../shared/utils';
 import {ProtocolData} from '../shared/types';
 

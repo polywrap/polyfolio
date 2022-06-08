@@ -1,3 +1,4 @@
+/* eslint @typescript-eslint/no-explicit-any: "off" */
 import {
   __getApprovalSubjectForTest,
   __getTransferSubjectEventForTest,
@@ -9,7 +10,7 @@ import {
   __getTransferTypeForTest,
   __getTransferTypeTransactionForTest,
   __getTransactionViewByLog,
-  toTransactionView
+  toTransactionView,
 } from '../transformers';
 import {ApprovalParams, EventProcessed} from '../UserTransaction.types';
 import {Event} from 'common/hooks/useTransaction/useTransactions.types';
@@ -261,4 +262,4 @@ test('To tx view', () => {
       value: '0xa79e63e78eec28741e711f89a672a4c40876ebf3',
     },
   });
-})
+});

@@ -5,12 +5,10 @@ interface INumberFormatterOptions {
 
 export default function numberFormatter(value: string | number, options?: INumberFormatterOptions) {
   if (value)
-    return Number(value).toLocaleString('en-US',
-      {
-        minimumFractionDigits: options?.minimumFractionDigits ?? 0,
-        maximumFractionDigits: options?.maximumFractionDigits ?? 2
-      }
-    );
+    return Number(value).toLocaleString('en-US', {
+      minimumFractionDigits: options?.minimumFractionDigits ?? 0,
+      maximumFractionDigits: options?.maximumFractionDigits ?? 2,
+    });
   else return '0';
 }
 

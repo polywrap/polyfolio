@@ -36,9 +36,7 @@ function PricesValue({
           })}
         >
           {secondaryPricePercentTitle ? (
-            (valueIsMinus ? '' : '+') +
-            numberFormatter(secondaryPricePercentTitle) +
-            '%'
+            (valueIsMinus ? '' : '+') + numberFormatter(secondaryPricePercentTitle) + '%'
           ) : (
             <Skeleton width={54} height={19} />
           )}

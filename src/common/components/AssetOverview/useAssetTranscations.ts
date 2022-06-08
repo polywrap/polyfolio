@@ -38,9 +38,6 @@ export interface TokenTransfers extends Omit<TransactionsList, 'transactions'> {
   transfers: Transfer[];
 }
 
-const DEBUG_ADDRESS =
-  '0x2d5863b006b1d03d1259c88d87a351ac78a6c6d0' || '0xdfd5293d8e347dfe59e90efd55b2956a1343963d';
-
 export default function useAssetTranscations({page, perPage = 10, config = {chainId: 1}}: Props) {
   const user = useRecoilValue(userPersistState);
   const search = useRecoilValue(searchPersistState);

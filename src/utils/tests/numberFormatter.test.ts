@@ -13,28 +13,19 @@ describe('Number formatter', () => {
     const resultWithMaxFractionOption_4 = numberFormatter(10000.15, {maximumFractionDigits: 2});
     const resultWithMaxFractionOption_5 = numberFormatter(10000.153, {maximumFractionDigits: 2});
 
-    const resultWithMaxAndMinFractionOption_1 = numberFormatter(
-      10000.153,
-      {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      }
-    );
-    const resultWithMaxAndMinFractionOption_2 = numberFormatter(
-      10000.1,
-      {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      }
-    );
-    const resultWithMaxAndMinFractionOption_3 = numberFormatter(
-      10000,
-      {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-      }
-    );
-  
+    const resultWithMaxAndMinFractionOption_1 = numberFormatter(10000.153, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+    const resultWithMaxAndMinFractionOption_2 = numberFormatter(10000.1, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+    const resultWithMaxAndMinFractionOption_3 = numberFormatter(10000, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
+
     expect(resultWithNumberInput).toBe('10,000');
     expect(resultWithStringInput).toBe('10,000');
 
@@ -49,7 +40,7 @@ describe('Number formatter', () => {
     expect(resultWithMaxAndMinFractionOption_1).toBe('10,000.15');
     expect(resultWithMaxAndMinFractionOption_2).toBe('10,000.10');
     expect(resultWithMaxAndMinFractionOption_3).toBe('10,000.00');
-  })
+  });
 
   test('Number formatter on different unpredicted inputs', () => {
     const resultWithUndefinedValue = numberFormatter(undefined);
@@ -69,5 +60,5 @@ describe('Number formatter', () => {
     expect(resultWithMinFractionOption).toBe('0');
     expect(resultWithMaxFractionOption).toBe('0');
     expect(resultWithZeroMaxFractionOption).toBe('0');
-  })
-})
+  });
+});

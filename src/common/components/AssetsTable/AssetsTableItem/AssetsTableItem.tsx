@@ -99,9 +99,7 @@ function AssetsItem(menuItem) {
             })}
           >
             <div>
-              <div className={styles.valueTitle}>
-                ${numberFormatter(valueTitle)}
-              </div>
+              <div className={styles.valueTitle}>${numberFormatter(valueTitle)}</div>
               <div className={styles.valueSecondaryContainer}>
                 {numberFormatter(valueSecondaryTitle)} {symbol.toUpperCase()}
                 <div style={{marginLeft: '5px'}}>{translation.Assets[title]}</div>

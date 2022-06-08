@@ -18,19 +18,14 @@ function AssetsCharts({changeDataRange, setIsOpen, isOpen, dataRange}) {
     <div className={classNames(styles.assetsChartsContainer, styles[theme])}>
       <div className={styles.headerTable}>
         <div className={styles.title}>
-          {item.title ? (
-            '$' + numberFormatter(item.title)
-          ) : (
-            <Skeleton width={160} height={54} />
-          )}
+          {item.title ? '$' + numberFormatter(item.title) : <Skeleton width={160} height={54} />}
         </div>
         <div className={styles.secondaryContainer}>
           <div className={classNames(styles.secondaryTittlePercent, styles[item.style])}>
             {item.secondaryTitlePercent ? (
               (item.style !== 'loss'
                 ? '+' + numberFormatter(item.title)
-                : '-' +
-                  numberFormatter(item.secondaryTitlePercent).substring(1)) + '%'
+                : '-' + numberFormatter(item.secondaryTitlePercent).substring(1)) + '%'
             ) : (
               <Skeleton width={60} height={19} />
             )}
