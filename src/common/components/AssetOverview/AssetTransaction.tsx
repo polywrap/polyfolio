@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 
 import classNames from 'classnames';
-import style from 'common/components/UserTransaction/UserTransaction.module.scss';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import TableHeader from '../TableHeader/TableHeader';
 import Table from '../TableBlock/Table/Table';
@@ -13,6 +12,7 @@ import {getTitleDate} from '../shared/utils';
 import {userPersistState} from 'common/modules/atoms/userAddress';
 import {searchPersistState} from 'common/modules/atoms/searchState';
 import {reduceByDays, getViewsByDate} from './AssetTransaction.utils';
+import style from './AssetTransaction.module.scss';
 
 function AssetTransaction() {
   const theme = useTheme();
@@ -37,7 +37,7 @@ function AssetTransaction() {
   return (
     <div className={classNames(style[theme], style.transaction)}>
       <div className={style.title}>Transaction</div>
-      <TableHeader page={page} setPage={setPage} total={'?'} />
+      <TableHeader page={page} setPage={setPage} total={page} />
       {loading ? (
         <Skeleton height={'600px'} width={'100%'} />
       ) : (

@@ -36,7 +36,7 @@ function AssetTransaction() {
 
   return (
     <div className={classNames(style[theme], style.transaction)}>
-      <TableHeader page={page} setPage={setPage} total={'?'} />
+      <TableHeader page={page} setPage={setPage} total={page} />
       {loading ? (
         <Skeleton height={'600px'} width={'100%'} />
       ) : (
@@ -54,7 +54,7 @@ function AssetTransaction() {
           <ButtonCsv />
         </div>
         <div className={style.container}>
-          <TablePagination page={page} total={'?'} onPageChange={setPage} />
+          <TablePagination page={page} total={page} onPageChange={setPage} />
         </div>
       </div>
     </div>
