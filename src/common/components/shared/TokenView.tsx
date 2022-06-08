@@ -4,6 +4,7 @@ import style from './TokenView.module.scss';
 import Icon from 'common/components/Icon/Icon';
 
 import useTokenView from '../UserTransaction/useTokenView';
+import Skeleton from '../Skeleton/Skeleton';
 
 export interface TokenViewProps {
   id: string;
@@ -29,7 +30,7 @@ const TokenView = ({token}: {token: TokenViewProps}) => {
           </div>
         </>
       ) : loading ? (
-        <div>Loading...</div>
+        <Skeleton width={40} height={40} style={{borderRadius: '50%'}} />
       ) : (
         <div>{error}</div>
       )}

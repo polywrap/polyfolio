@@ -68,4 +68,5 @@ export interface IconsMapper extends Record<string, unknown> {
   ufo: string;
   gel: string;
   ftm: string;
+  crypto: string;
 }

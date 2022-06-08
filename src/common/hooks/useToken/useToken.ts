@@ -14,6 +14,8 @@ const useToken = (address: string, type = 'ERC20'): TokenToken => {
 
       if (token) {
         setCachedToken(token);
+      } else {
+        setCachedToken(null);
       }
     }
   }, [client, address, type]);

@@ -104,10 +104,12 @@ export const getEventIcon = (eventName: string) => {
         return iconsObj.receiveTransaction;
       case 'Exchange':
         return iconsObj.exchangeTransaction;
+      case 'Swaps':
+        return iconsObj.exchangeTransaction;
+      default:
+        return iconsObj.approvalTransaction;
     }
   }
-
-  return '???';
 };
 
 export const getTransactionAddress = (event: string, from: string, to: string) => {
@@ -130,11 +132,10 @@ export const getAssetByAddress = (assets: IBalance[], contractAddress: string): 
 };
 
 export const getTokenAmount = (value: string, decimals: number) => {
-  const decimal = new BN(decimals);
-  const ten = new BN(10);
-  const result = new BN(value).div(ten.pow(decimal));
+  const int = value.slice(0, value.length - decimals) || 0;
+  const decimalsStr = value.slice(value.length - decimals);
 
-  return result.toString();
+  return `${int}.${decimalsStr}`;
 };
 
 export const getTokenPrice = (asset: IBalance) => {

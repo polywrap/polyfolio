@@ -24,7 +24,7 @@ export const getTokenComponent = async (
       protocolId: $protocolId
     )
   }`,
-    variables: variables,
+    variables: {protocolId: 'uniswap_v2', ...variables} as Variables,
     config: {
       envs: [
         {
@@ -48,7 +48,6 @@ export const getTokenComponent = async (
       ],
     },
   });
-  data && console.log('tokenComponent', data);
 
   if (errors) {
     console.log(

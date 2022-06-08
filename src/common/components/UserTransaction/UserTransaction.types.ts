@@ -23,6 +23,7 @@ export interface ITransaction {
 export enum SupportedEvent {
   Transfer = 'Transfer',
   Approval = 'Approval',
+  Swap = 'Exchange',
 }
 
 export interface TransferParams {
@@ -30,11 +31,22 @@ export interface TransferParams {
   to: string;
   value: string;
 }
+
 export interface ApprovalParams {
   owner: string;
   spender: string;
   value: string;
 }
+
+export interface ExchangeParams {
+  sender: string;
+  amount0In: string;
+  amount1In: string;
+  amount0Out: string;
+  amount1Out: string;
+  to: string;
+}
+
 export interface EventProcessed<TParams = unknown> extends Omit<Event, 'params'> {
   params: TParams;
 }
