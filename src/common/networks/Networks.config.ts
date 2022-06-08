@@ -1,3 +1,5 @@
+import iconsObj from "assets/icons/iconsObj";
+
 export default [
   {
     name: 'ethereum',
@@ -5,6 +7,7 @@ export default [
     chainId: 1,
     title: 'Ethereum',
     checked: true,
+    icon: iconsObj.ethereum
   },
   {
     name: 'polygon',
@@ -12,5 +15,6 @@ export default [
     chainId: 137,
     title: 'Polygon',
     checked: true,
+    icon: iconsObj.polygon
   },
 ];

@@ -19,7 +19,7 @@ function NetworksPickerInfo({onClick}: {onClick: Dispatch<INetwork>}) {
       <label className={styles.menu_item} onClick={() => onClick(menuItem)}>
         <div className={styles.menu_item}>
           <div className={styles.icon}>
-            <Icon src={iconsObj.ethereum} className={styles.iconSelected} />
+            <Icon src={menuItem['icon']} className={styles.iconSelected} />
           </div>
           <div className={styles.secondaryTitle}>{menuItem.title}</div>
           {menuItem.checked ? (

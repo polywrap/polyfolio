@@ -72,6 +72,7 @@ function VaultsTable({protocolData}: Props) {
         dataRange={dataRange}
         dataRangeIsOpen={dataRangeIsOpen}
         setDataRangeIsOpen={setDataRangeIsOpen}
+        dataRangeSelectorExist
       />
       <div className={classNames(styles.table_container, {[styles.hidden]: tableIsOpen})}>
         <div className={styles.title_container}>

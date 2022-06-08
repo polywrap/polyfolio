@@ -25,6 +25,7 @@ function HeaderTable({
   dataRange,
   dataRangeIsOpen,
   setDataRangeIsOpen,
+  dataRangeSelectorExist,
 }: {
   filter;
   setTableIsOpen;
@@ -39,6 +40,7 @@ function HeaderTable({
   dataRange;
   dataRangeIsOpen: boolean;
   setDataRangeIsOpen;
+  dataRangeSelectorExist?: boolean;
 }) {
   const translation = useTranslation();
   const theme = useTheme();
@@ -90,14 +92,18 @@ function HeaderTable({
     <div className={classNames(styles[theme], styles.headerTableContainer)}>
       <div className={styles.title_container}>
         <h3 className={styles.main_title}>{title}</h3>
-        <DataRangeSelector
-          setDataRange={changeDataRange}
-          className={styles.btn}
-          setIsOpen={setDataRangeIsOpen}
-          dataRange={dataRange}
-          isOpen={dataRangeIsOpen}
-          fontSize="14px"
-        />
+        {dataRangeSelectorExist ? (
+          ''
+        ) : (
+          <DataRangeSelector
+            setDataRange={changeDataRange}
+            className={styles.btn}
+            setIsOpen={setDataRangeIsOpen}
+            dataRange={dataRange}
+            isOpen={dataRangeIsOpen}
+            fontSize="14px"
+          />
+        )}
       </div>
       <div className={styles.filter_container}>
         <h4>{sum}</h4>
