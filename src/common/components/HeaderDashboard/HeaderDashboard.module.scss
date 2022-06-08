@@ -19,54 +19,58 @@
 
   padding: 0 0 70px;
 
-  .title {
-    font-weight: var(--font_weight_bolder);
-    color: var(--color);
-  }
-  .younder,
-  .title {
-    margin-bottom: 32px;
-  }
-  .dropdownContainer {
-    width: 164px;
-    max-height: 51px;
-    margin-left: auto;
-  }
-  .dropdownContainer > div > button {
-    font-size: var(--font_size_btn);
-    font-weight: var(--font_weight_btn);
-  }
-  .dropdownIcon {
-    margin-right: 15px;
-  }
-  .secondaryValue,
   .contentContainer {
-    @include flex_grow();
-  }
-  .secondaryTitle {
-    font-size: var(--h6_font_size);
-    font-weight: var(----font_weight_normal);
-    opacity: 0.7;
-  }
-  .value {
-    font-size: var(--font_size_btn);
-    font-weight: var(----font_weight_normal);
-    color: var(--color_green_500);
-  }
-  .value.percent {
-    margin-left: 12px;
-    background-color: var(--bg_green);
-    padding: 0 2px;
-    border-radius: 4px;
-  }
-  @include mobile() {
-    .contentContainer {
-      flex-direction: column;
+    max-width: 1256px;
+
+    .title {
+      font-weight: var(--font_weight_bolder);
+      color: var(--color);
+    }
+    .younder,
+    .title {
+      margin-bottom: 32px;
     }
     .dropdownContainer {
-      margin-left: 0;
-      margin-right: auto;
-      margin: 18px auto 0 0;
+      width: 164px;
+      max-height: 51px;
+      margin-left: auto;
+    }
+    .dropdownContainer > div > button {
+      font-size: var(--font_size_btn);
+      font-weight: var(--font_weight_btn);
+    }
+    .dropdownIcon {
+      margin-right: 15px;
+    }
+    .secondaryValue,
+    .contentContainer {
+      @include flex_grow();
+    }
+    .secondaryTitle {
+      font-size: var(--h6_font_size);
+      font-weight: var(----font_weight_normal);
+      opacity: 0.7;
+    }
+    .value {
+      font-size: var(--font_size_btn);
+      font-weight: var(----font_weight_normal);
+      color: var(--color_green_500);
+    }
+    .value.percent {
+      margin-left: 12px;
+      background-color: var(--bg_green);
+      padding: 0 2px;
+      border-radius: 4px;
+    }
+    @include mobile() {
+      .contentContainer {
+        flex-direction: column;
+      }
+      .dropdownContainer {
+        margin-left: 0;
+        margin-right: auto;
+        margin: 18px auto 0 0;
+      }
     }
   }
 }
