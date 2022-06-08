@@ -1,13 +1,10 @@
-import React, {useMemo, useState} from 'react';
+import React, {useMemo} from 'react';
 import classNames from 'classnames';
 
 import styles from './HeaderDashboard.module.scss';
 
-import {dropdownItems} from './HederDashboardDropdown/HederDashboardDropdown.config';
 import useTheme from 'common/hooks/useTheme/useTheme';
 //import {content} from './HeaderDashboard.config';
-import Dropdown from '../Dropdown/Dropdown';
-import {filteredDropdown} from 'utils/helpers';
 import numberFormatter from 'utils/numberFormatter';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import Skeleton from '../Skeleton/Skeleton';
@@ -22,8 +19,6 @@ import NetworksPicker from '../NetworksPicker/NetworksPicker';
 function HeaderDashboard() {
   const user = useRecoilValue(userPersistState);
   const {pathname} = useLocation();
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [currency, setCurrency] = useState(dropdownItems[0]);
   const theme = useTheme();
   const translation = useTranslation();
   const balance = useRecoilValue(balanceState);
@@ -34,11 +29,6 @@ function HeaderDashboard() {
 
     return splitedUrl[2] === user ? '' : splitedUrl[2];
   }, [pathname, user]);
-
-  const onChangeCurrency = (item) => {
-    setCurrency(item);
-    setIsOpen(false);
-  };
 
   return (
     <div className={classNames(styles.headerDashboardContainer, styles[theme])}>
