@@ -11,8 +11,8 @@ jobs:
   build:
     name: Lint and Build
     runs-on: ubuntu-latest
-#    env:
-#      CI: ''
+    env:
+      CI: ''
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
