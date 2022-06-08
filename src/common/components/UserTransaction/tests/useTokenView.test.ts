@@ -5,8 +5,8 @@ describe('Get Token Amount In Currency', () => {
     const resultInteger = __getTokenAmountInCurrencyForTesting('15000', '123', '$');
     const resultFloat = __getTokenAmountInCurrencyForTesting('15000.12', '123.56', '$');
     
-    expect(resultInteger).toBe('+$1,845,000.0');
-    expect(resultFloat).toBe('+$1,853,414.827');
+    expect(resultInteger).toBe('+$1,845,000');
+    expect(resultFloat).toBe('+$1,853,414.83');
   })
   it('Negative numbers', () => {
     const resultInteger = __getTokenAmountInCurrencyForTesting('-15000', '123', '$');
@@ -16,12 +16,12 @@ describe('Get Token Amount In Currency', () => {
     const resultFloatAlt_1 = __getTokenAmountInCurrencyForTesting('15000.12', '-123.56', '$');
     const resultFloatAlt_2 = __getTokenAmountInCurrencyForTesting('-15000.12', '-123.56', '$');
     
-    expect(resultInteger).toBe('-$1,845,000.0');
-    expect(resultIntegerAlt_1).toBe('-$1,845,000.0');
-    expect(resultIntegerAlt_2).toBe('+$1,845,000.0');
-    expect(resultFloat).toBe('-$1,853,414.827');
-    expect(resultFloatAlt_1).toBe('-$1,853,414.827');
-    expect(resultFloatAlt_2).toBe('+$1,853,414.827');
+    expect(resultInteger).toBe('-$1,845,000');
+    expect(resultIntegerAlt_1).toBe('-$1,845,000');
+    expect(resultIntegerAlt_2).toBe('+$1,845,000');
+    expect(resultFloat).toBe('-$1,853,414.83');
+    expect(resultFloatAlt_1).toBe('-$1,853,414.83');
+    expect(resultFloatAlt_2).toBe('+$1,853,414.83');
   })
   it('Undefined values', () => {
     const resultIntegerUndefined_1 = __getTokenAmountInCurrencyForTesting(undefined, '123', '$');
@@ -34,10 +34,10 @@ describe('Get Token Amount In Currency', () => {
 
     expect(resultIntegerUndefined_1).toBe(undefined);
     expect(resultIntegerUndefined_2).toBe(undefined);
-    expect(resultIntegerUndefined_3).toBe('+?1,845,000.0');
+    expect(resultIntegerUndefined_3).toBe(undefined);
     expect(resultIntegerNull_1).toBe(undefined);
     expect(resultIntegerNull_2).toBe(undefined);
-    expect(resultIntegerNull_3).toBe('+?1,845,000.0');
+    expect(resultIntegerNull_3).toBe(undefined);
   })
   it('Wrong values', () => {
     const resultWrongValue = __getTokenAmountInCurrencyForTesting('aldfnsafn', '123', '$');
@@ -46,19 +46,19 @@ describe('Get Token Amount In Currency', () => {
 
     expect(resultWrongValue).toBe(undefined);
     expect(resultWrongPrice).toBe(undefined);
-    expect(resultWrongCurrency).toBe(undefined);
+    expect(resultWrongCurrency).toBe('+!1,845,000');
   })
 });
 
 describe('Get Token Amount String', () => {
   it('Correct numbers', () => {
-    const resultInteger = __getTokenAmountStringForTesting('15,000', 'FWB');
-    const resultIntegerNegative = __getTokenAmountStringForTesting('-15,000', 'FWB');
-    const resultFloat = __getTokenAmountStringForTesting('15,000.12', 'FWB');
-    const resultFloatNegative = __getTokenAmountStringForTesting('-15,000.12', 'FWB');
+    const resultInteger = __getTokenAmountStringForTesting('15000', 'FWB');
+    const resultIntegerNegative = __getTokenAmountStringForTesting('-15000', 'FWB');
+    const resultFloat = __getTokenAmountStringForTesting('15000.12', 'FWB');
+    const resultFloatNegative = __getTokenAmountStringForTesting('-15000.12', 'FWB');
     
-    expect(resultInteger).toBe('+15,000.00 FWB');
-    expect(resultIntegerNegative).toBe('-15,000.00 FWB');
+    expect(resultInteger).toBe('+15,000 FWB');
+    expect(resultIntegerNegative).toBe('-15,000 FWB');
     expect(resultFloat).toBe('+15,000.12 FWB');
     expect(resultFloatNegative).toBe('-15,000.12 FWB');
   })
@@ -69,10 +69,10 @@ describe('Get Token Amount String', () => {
     const resultIntegerNull_1 = __getTokenAmountStringForTesting(null, 'FWB');
     const resultIntegerNull_2 = __getTokenAmountStringForTesting('15,000', null);
 
-    expect(resultIntegerUndefined_1).toBe('?? FWB');
-    expect(resultIntegerUndefined_2).toBe('+15,000.00 ??');
-    expect(resultIntegerNull_1).toBe('?? FWB');
-    expect(resultIntegerNull_2).toBe('+15,000.00 ??');
+    expect(resultIntegerUndefined_1).toBe(undefined);
+    expect(resultIntegerUndefined_2).toBe(undefined);
+    expect(resultIntegerNull_1).toBe(undefined);
+    expect(resultIntegerNull_2).toBe(undefined);
   })
   it('Wrong values', () => {
     const resultWrongValue = __getTokenAmountStringForTesting('aldfnsafn', 'FWB');
