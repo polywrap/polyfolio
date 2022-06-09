@@ -46,4 +46,4 @@ jobs:
         run: yarn build
 
       - name: Run Test Suite
-        run: TZ=UTC yarn test
+        run: TZ=Europe/Ukraine yarn test
