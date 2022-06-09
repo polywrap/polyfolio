@@ -9,6 +9,7 @@ import Dropdown from '../Dropdown/Dropdown';
 import TablePagination from '../TablePagination/TablePagination';
 import {filteredDropdown} from 'utils/helpers';
 import {dropdownItems} from './TableHeader.config';
+import NetworksPicker from '../NetworksPicker/NetworksPicker';
 
 function TableHeader({page, setPage, total}) {
   const theme = useTheme();
@@ -42,14 +43,7 @@ function TableHeader({page, setPage, total}) {
       </div>
       <div className={style.right}>
         <div className={style.networks}>
-          <Dropdown
-            array={filteredDropdown(dropdownItems, currency?.id)}
-            onChangeCurrency={onChangeCurrency}
-            className={style.dropdownIcon}
-            setIsOpen={setIsOpen}
-            current={currency}
-            isOpen={isOpen}
-          />
+          <NetworksPicker />
         </div>
         <div className={style.pagination}>
           <TablePagination page={page} total={total} onPageChange={onPageChange} />

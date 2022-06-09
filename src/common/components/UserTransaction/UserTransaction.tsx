@@ -20,7 +20,7 @@ function AssetTransaction() {
   const theme = useTheme();
   const [page, setPage] = useState<number>(1);
 
-  const chainId = 1; // TODO: switch to dynamic after pageination confirmation
+  const chainId = 1; // TODO: switch to dynamic after pagination confirmation
 
   const {data, loading} = useTransactions({page, perPage: 10, config: {chainId: chainId}});
 
