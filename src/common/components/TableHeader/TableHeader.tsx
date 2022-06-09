@@ -5,23 +5,12 @@ import useTheme from 'common/hooks/useTheme/useTheme';
 import style from './TableHeader.module.scss';
 import iconsObj from 'assets/icons/iconsObj';
 import Input from 'common/components/Input/Input';
-import Dropdown from '../Dropdown/Dropdown';
 import TablePagination from '../TablePagination/TablePagination';
-import {filteredDropdown} from 'utils/helpers';
-import {dropdownItems} from './TableHeader.config';
 import NetworksPicker from '../NetworksPicker/NetworksPicker';
 
 function TableHeader({page, setPage, total}) {
   const theme = useTheme();
   const [value, setValue] = useState<string>();
-
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [currency, setCurrency] = useState(dropdownItems[0]);
-
-  const onChangeCurrency = (item) => {
-    setCurrency(item);
-    setIsOpen(false);
-  };
 
   const onPageChange = useCallback(
     (nextPage: number) => {

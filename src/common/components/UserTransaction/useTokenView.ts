@@ -31,7 +31,7 @@ interface TokenViewState {
 const getTokenAmountInCurrency = (amount: string, price: string, currencySymbol: string) => {
   let value = (Number(amount) * Number(price)).toString();
 
-  const isNegative = value.startsWith('-');
+  const isNegative = value?.startsWith('-');
   if (isNegative) value = value.replace('-', '');
 
   const operator = isNegative ? '-' : '+';
