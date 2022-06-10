@@ -58,7 +58,7 @@ function DataRangeSelector({fontSize, className, isOpen, dataRange, setDataRange
           className={classNames(styles.btn, className)}
         >
           {translation.DataRangeSelector[dataRange?.title]}
-          <MenuArrow className={styles.arrow} filled startPosition={!isOpen ? 'right' : 'up'} />
+          <MenuArrow className={styles.arrow} filled startPosition={!isOpen ? 'right' : 'down'} />
         </button>
       </TooltipTrigger>
     </div>
