@@ -49,7 +49,7 @@ function Profile() {
                   popper={<ProfileDropdownMenu onClick={logOut} />}
                 >
                   <div className={styles.content} onClick={() => setIsOpen(!isOpen)}>
-                    <MenuArrow filled startPosition={!isOpen ? 'right' : 'left'} />
+                    <MenuArrow filled startPosition={!isOpen ? 'right' : 'down'} />
                   </div>
                 </TooltipTrigger>
               </div>

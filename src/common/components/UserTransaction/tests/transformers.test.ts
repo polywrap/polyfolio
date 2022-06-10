@@ -20,7 +20,7 @@ const inputData = {
   txViewByLog: {
     type: 'Approval',
     icon: '/static/media/approvalTransaction.2b747309b4d8bd4fdc7093705020919a.svg',
-    time: '15:07:36',
+    time: '1:07:36 PM',
     way: 'Via',
     tokens: [
       {
@@ -228,7 +228,7 @@ test('Get Tx View By Log', () => {
   expect(result).toEqual({
     type: 'Approval',
     icon: 'approvalTransaction.svg',
-    time: '15:07:36',
+    time: '1:07:36 PM',
     way: 'Via',
     tokens: [
       {
@@ -249,7 +249,7 @@ test('To tx view', () => {
   expect(result).toEqual({
     type: 'Approval',
     icon: 'approvalTransaction.svg',
-    time: '15:07:36',
+    time: '1:07:36 PM',
     way: 'Via',
     tokens: [
       {

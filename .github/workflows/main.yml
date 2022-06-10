@@ -44,3 +44,6 @@ jobs:
 
       - name: Build
         run: yarn build
+
+      - name: Run Test Suite
+        run: yarn test

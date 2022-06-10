@@ -15,7 +15,9 @@
     "noEmit": true,
     "strict": false,
     "isolatedModules": false,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "types": [],
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["node_modules", "lib"]
 }
