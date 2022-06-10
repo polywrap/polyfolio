@@ -1,6 +1,6 @@
 .icon {
-  width: 12px;
-  height: 12px;
+  width: 15px;
+  height: 15px;
   margin-right: 10px;
 }
 .btn {
@@ -9,10 +9,11 @@
   padding: 6px 14px;
   max-width: 163px;
   width: 100%;
-  height: 32px;
+  height: 34px;
   text-align: center;
   font-size: 15px;
-  line-height: 100%;
   font-weight: var(--font_weight_strong);
   color: var(--color_green_500);
+  display: flex;
+  align-items: center;
 }
