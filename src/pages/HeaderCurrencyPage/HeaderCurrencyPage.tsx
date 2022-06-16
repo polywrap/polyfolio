@@ -10,7 +10,7 @@ import iconsObj from 'assets/icons/iconsObj';
 import RoutePath from 'common/modules/routing/routing.enums';
 import _find from 'lodash/find';
 import replaceRouteParameters from 'utils/replaceRouteParameters';
-import Skeleton from 'common/components/Skeleton/Skeleton';
+import Skeleton from 'common/components/Loaders/Skeleton';
 import {useRecoilValue} from 'recoil';
 import {searchPersistState} from 'common/modules/atoms/searchState';
 

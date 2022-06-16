@@ -4,7 +4,7 @@ import style from './TokenView.module.scss';
 import Icon from 'common/components/Icon/Icon';
 
 import useTokenView from '../UserTransaction/useTokenView';
-import Skeleton from '../Skeleton/Skeleton';
+import Skeleton from '../Loaders/Skeleton';
 
 export interface TokenViewProps {
   id: string;

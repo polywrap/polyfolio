@@ -13,13 +13,14 @@ import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import HeaderTable from '../HeaderTable/HeaderTable';
 import {menuFields} from './FilterFieldsProtokols.config';
-import Skeleton from '../Skeleton/Skeleton';
+import Skeleton from '../Loaders/Skeleton';
 import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.types';
 import {useRecoilValue} from 'recoil';
 import balanceState from 'common/modules/atoms/balanceState';
 import numberFormatter from 'utils/numberFormatter';
 import {Currency} from 'utils/allNetworksDataFormatting';
 import {CurrencySymbol} from 'common/currency/Currency.types';
+import Dots from '../Loaders/Dots';
 
 function ProtocolsTable() {
   const [tableIsOpen, setTableIsOpen] = useState(false);
@@ -53,8 +54,8 @@ function ProtocolsTable() {
   return (
     balance &&
     (loading ? (
-      <div style={{marginBottom: 48}}>
-        <Skeleton width={100} height={435} />
+      <div style={{marginBottom: 48, marginTop:'100px'}}>
+        <Dots width={180} />
       </div>
     ) : (
       <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>

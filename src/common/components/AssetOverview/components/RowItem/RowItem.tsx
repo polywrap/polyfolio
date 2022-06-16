@@ -6,7 +6,7 @@ import style from './RowItem.module.scss';
 
 import iconsObj from 'assets/icons/iconsObj';
 import Icon from 'common/components/Icon/Icon';
-import Skeleton from 'common/components/Skeleton/Skeleton';
+import Skeleton from 'common/components/Loaders/Skeleton';
 
 function RowItem({label, content, type}) {
   const theme = useTheme();

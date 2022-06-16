@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import style from './Table.module.scss';
-import Skeleton from 'common/components/Skeleton/Skeleton';
+import Skeleton from 'common/components/Loaders/Skeleton';
 
 interface TableProps<T> {
   header?: React.ReactNode;

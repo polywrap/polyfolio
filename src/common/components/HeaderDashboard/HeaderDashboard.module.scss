@@ -21,7 +21,14 @@
 
   .contentContainer {
     max-width: 1256px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
+    .netWorth {
+      display: flex;
+      flex-direction: column;
+    }
     .title {
       font-weight: var(--font_weight_bolder);
       color: var(--color);

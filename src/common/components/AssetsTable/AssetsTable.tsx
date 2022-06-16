@@ -15,7 +15,7 @@ import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
 import {useLocation} from 'react-router-dom';
 import {getStringFromPath} from 'utils/helpers';
-import Skeleton from '../Skeleton/Skeleton';
+import Skeleton from '../Loaders/Skeleton';
 import {chainIdToNetwork} from 'utils/constants';
 import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.types';
 import getFormattedData from 'utils/getFormattedData';
@@ -23,6 +23,7 @@ import {useRecoilValue} from 'recoil';
 import balanceState from 'common/modules/atoms/balanceState';
 import numberFormatter from 'utils/numberFormatter';
 import {Currency, CurrencySymbol} from 'common/currency/Currency.types';
+import Dots from '../Loaders/Dots';
 
 function AssetsTable() {
   const {pathname} = useLocation();
@@ -104,8 +105,8 @@ function AssetsTable() {
       </div>
     </div>
   ) : (
-    <div style={{margin: '48px 0'}}>
-      <Skeleton width={100} height={923} />
+    <div style={{margin: '48px 0', display:'flex', height:'100%', alignItems:'center'}}>
+      <Dots width={180} />
     </div>
   );
 }

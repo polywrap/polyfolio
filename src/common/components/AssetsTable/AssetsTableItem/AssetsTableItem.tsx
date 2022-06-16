@@ -15,7 +15,7 @@ import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import {networkToChainId} from 'utils/constants';
 import RoutePath from 'common/modules/routing/routing.enums';
 import replaceRouteParameters from 'utils/replaceRouteParameters';
-import Skeleton from 'common/components/Skeleton/Skeleton';
+import Skeleton from 'common/components/Loaders/Skeleton';
 import {searchPersistState} from 'common/modules/atoms/searchState';
 import {useRecoilValue} from 'recoil';
 import {userPersistState} from 'common/modules/atoms/userAddress';
@@ -56,7 +56,7 @@ function AssetsItem(menuItem) {
             {icon ? (
               <Icon src={icon} className={styles.icon} />
             ) : (
-              <Skeleton width={40} height={40} />
+              <Skeleton width={40} height={40} style={{borderRadius:'50%'}} />
             )}
             <div>
               <div className={styles.title}>{title}</div>
