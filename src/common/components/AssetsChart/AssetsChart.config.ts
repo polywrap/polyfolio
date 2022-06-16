@@ -6,17 +6,19 @@ import {networkToChainId} from 'utils/constants';
 import useAssetMetadata from 'common/hooks/useAssetMetadata/useAssetMetadata';
 import useAssetPageData from 'common/hooks/useAssetPageData/useAssetPageData';
 import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.types';
+import { useBalanceData } from 'common/hooks/useBalanceData/useBalanceData';
 
 const useAssetChartConfig = (dataRange: DataRangeSelectorItem) => {
   const {currency} = useCurrency();
   const {asset} = useParams();
-  const menuItems = useAssets();
+  const balanceData = useBalanceData();
+  const menuItems = useAssets(balanceData);
   const assetData = _find(menuItems, {symbol: asset});
 
   const assetMetaData = useAssetMetadata(
     assetData?.network,
     networkToChainId[assetData?.network],
-    assetData?.address,
+    assetData?.tokenAddress,
   );
 
   const assetPreparedData = useAssetPageData(

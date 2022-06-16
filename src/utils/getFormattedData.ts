@@ -1,19 +1,19 @@
 import allNetworksDataFormatting from './allNetworksDataFormatting';
 import networkDataFormatting from './networkDataFormatting';
 
-export default function getFormattedData(balance, page?: string) {
+export default function getFormattedData(balance, chainId?: string) {
   let preparedData = {};
 
   if (balance) {
-    switch (page) {
+    switch (chainId) {
       case 'ethereum':
-        preparedData = networkDataFormatting(page, balance);
+        preparedData = networkDataFormatting(chainId, balance);
         break;
       case 'ropsten':
-        preparedData = networkDataFormatting(page, balance);
+        preparedData = networkDataFormatting(chainId, balance);
         break;
       case 'polygon':
-        preparedData = networkDataFormatting(page, balance);
+        preparedData = networkDataFormatting(chainId, balance);
         break;
       default:
         preparedData = allNetworksDataFormatting(balance);

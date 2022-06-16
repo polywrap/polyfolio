@@ -1,8 +1,5 @@
+import {Currency} from 'common/types';
 import {Dispatch, SetStateAction} from 'react';
-
-export enum Currency {
-  USD = 'USD',
-}
 
 export enum CurrencySymbol {
   USD = '$',

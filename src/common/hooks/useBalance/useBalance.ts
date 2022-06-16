@@ -5,50 +5,41 @@ import balanceState from 'common/modules/atoms/balanceState';
 import {insertChainIdToProtocol} from 'utils/dataFormatting';
 import {getAccountBalance} from './getAccountBalance';
 import {useNetworks} from 'common/networks/Networks.context';
+import {ReducedBalance} from 'common/types';
 
-export default function useBalance(address: string) {
+interface UseBalanceReturnProps {
+  balance: ReducedBalance;
+  fetchBalances: (address: string) => Promise<void>;
+}
+
+export default function useBalance(): UseBalanceReturnProps {
   const client = useWeb3ApiClient();
   const {networks} = useNetworks();
 
-  const [balance, setBalance] = useRecoilState(balanceState);
+  const [balance, setBalance] = useRecoilState<ReducedBalance>(balanceState);
 
-  const getBalances = useCallback(async (accountAddress: string) => {
+  const fetchBalances = useCallback(async (accountAddress: string) => {
     let temporaryBalance = {};
 
     for (const network of networks) {
-      if (network.checked) {
-        const {name, chainId} = network;
+      const {name, chainId} = network;
 
-        const {data: response, errors} = await getAccountBalance(
-          client,
-          {accountAddress},
-          {chainId},
-        );
+      const {data: response, errors} = await getAccountBalance(client, {accountAddress}, {chainId});
 
-        if (response && !errors?.length) {
-          if (response.getAccountBalance) {
-            temporaryBalance = {...temporaryBalance, [name]: response?.getAccountBalance};
-          }
-        } else {
-          // ADD ERROR HANDLER
-          console.log(
-            `ERROR getBalance for address:${accountAddress} at chanId:${chainId}`,
-            errors,
-          );
+      if (response && !errors?.length) {
+        if (response.getAccountBalance) {
+          temporaryBalance = {...temporaryBalance, [name]: response?.getAccountBalance};
         }
+      } else {
+        // ADD ERROR HANDLER
+        console.log(`ERROR getBalance for address:${accountAddress} at chanId:${chainId}`, errors);
       }
     }
 
     insertChainIdToProtocol(temporaryBalance);
 
-    setBalance(temporaryBalance);
+    setBalance(temporaryBalance as ReducedBalance);
   }, []);
 
-  useEffect(() => {
-    if (address) {
-      getBalances(address);
-    }
-  }, [address]);
-
-  return balance;
+  return {balance, fetchBalances};
 }

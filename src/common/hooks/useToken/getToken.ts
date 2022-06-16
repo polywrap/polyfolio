@@ -1,5 +1,5 @@
 import {Web3ApiClient} from '@web3api/client-js';
-import {TokenToken} from 'utils/allNetworksDataFormatting';
+import {TokenToken} from 'common/types';
 import ENS_URI from 'utils/web3apiConfig/ensUri';
 
 interface Variables {

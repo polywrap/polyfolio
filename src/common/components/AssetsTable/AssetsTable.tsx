@@ -15,16 +15,30 @@ import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
 import {useLocation} from 'react-router-dom';
 import {getStringFromPath} from 'utils/helpers';
+<<<<<<< Updated upstream
 import Skeleton from '../Skeleton/Skeleton';
 import {chainIdToNetwork} from 'utils/constants';
+=======
+>>>>>>> Stashed changes
 import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.types';
-import getFormattedData from 'utils/getFormattedData';
-import {useRecoilValue} from 'recoil';
-import balanceState from 'common/modules/atoms/balanceState';
 import numberFormatter from 'utils/numberFormatter';
+<<<<<<< Updated upstream
 import {Currency, CurrencySymbol} from 'common/currency/Currency.types';
+=======
+import {CurrencySymbol} from 'common/currency/Currency.types';
+import Dots from '../Loaders/Dots';
+import useBalance from 'common/hooks/useBalance/useBalance';
+import {useNetworks} from 'common/networks/Networks.context';
+import {useBalanceData} from 'common/hooks/useBalanceData/useBalanceData';
+import {AssetData, Currency} from 'common/types';
+>>>>>>> Stashed changes
 
-function AssetsTable() {
+interface Props {
+  assets: AssetData[];
+  total: string | number;
+}
+
+function AssetsTable({assets, total = ''}: Props) {
   const {pathname} = useLocation();
   const page = getStringFromPath(pathname, 4);
   const [tableIsOpen, setTableIsOpen] = useState(false);
@@ -34,11 +48,8 @@ function AssetsTable() {
   const ref = useRef(null);
   const theme = useTheme();
   const translation = useTranslation();
-  const balance = useRecoilValue(balanceState);
-  const preparedData = getFormattedData(balance, chainIdToNetwork[page]);
   const [dataRange, setDataRange] = useState<DataRangeSelectorItem>({});
   const [dataRangeIsOpen, setDataRangeIsOpen] = useState(true);
-  const assets = useAssets(dataRange);
 
   const changeDataRange = (e) => {
     setDataRange(e);
@@ -48,11 +59,10 @@ function AssetsTable() {
   const onChange = (name, value) => {
     setFilter({...filters, assets: {...filter.assets, [name]: !value?.checked}});
   };
-  const sum = `${CurrencySymbol[Currency.USD.toUpperCase()]} ${numberFormatter(
-    preparedData['allAssetsSum'],
-  )}`;
 
-  return preparedData['balance'] ? (
+  const sum = total && `${CurrencySymbol[Currency.USD.toUpperCase()]} ${numberFormatter(total)}`;
+
+  return assets ? (
     <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>
       <HeaderTable
         setTableIsOpen={() => setTableIsOpen(!tableIsOpen)}
@@ -98,14 +108,19 @@ function AssetsTable() {
             Value
           </div>
         </div>
-        {_map(assets, (asset) => (
-          <AssetsTableItem {...asset} key={asset.id} />
+        {assets.map((asset) => (
+          <AssetsTableItem key={asset.id} asset={asset} dateRange={dataRange} />
         ))}
       </div>
     </div>
   ) : (
+<<<<<<< Updated upstream
     <div style={{margin: '48px 0'}}>
       <Skeleton width={100} height={923} />
+=======
+    <div style={{margin: '48px 0', display: 'flex', height: '100%', alignItems: 'center'}}>
+      <Dots width={180} />
+>>>>>>> Stashed changes
     </div>
   );
 }

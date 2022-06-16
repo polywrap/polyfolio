@@ -1,7 +1,4 @@
-import {
-  Asset,
-  Currency,
-} from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.types';
+import {Asset, Currency, ProtocolElement} from 'common/types';
 import {EventParam} from 'common/hooks/useTransaction/useTransactions.types';
 
 export const claimableTokens = [
@@ -16,7 +13,7 @@ export const claimableTokens = [
     balance: '3.98',
     values: [
       {
-        currency: Currency.Usd,
+        currency: Currency.USD,
         price: '10',
         value: '39.8',
       },
@@ -33,7 +30,7 @@ export const claimableTokens = [
     balance: '3.98',
     values: [
       {
-        currency: Currency.Usd,
+        currency: Currency.USD,
         price: '50',
         value: '199',
       },
@@ -54,7 +51,7 @@ export const components = [
       balance: '56.775651421',
       values: [
         {
-          currency: Currency.Usd,
+          currency: Currency.USD,
           price: '50.70',
           value: '2,878.5255270447',
         },
@@ -75,7 +72,7 @@ export const components = [
       balance: '56.775651421',
       values: [
         {
-          currency: Currency.Usd,
+          currency: Currency.USD,
           price: '50.70',
           value: '2,878.5255270447',
         },
@@ -97,7 +94,7 @@ export const token = {
   balance: '12',
   values: [
     {
-      currency: Currency.Usd,
+      currency: Currency.USD,
       price: '188.8283946669',
       value: '10,720.855113993',
     },
@@ -124,19 +121,20 @@ export const asset = {
   claimableTokens,
 } as Asset;
 
-export const asset_alt = {
+export const asset_alt: Asset = {
   apr: null,
   apy: null,
   balance: balance_alt,
+  isDebt: false,
   claimableTokens,
 };
 
-export const assets = [asset, asset_alt];
-export const assets_alt = [asset, asset_alt];
+export const assets: Asset[] = [asset, asset_alt];
+export const assets_alt: Asset[] = [asset, asset_alt];
 
 export const values = [
   {
-    currency: Currency.Usd,
+    currency: Currency.USD,
     price: 'N/A',
     value: '10,920.855113993',
   },
@@ -144,7 +142,7 @@ export const values = [
 
 export const values_alt = [
   {
-    currency: Currency.Usd,
+    currency: Currency.USD,
     price: 'N/A',
     value: '44.28',
   },
@@ -170,7 +168,7 @@ export const protocol_alt = {
   chainId: '1',
 };
 
-export const protocols = [
+export const protocols: ProtocolElement[] = [
   {
     protocol: protocol,
     values: values,
@@ -188,7 +186,7 @@ export const network = {
   chainId: '1',
   values: [
     {
-      currency: Currency.Usd,
+      currency: Currency.USD,
       price: 'N/A',
       value: '10,765.135113993',
     },

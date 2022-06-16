@@ -7,7 +7,7 @@ import ComponentIcon from '../shared/ComponentIcon';
 import styles from '../Vaults/VaultsTableItem/VaultsTableItem.module.scss';
 import {CurrencySymbol} from 'common/currency/Currency.types';
 import {toFixed} from 'utils/numberFormatter';
-import {ProtocolElement, TokenElement} from 'utils/allNetworksDataFormatting';
+import {ProtocolElement, TokenElement} from 'common/types';
 
 export const getPercentageStr = (asset: AssetData) => {
   const assetValue = Number(rmCommasFromNum(asset.value.amount.split('.')[0]));

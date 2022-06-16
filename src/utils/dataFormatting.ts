@@ -6,9 +6,9 @@ import BN from 'bn.js';
 import {rmCommasFromNum} from './helpers';
 import iconsObj from 'assets/icons/iconsObj';
 import {chainIdToNetwork} from 'utils/constants';
-import {IBalance} from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.types';
+import {ReducedBalance, Asset, Balance, AccountBalance} from 'common/types';
 import {EventParam} from 'common/hooks/useTransaction/useTransactions.types';
-import {Asset, Balance} from './allNetworksDataFormatting';
+import {ProtocolElement} from 'common/types';
 
 export const insertChainIdToProtocol = (balance) => {
   _map(balance, (network) => {
@@ -47,16 +47,16 @@ export const getAssetsValueSum = (assets) => {
   }
 };
 
-export const ejectAssetsFromProtocol = (protocols) => {
-  if (protocols) {
-    return _map(protocols.assets, (asset) => asset.balance.components);
+export const ejectAssetsFromProtocol = (protocol: ProtocolElement): Balance[][] => {
+  if (protocol) {
+    return protocol.assets.map((a) => a.balance.components);
   }
 
   return [];
 };
 
 export const detectProtocolAndChainIdForAsset = (allProtocols, tokenSymbol) => {
-  let chainId: string;
+  let network: string;
   let protocolId: string;
 
   if (allProtocols) {
@@ -64,7 +64,7 @@ export const detectProtocolAndChainIdForAsset = (allProtocols, tokenSymbol) => {
       _forEach(protocol.assets, (asset) => {
         _forEach(asset.balance.components, (component) => {
           if (component.token.token.symbol === tokenSymbol) {
-            chainId = chainIdToNetwork[protocol.protocol.chainId];
+            network = chainIdToNetwork[protocol.protocol.chainId];
             protocolId = protocol.protocol.id;
           }
         });
@@ -72,7 +72,7 @@ export const detectProtocolAndChainIdForAsset = (allProtocols, tokenSymbol) => {
     });
   }
 
-  return [chainId, protocolId];
+  return [network, protocolId];
 };
 
 export const getEventType = (eventName: string, userAddress?: string, params?: EventParam[]) => {
@@ -127,7 +127,7 @@ export const getTransactionAddress = (event: string, from: string, to: string) =
   return '???';
 };
 
-export const getAssetByAddress = (assets: IBalance[], contractAddress: string): IBalance => {
+export const getAssetByAddress = (assets: Balance[], contractAddress: string): Balance => {
   return assets.find(({token}) => token.token.address === contractAddress);
 };
 
@@ -138,7 +138,7 @@ export const getTokenAmount = (value: string, decimals: number) => {
   return `${int}.${decimalsStr}`;
 };
 
-export const getTokenPrice = (asset: IBalance) => {
+export const getTokenPrice = (asset: Balance) => {
   return asset?.token.values[0].price;
 };
 

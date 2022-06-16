@@ -13,15 +13,17 @@ import replaceRouteParameters from 'utils/replaceRouteParameters';
 import Skeleton from 'common/components/Skeleton/Skeleton';
 import {useRecoilValue} from 'recoil';
 import {searchPersistState} from 'common/modules/atoms/searchState';
+import {useBalanceData} from 'common/hooks/useBalanceData/useBalanceData';
+import useAsset from 'common/hooks/useAsset/useAsset';
+import {AssetData} from 'common/types';
+import useAssetMetadata from 'common/hooks/useAssetMetadata/useAssetMetadata';
 
-function HeaderCurrencyPage() {
+function HeaderCurrencyPage({asset}: {asset: AssetData}) {
   const theme = useTheme();
-  const {asset} = useParams();
   const search = useRecoilValue(searchPersistState);
   const translation = useTranslation();
   const navigate = useNavigate();
-  const menuItems = useAssets();
-  const currency = _find(menuItems, {symbol: asset});
+  const assetMetadata = useAssetMetadata(asset?.network, asset?.chainId, asset?.tokenAddress);
 
   const to = search ? replaceRouteParameters(RoutePath.Dashboard, {search}) : RoutePath.BaseRoute;
 
@@ -32,13 +34,13 @@ function HeaderCurrencyPage() {
         <div className={styles.btnText}>{translation.Buttons.backDashboard}</div>
       </button>
       <div className={styles.titleContainer}>
-        {currency?.iconInfoPage ? (
-          <Icon src={currency?.iconInfoPage} className={styles.icon} />
+        {assetMetadata ? (
+          <Icon src={assetMetadata?.image.large} className={styles.icon} />
         ) : (
-          <Skeleton width={40} height={40} />
+          <Skeleton width={40} height={40} style={{borderRadius: '50%'}} />
         )}
-        <h1 className={styles.title}>{currency?.secondaryTitle}</h1>
-        <h4 className={styles.secondaryTitle}>{currency?.title}</h4>
+        <h1 className={styles.title}>{asset?.secondaryTitle}</h1>
+        <h4 className={styles.secondaryTitle}>{asset?.title}</h4>
       </div>
     </div>
   );

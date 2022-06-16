@@ -13,15 +13,22 @@ import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import HeaderTable from '../HeaderTable/HeaderTable';
 import {menuFields} from './FilterFieldsProtokols.config';
+<<<<<<< Updated upstream
 import Skeleton from '../Skeleton/Skeleton';
+=======
+>>>>>>> Stashed changes
 import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.types';
-import {useRecoilValue} from 'recoil';
-import balanceState from 'common/modules/atoms/balanceState';
 import numberFormatter from 'utils/numberFormatter';
-import {Currency} from 'utils/allNetworksDataFormatting';
 import {CurrencySymbol} from 'common/currency/Currency.types';
+<<<<<<< Updated upstream
+=======
+import Dots from '../Loaders/Dots';
+import {useBalanceData} from 'common/hooks/useBalanceData/useBalanceData';
+import {useNetworks} from 'common/networks/Networks.context';
+import {Currency, ProtocolElement} from 'common/types';
+>>>>>>> Stashed changes
 
-function ProtocolsTable() {
+function ProtocolsTable({protocols}: {protocols: ProtocolElement[]}) {
   const [tableIsOpen, setTableIsOpen] = useState(false);
   const {filters, setFilters} = useFiltersTables();
   const [filter, setFilter] = useState<Filters>(filters);
@@ -31,9 +38,8 @@ function ProtocolsTable() {
   const translation = useTranslation();
   const [dataRange, setDataRange] = useState<DataRangeSelectorItem>({title: '2', id: 2});
   const [dataRangeIsOpen, setDataRangeIsOpen] = useState(false);
-  const balance = useRecoilValue(balanceState);
 
-  const {data: menuItems, loading} = useProtocols(dataRange);
+  const {data: menuItems, loading} = useProtocols(protocols, dataRange);
 
   const changeDataRange = (e) => {
     setDataRange(e);
@@ -47,14 +53,19 @@ function ProtocolsTable() {
   const summaryValue = useMemo(() => {
     const reduced = menuItems.reduce((prev, current) => prev + Number(current.valueTitle), 0);
 
-    return `${CurrencySymbol[Currency.Usd.toUpperCase()]} ${numberFormatter(reduced.toString())}`;
+    return `${CurrencySymbol[Currency.USD.toUpperCase()]} ${numberFormatter(reduced.toString())}`;
   }, [menuItems]);
 
   return (
-    balance &&
+    protocols &&
     (loading ? (
+<<<<<<< Updated upstream
       <div style={{marginBottom: 48}}>
         <Skeleton width={100} height={435} />
+=======
+      <div style={{marginBottom: 48, marginTop: '100px'}}>
+        <Dots width={180} />
+>>>>>>> Stashed changes
       </div>
     ) : (
       <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>

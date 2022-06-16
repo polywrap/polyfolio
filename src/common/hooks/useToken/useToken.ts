@@ -1,7 +1,7 @@
 import {useWeb3ApiClient} from '@web3api/react';
 import {useCache} from 'common/context/cacheContext';
 import {useCallback, useEffect} from 'react';
-import {TokenToken} from 'utils/allNetworksDataFormatting';
+import {TokenToken} from 'common/types';
 import {getToken} from './getToken';
 
 const useToken = (address: string, type = 'ERC20'): TokenToken => {
