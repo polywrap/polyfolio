@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
 import styles from './Dots.module.scss';
-import useTheme from 'common/hooks/useTheme/useTheme';
 
 const getContainerStyle = (width: number) => {
   return {
@@ -22,7 +21,6 @@ function Dots({
   style,
 }: {
   width?: number | string;
-  height?: number | string;
   style?: React.CSSProperties;
 }) {
   const widthParsed = parseInt(width.toString());

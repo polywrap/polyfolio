@@ -2,7 +2,6 @@ import React from 'react';
 import classNames from 'classnames';
 import styles from './PricesValue.module.scss';
 import numberFormatter from 'utils/numberFormatter';
-import Skeleton from '../Loaders/Skeleton';
 import Dots from '../Loaders/Dots';
 
 function PricesValue({

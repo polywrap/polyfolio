@@ -16,7 +16,6 @@ import ProfileDropdownMenu from 'common/components/ProfileDropdownMenu/ProfileDr
 import Button from '../Button/Button';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useWallet from 'common/hooks/useWallet/useWallet';
-import Skeleton from '../Loaders/Skeleton';
 import getFormattedData from 'utils/getFormattedData';
 import {useRecoilValue} from 'recoil';
 import balanceState from 'common/modules/atoms/balanceState';

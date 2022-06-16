@@ -13,7 +13,6 @@ import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import HeaderTable from '../HeaderTable/HeaderTable';
 import {menuFields} from './FilterFieldsProtokols.config';
-import Skeleton from '../Loaders/Skeleton';
 import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.types';
 import {useRecoilValue} from 'recoil';
 import balanceState from 'common/modules/atoms/balanceState';
@@ -54,7 +53,7 @@ function ProtocolsTable() {
   return (
     balance &&
     (loading ? (
-      <div style={{marginBottom: 48, marginTop:'100px'}}>
+      <div style={{marginBottom: 48, marginTop: '100px'}}>
         <Dots width={180} />
       </div>
     ) : (

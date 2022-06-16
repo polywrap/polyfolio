@@ -56,7 +56,7 @@ function AssetsItem(menuItem) {
             {icon ? (
               <Icon src={icon} className={styles.icon} />
             ) : (
-              <Skeleton width={40} height={40} style={{borderRadius:'50%'}} />
+              <Skeleton width={40} height={40} style={{borderRadius: '50%'}} />
             )}
             <div>
               <div className={styles.title}>{title}</div>

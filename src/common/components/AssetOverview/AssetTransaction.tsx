@@ -5,7 +5,6 @@ import useTheme from 'common/hooks/useTheme/useTheme';
 import TableHeader from '../TableHeader/TableHeader';
 import Table from '../TableBlock/Table/Table';
 import {useRecoilValue} from 'recoil';
-import Skeleton from '../Loaders/Skeleton';
 import useAssetTranscations from './useAssetTranscations';
 import TransactionItem from './AssetTransactionItem/AssetTransactionItem';
 import {getTitleDate} from '../shared/utils';

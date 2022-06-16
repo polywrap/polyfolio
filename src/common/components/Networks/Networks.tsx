@@ -11,14 +11,12 @@ import useNetwork from './Networks.config';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import Icon from 'common/components/Icon/Icon';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
-import Skeleton from '../Loaders/Skeleton';
 import {networkToChainId} from 'utils/constants';
 import RoutePath from 'common/modules/routing/routing.enums';
 import replaceRouteParameters from 'utils/replaceRouteParameters';
 import {useRecoilValue} from 'recoil';
 import {searchPersistState} from 'common/modules/atoms/searchState';
 import {userPersistState} from 'common/modules/atoms/userAddress';
-import Dots from '../Loaders/Dots';
 
 function Networks() {
   const ref = useRef(null);
@@ -54,16 +52,18 @@ function Networks() {
     );
   };
 
-  return menuItems.length > 0 && (
-    <div ref={ref} className={styles[theme]}>
-      <h3>{translation.Table.networks}</h3>
-      <div className={styles.networks_container}>
-        {_map(menuItems, (menuItem) => (
-          <MenuItem {...menuItem} key={menuItem.id} />
-        ))}
+  return (
+    menuItems.length > 0 && (
+      <div ref={ref} className={styles[theme]}>
+        <h3>{translation.Table.networks}</h3>
+        <div className={styles.networks_container}>
+          {_map(menuItems, (menuItem) => (
+            <MenuItem {...menuItem} key={menuItem.id} />
+          ))}
+        </div>
       </div>
-    </div>
-  ) 
+    )
+  );
 }
 
 export default Networks;

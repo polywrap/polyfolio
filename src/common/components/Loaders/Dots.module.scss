@@ -17,23 +17,32 @@ $duration: 1500;
 }
 
 .ball1 {
-  background: radial-gradient(75.47% 75.47% at 39.83% 3.96%, #FFE272 10.42%, #FFC272 63.54%, #FFAB3E 100%);
+  background: radial-gradient(
+    75.47% 75.47% at 39.83% 3.96%,
+    #ffe272 10.42%,
+    #ffc272 63.54%,
+    #ffab3e 100%
+  );
 }
 
 .ball2 {
-  background: linear-gradient(113.37deg, #35DCB3 2.4%, #10C7A2 78.56%);
+  background: linear-gradient(113.37deg, #35dcb3 2.4%, #10c7a2 78.56%);
   //transform: translateX(-50%) scale(1);
   animation-delay: #{$duration/3}ms;
 }
 
 .ball3 {
-  background: radial-gradient(77.84% 77.84% at 31.37% 16.14%, #C4B9FF 0%, #7B61FF 78.12%, #684DEE 100%);
-  animation-delay: #{$duration/3*2}ms;
+  background: radial-gradient(
+    77.84% 77.84% at 31.37% 16.14%,
+    #c4b9ff 0%,
+    #7b61ff 78.12%,
+    #684dee 100%
+  );
+  animation-delay: #{$duration/3 * 2}ms;
 }
 
-
-@keyframes grow{
-  to{
+@keyframes grow {
+  to {
     transform: translateX(-50%) scale(0);
   }
 }

@@ -7,7 +7,6 @@ import useTheme from 'common/hooks/useTheme/useTheme';
 //import {content} from './HeaderDashboard.config';
 import numberFormatter from 'utils/numberFormatter';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
-import Skeleton from '../Loaders/Skeleton';
 import getFormattedData from 'utils/getFormattedData';
 import {useRecoilValue} from 'recoil';
 import balanceState from 'common/modules/atoms/balanceState';
@@ -44,7 +43,7 @@ function HeaderDashboard() {
           {preparedData['allAssetsSum'] ? (
             <h2>${numberFormatter(preparedData['allAssetsSum'])}</h2>
           ) : (
-            <Dots width={120}/>
+            <Dots width={120} />
           )}
           {/* <div className={styles.secondaryValue}>
             {content.percent ? (

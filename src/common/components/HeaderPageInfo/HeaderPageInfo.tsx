@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, {useMemo} from 'react';
 import classNames from 'classnames';
 
 import styles from './HeaderPageInfo.module.scss';
@@ -9,11 +9,11 @@ import numberFormatter from 'utils/numberFormatter';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 
 interface IPageSummary {
-  title: string,
+  title: string;
   fluctuation?: {
-    percent: string | number,
-    price: string | number,
-  }
+    percent: string | number;
+    price: string | number;
+  };
 }
 
 function HeaderPageInfo(props: IPageSummary) {
@@ -23,7 +23,7 @@ function HeaderPageInfo(props: IPageSummary) {
 
   const fluctuationExist = useMemo(() => {
     return fluctuation && Object.keys(fluctuation).length > 0 ? true : false;
-  }, [])
+  }, []);
 
   return (
     <div className={classNames(styles[theme], styles.headerPageInfoContainer)}>

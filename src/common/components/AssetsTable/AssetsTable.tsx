@@ -15,7 +15,6 @@ import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
 import {useLocation} from 'react-router-dom';
 import {getStringFromPath} from 'utils/helpers';
-import Skeleton from '../Loaders/Skeleton';
 import {chainIdToNetwork} from 'utils/constants';
 import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.types';
 import getFormattedData from 'utils/getFormattedData';
@@ -105,7 +104,7 @@ function AssetsTable() {
       </div>
     </div>
   ) : (
-    <div style={{margin: '48px 0', display:'flex', height:'100%', alignItems:'center'}}>
+    <div style={{margin: '48px 0', display: 'flex', height: '100%', alignItems: 'center'}}>
       <Dots width={180} />
     </div>
   );

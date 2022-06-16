@@ -11,7 +11,6 @@ import TransactionItem from './UserTransactionItem/UserTransactionItem';
 import {Transaction} from 'common/hooks/useTransaction/useTransactions.types';
 
 import {getViewsByDate} from './UserTransaction.utils';
-import Skeleton from '../Loaders/Skeleton';
 import {getTitleDate, reduceByDays} from '../shared/utils';
 import ButtonCsv from '../ButtonCsv/ButtonCsv';
 import TablePagination from '../TablePagination/TablePagination';
