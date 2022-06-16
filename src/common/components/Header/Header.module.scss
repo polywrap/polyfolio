@@ -50,7 +50,6 @@
     height: 100%;
     margin: auto;
     @include flex_centered_vert();
-    max-width: 1600px;
     justify-content: space-between;
 
     .hamburger_menu {
