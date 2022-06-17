@@ -11,10 +11,10 @@ import TransactionItem from './UserTransactionItem/UserTransactionItem';
 import {Transaction} from 'common/hooks/useTransaction/useTransactions.types';
 
 import {getViewsByDate} from './UserTransaction.utils';
-import Skeleton from '../Skeleton/Skeleton';
 import {getTitleDate, reduceByDays} from '../shared/utils';
 import ButtonCsv from '../ButtonCsv/ButtonCsv';
 import TablePagination from '../TablePagination/TablePagination';
+import Dots from '../Loaders/Dots';
 
 function AssetTransaction() {
   const theme = useTheme();
@@ -36,21 +36,22 @@ function AssetTransaction() {
 
   const viewsByDate = getTransactionViews(data?.getTransactions?.transactions);
 
-  return (
+  return loading ? (
+    <div style={{height: '100%', display: 'flex', alignItems: 'center'}}>
+      <Dots />
+    </div>
+  ) : (
     <div className={classNames(style[theme], style.transaction)}>
       <TableHeader page={page} setPage={setPage} total={page} />
-      {loading ? (
-        <Skeleton height={'600px'} width={'100%'} />
-      ) : (
-        Object.keys(viewsByDate).map((key) => (
-          <Table
-            key={key}
-            header={<div className={style.tableTitle}>{getTitleDate(key)}</div>}
-            items={viewsByDate[key]}
-            itemRender={(item, index) => <TransactionItem key={index} item={item} />}
-          />
-        ))
-      )}
+      {Object.keys(viewsByDate).map((key) => (
+        <Table
+          key={key}
+          header={<div className={style.tableTitle}>{getTitleDate(key)}</div>}
+          items={viewsByDate[key]}
+          itemRender={(item, index) => <TransactionItem key={index} item={item} />}
+        />
+      ))}
+
       <div className={style.tableFooter}>
         <div className={style.container}>
           <ButtonCsv />

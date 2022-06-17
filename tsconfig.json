@@ -16,7 +16,7 @@
     "strict": false,
     "isolatedModules": false,
     "jsx": "react-jsx",
-    "types": [],
+    "types": []
   },
   "include": ["src"],
   "exclude": ["node_modules", "lib"]

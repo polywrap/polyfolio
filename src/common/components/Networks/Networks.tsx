@@ -11,7 +11,6 @@ import useNetwork from './Networks.config';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import Icon from 'common/components/Icon/Icon';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
-import Skeleton from '../Skeleton/Skeleton';
 import {networkToChainId} from 'utils/constants';
 import RoutePath from 'common/modules/routing/routing.enums';
 import replaceRouteParameters from 'utils/replaceRouteParameters';
@@ -53,17 +52,17 @@ function Networks() {
     );
   };
 
-  return menuItems.length > 0 ? (
-    <div ref={ref} className={styles[theme]}>
-      <h3>{translation.Table.networks}</h3>
-      <div className={styles.networks_container}>
-        {_map(menuItems, (menuItem) => (
-          <MenuItem {...menuItem} key={menuItem.id} />
-        ))}
+  return (
+    menuItems.length > 0 && (
+      <div ref={ref} className={styles[theme]}>
+        <h3>{translation.Table.networks}</h3>
+        <div className={styles.networks_container}>
+          {_map(menuItems, (menuItem) => (
+            <MenuItem {...menuItem} key={menuItem.id} />
+          ))}
+        </div>
       </div>
-    </div>
-  ) : (
-    <Skeleton width={100} height={300} />
+    )
   );
 }
 

@@ -18,10 +18,7 @@ function LandingPage() {
 
   return (
     <div className={classNames(styles.landing_page, styles[theme])}>
-      <Header
-        className={classNames(styles.header, styles.header_content)}
-        inputClassName={styles.input}
-      />
+      <Header className={classNames(styles.header, styles.header_content)} />
 
       <div className={styles.container}>
         <h1 className={styles.title}>

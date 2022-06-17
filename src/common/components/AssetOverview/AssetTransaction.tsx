@@ -5,7 +5,6 @@ import useTheme from 'common/hooks/useTheme/useTheme';
 import TableHeader from '../TableHeader/TableHeader';
 import Table from '../TableBlock/Table/Table';
 import {useRecoilValue} from 'recoil';
-import Skeleton from '../Skeleton/Skeleton';
 import useAssetTranscations from './useAssetTranscations';
 import TransactionItem from './AssetTransactionItem/AssetTransactionItem';
 import {getTitleDate} from '../shared/utils';
@@ -13,6 +12,7 @@ import {userPersistState} from 'common/modules/atoms/userAddress';
 import {searchPersistState} from 'common/modules/atoms/searchState';
 import {reduceByDays, getViewsByDate} from './AssetTransaction.utils';
 import style from './AssetTransaction.module.scss';
+import Dots from '../Loaders/Dots';
 
 function AssetTransaction() {
   const theme = useTheme();
@@ -34,23 +34,25 @@ function AssetTransaction() {
 
   const viewsByDate = getTransactionViews();
 
-  return (
+  return loading ? (
+    <div style={{marginBottom: 48, marginTop: '100px'}}>
+      <Dots />
+    </div>
+  ) : data?.getTokenTransfers?.transfers?.length ? (
     <div className={classNames(style[theme], style.transaction)}>
       <div className={style.title}>Transaction</div>
       <TableHeader page={page} setPage={setPage} total={page} />
-      {loading ? (
-        <Skeleton height={'600px'} width={'100%'} />
-      ) : (
-        Object.keys(viewsByDate).map((key) => (
-          <Table
-            key={key}
-            header={<div className={style.tableTitle}>{getTitleDate(key)}</div>}
-            items={viewsByDate[key]}
-            itemRender={(item, index) => <TransactionItem key={index} item={item} />}
-          />
-        ))
-      )}
+      {Object.keys(viewsByDate).map((key) => (
+        <Table
+          key={key}
+          header={<div className={style.tableTitle}>{getTitleDate(key)}</div>}
+          items={viewsByDate[key]}
+          itemRender={(item, index) => <TransactionItem key={index} item={item} />}
+        />
+      ))}
     </div>
+  ) : (
+    <></>
   );
 }
 

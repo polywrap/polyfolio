@@ -8,7 +8,7 @@ import numberFormatter from 'utils/numberFormatter';
 import {value} from './mocValue';
 import _map from 'lodash/map';
 import DataRangeSelector from '../DateRangeSelector/DateRangeSelector';
-import Skeleton from '../Skeleton/Skeleton';
+import Skeleton from '../Loaders/Skeleton';
 
 function AssetsCharts({changeDataRange, setIsOpen, isOpen, dataRange}) {
   const theme = useTheme();

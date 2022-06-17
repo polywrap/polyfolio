@@ -3,7 +3,7 @@ import Icon from 'common/components/Icon/Icon';
 import useAssetMetadata from 'common/hooks/useAssetMetadata/useAssetMetadata';
 import styles from '../Vaults/VaultsTableItem/VaultsTableItem.module.scss';
 import iconsObj from 'assets/icons/iconsObj';
-import Skeleton from 'common/components/Skeleton/Skeleton';
+import Skeleton from 'common/components/Loaders/Skeleton';
 
 type Props = {
   tokenNetwork: string;
