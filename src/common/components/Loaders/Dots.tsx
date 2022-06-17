@@ -16,13 +16,7 @@ const getBallStyle = (width: number) => {
   };
 };
 
-function Dots({
-  width = 120,
-  style,
-}: {
-  width?: number | string;
-  style?: React.CSSProperties;
-}) {
+function Dots({width = 120, style}: {width?: number | string; style?: React.CSSProperties}) {
   const widthParsed = parseInt(width.toString());
 
   return (
