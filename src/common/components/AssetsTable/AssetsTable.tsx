@@ -15,23 +15,11 @@ import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
 import {useLocation} from 'react-router-dom';
 import {getStringFromPath} from 'utils/helpers';
-<<<<<<< Updated upstream
-import Skeleton from '../Skeleton/Skeleton';
-import {chainIdToNetwork} from 'utils/constants';
-=======
->>>>>>> Stashed changes
 import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.types';
 import numberFormatter from 'utils/numberFormatter';
-<<<<<<< Updated upstream
-import {Currency, CurrencySymbol} from 'common/currency/Currency.types';
-=======
 import {CurrencySymbol} from 'common/currency/Currency.types';
 import Dots from '../Loaders/Dots';
-import useBalance from 'common/hooks/useBalance/useBalance';
-import {useNetworks} from 'common/networks/Networks.context';
-import {useBalanceData} from 'common/hooks/useBalanceData/useBalanceData';
 import {AssetData, Currency} from 'common/types';
->>>>>>> Stashed changes
 
 interface Props {
   assets: AssetData[];
@@ -114,13 +102,8 @@ function AssetsTable({assets, total = ''}: Props) {
       </div>
     </div>
   ) : (
-<<<<<<< Updated upstream
-    <div style={{margin: '48px 0'}}>
-      <Skeleton width={100} height={923} />
-=======
     <div style={{margin: '48px 0', display: 'flex', height: '100%', alignItems: 'center'}}>
       <Dots width={180} />
->>>>>>> Stashed changes
     </div>
   );
 }
