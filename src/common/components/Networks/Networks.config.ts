@@ -26,8 +26,6 @@ const useNetworkInfo = (chainId: string) => {
   const balance = useRecoilValue(balanceState);
   const {networks} = useNetworks();
 
-  console.log('useNetworkInfo');
-
   return (
     balance &&
     getNetworkInfo(
