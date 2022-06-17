@@ -16,10 +16,10 @@ import ProfileDropdownMenu from 'common/components/ProfileDropdownMenu/ProfileDr
 import Button from '../Button/Button';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useWallet from 'common/hooks/useWallet/useWallet';
-import Skeleton from '../Skeleton/Skeleton';
 import getFormattedData from 'utils/getFormattedData';
 import {useRecoilValue} from 'recoil';
 import balanceState from 'common/modules/atoms/balanceState';
+import Dots from '../Loaders/Dots';
 
 function Profile() {
   const theme = useTheme();
@@ -57,7 +57,7 @@ function Profile() {
             {preparedData['allAssetsSum'] ? (
               <div className={styles.amount}>${numberFormatter(preparedData['allAssetsSum'])}</div>
             ) : (
-              <Skeleton width={100} height={22} />
+              <Dots />
             )}
           </div>
         </>

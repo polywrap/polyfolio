@@ -1,4 +1,4 @@
-import React, {useState, useRef, useCallback, useMemo} from 'react';
+import React, {useState, useRef, useCallback} from 'react';
 import classNames from 'classnames';
 
 import styles from './NetworksPicker.module.scss';

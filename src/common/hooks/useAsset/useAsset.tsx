@@ -1,15 +1,10 @@
-import {DataRangeSelectorItem} from 'common/components/DateRangeSelector/DataRangeSelector.types';
-import {getComponentsFromProtocol} from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.utis';
-import {useCurrency} from 'common/currency/Currency.context';
 import RoutePath from 'common/modules/routing/routing.enums';
-import {Asset, AssetData, Balance, Currency, ProtocolElement} from 'common/types';
-import {chainIdToNetwork, networkToChainId} from 'utils/constants';
-import {detectProtocolAndChainIdForAsset, getAssetsValueSum} from 'utils/dataFormatting';
+import {AssetData, Balance, ProtocolElement} from 'common/types';
+import {chainIdToNetwork} from 'utils/constants';
+import {getAssetsValueSum} from 'utils/dataFormatting';
 import {rmCommasFromNum} from 'utils/helpers';
 import {v4 as uuidv4} from 'uuid';
-import useAssetMetadata from '../useAssetMetadata/useAssetMetadata';
-import getAssetPageData from '../useAssetPageData/useAssetPageData';
-import {BalanceData, useBalanceData} from '../useBalanceData/useBalanceData';
+import {useBalanceData} from '../useBalanceData/useBalanceData';
 
 interface ProtocolAsset {
   protocol: ProtocolElement;

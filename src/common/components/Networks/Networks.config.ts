@@ -1,12 +1,11 @@
 import iconsObj from 'assets/icons/iconsObj';
 import RoutePath from 'common/modules/routing/routing.enums';
 import {rmCommasFromNum} from 'utils/helpers';
-import _ from 'lodash';
-import {ejectAssetsFromProtocol, getAssetsValueSum, sumAssetsValues} from 'utils/dataFormatting';
+import {getAssetsValueSum} from 'utils/dataFormatting';
 import {useNetworks} from 'common/networks/Networks.context';
 import {useRecoilValue} from 'recoil';
 import balanceState from 'common/modules/atoms/balanceState';
-import {AccountBalance, Balance, Network} from 'common/types';
+import {AccountBalance, Network} from 'common/types';
 import {chainIdToNetwork} from 'utils/constants';
 
 const getNetworkInfo = (balance: AccountBalance, network: Network) => {

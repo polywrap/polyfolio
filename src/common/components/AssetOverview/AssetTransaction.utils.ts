@@ -6,7 +6,7 @@ import {AssetTransactionView} from './AssetTransactionItem/AssetTransactionItem'
 import {getEventIcon} from 'utils/dataFormatting';
 import {mapTypeToWay} from '../UserTransaction/transformers';
 import iconsObj from 'assets/icons/iconsObj';
-import { TokenToken } from 'common/types';
+import {TokenToken} from 'common/types';
 
 interface TransactionWithTransfer extends Transaction {
   transfers: TransferTransfer[];

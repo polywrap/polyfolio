@@ -6,12 +6,9 @@ import HeaderPageInfo from 'common/components/HeaderPageInfo/HeaderPageInfo';
 import {useParams} from 'react-router-dom';
 import useNetworkInfo from 'common/components/Networks/Networks.config';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
-import _find from 'lodash/find';
 import DashboardPage from '../DashboardPage';
-import {chainIdToNetwork} from 'utils/constants';
 import useAssets from 'common/components/AssetsTable/AssetsTableItem/AssetsTableItem.config';
 import {useBalanceData} from 'common/hooks/useBalanceData/useBalanceData';
-import {SupportedNetwork} from 'common/types';
 
 function NetworksPage() {
   const translation = useTranslation();

@@ -2,10 +2,7 @@ import React, {useRef, useState} from 'react';
 import classNames from 'classnames';
 import iconsObj from 'assets/icons/iconsObj';
 import Icon from 'common/components/Icon/Icon';
-import _map from 'lodash/map';
 import styles from './AssetsTable.module.scss';
-
-import useAssets from './AssetsTableItem/AssetsTableItem.config';
 import {menuFields} from './FilterFieldsAssets.config';
 import AssetsTableItem from './AssetsTableItem/AssetsTableItem';
 import useTheme from 'common/hooks/useTheme/useTheme';
@@ -13,13 +10,13 @@ import HeaderTable from '../HeaderTable/HeaderTable';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
-import {useLocation} from 'react-router-dom';
-import {getStringFromPath} from 'utils/helpers';
 import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.types';
 import numberFormatter from 'utils/numberFormatter';
 import {CurrencySymbol} from 'common/currency/Currency.types';
 import Dots from '../Loaders/Dots';
 import {AssetData, Currency} from 'common/types';
+//import {useLocation} from 'react-router-dom';
+//import {getStringFromPath} from 'utils/helpers';
 
 interface Props {
   assets: AssetData[];
@@ -27,8 +24,8 @@ interface Props {
 }
 
 function AssetsTable({assets, total = ''}: Props) {
-  const {pathname} = useLocation();
-  const page = getStringFromPath(pathname, 4);
+  //const {pathname} = useLocation();
+  //const page = getStringFromPath(pathname, 4);
   const [tableIsOpen, setTableIsOpen] = useState(false);
   const {filters, setFilters} = useFiltersTables();
   const [filter, setFilter] = useState<Filters>(filters);

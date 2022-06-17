@@ -1,5 +1,4 @@
 import React, {Dispatch} from 'react';
-import _map from 'lodash/map';
 import classNames from 'classnames';
 
 import styles from './NetworksPickerInfo.module.scss';

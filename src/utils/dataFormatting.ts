@@ -6,7 +6,7 @@ import BN from 'bn.js';
 import {rmCommasFromNum} from './helpers';
 import iconsObj from 'assets/icons/iconsObj';
 import {chainIdToNetwork} from 'utils/constants';
-import {ReducedBalance, Asset, Balance, AccountBalance} from 'common/types';
+import {Asset, Balance} from 'common/types';
 import {EventParam} from 'common/hooks/useTransaction/useTransactions.types';
 import {ProtocolElement} from 'common/types';
 

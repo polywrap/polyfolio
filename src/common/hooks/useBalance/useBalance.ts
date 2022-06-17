@@ -1,4 +1,4 @@
-import {useCallback, useEffect} from 'react';
+import {useCallback} from 'react';
 import {useRecoilState} from 'recoil';
 import {useWeb3ApiClient} from '@web3api/react';
 import balanceState from 'common/modules/atoms/balanceState';

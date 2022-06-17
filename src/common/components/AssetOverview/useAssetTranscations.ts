@@ -3,16 +3,10 @@ import {useCurrency} from 'common/currency/Currency.context';
 import {searchPersistState} from 'common/modules/atoms/searchState';
 import {userPersistState} from 'common/modules/atoms/userAddress';
 import {useEffect} from 'react';
-import {useParams} from 'react-router-dom';
 import {useRecoilValue} from 'recoil';
-import _find from 'lodash/find';
-import useAssets from '../AssetsTable/AssetsTableItem/AssetsTableItem.config';
 import {Transaction, TransactionsList} from 'common/hooks/useTransaction/useTransactions.types';
 import ENS_URI from 'utils/web3apiConfig/ensUri';
 import {TokenToken} from 'common/types';
-import {useBalanceData} from 'common/hooks/useBalanceData/useBalanceData';
-import {useNetworks} from 'common/networks/Networks.context';
-import useAsset from 'common/hooks/useAsset/useAsset';
 
 interface Props {
   tokenAddress: string;
@@ -95,7 +89,7 @@ export default function useAssetTranscations({
 
       console.log(
         `getTokenTransfers for user '${variables.accountAddress}', address:'${variables.tokenAddress}' page ${variables.options.pagination.page}, perPage: ${variables.options.pagination.perPage}, currency:${currency}`,
-   );
+      );
 
       execute(variables);
     }

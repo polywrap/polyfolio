@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import DashboardPage from '../DashboardPage';
 import HeaderCurrencyPage from 'pages/HeaderCurrencyPage/HeaderCurrencyPage';
 import AssetsCharts from 'common/components/AssetsChart/AssetsChart';

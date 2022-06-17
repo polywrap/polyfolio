@@ -1,4 +1,4 @@
-import { Currency } from "./modified";
+import {Currency} from './modified';
 
 export interface AccountBalance {
   account: string;

@@ -3,7 +3,6 @@ import HeaderPage from 'common/components/HeaderPage/HeaderPage';
 import HeaderPageInfo from 'common/components/HeaderPageInfo/HeaderPageInfo';
 import {useParams} from 'react-router-dom';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
-import _find from 'lodash/find';
 import VaultsTable from 'common/components/ProtocolPage/Vaults/VaultsTable';
 //import AssetTransaction from 'common/components/UserTransaction/UserTransaction';
 import DashboardPage from '../DashboardPage';

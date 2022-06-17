@@ -1,5 +1,4 @@
-import React, {useMemo, useState} from 'react';
-import _map from 'lodash/map';
+import {useState} from 'react';
 import useBalance from 'common/hooks/useBalance/useBalance';
 import {useEffect} from 'react';
 import {SupportedNetwork} from 'common/networks/Networks.config';

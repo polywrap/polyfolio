@@ -6,7 +6,7 @@ import {networkToChainId} from 'utils/constants';
 import useAssetMetadata from 'common/hooks/useAssetMetadata/useAssetMetadata';
 import useAssetPageData from 'common/hooks/useAssetPageData/useAssetPageData';
 import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.types';
-import { useBalanceData } from 'common/hooks/useBalanceData/useBalanceData';
+import {useBalanceData} from 'common/hooks/useBalanceData/useBalanceData';
 
 const useAssetChartConfig = (dataRange: DataRangeSelectorItem) => {
   const {currency} = useCurrency();

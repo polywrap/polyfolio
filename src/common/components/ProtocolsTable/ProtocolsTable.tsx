@@ -13,20 +13,11 @@ import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
 import useTheme from 'common/hooks/useTheme/useTheme';
 import HeaderTable from '../HeaderTable/HeaderTable';
 import {menuFields} from './FilterFieldsProtokols.config';
-<<<<<<< Updated upstream
-import Skeleton from '../Skeleton/Skeleton';
-=======
->>>>>>> Stashed changes
 import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.types';
 import numberFormatter from 'utils/numberFormatter';
 import {CurrencySymbol} from 'common/currency/Currency.types';
-<<<<<<< Updated upstream
-=======
 import Dots from '../Loaders/Dots';
-import {useBalanceData} from 'common/hooks/useBalanceData/useBalanceData';
-import {useNetworks} from 'common/networks/Networks.context';
 import {Currency, ProtocolElement} from 'common/types';
->>>>>>> Stashed changes
 
 function ProtocolsTable({protocols}: {protocols: ProtocolElement[]}) {
   const [tableIsOpen, setTableIsOpen] = useState(false);
@@ -59,13 +50,8 @@ function ProtocolsTable({protocols}: {protocols: ProtocolElement[]}) {
   return (
     protocols &&
     (loading ? (
-<<<<<<< Updated upstream
-      <div style={{marginBottom: 48}}>
-        <Skeleton width={100} height={435} />
-=======
       <div style={{marginBottom: 48, marginTop: '100px'}}>
         <Dots width={180} />
->>>>>>> Stashed changes
       </div>
     ) : (
       <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>
