@@ -38,7 +38,7 @@ function AssetTransaction() {
     <div style={{marginBottom: 48, marginTop: '100px'}}>
       <Dots />
     </div>
-  ) : (
+  ) : data?.getTokenTransfers?.transfers?.length ? (
     <div className={classNames(style[theme], style.transaction)}>
       <div className={style.title}>Transaction</div>
       <TableHeader page={page} setPage={setPage} total={page} />
@@ -51,6 +51,8 @@ function AssetTransaction() {
         />
       ))}
     </div>
+  ) : (
+    <></>
   );
 }
 
