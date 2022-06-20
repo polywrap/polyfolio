@@ -50,7 +50,10 @@ function MenuItem({
         <div className={styles.secondaryTitle}>{network.title}</div>
         {selected ? (
           <div className={styles.iconCurrency}>
-            <Icon src={iconsObj.checkedIcon} className={classNames(styles.iconSelected, disabled ? styles.iconDisable: '')} />
+            <Icon
+              src={iconsObj.checkedIcon}
+              className={classNames(styles.iconSelected, disabled ? styles.iconDisable : '')}
+            />
           </div>
         ) : (
           <div className={styles.iconCurrency}>

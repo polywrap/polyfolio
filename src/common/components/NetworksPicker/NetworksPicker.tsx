@@ -27,7 +27,7 @@ function NetworksPicker({className = ''}: {className?: string}) {
         if (networks.length === 1) return; // prevent deselection of last network
         setNetworks(networks.filter((n) => n.name !== menu_item.name));
       } else {
-        console.log('not selected')
+        console.log('not selected');
         setNetworks([...networks, SUPPORTED_NETWORKS.find((n) => n.name === menu_item.name)]);
       }
     },
