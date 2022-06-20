@@ -64,6 +64,9 @@
       width: 24px;
       height: 24px;
     }
+    .iconDisable {
+      filter: grayscale(1);
+    }
     .secondaryTitle {
       font-family: var(--font_family);
       font-weight: var(--font_weight_bolder);
