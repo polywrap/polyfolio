@@ -33,11 +33,12 @@ export default CacheProvider;
 
 export function useCache<T extends unknown>(key: string): [T, (value: T) => void] {
   const {getCacheByKey, setCacheByKey} = useContext(CacheContext);
+  const [cachedValue, setCachedValue] = useState<T>(getCacheByKey(key) as T);
 
-  const setCache = (value: unknown) => {
+  const setCache = (value: T) => {
     setCacheByKey(key, value);
+    setCachedValue(value);
   };
-  const value = getCacheByKey(key);
 
-  return [value as T, setCache];
+  return [cachedValue, setCache];
 }
