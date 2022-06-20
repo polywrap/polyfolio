@@ -1,4 +1,4 @@
-import React, {createContext, useContext, useState} from 'react';
+import React, {createContext, useContext, useRef, useState} from 'react';
 
 interface CacheContextProps {
   getCacheByKey: (key: string) => unknown;
@@ -10,16 +10,16 @@ const CacheContext = createContext<CacheContextProps>(null);
 
 // TODO implement cache processing stete, e.g to prevent multiple requests for same cache key
 function CacheProvider({children}: {children: React.ReactNode}) {
-  const [cache, setCache] = useState({});
+  const cache = useRef({});
 
   const setCacheByKey = (key: string, value: unknown) => {
-    setCache((cache) => ({...cache, [key]: value}));
+    cache.current = {...cache.current, [key]: value};
   };
 
-  const getCacheByKey = (key: string) => cache[key] || undefined;
+  const getCacheByKey = (key: string) => cache.current[key] ?? undefined;
 
   const clearCache = () => {
-    setCache({});
+    cache.current = {};
   };
 
   return (
