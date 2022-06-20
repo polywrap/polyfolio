@@ -20,8 +20,7 @@ export default function FiltersContextProvider({children}) {
       value: false,
     },
     vaults: {
-      protocols: false,
-      allocation: false,
+      balance: false,
       value: false,
       claimable: false,
     },

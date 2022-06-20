@@ -8,8 +8,7 @@ interface Filters {
     value: boolean;
   };
   vaults: {
-    protocols: boolean;
-    allocation: boolean;
+    balance: boolean;
     value: boolean;
     claimable: boolean;
   };

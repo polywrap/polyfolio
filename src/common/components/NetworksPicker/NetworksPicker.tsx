@@ -22,11 +22,12 @@ function NetworksPicker({className = ''}: {className?: string}) {
   const handleToggleNetwork = useCallback(
     (menu_item) => {
       const selected = networks.find((n) => n.name === menu_item.name);
-      console.log('selected', selected);
 
       if (selected) {
+        if (networks.length === 1) return; // prevent deselection of last network
         setNetworks(networks.filter((n) => n.name !== menu_item.name));
       } else {
+        console.log('not selected');
         setNetworks([...networks, SUPPORTED_NETWORKS.find((n) => n.name === menu_item.name)]);
       }
     },

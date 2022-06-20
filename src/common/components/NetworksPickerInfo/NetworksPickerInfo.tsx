@@ -22,6 +22,7 @@ function NetworksPickerInfo({onClick}: {onClick: Dispatch<Network>}) {
           key={network.chainId}
           network={network}
           selected={networks.map((n) => n.name).includes(network.name)}
+          disabled={networks.length === 1}
           onClick={onClick}
         />
       ))}
@@ -32,10 +33,12 @@ function NetworksPickerInfo({onClick}: {onClick: Dispatch<Network>}) {
 function MenuItem({
   network,
   selected,
+  disabled = false,
   onClick,
 }: {
   network: Network;
   selected: boolean;
+  disabled?: boolean;
   onClick: Dispatch<Network>;
 }) {
   return (
@@ -47,7 +50,10 @@ function MenuItem({
         <div className={styles.secondaryTitle}>{network.title}</div>
         {selected ? (
           <div className={styles.iconCurrency}>
-            <Icon src={iconsObj.checkedIcon} className={styles.iconSelected} />
+            <Icon
+              src={iconsObj.checkedIcon}
+              className={classNames(styles.iconSelected, disabled ? styles.iconDisable : '')}
+            />
           </div>
         ) : (
           <div className={styles.iconCurrency}>

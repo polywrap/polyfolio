@@ -82,14 +82,14 @@ function VaultsTable({protocolData}: Props) {
           </div>
           <div
             className={classNames(styles.title, styles.price, {
-              [styles.hidden]: filters.vaults.value,
+              [styles.hidden]: filters.vaults.balance,
             })}
           >
             {translation.Table.balance}
           </div>
           <div
             className={classNames(styles.title, styles.value, {
-              [styles.hidden]: filters.vaults.claimable,
+              [styles.hidden]: filters.vaults.value,
             })}
           >
             {translation.Tables.value}

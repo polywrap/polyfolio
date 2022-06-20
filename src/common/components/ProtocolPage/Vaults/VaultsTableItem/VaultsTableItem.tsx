@@ -35,14 +35,14 @@ function VaultsItem({asset, onClick}: Props) {
           </div>
           <div
             className={classNames(styles.price_container, {
-              [styles.hidden]: filters.vaults.value,
+              [styles.hidden]: filters.vaults.balance,
             })}
           >
             <div className={styles.title}>{balanceStr}</div>
           </div>
           <div
             className={classNames(styles.value_container, {
-              [styles.hidden]: filters.vaults.claimable,
+              [styles.hidden]: filters.vaults.value,
             })}
           >
             <div className={styles.title}>
