@@ -1,8 +1,9 @@
 import React, {useEffect, useContext, createContext} from 'react';
 import {atom, useRecoilState} from 'recoil';
 
-import {Currency, CurrencyContextProps} from './Currency.types';
+import {CurrencyContextProps} from './Currency.types';
 import useLocalStorage from 'common/hooks/useLocalStorage/useLocalStorage';
+import {Currency} from 'common/types';
 
 const CURRENCY_LS_KEY = 'polyfolio_currency';
 const CURRENCY_STATE_KEY = 'polyfolio_currency_state';

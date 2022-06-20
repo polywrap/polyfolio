@@ -1,4 +1,4 @@
-import {Asset, Balance, ProtocolElement, TokenElement} from 'utils/allNetworksDataFormatting';
+import {Asset, Balance, ProtocolElement, TokenElement} from 'common/types';
 import {chainIdToNetwork} from 'utils/constants';
 import {AssetComponentData, AssetData, ClaimableData, ProtocolData} from './types';
 import {getClaimableTokens} from './utils';

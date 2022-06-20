@@ -11,19 +11,21 @@ import useAssetPageData from 'common/hooks/useAssetPageData/useAssetPageData';
 import {useRecoilValue} from 'recoil';
 import {userPersistState} from 'common/modules/atoms/userAddress';
 import {searchPersistState} from 'common/modules/atoms/searchState';
+import {useBalanceData} from 'common/hooks/useBalanceData/useBalanceData';
 
 const useAssetOverviewData = (dataRange: DataRangeSelectorItem) => {
   const user = useRecoilValue(userPersistState);
   const search = useRecoilValue(searchPersistState);
   const {asset} = useParams();
   const {currency} = useCurrency();
-  const menuItems = useAssets();
+  const balanceData = useBalanceData();
+  const menuItems = useAssets(balanceData);
   const assetData = _find(menuItems, {symbol: asset});
 
   const assetMetaData = useAssetMetadata(
     assetData?.network,
     networkToChainId[assetData?.network],
-    assetData?.address,
+    assetData?.tokenAddress,
   );
   const assetPreparedData = useAssetPageData(
     currency,

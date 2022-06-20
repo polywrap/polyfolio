@@ -1,7 +1,7 @@
 import _forEach from 'lodash/forEach';
 import _flatten from 'lodash/flatten';
 import {ejectAssetsFromProtocol, getAssetsValueSum} from './dataFormatting';
-import {AccountBalance} from './allNetworksDataFormatting';
+import {AccountBalance} from 'common/types';
 
 const networkDataFormatting = (page: string, balance: AccountBalance) => {
   let preparedData = {};

@@ -1,5 +1,5 @@
 import {getClaimableValueFromCurrProtocol} from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.utis';
-import {Asset, Currency} from 'utils/allNetworksDataFormatting';
+import {Asset, Currency} from 'common/types';
 import * as dataFormatting from 'utils/dataFormatting';
 import {
   protocols,
@@ -84,7 +84,7 @@ test('Insert Chain Id To Protocol', () => {
       chainId: '1',
       values: [
         {
-          currency: Currency.Usd,
+          currency: Currency.USD,
           price: 'N/A',
           value: '10,765.135113993',
         },
@@ -105,7 +105,7 @@ test('Insert Chain Id To Protocol', () => {
       chainId: '1',
       values: [
         {
-          currency: Currency.Usd,
+          currency: Currency.USD,
           price: 'N/A',
           value: '10,765.135113993',
         },

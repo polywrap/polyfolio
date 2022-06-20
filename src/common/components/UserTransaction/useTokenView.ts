@@ -79,10 +79,6 @@ const useTokenView = (token: TokenViewProps) => {
           (p) => p.currency === currency.toLocaleLowerCase(),
         );
 
-        console.log(
-          `Token value calc - symbol:${tokenInfo.symbol} value:${token?.tokenValue}, decimals: ${tokenData.decimals}, result:${tokenAmount}`,
-        );
-
         if (tokenAmount && tokenPrice) {
           tokenInfo.currencyChange = getTokenAmountInCurrency(
             tokenAmount,

@@ -19,27 +19,35 @@ import Skeleton from 'common/components/Loaders/Skeleton';
 import {searchPersistState} from 'common/modules/atoms/searchState';
 import {useRecoilValue} from 'recoil';
 import {userPersistState} from 'common/modules/atoms/userAddress';
+import useAssetMetadata from 'common/hooks/useAssetMetadata/useAssetMetadata';
+import {AssetData} from 'common/types';
+import getAssetPageData from 'common/hooks/useAssetPageData/useAssetPageData';
+import {useCurrency} from 'common/currency/Currency.context';
+import {DataRangeSelectorItem} from 'common/components/DateRangeSelector/DataRangeSelector.types';
 
-function AssetsItem(menuItem) {
+interface AssetTableItemProps {
+  asset: AssetData;
+  dateRange: DataRangeSelectorItem;
+}
+
+function AssetsItem({asset, dateRange}: AssetTableItemProps) {
   const {filters} = useFiltersTables();
   const translation = useTranslation();
   const user = useRecoilValue(userPersistState);
   const navigate = useNavigate();
   const {
-    secondaryPricePercentTitle,
     valueSecondaryTitle,
-    pricePercentDollar,
     secondaryTitle,
-    valueIsMinus,
     priceTitle,
     valueTitle,
     percent,
     title,
     link,
-    icon,
     network,
     symbol,
-  } = menuItem;
+    chainId,
+    tokenAddress,
+  } = asset;
   const search = useRecoilValue(searchPersistState);
   const path =
     symbol && !search
@@ -47,6 +55,23 @@ function AssetsItem(menuItem) {
       : search
       ? replaceRouteParameters(link, {chainId: networkToChainId[network], asset: symbol, search})
       : RoutePath.NotFound;
+
+  const assetMetaData = useAssetMetadata(network, chainId, tokenAddress);
+
+  const {currency} = useCurrency();
+
+  const assetPreparedData = getAssetPageData(
+    currency,
+    assetMetaData,
+    priceTitle.toString(),
+    dateRange,
+  );
+
+  const secondaryPricePercentTitle = assetPreparedData?.percentage ?? '';
+  const pricePercentDollar = assetPreparedData?.pricePercentDollar ?? '';
+  const valueIsMinus = assetPreparedData?.style === 'profit' ? false : true;
+
+  const icon = assetMetaData?.image?.small;
 
   return (
     <>

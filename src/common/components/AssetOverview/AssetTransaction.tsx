@@ -14,19 +14,16 @@ import {reduceByDays, getViewsByDate} from './AssetTransaction.utils';
 import style from './AssetTransaction.module.scss';
 import Dots from '../Loaders/Dots';
 
-function AssetTransaction() {
+function AssetTransaction({tokenAddress}: {tokenAddress: string}) {
   const theme = useTheme();
   const [page, setPage] = useState<number>(1);
   const user = useRecoilValue(userPersistState);
   const search = useRecoilValue(searchPersistState);
 
-  const {data, loading} = useAssetTranscations({page, perPage: 10});
+  const {data, loading} = useAssetTranscations({tokenAddress, page, perPage: 10});
 
   const getTransactionViews = () => {
     if (!data?.getTokenTransfers) return {};
-    //console.log('transfers', data?.getTokenTransfers.transfers);
-
-    console.log('res', data.getTokenTransfers);
     const txByDate = reduceByDays(data.getTokenTransfers);
 
     return getViewsByDate(txByDate, search || user);

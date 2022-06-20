@@ -1,8 +1,13 @@
 import iconsObj from 'assets/icons/iconsObj';
 
+export enum SupportedNetwork {
+  ETHEREUM = 'ethereum',
+  POLYGON = 'polygon',
+}
+
 export default [
   {
-    name: 'ethereum',
+    name: SupportedNetwork.ETHEREUM,
     jsonRPC: 'http://infura.io/...',
     chainId: 1,
     title: 'Ethereum',
@@ -10,7 +15,7 @@ export default [
     icon: iconsObj.ethereum,
   },
   {
-    name: 'polygon',
+    name: SupportedNetwork.POLYGON,
     jsonRPC: 'http://infura.io/...',
     chainId: 137,
     title: 'Polygon',

@@ -3,15 +3,13 @@ import {useCurrency} from 'common/currency/Currency.context';
 import {searchPersistState} from 'common/modules/atoms/searchState';
 import {userPersistState} from 'common/modules/atoms/userAddress';
 import {useEffect} from 'react';
-import {useParams} from 'react-router-dom';
 import {useRecoilValue} from 'recoil';
-import _find from 'lodash/find';
-import useAssets from '../AssetsTable/AssetsTableItem/AssetsTableItem.config';
 import {Transaction, TransactionsList} from 'common/hooks/useTransaction/useTransactions.types';
-import {TokenToken} from 'utils/allNetworksDataFormatting';
 import ENS_URI from 'utils/web3apiConfig/ensUri';
+import {TokenToken} from 'common/types';
 
 interface Props {
+  tokenAddress: string;
   page?: number;
   perPage?: number;
   config?: {
@@ -38,12 +36,15 @@ export interface TokenTransfers extends Omit<TransactionsList, 'transactions'> {
   transfers: Transfer[];
 }
 
-export default function useAssetTranscations({page, perPage = 10, config = {chainId: 1}}: Props) {
+export default function useAssetTranscations({
+  tokenAddress,
+  page,
+  perPage = 10,
+  config = {chainId: 1},
+}: Props) {
   const user = useRecoilValue(userPersistState);
   const search = useRecoilValue(searchPersistState);
   const {currency} = useCurrency();
-  const {asset} = useParams();
-  const menuItems = useAssets();
 
   const {data, loading, errors, execute} = useWeb3ApiQuery<{getTokenTransfers: TokenTransfers}>({
     uri: ENS_URI.MOCK,
@@ -72,11 +73,9 @@ export default function useAssetTranscations({page, perPage = 10, config = {chai
 
   useEffect(() => {
     if (search || user) {
-      const assetData = _find(menuItems, {symbol: asset});
-
       const variables = {
         accountAddress: search ?? user,
-        tokenAddress: assetData.address,
+        tokenAddress: tokenAddress,
         currencies: [currency],
         //currencies: [currency],
         options: {
@@ -89,7 +88,7 @@ export default function useAssetTranscations({page, perPage = 10, config = {chai
       };
 
       console.log(
-        `getTokenTransfers for user '${variables.accountAddress}', token '${assetData?.secondaryTitle}', address:'${variables.tokenAddress}' page ${variables.options.pagination.page}, perPage: ${variables.options.pagination.perPage}, currency:${currency}`,
+        `getTokenTransfers for user '${variables.accountAddress}', address:'${variables.tokenAddress}' page ${variables.options.pagination.page}, perPage: ${variables.options.pagination.perPage}, currency:${currency}`,
       );
 
       execute(variables);

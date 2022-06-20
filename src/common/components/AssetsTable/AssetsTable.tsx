@@ -2,10 +2,7 @@ import React, {useRef, useState} from 'react';
 import classNames from 'classnames';
 import iconsObj from 'assets/icons/iconsObj';
 import Icon from 'common/components/Icon/Icon';
-import _map from 'lodash/map';
 import styles from './AssetsTable.module.scss';
-
-import useAssets from './AssetsTableItem/AssetsTableItem.config';
 import {menuFields} from './FilterFieldsAssets.config';
 import AssetsTableItem from './AssetsTableItem/AssetsTableItem';
 import useTheme from 'common/hooks/useTheme/useTheme';
@@ -13,20 +10,22 @@ import HeaderTable from '../HeaderTable/HeaderTable';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
 import useFiltersTables from 'common/hooks/useFiltersTables/useFilters';
 import {Filters} from 'common/hooks/useFiltersTables/Filters.types';
-import {useLocation} from 'react-router-dom';
-import {getStringFromPath} from 'utils/helpers';
-import {chainIdToNetwork} from 'utils/constants';
 import {DataRangeSelectorItem} from '../DateRangeSelector/DataRangeSelector.types';
-import getFormattedData from 'utils/getFormattedData';
-import {useRecoilValue} from 'recoil';
-import balanceState from 'common/modules/atoms/balanceState';
 import numberFormatter from 'utils/numberFormatter';
-import {Currency, CurrencySymbol} from 'common/currency/Currency.types';
+import {CurrencySymbol} from 'common/currency/Currency.types';
 import Dots from '../Loaders/Dots';
+import {AssetData, Currency} from 'common/types';
+//import {useLocation} from 'react-router-dom';
+//import {getStringFromPath} from 'utils/helpers';
 
-function AssetsTable() {
-  const {pathname} = useLocation();
-  const page = getStringFromPath(pathname, 4);
+interface Props {
+  assets: AssetData[];
+  total: string | number;
+}
+
+function AssetsTable({assets, total = ''}: Props) {
+  //const {pathname} = useLocation();
+  //const page = getStringFromPath(pathname, 4);
   const [tableIsOpen, setTableIsOpen] = useState(false);
   const {filters, setFilters} = useFiltersTables();
   const [filter, setFilter] = useState<Filters>(filters);
@@ -34,11 +33,8 @@ function AssetsTable() {
   const ref = useRef(null);
   const theme = useTheme();
   const translation = useTranslation();
-  const balance = useRecoilValue(balanceState);
-  const preparedData = getFormattedData(balance, chainIdToNetwork[page]);
   const [dataRange, setDataRange] = useState<DataRangeSelectorItem>({});
   const [dataRangeIsOpen, setDataRangeIsOpen] = useState(true);
-  const assets = useAssets(dataRange);
 
   const changeDataRange = (e) => {
     setDataRange(e);
@@ -48,11 +44,10 @@ function AssetsTable() {
   const onChange = (name, value) => {
     setFilter({...filters, assets: {...filter.assets, [name]: !value?.checked}});
   };
-  const sum = `${CurrencySymbol[Currency.USD.toUpperCase()]} ${numberFormatter(
-    preparedData['allAssetsSum'],
-  )}`;
 
-  return preparedData['balance'] ? (
+  const sum = total && `${CurrencySymbol[Currency.USD.toUpperCase()]} ${numberFormatter(total)}`;
+
+  return assets ? (
     <div ref={ref} className={classNames(styles[theme], styles.protocolsContainer)}>
       <HeaderTable
         setTableIsOpen={() => setTableIsOpen(!tableIsOpen)}
@@ -98,8 +93,8 @@ function AssetsTable() {
             Value
           </div>
         </div>
-        {_map(assets, (asset) => (
-          <AssetsTableItem {...asset} key={asset.id} />
+        {assets.map((asset) => (
+          <AssetsTableItem key={asset.id} asset={asset} dateRange={dataRange} />
         ))}
       </div>
     </div>

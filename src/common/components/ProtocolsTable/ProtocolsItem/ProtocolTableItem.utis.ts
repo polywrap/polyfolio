@@ -1,7 +1,7 @@
+import {ProtocolElement, Asset, Balance} from 'common/types';
 import {rmCommasFromNum} from 'utils/helpers';
-import {Asset, IBalance, IProtocol} from './ProtocolTableItem.types';
 
-export const sumProtocolAssetsBalances = (protocol: IProtocol) =>
+export const sumProtocolAssetsBalances = (protocol: ProtocolElement) =>
   protocol.assets.reduce((prev, current) => prev + sumAssetBalances(current), 0);
 
 export const sumAssetBalances = (asset: Asset) =>
@@ -10,7 +10,7 @@ export const sumAssetBalances = (asset: Asset) =>
     0,
   );
 
-export const sumClaimableValues = (protocol: IProtocol) =>
+export const sumClaimableValues = (protocol: ProtocolElement) =>
   protocol.assets.reduce((prev, current) => prev + getClaimableValueFromCurrProtocol(current), 0);
 
 export const getClaimableValueFromCurrProtocol = (asset: Asset) => {
@@ -27,8 +27,8 @@ export const getClaimableValueFromCurrProtocol = (asset: Asset) => {
   return value;
 };
 
-export const getComponentsFromProtocol = (protocol: IProtocol) =>
+export const getComponentsFromProtocol = (protocol: ProtocolElement): Balance[] =>
   protocol.assets.reduce(
-    (prev: IBalance[], asset: Asset) => [...prev, ...asset.balance.components],
-    [],
+    (prev: Balance[], asset: Asset) => [...prev, ...asset.balance.components],
+    [] as Balance[],
   );

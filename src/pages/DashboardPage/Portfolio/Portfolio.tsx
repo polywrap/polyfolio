@@ -5,15 +5,22 @@ import AssetsTable from 'common/components/AssetsTable/AssetsTable';
 import DashboardNavigation from 'common/components/DashboardNavigation/DashboardNavigation';
 import HeaderDashboard from 'common/components/HeaderDashboard/HeaderDashboard';
 import DashboardPage from '../DashboardPage';
+import {useBalanceData} from 'common/hooks/useBalanceData/useBalanceData';
+import useAssets from 'common/components/AssetsTable/AssetsTableItem/AssetsTableItem.config';
+import useBalance from 'common/hooks/useBalance/useBalance';
 
 function Portfolio() {
+  const balanceData = useBalanceData();
+  const assets = useAssets(balanceData);
+  const {balance} = useBalance();
+
   return (
     <DashboardPage>
       <HeaderDashboard />
       <DashboardNavigation />
-      <AssetsTable />
-      <ProtocolsTable />
-      <Networks />
+      <AssetsTable assets={assets} total={balanceData.assetSum} />
+      <ProtocolsTable protocols={balanceData.protocols} />
+      {balance && <Networks />}
     </DashboardPage>
   );
 }

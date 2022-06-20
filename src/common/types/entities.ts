@@ -1,9 +1,13 @@
-export interface IBalance {
-  ethereum: Network;
-  polygon: Network;
+import {Currency} from './modified';
+
+export interface AccountBalance {
+  account: string;
+  chainId: string;
+  values: Value[];
+  protocols: ProtocolElement[];
 }
 
-export interface Network {
+export interface NetworkBalance {
   account: string;
   chainId: string;
   values: Value[];
@@ -49,11 +53,6 @@ export interface Value {
   currency: Currency;
   price: string;
   value: string;
-}
-
-export enum Currency {
-  Eur = 'eur',
-  Usd = 'usd',
 }
 
 export interface ProtocolProtocol {

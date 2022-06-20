@@ -1,4 +1,4 @@
-import React, {useState, useRef, useCallback, useMemo} from 'react';
+import React, {useState, useRef, useCallback} from 'react';
 import classNames from 'classnames';
 
 import styles from './NetworksPicker.module.scss';
@@ -9,7 +9,7 @@ import NetworksPickerInfo from '../NetworksPickerInfo/NetworksPickerInfo';
 import TooltipTrigger from 'common/components/TooltipTrigger/TooltipTrigger';
 import {useNetworks} from 'common/networks/Networks.context';
 import useOnClickOutside from 'common/hooks/useOnClickOutside/useOnClickOutside';
-import SUPPORTED_NETWORKS from './NetworksPicker.config';
+import SUPPORTED_NETWORKS from '../../networks/Networks.config';
 
 function NetworksPicker({className = ''}: {className?: string}) {
   const ref = useRef(null);
@@ -19,32 +19,26 @@ function NetworksPicker({className = ''}: {className?: string}) {
 
   useOnClickOutside(ref.current, () => setIsOpen(false));
 
-  const handleNetworkChange = useCallback(
+  const handleToggleNetwork = useCallback(
     (menu_item) => {
-      setNetworks(
-        networks.map((networkItem) =>
-          networkItem.name === menu_item.name
-            ? {...networkItem, checked: !networkItem.checked}
-            : networkItem,
-        ),
-      );
+      const selected = networks.find((n) => n.name === menu_item.name);
+      console.log('selected', selected);
+
+      if (selected) {
+        setNetworks(networks.filter((n) => n.name !== menu_item.name));
+      } else {
+        setNetworks([...networks, SUPPORTED_NETWORKS.find((n) => n.name === menu_item.name)]);
+      }
     },
     [networks, setNetworks],
   );
-
-  const netChosenQuantity = useMemo(() => {
-    let quantity = 0;
-    networks?.forEach((n) => (n.checked ? quantity++ : {}));
-
-    return quantity;
-  }, [networks]);
 
   return (
     <div ref={ref} className={classNames(styles[theme], styles.NetworksPicker, className)}>
       <TooltipTrigger
         isOpen={isOpen}
         placement={'bottom-end'}
-        popper={<NetworksPickerInfo onClick={handleNetworkChange} />}
+        popper={<NetworksPickerInfo onClick={handleToggleNetwork} />}
       >
         <div
           ref={ref}
@@ -52,7 +46,7 @@ function NetworksPicker({className = ''}: {className?: string}) {
           className={classNames(styles.common_currency_picker, styles[theme], className)}
         >
           <span className={styles.currency}>
-            Networks - {netChosenQuantity}/{Object.keys(SUPPORTED_NETWORKS).length}
+            Networks - {networks.length}/{Object.keys(SUPPORTED_NETWORKS).length}
           </span>
           <MenuArrow
             startPosition={!isOpen ? 'right' : 'down'}

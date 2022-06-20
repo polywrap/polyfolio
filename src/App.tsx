@@ -27,8 +27,7 @@ function App() {
   const user = useRecoilValue(userPersistState);
   const search = useRecoilValue(searchPersistState);
   const {check} = useWallet();
-  useBalance(search ?? user);
-  //useTransactions(); //TODO Why do we use it here ?
+  const {fetchBalances} = useBalance();
 
   useEffect(() => {
     if (MetaMaskOnboarding.isMetaMaskInstalled()) {
@@ -51,6 +50,12 @@ function App() {
 
     return children;
   };
+
+  useEffect(() => {
+    if (search || user) {
+      fetchBalances(search || user);
+    }
+  }, [user, search]);
 
   return (
     <div className={styles.app}>

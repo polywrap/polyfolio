@@ -1,5 +1,5 @@
 import {Web3ApiClient} from '@web3api/client-js';
-import {AccountBalance} from 'utils/allNetworksDataFormatting';
+import {AccountBalance} from 'common/types';
 import ENS_URI from 'utils/web3apiConfig/ensUri';
 
 const defaultVars = {

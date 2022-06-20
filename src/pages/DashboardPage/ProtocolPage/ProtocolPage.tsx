@@ -3,8 +3,6 @@ import HeaderPage from 'common/components/HeaderPage/HeaderPage';
 import HeaderPageInfo from 'common/components/HeaderPageInfo/HeaderPageInfo';
 import {useParams} from 'react-router-dom';
 import useTranslation from 'common/hooks/useTranslation/useTranslation';
-import _find from 'lodash/find';
-import useProtocols from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.config';
 import VaultsTable from 'common/components/ProtocolPage/Vaults/VaultsTable';
 //import AssetTransaction from 'common/components/UserTransaction/UserTransaction';
 import DashboardPage from '../DashboardPage';
@@ -12,9 +10,11 @@ import {useRecoilValue} from 'recoil';
 import balanceState from 'common/modules/atoms/balanceState';
 import {toProtocolData} from 'common/components/ProtocolPage/shared/transformers';
 import {chainIdToNetwork} from 'utils/constants';
-import {AccountBalance} from 'utils/allNetworksDataFormatting';
+import {AccountBalance} from 'common/types';
 import {ProtocolData} from 'common/components/ProtocolPage/shared/types';
 import ClaimableTable from 'common/components/ProtocolPage/Claimable/ClaimableTable';
+import {sumProtocolAssetsBalances} from 'common/components/ProtocolsTable/ProtocolsItem/ProtocolTableItem.utis';
+import iconsObj from 'assets/icons/iconsObj';
 
 export const getProtocol = (
   balance: Record<string, AccountBalance>,
@@ -33,17 +33,18 @@ export const getProtocol = (
   }
 };
 
+interface ProtocolPageState extends ProtocolData {
+  valueTitle?: string;
+  title?: string;
+  icon?: string;
+}
+
 function ProtocolPage() {
   const translation = useTranslation();
-  const {protocol} = useParams();
-  const {data: menuItems} = useProtocols();
-  const current = _find(menuItems, {symbol: protocol});
-
-  const [protocolData, setProtocolData] = useState<ProtocolData>(undefined);
-
   const balance = useRecoilValue(balanceState);
-
   const {chainId, protocol: protocolId} = useParams();
+
+  const [protocolData, setProtocolData] = useState<ProtocolPageState>(undefined);
 
   useEffect(() => {
     if (balance) {
@@ -51,7 +52,13 @@ function ProtocolPage() {
 
       if (protocol) {
         const transformed = toProtocolData(protocol);
-        setProtocolData(transformed);
+        const data = {
+          ...transformed,
+          valueTitle: sumProtocolAssetsBalances(protocol).toString(),
+          title: protocol.protocol.name,
+          icon: iconsObj[protocol.protocol.id] as string,
+        };
+        setProtocolData(data);
       }
     }
   }, [balance]);
@@ -59,10 +66,10 @@ function ProtocolPage() {
   return (
     <DashboardPage>
       <HeaderPage
-        title={`${current?.title} ${translation.Protocols.protocol}`}
-        icon={current?.icon}
+        title={`${protocolData?.title} ${translation.Protocols.protocol}`}
+        icon={protocolData?.icon}
       />
-      <HeaderPageInfo title={current?.valueTitle} />
+      <HeaderPageInfo title={protocolData?.valueTitle} />
       <VaultsTable protocolData={protocolData} />
       {protocolData?.claimableRewards && <ClaimableTable protocolData={protocolData} />}
       {/* <AssetTransaction /> */}

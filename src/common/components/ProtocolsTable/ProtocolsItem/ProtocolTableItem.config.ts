@@ -1,15 +1,12 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import {IProtocol, ProtocolsItem} from './ProtocolTableItem.types';
+import {ProtocolsItem} from './ProtocolTableItem.types';
 import {v4 as uuidv4} from 'uuid';
 import iconsObj from 'assets/icons/iconsObj';
 import RoutePath from 'common/modules/routing/routing.enums';
-import {getStringFromPath} from 'utils/helpers';
-import {useLocation} from 'react-router-dom';
 import {chainIdToNetwork} from 'utils/constants';
 import {DataRangeSelectorItem} from 'common/components/DateRangeSelector/DataRangeSelector.types';
 import {getAssetMetadata} from 'common/hooks/useAssetMetadata/useAssetMetadata.config';
 import {useCurrency} from 'common/currency/Currency.context';
-import getFormattedData from 'utils/getFormattedData';
 import {useRecoilValue} from 'recoil';
 import balanceState from 'common/modules/atoms/balanceState';
 import {useEffect, useState} from 'react';
@@ -20,6 +17,7 @@ import {
 } from './ProtocolTableItem.utis';
 import {useWeb3ApiClient} from '@web3api/react';
 import getAssetPageData from 'common/hooks/useAssetPageData/useAssetPageData';
+import {ProtocolElement} from 'common/types';
 
 interface State {
   data: ProtocolsItem[];
@@ -27,9 +25,9 @@ interface State {
   error: string;
 }
 
-export const useProtocols = (dataRange?: DataRangeSelectorItem) => {
-  const {pathname} = useLocation();
-  const page = getStringFromPath(pathname, 4);
+export const useProtocols = (protocols: ProtocolElement[], dataRange?: DataRangeSelectorItem) => {
+  //const {pathname} = useLocation();
+  //const page = getStringFromPath(pathname, 4);
   const {currency} = useCurrency();
   const client = useWeb3ApiClient();
   const balance = useRecoilValue(balanceState);
@@ -39,18 +37,10 @@ export const useProtocols = (dataRange?: DataRangeSelectorItem) => {
   useEffect(() => {
     const go = async () => {
       setState((state) => ({...state, loading: true}));
-
-      const preparedData = getFormattedData(balance, chainIdToNetwork[page]);
-      const allProtocols: IProtocol[] = preparedData['allProtocols'];
-
-      // console.log('-------------ALL PROTOCOLS', allProtocols);
-
       const menuItems = [];
 
-      if (allProtocols) {
-        for (const protocol of allProtocols) {
-          // console.log(`-----Start processing Protocol ${protocol.protocol.name}`);
-
+      if (protocols) {
+        for (const protocol of protocols) {
           const valueTitle = sumProtocolAssetsBalances(protocol);
           const claimableValue = sumClaimableValues(protocol);
           let secondaryTitlePercent = 0;
@@ -61,7 +51,6 @@ export const useProtocols = (dataRange?: DataRangeSelectorItem) => {
 
           for (const component of components) {
             // TODO change to Promise.all to have secondaryTitlePercent synched
-            //console.log(`__________________________________________`);
 
             const assetMetaData = await getAssetMetadata(client, {
               id: chainIdToNetwork[network],
@@ -70,8 +59,6 @@ export const useProtocols = (dataRange?: DataRangeSelectorItem) => {
             });
 
             if (assetMetaData !== null && assetMetaData !== undefined) {
-              //console.log(`-Asset meta for ${chainIdToNetwork[network]}, ${component.token.token.name}`,assetMetaData);
-
               if (dataRange) {
                 const assetPreparedData = getAssetPageData(
                   currency,
@@ -101,17 +88,16 @@ export const useProtocols = (dataRange?: DataRangeSelectorItem) => {
             id: uuidv4(),
           };
           menuItems.push(result);
-          //console.log(`Finished processing Protocol ${protocol.protocol.name}`,`\nResult:`, result);
         }
       }
 
       setState({data: menuItems, loading: false, error: ''});
     };
 
-    if (balance) {
+    if (balance && protocols?.length) {
       go();
     }
-  }, [balance]);
+  }, [balance, protocols]);
 
   return state;
 };
